@@ -1,0 +1,30 @@
+{
+    "name": "vain/expression",
+    "type": "shared-package",
+    "authors": [
+        {
+            "name": "Taras Girnyk",
+            "email": "le@mirohost.net",
+            "homepage": "https://github.com/allflame/vain-expression",
+            "role": "Maintainer"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Vain\\Id\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "ext-pdo": "*",
+        "vain/core" : "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/allflame/vain-core"
+        }
+    ],
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}
