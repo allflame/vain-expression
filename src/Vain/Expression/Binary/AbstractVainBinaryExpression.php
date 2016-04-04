@@ -11,7 +11,7 @@ namespace Vain\Expression\Binary;
 use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 use Vain\Expression\VainExpressionInterface;
 
-abstract class AbstractVainBinrayExpression implements VainBinaryExpressionInterface
+abstract class AbstractVainBinaryExpression implements VainBinaryExpressionInterface
 {
     private $firstExpression;
     

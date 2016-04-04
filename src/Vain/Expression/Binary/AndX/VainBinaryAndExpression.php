@@ -8,12 +8,12 @@
 
 namespace Vain\Expression\Binary\AndX;
 
-use Vain\Expression\Binary\AbstractVainBinrayExpression;
+use Vain\Expression\Binary\AbstractVainBinaryExpression;
 use Vain\Expression\Evaluator\VainExpressionEvaluatorInterface;
 use Vain\Expression\Parser\VainExpressionParserInterface;
 use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 
-class VainBinaryAndExpression extends AbstractVainBinrayExpression
+class VainBinaryAndExpression extends AbstractVainBinaryExpression
 {
     /**
      * @inheritDoc
