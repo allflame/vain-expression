@@ -6,7 +6,8 @@
  * Time: 9:12 PM
  */
 
-namespace Parser\Human;
+namespace Vain\Expression\Parser\Human;
+
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
 
@@ -95,7 +96,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function false(ExpressionInterface $expression)
+    public function false()
     {
         return 'FALSE';
     }
@@ -103,7 +104,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function true(ExpressionInterface $expression)
+    public function true()
     {
         return 'TRUE';
     }
