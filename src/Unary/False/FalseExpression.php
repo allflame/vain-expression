@@ -2,25 +2,25 @@
 /**
  * Created by PhpStorm.
  * User: allflame
- * Date: 4/1/16
- * Time: 9:08 AM
+ * Date: 4/4/16
+ * Time: 11:16 AM
  */
 
-namespace Vain\Expression\Unary\Identity;
+namespace Vain\Expression\Unary\False;
 
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 
-class IdentityUnaryExpression extends AbstractUnaryExpression
+class FalseExpression extends AbstractUnaryExpression
 {
     /**
      * @inheritDoc
      */
     public function evaluate(EvaluatorInterface $evaluator)
     {
-        return $this->getExpression()->evaluate($evaluator);
+        return false;
     }
 
     /**
@@ -28,7 +28,7 @@ class IdentityUnaryExpression extends AbstractUnaryExpression
      */
     public function parse(ParserInterface $parser)
     {
-        return $parser->id($this->getExpression());
+        return $parser->false($this->getExpression());
     }
 
     /**
@@ -36,6 +36,6 @@ class IdentityUnaryExpression extends AbstractUnaryExpression
      */
     public function serialize(SerializerInterface $serializer)
     {
-        return ['id', parent::serialize($serializer)];
+        return ['false', parent::serialize($serializer)];
     }
 }

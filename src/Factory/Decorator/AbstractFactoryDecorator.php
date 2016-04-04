@@ -108,6 +108,22 @@ abstract class AbstractFactoryDecorator implements FactoryInterface
     /**
      * @inheritDoc
      */
+    public function false(ExpressionInterface $expression)
+    {
+        return $this->expressionFactory->false($expression);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function true(ExpressionInterface $expression)
+    {
+        return $this->expressionFactory->true($expression);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function andX(ExpressionInterface $firstExpression, ExpressionInterface $secondExpression)
     {
         return $this->expressionFactory->andX($firstExpression, $secondExpression);

@@ -13,7 +13,7 @@ use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 
-class NotUnaryExpression extends AbstractUnaryExpression
+class NotExpression extends AbstractUnaryExpression
 {
     /**
      * @inheritDoc

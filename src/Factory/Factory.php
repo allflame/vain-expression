@@ -19,9 +19,11 @@ use Vain\Expression\Comparison\LessOrEqual\LessOrEqualExpression;
 use Vain\Expression\Comparison\Like\LikeExpression;
 use Vain\Expression\Comparison\NotEqual\NotEqualExpression;
 use Vain\Expression\Factory\Exception\UnknownShortcutFactoryException;
-use Vain\Expression\Unary\Identity\IdentityUnaryExpression;
-use Vain\Expression\Unary\Not\NotUnaryExpression;
+use Vain\Expression\Unary\False\FalseExpression;
+use Vain\Expression\Unary\Identity\IdentityExpression;
+use Vain\Expression\Unary\Not\NotExpression;
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Unary\True\TrueExpression;
 
 class Factory implements FactoryInterface
 {
@@ -46,7 +48,7 @@ class Factory implements FactoryInterface
      */
     public function gt($what, $against, $type = null)
     {
-       return new GreaterExpression($what, $against, $type);
+        return new GreaterExpression($what, $against, $type);
     }
 
     /**
@@ -86,7 +88,7 @@ class Factory implements FactoryInterface
      */
     public function like($what, $against, $type = null)
     {
-       return new LikeExpression($what, $against, $type);
+        return new LikeExpression($what, $against, $type);
     }
 
     /**
@@ -94,7 +96,7 @@ class Factory implements FactoryInterface
      */
     public function id(ExpressionInterface $expression)
     {
-        return new IdentityUnaryExpression($expression);
+        return new IdentityExpression($expression);
     }
 
     /**
@@ -102,7 +104,23 @@ class Factory implements FactoryInterface
      */
     public function not(ExpressionInterface $expression)
     {
-       return new NotUnaryExpression($expression);
+        return new NotExpression($expression);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function false(ExpressionInterface $expression)
+    {
+        return new FalseExpression($expression);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function true(ExpressionInterface $expression)
+    {
+        return new TrueExpression($expression);
     }
 
     /**
@@ -129,21 +147,22 @@ class Factory implements FactoryInterface
         switch ($shortcut) {
             case 'eq':
                 return $this->eq(null, null, null);
-            break;
+                break;
             case 'neq':
                 return $this->neq(null, null, null);
-            break;
+                break;
             case 'gt':
                 return $this->gt(null, null, null);
-            break;
+                break;
             case 'gte':
                 return $this->gte(null, null, null);
-            break;
+                break;
             case 'lt':
                 return $this->lt(null, null, null);
-            break;
+                break;
             case 'lte':
                 return $this->lte(null, null, null);
+                break;
             case 'in':
                 return $this->in(null, null, null);
                 break;
@@ -155,6 +174,12 @@ class Factory implements FactoryInterface
                 break;
             case 'not':
                 return $this->not(null);
+                break;
+            case 'true':
+                return $this->true(null);
+                break;
+            case 'false':
+                return $this->false(null);
                 break;
             case 'and':
                 return $this->andX(null, null);
