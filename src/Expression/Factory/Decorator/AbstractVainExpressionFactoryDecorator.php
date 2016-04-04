@@ -120,4 +120,14 @@ abstract class AbstractVainExpressionFactoryDecorator implements VainExpressionF
     {
         return $this->expressionFactory->orX($firstExpression, $secondExpression);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function create($shortcut)
+    {
+        return $this->expressionFactory->create($shortcut);
+    }
+
+
 }

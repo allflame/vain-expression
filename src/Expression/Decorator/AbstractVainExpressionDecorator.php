@@ -8,12 +8,12 @@
 
 namespace Vain\Expression\Decorator;
 
-
 use Vain\Expression\Evaluator\VainExpressionEvaluatorInterface;
 use Vain\Expression\Parser\VainExpressionParserInterface;
+use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 use Vain\Expression\VainExpressionInterface;
 
-class AbstractVainExpressionDecorator implements VainExpressionInterface
+abstract class AbstractVainExpressionDecorator implements VainExpressionInterface
 {
     private $expression;
 
@@ -48,5 +48,21 @@ class AbstractVainExpressionDecorator implements VainExpressionInterface
     public function parse(VainExpressionParserInterface $parser)
     {
         return $this->expression->parse($parser);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize(VainExpressionSerializerInterface $serializer)
+    {
+        return $this->expression->serialize($serializer);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        return $this->expression->unserialize($serializer, $serializedData);
     }
 }
