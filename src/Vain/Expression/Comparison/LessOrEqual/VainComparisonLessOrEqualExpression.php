@@ -38,14 +38,4 @@ class VainComparisonLessOrEqualExpression extends AbstractVainComparisonExpressi
     {
         return ['lte', parent::serialize($serializer)];
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
-    {
-        list ($type, $parenData) = $serializedData;
-        
-        return parent::unserialize($serializer, $parenData);
-    }
 }
