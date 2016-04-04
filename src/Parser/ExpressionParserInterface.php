@@ -10,7 +10,7 @@ namespace Vain\Expression\Parser;
 
 use Vain\Expression\ExpressionInterface;
 
-interface ParserInterface
+interface ExpressionParserInterface
 {
     /**
      * @param mixed $what

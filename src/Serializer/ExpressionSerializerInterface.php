@@ -10,7 +10,7 @@ namespace Vain\Expression\Serializer;
 
 use Vain\Expression\ExpressionInterface;
 
-interface SerializerInterface
+interface ExpressionSerializerInterface
 {
     /**
      * @param ExpressionInterface $expression

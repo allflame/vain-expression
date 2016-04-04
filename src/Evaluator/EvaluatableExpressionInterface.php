@@ -11,9 +11,9 @@ namespace Vain\Expression\Evaluator;
 interface EvaluatableInterface
 {
     /**
-     * @param EvaluatorInterface $evaluator
+     * @param ExpressionEvaluatorInterface $evaluator
      * 
      * @return bool
      */
-    public function evaluate(EvaluatorInterface $evaluator);
+    public function evaluate(ExpressionEvaluatorInterface $evaluator);
 }

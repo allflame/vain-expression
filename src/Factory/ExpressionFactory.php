@@ -18,14 +18,14 @@ use Vain\Expression\Comparison\Less\LessExpression;
 use Vain\Expression\Comparison\LessOrEqual\LessOrEqualExpression;
 use Vain\Expression\Comparison\Like\LikeExpression;
 use Vain\Expression\Comparison\NotEqual\NotEqualExpression;
-use Vain\Expression\Factory\Exception\UnknownShortcutFactoryException;
+use Vain\Expression\Factory\Exception\UnknownShortcutExpressionFactoryException;
 use Vain\Expression\Unary\False\FalseExpression;
 use Vain\Expression\Unary\Identity\IdentityExpression;
 use Vain\Expression\Unary\Not\NotExpression;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Unary\True\TrueExpression;
 
-class Factory implements FactoryInterface
+class ExpressionFactory implements ExpressionFactoryInterface
 {
     /**
      * @inheritDoc
@@ -188,7 +188,7 @@ class Factory implements FactoryInterface
                 return $this->orX(null, null);
                 break;
             default:
-                throw new UnknownShortcutFactoryException($this, $shortcut);
+                throw new UnknownShortcutExpressionFactoryException($this, $shortcut);
         }
     }
 

@@ -9,16 +9,16 @@
 namespace Vain\Expression\Comparison\In;
 
 use Vain\Expression\Comparison\AbstractComparisonExpression;
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class InExpression extends AbstractComparisonExpression
 {
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator)
     {
         return $evaluator->in($this->getWhat(), $this->getAgainst(), $this->getType());
     }
@@ -26,7 +26,7 @@ class InExpression extends AbstractComparisonExpression
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function parse(ExpressionParserInterface $parser)
     {
         return $parser->in($this->getWhat(), $this->getAgainst());
     }
@@ -34,7 +34,7 @@ class InExpression extends AbstractComparisonExpression
     /**
      * @inheritDoc
      */
-    public function serialize(SerializerInterface $serializer)
+    public function serialize(ExpressionSerializerInterface $serializer)
     {
         return ['in', parent::serialize($serializer)];
     }

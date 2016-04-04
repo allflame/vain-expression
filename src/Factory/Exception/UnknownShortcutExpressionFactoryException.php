@@ -8,17 +8,17 @@
 
 namespace Vain\Expression\Factory\Exception;
 
-use Vain\Expression\Factory\FactoryInterface;
+use Vain\Expression\Factory\ExpressionFactoryInterface;
 
-class UnknownShortcutFactoryException extends FactoryException
+class UnknownShortcutExpressionFactoryException extends ExpressionFactoryException
 {
     /**
      * VainExpressionFactoryUnklnownShortcutException constructor.
-     * @param FactoryInterface $expressionFactory
+     * @param ExpressionFactoryInterface $expressionFactory
      * @param string $shortcut
      */
     public function __construct(
-        FactoryInterface $expressionFactory,
+        ExpressionFactoryInterface $expressionFactory,
         $shortcut
     ) {
         parent::__construct($expressionFactory, sprintf('Cannot create expression by unknown shortcut %s', $shortcut), 0, null);

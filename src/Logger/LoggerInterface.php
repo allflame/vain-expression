@@ -8,43 +8,43 @@
 
 namespace Vain\Expression\Logger;
 
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
+use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Parser\ExpressionParserInterface;
 use Vain\Expression\ExpressionInterface;
 
 interface LoggerInterface
 {
     /**
      * @param ExpressionInterface $expression
-     * @param EvaluatorInterface $evaluator
+     * @param ExpressionEvaluatorInterface $evaluator
      *
      * @return LoggerInterface
      */
-    public function beforeEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator);
+    public function beforeEvaluation(ExpressionInterface $expression, ExpressionEvaluatorInterface $evaluator);
 
     /**
      * @param ExpressionInterface $expression
-     * @param EvaluatorInterface $evaluator
+     * @param ExpressionEvaluatorInterface $evaluator
      * @param bool $result
      *
      * @return LoggerInterface
      */
-    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, $result);
+    public function afterEvaluation(ExpressionInterface $expression, ExpressionEvaluatorInterface $evaluator, $result);
 
     /**
      * @param ExpressionInterface $expression
-     * @param ParserInterface $parser
+     * @param ExpressionParserInterface $parser
      *
      * @return LoggerInterface
      */
-    public function beforeParsing(ExpressionInterface $expression, ParserInterface $parser);
+    public function beforeParsing(ExpressionInterface $expression, ExpressionParserInterface $parser);
 
     /**
      * @param ExpressionInterface $expression
-     * @param ParserInterface $parser
+     * @param ExpressionParserInterface $parser
      * @param string $result
      *
      * @return LoggerInterface
      */
-    public function afterParsing(ExpressionInterface $expression, ParserInterface $parser, $result);
+    public function afterParsing(ExpressionInterface $expression, ExpressionParserInterface $parser, $result);
 }

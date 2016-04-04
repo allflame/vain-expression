@@ -11,17 +11,17 @@ namespace Vain\Expression\Serializer;
 interface SerializableInterface
 {
     /**
-     * @param SerializerInterface $serializer
+     * @param ExpressionSerializerInterface $serializer
      *
      * @return array
      */
-    public function serialize(SerializerInterface $serializer);
+    public function serialize(ExpressionSerializerInterface $serializer);
 
     /**
-     * @param SerializerInterface $serializer
+     * @param ExpressionSerializerInterface $serializer
      * @param array $serializedData
      *
      * @return SerializableInterface
      */
-    public function unserialize(SerializerInterface $serializer, array $serializedData);
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData);
 }

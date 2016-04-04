@@ -9,9 +9,9 @@
 namespace Vain\Expression\Decorator\Logger;
 
 use Vain\Expression\Decorator\AbstractExpressionDecorator;
-use Vain\Expression\Evaluator\EvaluatorInterface;
+use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Logger\LoggerInterface;
-use Vain\Expression\Parser\ParserInterface;
+use Vain\Expression\Parser\ExpressionParserInterface;
 use Vain\Expression\ExpressionInterface;
 
 class LoggerExpressionDecorator extends AbstractExpressionDecorator
@@ -32,7 +32,7 @@ class LoggerExpressionDecorator extends AbstractExpressionDecorator
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator)
     {
         $this->expressionLogger->beforeEvaluation($this->getExpression(), $evaluator);
         $result =  parent::evaluate($evaluator);
@@ -44,7 +44,7 @@ class LoggerExpressionDecorator extends AbstractExpressionDecorator
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function parse(ExpressionParserInterface $parser)
     {
         $this->expressionLogger->beforeParsing($this->getExpression(), $parser);
         $result =  parent::parse($parser);

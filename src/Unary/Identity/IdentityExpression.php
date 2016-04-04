@@ -8,9 +8,9 @@
 
 namespace Vain\Expression\Unary\Identity;
 
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Serializer\ExpressionSerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 
 class IdentityExpression extends AbstractUnaryExpression
@@ -18,7 +18,7 @@ class IdentityExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator)
     {
         return $this->getExpression()->evaluate($evaluator);
     }
@@ -26,7 +26,7 @@ class IdentityExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function parse(ExpressionParserInterface $parser)
     {
         return $parser->id($this->getExpression());
     }
@@ -34,7 +34,7 @@ class IdentityExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function serialize(SerializerInterface $serializer)
+    public function serialize(ExpressionSerializerInterface $serializer)
     {
         return ['id', parent::serialize($serializer)];
     }

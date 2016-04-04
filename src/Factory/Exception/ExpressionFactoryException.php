@@ -9,20 +9,20 @@
 namespace Vain\Expression\Factory\Exception;
 
 use Vain\Core\Exception\CoreException;
-use Vain\Expression\Factory\FactoryInterface;
+use Vain\Expression\Factory\ExpressionFactoryInterface;
 
-class FactoryException extends CoreException
+class ExpressionFactoryException extends CoreException
 {
     private $expressionFactory;
 
     /**
      * VainExpressionFactoryException constructor.
-     * @param FactoryInterface $expressionFactory
+     * @param ExpressionFactoryInterface $expressionFactory
      * @param string $message
      * @param int $code
      * @param \Exception $previous
      */
-    public function __construct(FactoryInterface $expressionFactory, $message, $code, \Exception $previous)
+    public function __construct(ExpressionFactoryInterface $expressionFactory, $message, $code, \Exception $previous)
     {
         $this->expressionFactory = $expressionFactory;
         parent::__construct($message, $code, $previous);

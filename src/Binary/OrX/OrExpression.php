@@ -9,16 +9,16 @@
 namespace Vain\Expression\Binary\OrX;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class OrExpression extends AbstractBinaryExpression
 {
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator)
     {
         return $this->getFirstExpression()->evaluate($evaluator) || $this->getSecondExpression()->evaluate($evaluator);
     }
@@ -26,7 +26,7 @@ class OrExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function parse(ExpressionParserInterface $parser)
     {
         return $parser->orX($this->getFirstExpression(), $this->getSecondExpression());
     }
@@ -34,7 +34,7 @@ class OrExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function serialize(SerializerInterface $serializer)
+    public function serialize(ExpressionSerializerInterface $serializer)
     {
         return ['or', parent::serialize($serializer)];
     }

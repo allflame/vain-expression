@@ -23,7 +23,7 @@ use Vain\Expression\Unary\Not\NotExpression;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Unary\True\TrueExpression;
 
-interface FactoryInterface
+interface ExpressionFactoryInterface
 {
     /**
      * @param mixed $what

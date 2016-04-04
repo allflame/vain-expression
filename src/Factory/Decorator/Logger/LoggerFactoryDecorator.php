@@ -9,21 +9,21 @@
 namespace Vain\Expression\Factory\Decorator\Logger;
 
 use Vain\Expression\Decorator\Logger\LoggerExpressionDecorator;
-use Vain\Expression\Factory\Debug\AbstractFactoryDecorator;
-use Vain\Expression\Factory\FactoryInterface;
+use Vain\Expression\Factory\Debug\AbstractExpressionFactoryDecorator;
+use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\Logger\LoggerInterface;
 use Vain\Expression\ExpressionInterface;
 
-class LoggerFactoryDecorator extends AbstractFactoryDecorator
+class LoggerFactoryDecorator extends AbstractExpressionFactoryDecorator
 {
     private $logger;
 
     /**
      * VainExpressionFactoryLoggerDecorator constructor.
      * @param LoggerInterface $logger
-     * @param FactoryInterface $expressionFactory
+     * @param ExpressionFactoryInterface $expressionFactory
      */
-    public function __construct(LoggerInterface $logger, FactoryInterface $expressionFactory)
+    public function __construct(LoggerInterface $logger, ExpressionFactoryInterface $expressionFactory)
     {
         $this->logger = $logger;
         parent::__construct($expressionFactory);

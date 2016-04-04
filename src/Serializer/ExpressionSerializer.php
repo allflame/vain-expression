@@ -8,18 +8,18 @@
 
 namespace Vain\Expression\Serializer;
 
-use Vain\Expression\Factory\FactoryInterface;
+use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
 
-class Serializer implements SerializerInterface
+class ExpressionSerializer implements ExpressionSerializerInterface
 {
     private $expressionFactory;
 
     /**
      * VainExpressionSerializer constructor.
-     * @param FactoryInterface $expressionFactory
+     * @param ExpressionFactoryInterface $expressionFactory
      */
-    public function __construct(FactoryInterface $expressionFactory)
+    public function __construct(ExpressionFactoryInterface $expressionFactory)
     {
         $this->expressionFactory = $expressionFactory;
     }

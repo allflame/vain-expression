@@ -9,7 +9,7 @@
 namespace Vain\Expression\Evaluator;
 
 
-interface EvaluatorInterface
+interface ExpressionEvaluatorInterface
 {
     /**
      * @param mixed $what

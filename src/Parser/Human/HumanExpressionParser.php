@@ -8,9 +8,9 @@
 
 namespace Parser\Human;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Parser\ParserInterface;
+use Vain\Expression\Parser\ExpressionParserInterface;
 
-class HumanParser implements ParserInterface
+class HumanExpressionParser implements ExpressionParserInterface
 {
     /**
      * @inheritDoc

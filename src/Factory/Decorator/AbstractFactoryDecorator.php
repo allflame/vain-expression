@@ -9,18 +9,18 @@
 namespace Vain\Expression\Factory\Debug;
 
 
-use Vain\Expression\Factory\FactoryInterface;
+use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
 
-abstract class AbstractFactoryDecorator implements FactoryInterface
+abstract class AbstractExpressionFactoryDecorator implements ExpressionFactoryInterface
 {
     private $expressionFactory;
 
     /**
      * AbstractVainExpressionFactoryDecorator constructor.
-     * @param FactoryInterface $expressionFactory
+     * @param ExpressionFactoryInterface $expressionFactory
      */
-    public function __construct(FactoryInterface $expressionFactory)
+    public function __construct(ExpressionFactoryInterface $expressionFactory)
     {
         $this->expressionFactory = $expressionFactory;
     }

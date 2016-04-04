@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Comparison;
 
-use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 abstract class AbstractComparisonExpression implements ComparisonExpressionInterface
 {
@@ -52,7 +52,7 @@ abstract class AbstractComparisonExpression implements ComparisonExpressionInter
     /**
      * @inheritDoc
      */
-    public function serialize(SerializerInterface $serializer)
+    public function serialize(ExpressionSerializerInterface $serializer)
     {
         return [$this->what, $this->against, $this->type];
     }
@@ -60,7 +60,7 @@ abstract class AbstractComparisonExpression implements ComparisonExpressionInter
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serializedData)
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData)
     {
         list ($this->what, $this->against, $this->type) = $serializedData;
 
