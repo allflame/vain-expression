@@ -12,6 +12,7 @@ use Vain\Comparator\Repository\ComparatorRepositoryInterface;
 use Vain\Data\Descriptor\DescriptorInterface;
 use Vain\Data\Provider\DataProviderInterface;
 use Vain\Data\Runtime\RuntimeData;
+use Vain\Expression\Evaluator\Exception\ModeMismatchExpressionEvaluatorException;
 
 class ExpressionEvaluator implements ExpressionEvaluatorInterface
 {
@@ -35,6 +36,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function eq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->eq($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 
@@ -43,6 +48,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function neq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->neq($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 
@@ -51,6 +60,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function gt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->gt($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 
@@ -59,6 +72,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function gte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->gte($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 
@@ -67,6 +84,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function lt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->lt($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 
@@ -75,6 +96,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function lte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->lte($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 
@@ -83,6 +108,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function in(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->in($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 
@@ -91,6 +120,10 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
      */
     public function like(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
     {
+        if ($what->getMode() !== $against->getMode()) {
+            throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
+        }
+
         return $this->comparatorRepository->getComparator($what->getMode())->like($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
     }
 }
