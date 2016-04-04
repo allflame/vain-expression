@@ -17,7 +17,9 @@
     "require": {
         "php": ">=5.6.0",
         "vain/core" : "dev-master",
-        "vain/logger" : "dev-master"
+        "vain/logger" : "dev-master",
+        "vain/data" : "dev-master",
+        "vain/comparator" : "dev-master"
     },
     "repositories": [
         {
@@ -27,6 +29,14 @@
         {
             "type": "vcs",
             "url": "https://github.com/allflame/vain-http"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/allflame/vain-data"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/allflame/vain-comparator"
         },
         {
             "type": "vcs",

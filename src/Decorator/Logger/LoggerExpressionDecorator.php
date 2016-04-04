@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Decorator\Logger;
 
+use Vain\Data\Runtime\RuntimeData;
 use Vain\Expression\Decorator\AbstractExpressionDecorator;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Logger\LoggerInterface;
@@ -32,10 +33,10 @@ class LoggerExpressionDecorator extends AbstractExpressionDecorator
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator, RuntimeData $runtimeData = null)
     {
         $this->expressionLogger->beforeEvaluation($this->getExpression(), $evaluator);
-        $result =  parent::evaluate($evaluator);
+        $result =  parent::evaluate($evaluator, $runtimeData);
         $this->expressionLogger->afterEvaluation($this->getExpression(), $evaluator, $result);
         
         return $result;

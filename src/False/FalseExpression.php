@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\False;
 
+use Vain\Data\Runtime\RuntimeData;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
@@ -18,7 +19,7 @@ class FalseExpression implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator, RuntimeData $runtimeData = null)
     {
         return false;
     }

@@ -8,22 +8,18 @@
 
 namespace Vain\Expression\Comparison;
 
+use Symfony\Component\Console\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 
 interface ComparisonExpressionInterface extends ExpressionInterface
 {
     /**
-     * @return mixed
+     * @return DescriptorInterface
      */
     public function getWhat();
 
     /**
-     * @return mixed
+     * @return DescriptorInterface
      */
     public function getAgainst();
-
-    /**
-     * @return mixed
-     */
-    public function getType();
 }

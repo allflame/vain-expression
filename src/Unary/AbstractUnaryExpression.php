@@ -42,7 +42,7 @@ abstract class AbstractUnaryExpression implements UnaryExpressionInterface
     public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData)
     {
         list ($expressionData) = $serializedData;
-        $this->expression = $serializer->unserialize($expressionData);
+        $this->expression = $serializer->unserializeExpression($expressionData);
 
         return $this;
     }

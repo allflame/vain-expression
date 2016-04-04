@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Comparison;
 
+use Vain\Data\Descriptor\DescriptorInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 abstract class AbstractComparisonExpression implements ComparisonExpressionInterface
@@ -15,14 +16,16 @@ abstract class AbstractComparisonExpression implements ComparisonExpressionInter
     private $what;
     
     private $against;
-    
-    private $type;
-    
-    public function __construct($what, $against, $type)
+
+    /**
+     * AbstractComparisonExpression constructor.
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     */
+    public function __construct(DescriptorInterface $what, DescriptorInterface $against)
     {
         $this->what = $what;
         $this->against = $against;
-        $this->type = $type;
     }
 
     /**
@@ -44,17 +47,9 @@ abstract class AbstractComparisonExpression implements ComparisonExpressionInter
     /**
      * @inheritDoc
      */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function serialize(ExpressionSerializerInterface $serializer)
     {
-        return [$this->what, $this->against, $this->type];
+        return [$this->what->serialize($serializer), $this->against->serialize($serializer)];
     }
 
     /**
@@ -62,10 +57,10 @@ abstract class AbstractComparisonExpression implements ComparisonExpressionInter
      */
     public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData)
     {
-        list ($this->what, $this->against, $this->type) = $serializedData;
+        list ($whatData, $againstData) = $serializedData;
+        $this->what = $serializer->unserializeDescriptor($whatData);
+        $this->against = $serializer->unserializeDescriptor($againstData);
 
         return $this;
     }
-
-
 }

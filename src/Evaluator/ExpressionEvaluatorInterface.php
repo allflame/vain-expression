@@ -8,78 +8,80 @@
 
 namespace Vain\Expression\Evaluator;
 
+use Vain\Data\Descriptor\DescriptorInterface;
+use Vain\Data\Runtime\RuntimeData;
 
 interface ExpressionEvaluatorInterface
 {
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function eq($what, $against, $type);
+    public function eq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function neq($what, $against, $type);
+    public function neq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function gt($what, $against, $type);
+    public function gt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function gte($what, $against, $type);
+    public function gte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function lt($what, $against, $type);
+    public function lt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function lte($what, $against, $type);
+    public function lte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function in($what, $against, $type);
+    public function in(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
+     * @param RuntimeData $runtimeData
      *
      * @return string
      */
-    public function like($what, $against, $type);
+    public function like(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
 }
