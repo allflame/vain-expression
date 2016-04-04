@@ -6,21 +6,21 @@
  * Time: 11:20 AM
  */
 
-namespace Vain\Expression\Unary\True;
+namespace Vain\Expression\True;
 
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
-use Vain\Expression\Unary\AbstractUnaryExpression;
 
-class TrueExpression extends AbstractUnaryExpression
+class TrueExpression implements ExpressionInterface
 {
     /**
      * @inheritDoc
      */
     public function evaluate(ExpressionEvaluatorInterface $evaluator)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -28,7 +28,7 @@ class TrueExpression extends AbstractUnaryExpression
      */
     public function parse(ExpressionParserInterface $parser)
     {
-        return $parser->false($this->getExpression());
+        return $parser->true();
     }
 
     /**
@@ -36,6 +36,14 @@ class TrueExpression extends AbstractUnaryExpression
      */
     public function serialize(ExpressionSerializerInterface $serializer)
     {
-        return ['true', parent::serialize($serializer)];
+        return ['true', []];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        return $this;
     }
 }

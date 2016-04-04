@@ -91,18 +91,14 @@ interface ExpressionParserInterface
     public function not(ExpressionInterface $expression);
 
     /**
-     * @param ExpressionInterface $expression
-     *
      * @return string
      */
-    public function false(ExpressionInterface $expression);
+    public function false();
 
     /**
-     * @param ExpressionInterface $expression
-     *
      * @return string
      */
-    public function true(ExpressionInterface $expression);
+    public function true();
 
     /**
      * @param ExpressionInterface $firstExpression

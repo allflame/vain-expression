@@ -19,11 +19,11 @@ use Vain\Expression\Comparison\LessOrEqual\LessOrEqualExpression;
 use Vain\Expression\Comparison\Like\LikeExpression;
 use Vain\Expression\Comparison\NotEqual\NotEqualExpression;
 use Vain\Expression\Factory\Exception\UnknownShortcutExpressionFactoryException;
-use Vain\Expression\Unary\False\FalseExpression;
+use Vain\Expression\False\FalseExpression;
+use Vain\Expression\True\TrueExpression;
 use Vain\Expression\Unary\Identity\IdentityExpression;
 use Vain\Expression\Unary\Not\NotExpression;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\True\TrueExpression;
 
 class ExpressionFactory implements ExpressionFactoryInterface
 {
@@ -110,17 +110,17 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function false(ExpressionInterface $expression)
+    public function false()
     {
-        return new FalseExpression($expression);
+        return new FalseExpression();
     }
 
     /**
      * @inheritDoc
      */
-    public function true(ExpressionInterface $expression)
+    public function true()
     {
-        return new TrueExpression($expression);
+        return new TrueExpression();
     }
 
     /**
@@ -176,10 +176,10 @@ class ExpressionFactory implements ExpressionFactoryInterface
                 return $this->not(null);
                 break;
             case 'true':
-                return $this->true(null);
+                return $this->true();
                 break;
             case 'false':
-                return $this->false(null);
+                return $this->false();
                 break;
             case 'and':
                 return $this->andX(null, null);

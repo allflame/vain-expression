@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Factory\Debug;
 
-
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
 
@@ -108,17 +107,17 @@ abstract class AbstractExpressionFactoryDecorator implements ExpressionFactoryIn
     /**
      * @inheritDoc
      */
-    public function false(ExpressionInterface $expression)
+    public function false()
     {
-        return $this->expressionFactory->false($expression);
+        return $this->expressionFactory->false();
     }
 
     /**
      * @inheritDoc
      */
-    public function true(ExpressionInterface $expression)
+    public function true()
     {
-        return $this->expressionFactory->true($expression);
+        return $this->expressionFactory->true();
     }
 
     /**

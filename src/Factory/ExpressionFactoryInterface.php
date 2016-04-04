@@ -17,11 +17,11 @@ use Vain\Expression\Comparison\Less\LessExpression;
 use Vain\Expression\Comparison\LessOrEqual\LessOrEqualExpression;
 use Vain\Expression\Comparison\Like\LikeExpression;
 use Vain\Expression\Comparison\NotEqual\NotEqualExpression;
-use Vain\Expression\Unary\False\FalseExpression;
+use Vain\Expression\False\FalseExpression;
 use Vain\Expression\Unary\Identity\IdentityExpression;
 use Vain\Expression\Unary\Not\NotExpression;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\True\TrueExpression;
+use Vain\Expression\True\TrueExpression;
 
 interface ExpressionFactoryInterface
 {
@@ -112,18 +112,14 @@ interface ExpressionFactoryInterface
     public function not(ExpressionInterface $expression);
 
     /**
-     * @param ExpressionInterface $expression
-     *
      * @return FalseExpression
      */
-    public function false(ExpressionInterface $expression);
+    public function false();
 
     /**
-     * @param ExpressionInterface $expression
-     * 
      * @return TrueExpression
      */
-    public function true(ExpressionInterface $expression);
+    public function true();
 
     /**
      * @param ExpressionInterface $firstExpression
