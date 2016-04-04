@@ -124,4 +124,11 @@ interface VainExpressionFactoryInterface
      * @return VainBinaryOrExpression
      */
     public function orX(VainExpressionInterface $firstExpression, VainExpressionInterface $secondExpression);
+
+    /**
+     * @param string $shortcut
+     *
+     * @return VainExpressionInterface
+     */
+    public function create($shortcut);
 }

@@ -11,6 +11,7 @@ namespace Vain\Expression\Binary\OrX;
 use Vain\Expression\Binary\AbstractVainBinrayExpression;
 use Vain\Expression\Evaluator\VainExpressionEvaluatorInterface;
 use Vain\Expression\Parser\VainExpressionParserInterface;
+use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 
 class VainBinaryOrExpression extends AbstractVainBinrayExpression
 {
@@ -28,5 +29,23 @@ class VainBinaryOrExpression extends AbstractVainBinrayExpression
     public function parse(VainExpressionParserInterface $parser)
     {
         return $parser->orX($this->getFirstExpression(), $this->getSecondExpression());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize(VainExpressionSerializerInterface $serializer)
+    {
+        return ['or', parent::serialize($serializer)];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        list ($type, $parenData) = $serializedData;
+
+        return parent::unserialize($serializer, $parenData);
     }
 }

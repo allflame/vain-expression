@@ -11,6 +11,7 @@ namespace Vain\Expression\Binary\AndX;
 use Vain\Expression\Binary\AbstractVainBinrayExpression;
 use Vain\Expression\Evaluator\VainExpressionEvaluatorInterface;
 use Vain\Expression\Parser\VainExpressionParserInterface;
+use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 
 class VainBinaryAndExpression extends AbstractVainBinrayExpression
 {
@@ -28,5 +29,23 @@ class VainBinaryAndExpression extends AbstractVainBinrayExpression
     public function parse(VainExpressionParserInterface $parser)
     {
         return $parser->andX($this->getFirstExpression(), $this->getSecondExpression());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize(VainExpressionSerializerInterface $serializer)
+    {
+        return ['and', parent::serialize($serializer)];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        list ($type, $parenData) = $serializedData;
+
+        return parent::unserialize($serializer, $parenData);
     }
 }

@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Binary;
 
+use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 use Vain\Expression\VainExpressionInterface;
 
 abstract class AbstractVainBinrayExpression implements VainBinaryExpressionInterface
@@ -36,5 +37,19 @@ abstract class AbstractVainBinrayExpression implements VainBinaryExpressionInter
     public function getSecondExpression()
     {
         return $this->secondExpression;
+    }
+
+    public function serialize(VainExpressionSerializerInterface $serializer)
+    {
+        return [$this->firstExpression->serialize($serializer), $this->secondExpression->serialize($serializer)];
+    }
+
+    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        list ($firstExpressionData, $secondExpressionData) = $serializedData;
+        $this->firstExpression = $serializer->unserialize($firstExpressionData);
+        $this->secondExpression = $serializer->unserialize($secondExpressionData);
+
+        return $this;
     }
 }

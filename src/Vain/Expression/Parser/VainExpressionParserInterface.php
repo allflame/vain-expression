@@ -75,13 +75,34 @@ interface VainExpressionParserInterface
      * @return string
      */
     public function like($what, $against);
-    
+
+    /**
+     * @param VainExpressionInterface $expression
+     *
+     * @return string
+     */
+    public function id(VainExpressionInterface $expression);
+
     /**
      * @param VainExpressionInterface $expression
      * 
      * @return string
      */
     public function not(VainExpressionInterface $expression);
+
+    /**
+     * @param VainExpressionInterface $expression
+     *
+     * @return string
+     */
+    public function false(VainExpressionInterface $expression);
+
+    /**
+     * @param VainExpressionInterface $expression
+     *
+     * @return string
+     */
+    public function true(VainExpressionInterface $expression);
 
     /**
      * @param VainExpressionInterface $firstExpression

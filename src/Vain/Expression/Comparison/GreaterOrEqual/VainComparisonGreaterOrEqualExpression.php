@@ -11,6 +11,7 @@ namespace Vain\Expression\Comparison\GreaterOrEqual;
 use Vain\Expression\Comparison\AbstractVainComparisonExpression;
 use Vain\Expression\Evaluator\VainExpressionEvaluatorInterface;
 use Vain\Expression\Parser\VainExpressionParserInterface;
+use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 
 class VainComparisonGreaterOrEqualExpression extends AbstractVainComparisonExpression
 {
@@ -28,5 +29,23 @@ class VainComparisonGreaterOrEqualExpression extends AbstractVainComparisonExpre
     public function parse(VainExpressionParserInterface $parser)
     {
         return $parser->gte($this->getWhat(), $this->getAgainst());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize(VainExpressionSerializerInterface $serializer)
+    {
+        return ['gte', parent::serialize($serializer)];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        list ($type, $parenData) = $serializedData;
+        
+        return parent::unserialize($serializer, $parenData);
     }
 }

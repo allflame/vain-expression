@@ -8,6 +8,8 @@
 
 namespace Vain\Expression\Comparison;
 
+use Vain\Expression\Serializer\VainExpressionSerializerInterface;
+
 abstract class AbstractVainComparisonExpression implements VainComparisonExpressionInterface
 {
     private $what;
@@ -46,4 +48,24 @@ abstract class AbstractVainComparisonExpression implements VainComparisonExpress
     {
         return $this->type;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize(VainExpressionSerializerInterface $serializer)
+    {
+        return [$this->what, $this->against, $this->type];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        list ($this->what, $this->against, $this->type) = $serializedData;
+
+        return $this;
+    }
+
+
 }

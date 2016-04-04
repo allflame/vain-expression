@@ -10,6 +10,7 @@ namespace Vain\Expression\Unary\Not;
 
 use Vain\Expression\Evaluator\VainExpressionEvaluatorInterface;
 use Vain\Expression\Parser\VainExpressionParserInterface;
+use Vain\Expression\Serializer\VainExpressionSerializerInterface;
 use Vain\Expression\Unary\AbstractVainUnaryExpression;
 
 class VainUnaryNotExpression extends AbstractVainUnaryExpression
@@ -27,6 +28,24 @@ class VainUnaryNotExpression extends AbstractVainUnaryExpression
      */
     public function parse(VainExpressionParserInterface $parser)
     {
-       return $parser->not($this);
+       return $parser->not($this->getExpression());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize(VainExpressionSerializerInterface $serializer)
+    {
+        return ['not', parent::serialize($serializer)];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize(VainExpressionSerializerInterface $serializer, array $serializedData)
+    {
+        list ($type, $parenData) = $serializedData;
+
+        return parent::unserialize($serializer, $parenData);
     }
 }

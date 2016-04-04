@@ -10,7 +10,11 @@ namespace Vain\Expression;
 
 use Vain\Expression\Evaluator\VainEvaluatableExpressionInterface;
 use Vain\Expression\Parser\VainParseableExpressionInterface;
+use Vain\Expression\Serializer\VainSerializableExpressionInterface;
 
-interface VainExpressionInterface extends VainEvaluatableExpressionInterface, VainParseableExpressionInterface
+interface VainExpressionInterface extends
+    VainEvaluatableExpressionInterface,
+    VainParseableExpressionInterface,
+    VainSerializableExpressionInterface
 {
 }

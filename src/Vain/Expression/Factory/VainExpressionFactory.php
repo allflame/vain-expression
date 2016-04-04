@@ -18,6 +18,7 @@ use Vain\Expression\Comparison\Less\VainComparisonLessExpression;
 use Vain\Expression\Comparison\LessOrEqual\VainComparisonLessOrEqualExpression;
 use Vain\Expression\Comparison\Like\VainComparisonLikeExpression;
 use Vain\Expression\Comparison\NotEqual\VainComparisonNotEqualExpression;
+use Vain\Expression\Factory\Exception\VainExpressionFactoryUnknownShortcutException;
 use Vain\Expression\Unary\Identity\VainUnaryIdentityExpression;
 use Vain\Expression\Unary\Not\VainUnaryNotExpression;
 use Vain\Expression\VainExpressionInterface;
@@ -119,4 +120,52 @@ class VainExpressionFactory implements VainExpressionFactoryInterface
     {
         return new VainBinaryOrExpression($firstExpression, $secondExpression);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function create($shortcut)
+    {
+        switch ($shortcut) {
+            case 'eq':
+                return $this->eq(null, null, null);
+            break;
+            case 'neq':
+                return $this->neq(null, null, null);
+            break;
+            case 'gt':
+                return $this->gt(null, null, null);
+            break;
+            case 'gte':
+                return $this->gte(null, null, null);
+            break;
+            case 'lt':
+                return $this->lt(null, null, null);
+            break;
+            case 'lte':
+                return $this->lte(null, null, null);
+            case 'in':
+                return $this->in(null, null, null);
+                break;
+            case 'like':
+                return $this->like(null, null, null);
+                break;
+            case 'id':
+                return $this->id(null);
+                break;
+            case 'not':
+                return $this->not(null);
+                break;
+            case 'and':
+                return $this->andX(null, null);
+                break;
+            case 'or':
+                return $this->orX(null, null);
+                break;
+            default:
+                throw new VainExpressionFactoryUnknownShortcutException($this, $shortcut);
+        }
+    }
+
+
 }
