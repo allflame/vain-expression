@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Parser;
 
-interface ParseableInterface
+interface ParseableExpressionInterface
 {
     /**
      * @param ExpressionParserInterface $parser

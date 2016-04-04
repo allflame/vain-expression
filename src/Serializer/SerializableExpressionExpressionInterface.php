@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Serializer;
 
-interface SerializableInterface
+interface SerializableExpressionInterface
 {
     /**
      * @param ExpressionSerializerInterface $serializer
@@ -21,7 +21,7 @@ interface SerializableInterface
      * @param ExpressionSerializerInterface $serializer
      * @param array $serializedData
      *
-     * @return SerializableInterface
+     * @return SerializableExpressionInterface
      */
     public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData);
 }

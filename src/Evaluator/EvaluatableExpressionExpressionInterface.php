@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Evaluator;
 
-interface EvaluatableInterface
+interface EvaluatableExpressionInterface
 {
     /**
      * @param ExpressionEvaluatorInterface $evaluator

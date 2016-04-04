@@ -8,13 +8,13 @@
 
 namespace Vain\Expression;
 
-use Vain\Expression\Evaluator\EvaluatableInterface;
-use Vain\Expression\Parser\ParseableInterface;
-use Vain\Expression\Serializer\SerializableInterface;
+use Vain\Expression\Evaluator\EvaluatableExpressionInterface;
+use Vain\Expression\Parser\ParseableExpressionInterface;
+use Vain\Expression\Serializer\SerializableExpressionInterface;
 
 interface ExpressionInterface extends
-    EvaluatableInterface,
-    ParseableInterface,
-    SerializableInterface
+    EvaluatableExpressionInterface,
+    ParseableExpressionInterface,
+    SerializableExpressionInterface
 {
 }
