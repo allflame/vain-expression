@@ -65,10 +65,7 @@ class ExpressionSerializer implements ExpressionSerializerInterface
     public function unserializeDescriptor(array $serializedData)
     {
         list ($type, $descriptorData) = $serializedData;
-        $descriptor = $this->descriptorFactory->create($type);
 
-        return $descriptor->unserialize($descriptorData);
+        return $this->descriptorFactory->create($type, $descriptorData);
     }
-
-
 }
