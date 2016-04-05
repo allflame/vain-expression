@@ -22,7 +22,7 @@ class ExpressionFactoryException extends CoreException
      * @param int $code
      * @param \Exception $previous
      */
-    public function __construct(ExpressionFactoryInterface $expressionFactory, $message, $code, \Exception $previous)
+    public function __construct(ExpressionFactoryInterface $expressionFactory, $message, $code, \Exception $previous = null)
     {
         $this->expressionFactory = $expressionFactory;
         parent::__construct($message, $code, $previous);

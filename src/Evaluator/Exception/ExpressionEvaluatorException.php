@@ -22,7 +22,7 @@ class ExpressionEvaluatorException extends CoreException
      * @param int $code
      * @param \Exception $previous
      */
-    public function __construct(ExpressionEvaluatorInterface $evaluator, $message, $code, $previous)
+    public function __construct(ExpressionEvaluatorInterface $evaluator, $message, $code, \Exception $previous = null)
     {
         $this->evaluator = $evaluator;
         parent::__construct($message, $code, $previous);
