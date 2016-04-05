@@ -29,7 +29,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function eq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function eq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
@@ -41,7 +41,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function neq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function neq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
@@ -53,7 +53,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function gt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function gt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
@@ -65,7 +65,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function gte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function gte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
@@ -77,7 +77,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function lt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function lt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
@@ -89,7 +89,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function lte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function lte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
@@ -101,7 +101,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function in(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function in(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
@@ -113,7 +113,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function like(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData)
+    public function like(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
     {
         if ($what->getMode() !== $against->getMode()) {
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());

@@ -20,7 +20,7 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function eq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function eq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 
     /**
      * @param DescriptorInterface $what
@@ -29,7 +29,7 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function neq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function neq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 
     /**
      * @param DescriptorInterface $what
@@ -38,7 +38,7 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function gt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function gt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 
     /**
      * @param DescriptorInterface $what
@@ -47,7 +47,7 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function gte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function gte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 
     /**
      * @param DescriptorInterface $what
@@ -56,7 +56,7 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function lt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function lt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 
     /**
      * @param DescriptorInterface $what
@@ -65,7 +65,7 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function lte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function lte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 
     /**
      * @param DescriptorInterface $what
@@ -74,7 +74,7 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function in(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function in(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 
     /**
      * @param DescriptorInterface $what
@@ -83,5 +83,5 @@ interface ExpressionEvaluatorInterface
      *
      * @return string
      */
-    public function like(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData);
+    public function like(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null);
 }
