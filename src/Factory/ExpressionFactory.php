@@ -18,7 +18,7 @@ use Vain\Expression\Comparison\Less\LessExpression;
 use Vain\Expression\Comparison\LessOrEqual\LessOrEqualExpression;
 use Vain\Expression\Comparison\Like\LikeExpression;
 use Vain\Expression\Comparison\NotEqual\NotEqualExpression;
-use Vain\Expression\Factory\Exception\UnknownShortcutExpressionFactoryException;
+use Vain\Expression\Factory\Exception\UnknownExpressionFactoryException;
 use Vain\Expression\False\FalseExpression;
 use Vain\Expression\True\TrueExpression;
 use Vain\Expression\Unary\Identity\IdentityExpression;
@@ -188,7 +188,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
                 return $this->orX(null, null);
                 break;
             default:
-                throw new UnknownShortcutExpressionFactoryException($this, $shortcut);
+                throw new UnknownExpressionFactoryException($this, $shortcut);
         }
     }
 
