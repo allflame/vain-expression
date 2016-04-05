@@ -10,7 +10,6 @@ namespace Vain\Expression\Evaluator;
 
 use Vain\Comparator\Repository\ComparatorRepositoryInterface;
 use Vain\Data\Descriptor\DescriptorInterface;
-use Vain\Data\Provider\DataProviderInterface;
 use Vain\Data\Runtime\RuntimeData;
 use Vain\Expression\Evaluator\Exception\ModeMismatchExpressionEvaluatorException;
 
@@ -18,17 +17,13 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
 {
     private $comparatorRepository;
 
-    private $dataProvider;
-
     /**
      * ExpressionEvaluator constructor.
      * @param ComparatorRepositoryInterface $comparatorRepository
-     * @param DataProviderInterface $dataProvider
      */
-    public function __construct(ComparatorRepositoryInterface $comparatorRepository, DataProviderInterface $dataProvider)
+    public function __construct(ComparatorRepositoryInterface $comparatorRepository)
     {
         $this->comparatorRepository = $comparatorRepository;
-        $this->dataProvider = $dataProvider;
     }
 
     /**
@@ -40,7 +35,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->eq($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->neq($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 
     /**
@@ -52,7 +47,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->neq($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->neq($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 
     /**
@@ -64,7 +59,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->gt($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->gt($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 
     /**
@@ -76,7 +71,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->gte($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->gte($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 
     /**
@@ -88,7 +83,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->lt($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->lt($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 
     /**
@@ -100,7 +95,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->lte($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->lte($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 
     /**
@@ -112,7 +107,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->in($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->in($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 
     /**
@@ -124,6 +119,6 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
             throw new ModeMismatchExpressionEvaluatorException($this, $what->getMode(), $against->getMode());
         }
 
-        return $this->comparatorRepository->getComparator($what->getMode())->like($this->dataProvider->getData($what, $runtimeData), $this->dataProvider->getData($against, $runtimeData));
+        return $this->comparatorRepository->getComparator($what->getMode())->like($what->getValue($runtimeData), $against->getValue($runtimeData));
     }
 }

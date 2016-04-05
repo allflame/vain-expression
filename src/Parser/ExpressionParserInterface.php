@@ -8,73 +8,74 @@
 
 namespace Vain\Expression\Parser;
 
+use Vain\Data\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 
 interface ExpressionParserInterface
 {
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function eq($what, $against);
+    public function eq(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function neq($what, $against);
+    public function neq(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function gt($what, $against);
+    public function gt(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function gte($what, $against);
+    public function gte(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function lt($what, $against);
+    public function lt(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function lte($what, $against);
+    public function lte(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function in($what, $against);
+    public function in(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
+     * @param DescriptorInterface $what
+     * @param DescriptorInterface $against
      * 
      * @return string
      */
-    public function like($what, $against);
+    public function like(DescriptorInterface $what, DescriptorInterface $against);
 
     /**
      * @param ExpressionInterface $expression

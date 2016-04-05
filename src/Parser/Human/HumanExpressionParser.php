@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Parser\Human;
 
+use Vain\Data\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
 
@@ -16,7 +17,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function eq($what, $against)
+    public function eq(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s = %s', $what, $against);
     }
@@ -24,7 +25,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function neq($what, $against)
+    public function neq(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s != %s', $what, $against);
     }
@@ -32,7 +33,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function gt($what, $against)
+    public function gt(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s > %s', $what, $against);
     }
@@ -40,7 +41,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function gte($what, $against)
+    public function gte(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s >= %s', $what, $against);
     }
@@ -48,7 +49,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function lt($what, $against)
+    public function lt(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s < %s', $what, $against);
     }
@@ -56,7 +57,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function lte($what, $against)
+    public function lte(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s <= %s', $what, $against);
     }
@@ -64,7 +65,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function in($what, $against)
+    public function in(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s in (%s)', $what, implode(', ', $against));
     }
@@ -72,7 +73,7 @@ class HumanExpressionParser implements ExpressionParserInterface
     /**
      * @inheritDoc
      */
-    public function like($what, $against)
+    public function like(DescriptorInterface $what, DescriptorInterface $against)
     {
         return sprintf('%s like %s', $what, $against);
     }
