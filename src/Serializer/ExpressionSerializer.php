@@ -9,7 +9,7 @@
 namespace Vain\Expression\Serializer;
 
 use Vain\Data\Descriptor\DescriptorInterface;
-use Vain\Data\Descriptor\Factory\DescriptorFactoryInterface;
+use Vain\Data\Descriptor\Serializer\DescriptorSerializerInterface;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
 
@@ -17,17 +17,17 @@ class ExpressionSerializer implements ExpressionSerializerInterface
 {
     private $expressionFactory;
 
-    private $descriptorFactory;
+    private $descriptorSerializer;
 
     /**
      * VainExpressionSerializer constructor.
      * @param ExpressionFactoryInterface $expressionFactory
-     * @param DescriptorFactoryInterface $descriptorFactory
+     * @param DescriptorSerializerInterface $descriptorSerializer
      */
-    public function __construct(ExpressionFactoryInterface $expressionFactory, DescriptorFactoryInterface $descriptorFactory)
+    public function __construct(ExpressionFactoryInterface $expressionFactory, DescriptorSerializerInterface $descriptorSerializer)
     {
         $this->expressionFactory = $expressionFactory;
-        $this->descriptorFactory = $descriptorFactory;
+        $this->descriptorSerializer = $descriptorSerializer;
     }
 
     /**
@@ -56,7 +56,7 @@ class ExpressionSerializer implements ExpressionSerializerInterface
      */
     public function serializeDescriptor(DescriptorInterface $descriptor)
     {
-        return $descriptor->serialize($this);
+        return $this->descriptorSerializer->serializeDescriptor($descriptor);
     }
 
     /**
@@ -64,8 +64,6 @@ class ExpressionSerializer implements ExpressionSerializerInterface
      */
     public function unserializeDescriptor(array $serializedData)
     {
-        list ($type, $descriptorData) = $serializedData;
-
-        return $this->descriptorFactory->create($type, $descriptorData);
+        return $this->descriptorSerializer->unserializeDescriptor($serializedData);
     }
 }
