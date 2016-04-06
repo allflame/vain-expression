@@ -15,7 +15,7 @@ abstract class AbstractUnaryExpression implements UnaryExpressionInterface
 {
     private $expression;
     
-    public function __construct(ExpressionInterface $expression)
+    public function __construct(ExpressionInterface $expression = null)
     {
         $this->expression = $expression;
     }

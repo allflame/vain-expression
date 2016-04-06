@@ -22,7 +22,7 @@ abstract class AbstractComparisonExpression implements ComparisonExpressionInter
      * @param DescriptorInterface $what
      * @param DescriptorInterface $against
      */
-    public function __construct(DescriptorInterface $what, DescriptorInterface $against)
+    public function __construct(DescriptorInterface $what = null, DescriptorInterface $against = null)
     {
         $this->what = $what;
         $this->against = $against;

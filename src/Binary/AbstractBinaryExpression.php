@@ -17,7 +17,7 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     
     private $secondExpression;
     
-    public function __construct(ExpressionInterface $firstExpression, ExpressionInterface $secondExpression)
+    public function __construct(ExpressionInterface $firstExpression = null, ExpressionInterface $secondExpression = null)
     {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
