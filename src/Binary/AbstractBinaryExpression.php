@@ -16,7 +16,12 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     private $firstExpression;
     
     private $secondExpression;
-    
+
+    /**
+     * AbstractBinaryExpression constructor.
+     * @param ExpressionInterface $firstExpression
+     * @param ExpressionInterface $secondExpression
+     */
     public function __construct(ExpressionInterface $firstExpression = null, ExpressionInterface $secondExpression = null)
     {
         $this->firstExpression = $firstExpression;
