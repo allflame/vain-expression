@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Parser\Human;
 
-use Vain\Data\Descriptor\DescriptorInterface;
+use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
 

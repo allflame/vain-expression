@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Comparison\Greater;
 
-use Vain\Data\Runtime\RuntimeData;
+use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Comparison\AbstractComparisonExpression;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;

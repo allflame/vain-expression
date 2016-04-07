@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Unary\Identity;
 
-use Vain\Data\Runtime\RuntimeData;
+use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;

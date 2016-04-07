@@ -9,8 +9,8 @@
 namespace Vain\Expression\Evaluator;
 
 use Vain\Comparator\Repository\ComparatorRepositoryInterface;
-use Vain\Data\Descriptor\DescriptorInterface;
-use Vain\Data\Runtime\RuntimeData;
+use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Evaluator\Exception\ModeMismatchExpressionEvaluatorException;
 
 class ExpressionEvaluator implements ExpressionEvaluatorInterface

@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Binary\AndX;
 
-use Vain\Data\Runtime\RuntimeData;
+use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;

@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Evaluator;
 
-use Vain\Data\Runtime\RuntimeData;
+use Vain\Core\Runtime\RuntimeData;
 
 interface EvaluatableExpressionInterface
 {

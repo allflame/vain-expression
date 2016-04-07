@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Comparison;
 
-use Vain\Data\Descriptor\DescriptorInterface;
+use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 abstract class AbstractComparisonExpression implements ComparisonExpressionInterface

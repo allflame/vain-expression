@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Comparison;
 
-use Symfony\Component\Console\Descriptor\DescriptorInterface;
+use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 
 interface ComparisonExpressionInterface extends ExpressionInterface

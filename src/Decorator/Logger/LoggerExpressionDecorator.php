@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Decorator\Logger;
 
-use Vain\Data\Runtime\RuntimeData;
+use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Decorator\AbstractExpressionDecorator;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Logger\LoggerInterface;

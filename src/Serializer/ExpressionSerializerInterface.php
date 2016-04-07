@@ -8,10 +8,10 @@
 
 namespace Vain\Expression\Serializer;
 
-use Vain\Data\Descriptor\Serializer\DescriptorSerializerInterface;
+use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 
-interface ExpressionSerializerInterface extends DescriptorSerializerInterface
+interface ExpressionSerializerInterface
 {
     /**
      * @param ExpressionInterface $expression
@@ -26,4 +26,18 @@ interface ExpressionSerializerInterface extends DescriptorSerializerInterface
      * @return ExpressionInterface
      */
     public function unserializeExpression(array $serializedData);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     *
+     * @return array
+     */
+    public function serializeDescriptor(DescriptorInterface $descriptor);
+
+    /**
+     * @param array $serializedData
+     *
+     * @return DescriptorInterface
+     */
+    public function unserializeDescriptor(array $serializedData);
 }
