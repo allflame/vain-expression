@@ -6,7 +6,7 @@
  * Time: 11:18 PM
  */
 
-namespace Vain\Expression\Evaluator\Exception;
+namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;

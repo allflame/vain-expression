@@ -6,7 +6,7 @@
  * Time: 11:43 AM
  */
 
-namespace Vain\Expression\Descriptor\Exception;
+namespace Vain\Expression\Exception;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 

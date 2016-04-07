@@ -6,7 +6,7 @@
  * Time: 11:13 AM
  */
 
-namespace Vain\Expression\Factory\Exception;
+namespace Vain\Expression\Exception;
 
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 

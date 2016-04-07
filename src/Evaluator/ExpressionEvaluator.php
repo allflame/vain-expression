@@ -10,7 +10,7 @@ namespace Vain\Expression\Evaluator;
 
 use Vain\Comparator\Repository\ComparatorRepositoryInterface;
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Expression\Evaluator\Exception\ModeMismatchExpressionEvaluatorException;
+use Vain\Expression\Exception\ModeMismatchExpressionEvaluatorException;
 
 class ExpressionEvaluator implements ExpressionEvaluatorInterface
 {

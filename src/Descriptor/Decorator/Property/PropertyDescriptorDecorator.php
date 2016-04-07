@@ -10,8 +10,8 @@ namespace Vain\Expression\Descriptor\Decorator\Property;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
-use Vain\Expression\Descriptor\Exception\InaccessiblePropertyDescriptorException;
-use Vain\Expression\Descriptor\Exception\UnknownPropertyDescriptorException;
+use Vain\Expression\Exception\InaccessiblePropertyDescriptorException;
+use Vain\Expression\Exception\UnknownPropertyDescriptorException;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class PropertyDescriptorDecorator extends AbstractDescriptorDecorator

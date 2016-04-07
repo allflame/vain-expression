@@ -12,7 +12,7 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Factory\DescriptorFactoryInterface;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\Exception\UnknownDescriptorSerializerException;
+use Vain\Expression\Exception\UnknownDescriptorSerializerException;
 
 class ExpressionSerializer implements ExpressionSerializerInterface
 {

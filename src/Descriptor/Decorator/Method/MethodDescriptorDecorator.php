@@ -10,7 +10,7 @@ namespace Vain\Expression\Descriptor\Decorator\Method;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
-use Vain\Expression\Descriptor\Exception\UnknownMethodDescriptorException;
+use Vain\Expression\Exception\UnknownMethodDescriptorException;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class MethodDescriptorDecorator extends AbstractDescriptorDecorator

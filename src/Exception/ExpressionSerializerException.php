@@ -6,7 +6,7 @@
  * Time: 11:01 AM
  */
 
-namespace Vain\Expression\Serializer\Exception;
+namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;

@@ -10,7 +10,7 @@ namespace Vain\Expression\Descriptor\Decorator\Filter;
 
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Expression\Descriptor\Exception\InaccessibleFilterDescriptorException;
+use Vain\Expression\Exception\InaccessibleFilterDescriptorException;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;

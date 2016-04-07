@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Module\Factory;
 
-use Vain\Expression\Module\Factory\Exception\UnknownModuleFactoryException;
+use Vain\Expression\Exception\UnknownModuleFactoryException;
 use Vain\Expression\Module\System\RuntimeDataModule;
 use Vain\Expression\Module\System\TimeDataModule;
 

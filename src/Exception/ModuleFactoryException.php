@@ -6,7 +6,7 @@
  * Time: 12:50 PM
  */
 
-namespace Vain\Expression\Module\Factory\Exception;
+namespace Vain\Expression\Exception;
 
 
 use Vain\Core\Exception\CoreException;
