@@ -68,4 +68,9 @@ interface DescriptorFactoryInterface
      * @return DescriptorInterface
      */
     public function filter(DescriptorInterface $descriptor, ExpressionInterface $expression);
+
+    /**
+     * @return DescriptorInterface
+     */
+    public function local();
 }

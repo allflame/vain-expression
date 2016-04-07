@@ -165,6 +165,16 @@ class DescriptorBuilder
     }
 
     /**
+     * @return DescriptorBuilder
+     */
+    public function local()
+    {
+        $this->type = 'local';
+
+        return $this;
+    }
+
+    /**
      * @return DescriptorInterface
      */
     public function getDescriptor()
@@ -172,6 +182,9 @@ class DescriptorBuilder
         switch ($this->type) {
             case 'in_place':
                 $descriptor = $this->descriptorFactory->inplace($this->value);
+                break;
+            case 'local':
+                $descriptor = $this->descriptorFactory->local();
                 break;
             default:
                 $descriptor = $this->descriptorFactory->module($this->module);

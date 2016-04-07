@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Descriptor\Factory;
 
+use Descriptor\Local\LocalDescriptor;
 use Vain\Expression\Descriptor\Decorator\Filter\FilterDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\FunctionX\FunctionDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Mode\ModeDescriptorDecorator;
@@ -92,4 +93,14 @@ class DescriptorFactory implements DescriptorFactoryInterface
     {
         return new FilterDescriptorDecorator($descriptor, $this->evaluator, $expression);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function local()
+    {
+        return new LocalDescriptor();
+    }
+
+
 }

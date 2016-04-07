@@ -71,6 +71,9 @@ class Serializer implements SerializerInterface
             case 'in_place':
                 return $this->descriptorFactory->inplace()->unserialize($this, $descriptorData);
                 break;
+            case 'local':
+                return $this->descriptorFactory->local();
+                break;
             case 'module':
                 list ($moduleName) = $descriptorData;
                 return $this->descriptorFactory->module($moduleName);
