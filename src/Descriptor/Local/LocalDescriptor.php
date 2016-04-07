@@ -21,7 +21,7 @@ class LocalDescriptor implements DescriptorInterface
      */
     public function parse(ParserInterface $parser)
     {
-        return 'local';
+        return '';
     }
 
     /**

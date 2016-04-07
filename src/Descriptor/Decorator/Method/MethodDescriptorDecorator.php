@@ -34,7 +34,12 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
      */
     public function parse(ParserInterface $parser)
     {
-        return sprintf('%s.%s', parent::parse($parser), $this->method);
+        $parent = parent::parse($parser);
+        if ('' === $parent) {
+            return $this->method;
+        }
+
+        return sprintf('%s.%s', $parent, $this->method);
     }
 
     /**

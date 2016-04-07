@@ -36,6 +36,11 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
      */
     public function parse(ParserInterface $parser)
     {
+        $parent = parent::parse($parser);
+        if ('' === $parent) {
+            return $this->property;
+        }
+        
         return sprintf('%s.%s', parent::parse($parser), $this->property);
     }
 
