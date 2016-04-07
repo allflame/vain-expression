@@ -9,6 +9,7 @@
 namespace Vain\Expression\Descriptor\Factory;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Expression\ExpressionInterface;
 
 interface DescriptorFactoryInterface
 {
@@ -59,4 +60,12 @@ interface DescriptorFactoryInterface
      * @return DescriptorInterface
      */
     public function mode(DescriptorInterface $descriptor, $mode);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     * @param ExpressionInterface $expression
+     *
+     * @return DescriptorInterface
+     */
+    public function filter(DescriptorInterface $descriptor, ExpressionInterface $expression);
 }

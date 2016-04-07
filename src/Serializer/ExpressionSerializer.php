@@ -91,6 +91,10 @@ class ExpressionSerializer implements ExpressionSerializerInterface
                 list ($function, $arguments, $parentDescriptorData) = $descriptorData;
                 return $this->descriptorFactory->func($this->unserializeDescriptor($parentDescriptorData), $function, $arguments);
                 break;
+            case 'filter':
+                list ($serializedExpression, $parentDescriptorData) = $descriptorData;
+                return $this->descriptorFactory->filter($this->unserializeDescriptor($parentDescriptorData), $this->unserializeExpression($serializedExpression));
+                break;
             default:
                 throw new UnknownDescriptorSerializerException($this, $type);
                 break;
