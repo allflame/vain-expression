@@ -17,15 +17,16 @@ class InaccessibleFilterDescriptorException extends DescriptorException
     /**
      * InaccessibleFilterDescriptorException constructor.
      * @param DescriptorInterface $descriptor
+     * @param object $value
      */
-    public function __construct(DescriptorInterface $descriptor, \ArrayAccess $value)
+    public function __construct(DescriptorInterface $descriptor, $value)
     {
         $this->value = $value;
         parent::__construct($descriptor, sprintf('Cannot apply filter for non-traversable object'), 0, null);
     }
 
     /**
-     * @return \ArrayAccess
+     * @return object
      */
     public function getValue()
     {
