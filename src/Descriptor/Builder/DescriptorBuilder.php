@@ -115,7 +115,7 @@ class DescriptorBuilder
     /**
      * @param string $module
      *
-     * @return $this
+     * @return DescriptorBuilder
      */
     public function module($module)
     {
@@ -128,7 +128,7 @@ class DescriptorBuilder
     /**
      * @param string $property
      *
-     * @return $this
+     * @return DescriptorBuilder
      */
     public function property($property)
     {
