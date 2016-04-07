@@ -37,10 +37,10 @@ class FunctionDescriptorDecorator extends AbstractDescriptorDecorator
     public function __toString()
     {
         if (0 === count($this->arguments)) {
-            return sprintf('%s(%s)', parent::__toString(), $this->functionName);
+            return sprintf('%s(%s)', $this->functionName,  parent::__toString());
         }
 
-        return sprintf('%s(%s, %s)', parent::__toString(), $this->functionName, implode(', ', $this->arguments));
+        return sprintf('%s(%s, %s)', $this->functionName, parent::__toString(), implode(', ', $this->arguments));
     }
 
     /**
