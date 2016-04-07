@@ -12,7 +12,7 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ParserInterface;
 
-class HumanExpressionParser implements ParserInterface
+class HumanParser implements ParserInterface
 {
     /**
      * @inheritDoc
