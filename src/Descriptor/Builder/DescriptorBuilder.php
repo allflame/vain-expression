@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Descriptor\Builder;
 
-
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Factory\DescriptorFactoryInterface;
 
@@ -23,9 +22,7 @@ class DescriptorBuilder
 
     private $mode;
 
-    private $property;
-
-    private $method;
+    private $chain = [];
 
     private $descriptorFactory;
 
@@ -110,7 +107,7 @@ class DescriptorBuilder
      */
     public function method($method)
     {
-        $this->method = $method;
+        $this->chain[] = ['method', $method];
 
         return $this;
     }
@@ -135,7 +132,7 @@ class DescriptorBuilder
      */
     public function property($property)
     {
-        $this->property = $property;
+        $this->chain[] = ['property', $property];
 
         return $this;
     }
@@ -153,21 +150,30 @@ class DescriptorBuilder
                 $descriptor = $this->descriptorFactory->module($this->module);
         }
 
-        switch (true) {
-            case $this->property:
-                $descriptor = $this->descriptorFactory->property($descriptor, $this->property);
-                break;
-            case $this->method:
-                $descriptor = $this->descriptorFactory->method($descriptor, $this->method);
-                break;
-
+        foreach ($this->chain as $element) {
+            list ($type, $value)  = $element;
+            switch ($type) {
+                case 'property':
+                    $properties = array_reverse(explode('.', $value));
+                    foreach ($properties as $property) {
+                        $descriptor = $this->descriptorFactory->property($descriptor, $property);
+                    }
+                    break;
+                case 'method':
+                    $methods = array_reverse(explode('.', $value));
+                    foreach ($methods as $method) {
+                        $descriptor = $this->descriptorFactory->method($descriptor, $method);
+                    }
+                    break;
+            }
         }
 
         if (null !== $this->mode) {
             $descriptor = $this->descriptorFactory->mode($descriptor, $this->mode);
         }
 
-        $this->type = $this->value = $this->module = $this->property = $this->method = $this->mode = null;
+        $this->type = $this->value = $this->module = $this->mode = null;
+        $this->chain = [];
 
         return $descriptor;
     }
