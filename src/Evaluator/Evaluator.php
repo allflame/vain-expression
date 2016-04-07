@@ -32,11 +32,8 @@ class Evaluator implements EvaluatorInterface
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
-        if (($whatType = gettype($whatValue)) !== gettype($againstValue)) {
-            throw new ModeMismatchExpressionEvaluatorException($this, $whatValue, $againstValue);
-        }
 
-        return $this->comparatorRepository->getComparator($whatType)->eq($whatValue, $againstValue);
+        return $this->comparatorRepository->getComparator(gettype($whatValue))->eq($whatValue, $againstValue);
     }
 
     /**
@@ -46,11 +43,8 @@ class Evaluator implements EvaluatorInterface
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
-        if (($whatType = gettype($whatValue)) !== gettype($againstValue)) {
-            throw new ModeMismatchExpressionEvaluatorException($this, $whatValue, $againstValue);
-        }
 
-        return $this->comparatorRepository->getComparator($whatType)->neq($whatValue, $againstValue);
+        return $this->comparatorRepository->getComparator(gettype($whatValue))->neq($whatValue, $againstValue);
     }
 
     /**
@@ -60,11 +54,8 @@ class Evaluator implements EvaluatorInterface
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
-        if (($whatType = gettype($whatValue)) !== gettype($againstValue)) {
-            throw new ModeMismatchExpressionEvaluatorException($this, $whatValue, $againstValue);
-        }
 
-        return $this->comparatorRepository->getComparator($whatType)->gt($whatValue, $againstValue);
+        return $this->comparatorRepository->getComparator(gettype($whatValue))->gt($whatValue, $againstValue);
     }
 
     /**
@@ -74,11 +65,8 @@ class Evaluator implements EvaluatorInterface
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
-        if (($whatType = gettype($whatValue)) !== gettype($againstValue)) {
-            throw new ModeMismatchExpressionEvaluatorException($this, $whatValue, $againstValue);
-        }
 
-        return $this->comparatorRepository->getComparator($whatType)->gte($whatValue, $againstValue);
+        return $this->comparatorRepository->getComparator(gettype($whatValue))->gte($whatValue, $againstValue);
     }
 
     /**
@@ -88,11 +76,8 @@ class Evaluator implements EvaluatorInterface
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
-        if (($whatType = gettype($whatValue)) !== gettype($againstValue)) {
-            throw new ModeMismatchExpressionEvaluatorException($this, $whatValue, $againstValue);
-        }
 
-        return $this->comparatorRepository->getComparator($whatType)->lt($whatValue, $againstValue);
+        return $this->comparatorRepository->getComparator(gettype($whatValue))->lt($whatValue, $againstValue);
     }
 
     /**
@@ -102,11 +87,8 @@ class Evaluator implements EvaluatorInterface
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
-        if (($whatType = gettype($whatValue)) !== gettype($againstValue)) {
-            throw new ModeMismatchExpressionEvaluatorException($this, $whatValue, $againstValue);
-        }
 
-        return $this->comparatorRepository->getComparator($whatType)->lte($whatValue, $againstValue);
+        return $this->comparatorRepository->getComparator(gettype($whatValue))->lte($whatValue, $againstValue);
     }
 
     /**
@@ -127,10 +109,7 @@ class Evaluator implements EvaluatorInterface
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
-        if (($whatType = gettype($whatValue)) !== gettype($againstValue)) {
-            throw new ModeMismatchExpressionEvaluatorException($this, $whatValue, $againstValue);
-        }
 
-        return $this->comparatorRepository->getComparator($whatType)->like($whatValue, $againstValue);
+        return $this->comparatorRepository->getComparator(gettype($whatValue))->like($whatValue, $againstValue);
     }
 }
