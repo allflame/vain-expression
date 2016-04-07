@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Descriptor\Decorator\Filter;
 
-
 use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
