@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Descriptor\Factory;
 
-use Descriptor\Local\LocalDescriptor;
 use Vain\Expression\Descriptor\Decorator\Filter\FilterDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\FunctionX\FunctionDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Mode\ModeDescriptorDecorator;
@@ -16,6 +15,7 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\InPlace\InPlaceDescriptor;
 use Vain\Expression\Descriptor\Decorator\Method\MethodDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Property\PropertyDescriptorDecorator;
+use Vain\Expression\Descriptor\Local\LocalDescriptor;
 use Vain\Expression\Descriptor\Module\ModuleDescriptor;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
@@ -101,6 +101,4 @@ class DescriptorFactory implements DescriptorFactoryInterface
     {
         return new LocalDescriptor();
     }
-
-
 }

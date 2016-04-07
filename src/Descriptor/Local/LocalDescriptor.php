@@ -6,7 +6,7 @@
  * Time: 7:50 PM
  */
 
-namespace Descriptor\Local;
+namespace Vain\Expression\Descriptor\Local;
 
 
 use Vain\Expression\Descriptor\DescriptorInterface;
