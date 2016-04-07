@@ -10,6 +10,7 @@ namespace Vain\Expression\Descriptor\Builder;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Factory\DescriptorFactoryInterface;
+use Vain\Expression\ExpressionInterface;
 
 class DescriptorBuilder
 {
@@ -152,6 +153,18 @@ class DescriptorBuilder
     }
 
     /**
+     * @param ExpressionInterface $expression
+     *
+     * @return DescriptorBuilder
+     */
+    public function filter(ExpressionInterface $expression)
+    {
+        $this->chain[] = ['filter', $expression];
+
+        return $this;
+    }
+
+    /**
      * @return DescriptorInterface
      */
     public function getDescriptor()
@@ -183,6 +196,10 @@ class DescriptorBuilder
                 case 'function':
                     list ($name, $arguments) = $value;
                     $descriptor = $this->descriptorFactory->func($descriptor, $name, $arguments);
+                    break;
+                case 'filter':
+                    $descriptor = $this->descriptorFactory->filter($descriptor, $value);
+                    break;
             }
         }
 
