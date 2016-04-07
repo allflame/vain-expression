@@ -59,9 +59,6 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
                 return $data->offsetGet($this->property);
                 break;
             case is_object($data):
-                if (false === isset($data->{$this->property})) {
-                    throw new UnknownPropertyDescriptorException($this, $this->property);
-                }
                 return $data->{$this->property};
                 break;
             default:
