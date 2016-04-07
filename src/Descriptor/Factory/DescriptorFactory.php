@@ -16,7 +16,7 @@ use Vain\Expression\Descriptor\InPlace\InPlaceDescriptor;
 use Vain\Expression\Descriptor\Decorator\Method\MethodDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Property\PropertyDescriptorDecorator;
 use Vain\Expression\Descriptor\Module\ModuleDescriptor;
-use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Module\Repository\ModuleRepositoryInterface;
 
@@ -29,9 +29,9 @@ class DescriptorFactory implements DescriptorFactoryInterface
     /**
      * DescriptorFactory constructor.
      * @param ModuleRepositoryInterface $moduleRepository
-     * @param ExpressionEvaluatorInterface $evaluator
+     * @param EvaluatorInterface $evaluator
      */
-    public function __construct(ModuleRepositoryInterface $moduleRepository, ExpressionEvaluatorInterface $evaluator)
+    public function __construct(ModuleRepositoryInterface $moduleRepository, EvaluatorInterface $evaluator)
     {
         $this->moduleRepository = $moduleRepository;
         $this->evaluator = $evaluator;

@@ -12,6 +12,7 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Exception\InaccessiblePropertyDescriptorException;
 use Vain\Expression\Exception\UnknownPropertyDescriptorException;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
@@ -33,9 +34,9 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function parse(ParserInterface $parser)
     {
-        return sprintf('%s.%s', parent::__toString(), $this->property);
+        return sprintf('%s.%s', parent::parse($parser), $this->property);
     }
 
     /**

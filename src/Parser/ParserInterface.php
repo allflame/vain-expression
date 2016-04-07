@@ -11,7 +11,7 @@ namespace Vain\Expression\Parser;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 
-interface ExpressionParserInterface
+interface ParserInterface
 {
     /**
      * @param DescriptorInterface $what

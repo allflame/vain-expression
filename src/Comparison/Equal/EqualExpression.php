@@ -9,8 +9,8 @@
 namespace Vain\Expression\Comparison\Equal;
 
 use Vain\Expression\Comparison\AbstractComparisonExpression;
-use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
-use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Evaluator\EvaluatorInterface;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class EqualExpression extends AbstractComparisonExpression
@@ -18,7 +18,7 @@ class EqualExpression extends AbstractComparisonExpression
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
         return $evaluator->eq($this->getWhat(), $this->getAgainst(), $runtimeData);
     }
@@ -26,7 +26,7 @@ class EqualExpression extends AbstractComparisonExpression
     /**
      * @inheritDoc
      */
-    public function parse(ExpressionParserInterface $parser)
+    public function parse(ParserInterface $parser)
     {
         return $parser->eq($this->getWhat(), $this->getAgainst());
     }

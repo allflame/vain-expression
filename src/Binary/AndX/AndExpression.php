@@ -9,8 +9,8 @@
 namespace Vain\Expression\Binary\AndX;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
-use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
-use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Evaluator\EvaluatorInterface;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class AndExpression extends AbstractBinaryExpression
@@ -18,7 +18,7 @@ class AndExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
         return $this->getFirstExpression()->evaluate($evaluator, $runtimeData) && $this->getSecondExpression()->evaluate($evaluator, $runtimeData);
     }
@@ -26,7 +26,7 @@ class AndExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function parse(ExpressionParserInterface $parser)
+    public function parse(ParserInterface $parser)
     {
         return $parser->andX($this->getFirstExpression(), $this->getSecondExpression());
     }

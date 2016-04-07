@@ -10,7 +10,7 @@ namespace Vain\Expression\Evaluator;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 
-interface ExpressionEvaluatorInterface
+interface EvaluatorInterface
 {
     /**
      * @param DescriptorInterface $what

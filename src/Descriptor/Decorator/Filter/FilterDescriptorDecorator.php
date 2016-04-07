@@ -11,8 +11,9 @@ namespace Vain\Expression\Descriptor\Decorator\Filter;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Exception\InaccessibleFilterDescriptorException;
-use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class FilterDescriptorDecorator extends AbstractDescriptorDecorator
@@ -25,14 +26,22 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * FilterDescriptorDecorator constructor.
      * @param DescriptorInterface $descriptor
-     * @param ExpressionEvaluatorInterface $evaluator
+     * @param EvaluatorInterface $evaluator
      * @param ExpressionInterface $expression
      */
-    public function __construct(DescriptorInterface $descriptor, ExpressionEvaluatorInterface $evaluator, ExpressionInterface $expression)
+    public function __construct(DescriptorInterface $descriptor, EvaluatorInterface $evaluator, ExpressionInterface $expression)
     {
         $this->evaluator = $evaluator;
         $this->expression = $expression;
         parent::__construct($descriptor);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function parse(ParserInterface $parser)
+    {
+        return sprintf('%s where %s', parent::parse($parser), $this->expression->parse($parser));
     }
 
     /**

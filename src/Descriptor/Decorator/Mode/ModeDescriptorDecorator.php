@@ -10,6 +10,7 @@ namespace Vain\Expression\Descriptor\Decorator\Mode;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class ModeDescriptorDecorator extends AbstractDescriptorDecorator
@@ -53,13 +54,12 @@ class ModeDescriptorDecorator extends AbstractDescriptorDecorator
                 return $value;
         }
     }
-
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function parse(ParserInterface $parser)
     {
-        $value = parent::__toString();
+        $value = parent::parse($parser);
         switch ($this->mode) {
             case 'string':
                 return sprintf('"%s"', $value);

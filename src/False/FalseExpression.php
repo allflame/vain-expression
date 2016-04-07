@@ -8,9 +8,9 @@
 
 namespace Vain\Expression\False;
 
-use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class FalseExpression implements ExpressionInterface
@@ -18,7 +18,7 @@ class FalseExpression implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
         return false;
     }
@@ -26,7 +26,7 @@ class FalseExpression implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function parse(ExpressionParserInterface $parser)
+    public function parse(ParserInterface $parser)
     {
         return $parser->false();
     }

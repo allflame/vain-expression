@@ -9,7 +9,7 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
-use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Evaluator\EvaluatorInterface;
 
 class ExpressionEvaluatorException extends CoreException
 {
@@ -17,19 +17,19 @@ class ExpressionEvaluatorException extends CoreException
 
     /**
      * ExpressionEvaluatorException constructor.
-     * @param ExpressionEvaluatorInterface $evaluator
+     * @param EvaluatorInterface $evaluator
      * @param string $message
      * @param int $code
      * @param \Exception $previous
      */
-    public function __construct(ExpressionEvaluatorInterface $evaluator, $message, $code, \Exception $previous = null)
+    public function __construct(EvaluatorInterface $evaluator, $message, $code, \Exception $previous = null)
     {
         $this->evaluator = $evaluator;
         parent::__construct($message, $code, $previous);
     }
 
     /**
-     * @return ExpressionEvaluatorInterface
+     * @return EvaluatorInterface
      */
     public function getEvaluator()
     {

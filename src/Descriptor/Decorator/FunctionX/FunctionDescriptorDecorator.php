@@ -11,6 +11,7 @@ namespace Vain\Expression\Descriptor\Decorator\FunctionX;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Exception\UnknownFunctionDescriptorException;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class FunctionDescriptorDecorator extends AbstractDescriptorDecorator
@@ -31,16 +32,17 @@ class FunctionDescriptorDecorator extends AbstractDescriptorDecorator
         $this->arguments = $arguments;
         parent::__construct($descriptor);
     }
+
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function parse(ParserInterface $parser)
     {
         if (0 === count($this->arguments)) {
-            return sprintf('%s(%s)', $this->functionName,  parent::__toString());
+            return sprintf('%s(%s)', $this->functionName,  parent::parse($parser));
         }
 
-        return sprintf('%s(%s, %s)', $this->functionName, parent::__toString(), implode(', ', $this->arguments));
+        return sprintf('%s(%s, %s)', $this->functionName, parent::parse($parser), implode(', ', $this->arguments));
     }
 
     /**

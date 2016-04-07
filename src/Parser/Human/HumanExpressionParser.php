@@ -10,16 +10,16 @@ namespace Vain\Expression\Parser\Human;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Parser\ParserInterface;
 
-class HumanExpressionParser implements ExpressionParserInterface
+class HumanExpressionParser implements ParserInterface
 {
     /**
      * @inheritDoc
      */
     public function eq(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s = %s', $what, $against);
+        return sprintf('%s = %s', $what->parse($this), $against->parse($this));
     }
 
     /**
@@ -27,7 +27,7 @@ class HumanExpressionParser implements ExpressionParserInterface
      */
     public function neq(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s != %s', $what, $against);
+        return sprintf('%s != %s', $what->parse($this), $against->parse($this));
     }
 
     /**
@@ -35,7 +35,7 @@ class HumanExpressionParser implements ExpressionParserInterface
      */
     public function gt(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s > %s', $what, $against);
+        return sprintf('%s > %s', $what->parse($this), $against->parse($this));
     }
 
     /**
@@ -43,7 +43,7 @@ class HumanExpressionParser implements ExpressionParserInterface
      */
     public function gte(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s >= %s', $what, $against);
+        return sprintf('%s >= %s', $what->parse($this), $against->parse($this));
     }
 
     /**
@@ -51,7 +51,7 @@ class HumanExpressionParser implements ExpressionParserInterface
      */
     public function lt(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s < %s', $what, $against);
+        return sprintf('%s < %s', $what->parse($this), $against->parse($this));
     }
 
     /**
@@ -59,7 +59,7 @@ class HumanExpressionParser implements ExpressionParserInterface
      */
     public function lte(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s <= %s', $what, $against);
+        return sprintf('%s <= %s', $what->parse($this), $against->parse($this));
     }
 
     /**
@@ -67,7 +67,7 @@ class HumanExpressionParser implements ExpressionParserInterface
      */
     public function in(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s in (%s)', $what, implode(', ', $against));
+        return sprintf('%s in %s', $what->parse($this), $against->parse($this));
     }
 
     /**
@@ -75,7 +75,7 @@ class HumanExpressionParser implements ExpressionParserInterface
      */
     public function like(DescriptorInterface $what, DescriptorInterface $against)
     {
-        return sprintf('%s like %s', $what, $against);
+        return sprintf('%s like %s', $what->parse($this), $against->parse($this));
     }
 
     /**

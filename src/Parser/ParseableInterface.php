@@ -8,12 +8,12 @@
 
 namespace Vain\Expression\Parser;
 
-interface ParseableExpressionInterface
+interface ParseableInterface
 {
     /**
-     * @param ExpressionParserInterface $parser
+     * @param ParserInterface $parser
      * 
      * @return string
      */
-    public function parse(ExpressionParserInterface $parser);
+    public function parse(ParserInterface $parser);
 }

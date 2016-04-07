@@ -9,10 +9,10 @@
 namespace Logger;
 
 
-use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
+use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Logger\LoggerInterface;
-use Vain\Expression\Parser\ExpressionParserInterface;
+use Vain\Expression\Parser\ParserInterface;
 
 class Logger implements LoggerInterface
 {
@@ -30,7 +30,7 @@ class Logger implements LoggerInterface
     /**
      * @inheritDoc
      */
-    public function beforeEvaluation(ExpressionInterface $expression, ExpressionEvaluatorInterface $evaluator)
+    public function beforeEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator)
     {
         $this->logger->debug(sprintf('Starting evaluating expression %s with evaluator %s', get_class($expression), get_class($evaluator)));
     }
@@ -38,7 +38,7 @@ class Logger implements LoggerInterface
     /**
      * @inheritDoc
      */
-    public function afterEvaluation(ExpressionInterface $expression, ExpressionEvaluatorInterface $evaluator, $result)
+    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, $result)
     {
         if (false === $result) {
             $this->logger->debug(sprintf('Finished evaluating expression %s with evaluator %s: FALSE', get_class($expression), get_class($evaluator)));
@@ -50,7 +50,7 @@ class Logger implements LoggerInterface
     /**
      * @inheritDoc
      */
-    public function beforeParsing(ExpressionInterface $expression, ExpressionParserInterface $parser)
+    public function beforeParsing(ExpressionInterface $expression, ParserInterface $parser)
     {
         $this->logger->debug(sprintf('Starting evaluating expression %s with evaluator %s', get_class($expression), get_class($parser)));
     }
@@ -58,7 +58,7 @@ class Logger implements LoggerInterface
     /**
      * @inheritDoc
      */
-    public function afterParsing(ExpressionInterface $expression, ExpressionParserInterface $parser, $result)
+    public function afterParsing(ExpressionInterface $expression, ParserInterface $parser, $result)
     {
         $this->logger->debug(sprintf('Finished parsing expression %s with parser %s: %s', get_class($expression), get_class($parser), $result));
     }

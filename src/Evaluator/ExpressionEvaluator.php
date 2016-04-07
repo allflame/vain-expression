@@ -12,7 +12,7 @@ use Vain\Comparator\Repository\ComparatorRepositoryInterface;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Exception\ModeMismatchExpressionEvaluatorException;
 
-class ExpressionEvaluator implements ExpressionEvaluatorInterface
+class Evaluator implements EvaluatorInterface
 {
     private $comparatorRepository;
 

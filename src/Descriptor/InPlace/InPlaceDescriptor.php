@@ -9,6 +9,7 @@
 namespace Vain\Expression\Descriptor\InPlace;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class InPlaceDescriptor implements DescriptorInterface
@@ -36,7 +37,7 @@ class InPlaceDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function parse(ParserInterface $parser)
     {
         return $this->value;
     }
