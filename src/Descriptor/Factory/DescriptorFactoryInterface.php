@@ -29,10 +29,11 @@ interface DescriptorFactoryInterface
     /**
      * @param DescriptorInterface $descriptor
      * @param string $method
+     * @param array $arguments
      *
-     * @return mixed
+     * @return DescriptorInterface
      */
-    public function method(DescriptorInterface $descriptor, $method);
+    public function method(DescriptorInterface $descriptor, $method, array $arguments = []);
 
     /**
      * @param DescriptorInterface $descriptor
@@ -44,8 +45,17 @@ interface DescriptorFactoryInterface
 
     /**
      * @param DescriptorInterface $descriptor
+     * @param string $functionName
+     * @param array $arguments
+     *
+     * @return DescriptorInterface
+     */
+    public function func(DescriptorInterface $descriptor, $functionName, array $arguments = []);
+
+    /**
+     * @param DescriptorInterface $descriptor
      * @param string $mode
-     * 
+     *
      * @return DescriptorInterface
      */
     public function mode(DescriptorInterface $descriptor, $mode);

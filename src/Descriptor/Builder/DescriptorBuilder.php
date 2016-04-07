@@ -102,12 +102,13 @@ class DescriptorBuilder
 
     /**
      * @param string $method
+     * @param array $arguments
      *
      * @return DescriptorBuilder
      */
-    public function method($method)
+    public function method($method, array $arguments = [])
     {
-        $this->chain[] = ['method', $method];
+        $this->chain[] = ['method', [$method, $arguments]];
 
         return $this;
     }
@@ -138,6 +139,19 @@ class DescriptorBuilder
     }
 
     /**
+     * @param string $name
+     * @param array $arguments
+     *
+     * @return DescriptorBuilder
+     */
+    public function func($name, array $arguments = [])
+    {
+        $this->chain[] = ['function', [$name, $arguments]];
+
+        return $this;
+    }
+
+    /**
      * @return DescriptorInterface
      */
     public function getDescriptor()
@@ -151,20 +165,24 @@ class DescriptorBuilder
         }
 
         foreach ($this->chain as $element) {
-            list ($type, $value)  = $element;
+            list ($type, $value) = $element;
             switch ($type) {
                 case 'property':
-                    $properties = array_reverse(explode('.', $value));
+                    $properties = explode('.', $value);
                     foreach ($properties as $property) {
                         $descriptor = $this->descriptorFactory->property($descriptor, $property);
                     }
                     break;
                 case 'method':
-                    $methods = array_reverse(explode('.', $value));
+                    list ($name, $arguments) = $value;
+                    $methods = explode('.', $name);
                     foreach ($methods as $method) {
-                        $descriptor = $this->descriptorFactory->method($descriptor, $method);
+                        $descriptor = $this->descriptorFactory->method($descriptor, $method, $arguments);
                     }
                     break;
+                case 'function':
+                    list ($name, $arguments) = $value;
+                    $descriptor = $this->descriptorFactory->func($descriptor, $name, $arguments);
             }
         }
 

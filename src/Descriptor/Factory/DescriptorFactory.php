@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Descriptor\Factory;
 
+use Vain\Expression\Descriptor\Decorator\FunctionX\FunctionDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Mode\ModeDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\InPlace\InPlaceDescriptor;
@@ -48,9 +49,9 @@ class DescriptorFactory implements DescriptorFactoryInterface
     /**
      * @inheritDoc
      */
-    public function method(DescriptorInterface $descriptor, $method)
+    public function method(DescriptorInterface $descriptor, $method, array $arguments = [])
     {
-        return new MethodDescriptorDecorator($descriptor, $method);
+        return new MethodDescriptorDecorator($descriptor, $method, $arguments);
     }
 
     /**
@@ -59,6 +60,14 @@ class DescriptorFactory implements DescriptorFactoryInterface
     public function property(DescriptorInterface $descriptor, $property)
     {
         return new PropertyDescriptorDecorator($descriptor, $property);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function func(DescriptorInterface $descriptor, $functionName, array $arguments = [])
+    {
+        return new FunctionDescriptorDecorator($descriptor, $functionName, $arguments);
     }
 
     /**
