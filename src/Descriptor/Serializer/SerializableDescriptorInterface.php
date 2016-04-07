@@ -21,9 +21,10 @@ interface SerializableDescriptorInterface
     public function serialize(ExpressionSerializerInterface $serializer);
 
     /**
+     * @param ExpressionSerializerInterface $serializer
      * @param array $serialized
      *
      * @return SerializableDescriptorInterface
      */
-    public function unserialize(array $serialized);
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized);
 }

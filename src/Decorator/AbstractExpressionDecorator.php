@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Decorator;
 
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
@@ -38,7 +37,7 @@ abstract class AbstractExpressionDecorator implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator, RuntimeData $runtimeData = null)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
         return $this->expression->evaluate($evaluator, $runtimeData);
     }

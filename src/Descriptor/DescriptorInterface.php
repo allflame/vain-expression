@@ -9,7 +9,6 @@
 namespace Vain\Expression\Descriptor;
 
 use Vain\Expression\Descriptor\Serializer\SerializableDescriptorInterface;
-use Vain\Core\Runtime\RuntimeData;
 
 interface DescriptorInterface extends SerializableDescriptorInterface
 {
@@ -19,9 +18,9 @@ interface DescriptorInterface extends SerializableDescriptorInterface
     public function __toString();
 
     /**
-     * @param RuntimeData $runtimeData
+     * @param \ArrayAccess $runtimeData
      *
      * @return mixed
      */
-    public function getValue(RuntimeData $runtimeData = null);
+    public function getValue(\ArrayAccess $runtimeData = null);
 }

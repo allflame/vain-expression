@@ -9,7 +9,6 @@
 namespace Vain\Expression\Descriptor\InPlace;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class InPlaceDescriptor implements DescriptorInterface
@@ -29,7 +28,7 @@ class InPlaceDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function getValue(RuntimeData $runtimeData = null)
+    public function getValue(\ArrayAccess $runtimeData = null)
     {
         return $this->value;
     }
@@ -53,7 +52,7 @@ class InPlaceDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(array $serialized)
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
     {
         list ($serializedValue) = $serialized;
         $this->value = unserialize($serializedValue);

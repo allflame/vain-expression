@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Comparison\Less;
 
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Comparison\AbstractComparisonExpression;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
@@ -19,7 +18,7 @@ class LessExpression extends AbstractComparisonExpression
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator, RuntimeData $runtimeData = null)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
         return $evaluator->lt($this->getWhat(), $this->getAgainst(), $runtimeData);
     }

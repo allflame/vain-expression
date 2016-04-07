@@ -10,7 +10,6 @@ namespace Vain\Expression\Evaluator;
 
 use Vain\Comparator\Repository\ComparatorRepositoryInterface;
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Evaluator\Exception\ModeMismatchExpressionEvaluatorException;
 
 class ExpressionEvaluator implements ExpressionEvaluatorInterface
@@ -29,7 +28,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function eq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function eq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
@@ -43,7 +42,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function neq(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function neq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
@@ -57,7 +56,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function gt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function gt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
@@ -71,7 +70,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function gte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function gte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
@@ -85,7 +84,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function lt(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function lt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
@@ -99,7 +98,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function lte(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function lte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
@@ -113,7 +112,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function in(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function in(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);
@@ -124,7 +123,7 @@ class ExpressionEvaluator implements ExpressionEvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function like(DescriptorInterface $what, DescriptorInterface $against, RuntimeData $runtimeData = null)
+    public function like(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
     {
         $whatValue = $what->getValue($runtimeData);
         $againstValue = $against->getValue($runtimeData);

@@ -10,7 +10,6 @@ namespace Vain\Expression\Descriptor\Decorator\Mode;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class ModeDescriptorDecorator extends AbstractDescriptorDecorator
@@ -31,7 +30,7 @@ class ModeDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function getValue(RuntimeData $runtimeData = null)
+    public function getValue(\ArrayAccess $runtimeData = null)
     {
         $value = parent::getValue($runtimeData);
 
@@ -92,10 +91,10 @@ class ModeDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function unserialize(array $serialized)
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
     {
         list ($this->mode, $parentData) = $serialized;
 
-        return parent::unserialize($parentData);
+        return parent::unserialize($serializer, $parentData);
     }
 }

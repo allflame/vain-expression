@@ -12,7 +12,6 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\Exception\InaccessiblePropertyDescriptorException;
 use Vain\Expression\Descriptor\Exception\UnknownPropertyDescriptorException;
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
@@ -42,7 +41,7 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function getValue(RuntimeData $runtimeData = null)
+    public function getValue(\ArrayAccess $runtimeData = null)
     {
         $data = parent::getValue($runtimeData);
 
@@ -82,10 +81,10 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function unserialize(array $serialized)
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
     {
         list ($this->property, $parentData) = $serialized;
 
-        return parent::unserialize($parentData);
+        return parent::unserialize($serializer, $parentData);
     }
 }

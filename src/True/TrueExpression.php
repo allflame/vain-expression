@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\True;
 
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
@@ -19,7 +18,7 @@ class TrueExpression implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator, RuntimeData $runtimeData = null)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
         return false;
     }

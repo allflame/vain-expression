@@ -9,7 +9,6 @@
 namespace Vain\Expression\Descriptor\Decorator;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class AbstractDescriptorDecorator implements DescriptorInterface
@@ -36,7 +35,7 @@ class AbstractDescriptorDecorator implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function getValue(RuntimeData $runtimeData = null)
+    public function getValue(\ArrayAccess $runtimeData = null)
     {
         return $this->descriptor->getValue($runtimeData);
     }
@@ -52,8 +51,8 @@ class AbstractDescriptorDecorator implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(array $serialized)
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
     {
-        return $this->descriptor->unserialize($serialized);
+        return $this->descriptor->unserialize($serializer, $serialized);
     }
 }

@@ -10,7 +10,6 @@ namespace Vain\Expression\Descriptor\Module;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Module\DataModuleInterface;
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class ModuleDescriptor implements DescriptorInterface
@@ -45,7 +44,7 @@ class ModuleDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function getValue(RuntimeData $runtimeData = null)
+    public function getValue(\ArrayAccess $runtimeData = null)
     {
         return $this->module->getData($runtimeData);
     }
@@ -61,7 +60,7 @@ class ModuleDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(array $serialized)
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
     {
         return $this;
     }

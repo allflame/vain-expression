@@ -11,7 +11,6 @@ namespace Vain\Expression\Descriptor\Decorator\Method;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\Exception\UnknownMethodDescriptorException;
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Serializer\ExpressionSerializerInterface;
 
 class MethodDescriptorDecorator extends AbstractDescriptorDecorator
@@ -40,7 +39,7 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function getValue(RuntimeData $runtimeData = null)
+    public function getValue(\ArrayAccess $runtimeData = null)
     {
         $data = parent::getValue($runtimeData);
 
@@ -62,10 +61,10 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function unserialize(array $serialized)
+    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
     {
         list ($this->method, $parentData) = $serialized;
 
-        return parent::unserialize($parentData);
+        return parent::unserialize($serializer, $parentData);
     }
 }

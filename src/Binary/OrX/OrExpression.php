@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Binary\OrX;
 
-use Vain\Core\Runtime\RuntimeData;
 use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Evaluator\ExpressionEvaluatorInterface;
 use Vain\Expression\Parser\ExpressionParserInterface;
@@ -19,7 +18,7 @@ class OrExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function evaluate(ExpressionEvaluatorInterface $evaluator, RuntimeData $runtimeData = null)
+    public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
         return $this->getFirstExpression()->evaluate($evaluator, $runtimeData) || $this->getSecondExpression()->evaluate($evaluator, $runtimeData);
     }

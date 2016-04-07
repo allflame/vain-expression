@@ -69,7 +69,7 @@ class ExpressionSerializer implements ExpressionSerializerInterface
 
         switch ($type) {
             case 'in_place':
-                return $this->descriptorFactory->inplace()->unserialize($descriptorData);
+                return $this->descriptorFactory->inplace()->unserialize($this, $descriptorData);
                 break;
             case 'module':
                 list ($moduleName) = $descriptorData;
