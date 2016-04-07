@@ -24,7 +24,7 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
      * @param DescriptorInterface $descriptor
      * @param string $property
      */
-    public function __construct(DescriptorInterface $descriptor = null, $property = null)
+    public function __construct(DescriptorInterface $descriptor, $property)
     {
         $this->property = $property;
         parent::__construct($descriptor);

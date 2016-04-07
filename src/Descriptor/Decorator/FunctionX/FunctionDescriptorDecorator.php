@@ -25,7 +25,7 @@ class FunctionDescriptorDecorator extends AbstractDescriptorDecorator
      * @param string $functionName
      * @param array $arguments
      */
-    public function __construct(DescriptorInterface $descriptor, $functionName = null, array $arguments = [])
+    public function __construct(DescriptorInterface $descriptor, $functionName, array $arguments = [])
     {
         $this->functionName = $functionName;
         $this->arguments = $arguments;
@@ -63,15 +63,5 @@ class FunctionDescriptorDecorator extends AbstractDescriptorDecorator
     public function serialize(ExpressionSerializerInterface $serializer)
     {
         return ['function', [$this->functionName, $this->arguments, parent::serialize($serializer)]];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
-    {
-        list ($this->functionName, $this->arguments, $parentData) = $serialized;
-
-        return parent::unserialize($serializer, $parentData);
     }
 }

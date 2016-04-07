@@ -76,20 +76,20 @@ class ExpressionSerializer implements ExpressionSerializerInterface
                 return $this->descriptorFactory->module($moduleName);
                 break;
             case 'property':
-                list ($property, $propertyDescriptorData) = $descriptorData;
-                return $this->descriptorFactory->property($this->unserializeDescriptor($propertyDescriptorData), $property);
+                list ($property, $parentDescriptorData) = $descriptorData;
+                return $this->descriptorFactory->property($this->unserializeDescriptor($parentDescriptorData), $property);
                 break;
             case 'method':
-                list ($method, $methodDescriptorData) = $descriptorData;
-                return $this->descriptorFactory->method($this->unserializeDescriptor($methodDescriptorData), $method);
+                list ($method, $arguments, $parentDescriptorData) = $descriptorData;
+                return $this->descriptorFactory->method($this->unserializeDescriptor($parentDescriptorData), $method, $arguments);
                 break;
             case 'mode':
-                list ($mode, $modeDescriptorData) = $descriptorData;
-                return $this->descriptorFactory->mode($this->unserializeDescriptor($modeDescriptorData), $mode);
+                list ($mode, $parentDescriptorData) = $descriptorData;
+                return $this->descriptorFactory->mode($this->unserializeDescriptor($parentDescriptorData), $mode);
                 break;
             case 'function':
-                list ($mode, $funcDescriptorData) = $descriptorData;
-                return $this->descriptorFactory->func($this->unserializeDescriptor($funcDescriptorData), $mode);
+                list ($function, $arguments, $parentDescriptorData) = $descriptorData;
+                return $this->descriptorFactory->func($this->unserializeDescriptor($parentDescriptorData), $function, $arguments);
                 break;
             default:
                 throw new UnknownDescriptorSerializerException($this, $type);

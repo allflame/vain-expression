@@ -22,7 +22,7 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
      * @param DescriptorInterface $descriptor
      * @param string $method
      */
-    public function __construct(DescriptorInterface $descriptor = null, $method = null)
+    public function __construct(DescriptorInterface $descriptor, $method)
     {
         $this->method = $method;
         parent::__construct($descriptor);
@@ -56,15 +56,5 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
     public function serialize(ExpressionSerializerInterface $serializer)
     {
         return ['method', [$this->method, parent::serialize($serializer)]];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
-    {
-        list ($this->method, $parentData) = $serialized;
-
-        return parent::unserialize($serializer, $parentData);
     }
 }

@@ -21,7 +21,7 @@ class ModeDescriptorDecorator extends AbstractDescriptorDecorator
      * @param DescriptorInterface $descriptor
      * @param string $mode
      */
-    public function __construct(DescriptorInterface $descriptor = null, $mode = null)
+    public function __construct(DescriptorInterface $descriptor, $mode)
     {
         $this->mode = $mode;
         parent::__construct($descriptor);
