@@ -9,22 +9,22 @@
 namespace Vain\Expression\Descriptor\Serializer;
 
 
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 interface SerializableDescriptorInterface
 {
     /**
-     * @param ExpressionSerializerInterface $serializer
+     * @param SerializerInterface $serializer
      *
      * @return array
      */
-    public function serialize(ExpressionSerializerInterface $serializer);
+    public function serialize(SerializerInterface $serializer);
 
     /**
-     * @param ExpressionSerializerInterface $serializer
+     * @param SerializerInterface $serializer
      * @param array $serialized
      *
      * @return SerializableDescriptorInterface
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized);
+    public function unserialize(SerializerInterface $serializer, array $serialized);
 }

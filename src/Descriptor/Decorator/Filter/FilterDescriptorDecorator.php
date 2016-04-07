@@ -14,7 +14,7 @@ use Vain\Expression\Exception\InaccessibleFilterDescriptorException;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class FilterDescriptorDecorator extends AbstractDescriptorDecorator
 {
@@ -68,7 +68,7 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['filter', [$this->expression->serialize($serializer), parent::serialize($serializer)]];
     }
@@ -76,7 +76,7 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
+    public function unserialize(SerializerInterface $serializer, array $serialized)
     {
         list ($serializedExpression, $parentData) = $serialized;
         $this->expression = $serializer->unserializeExpression($serializedExpression);

@@ -13,7 +13,7 @@ use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Exception\InaccessiblePropertyDescriptorException;
 use Vain\Expression\Exception\UnknownPropertyDescriptorException;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
 {
@@ -71,7 +71,7 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['property', [$this->property, parent::serialize($serializer)]];
     }
@@ -79,7 +79,7 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
+    public function unserialize(SerializerInterface $serializer, array $serialized)
     {
         list ($this->property, $parentData) = $serialized;
 

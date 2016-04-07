@@ -10,7 +10,7 @@ namespace Vain\Expression\Decorator;
 
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\ExpressionInterface;
 
 abstract class AbstractExpressionDecorator implements ExpressionInterface
@@ -53,7 +53,7 @@ abstract class AbstractExpressionDecorator implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return $this->expression->serialize($serializer);
     }
@@ -61,7 +61,7 @@ abstract class AbstractExpressionDecorator implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData)
+    public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         return $this->expression->unserialize($serializer, $serializedData);
     }

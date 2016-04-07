@@ -11,7 +11,7 @@ namespace Vain\Expression\Descriptor\Module;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Module\DataModuleInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class ModuleDescriptor implements DescriptorInterface
 {
@@ -53,7 +53,7 @@ class ModuleDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['module', [$this->module->__toString()]];
     }
@@ -61,7 +61,7 @@ class ModuleDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
+    public function unserialize(SerializerInterface $serializer, array $serialized)
     {
         return $this;
     }

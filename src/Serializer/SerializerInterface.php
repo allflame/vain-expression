@@ -11,7 +11,7 @@ namespace Vain\Expression\Serializer;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\ExpressionInterface;
 
-interface ExpressionSerializerInterface
+interface SerializerInterface
 {
     /**
      * @param ExpressionInterface $expression

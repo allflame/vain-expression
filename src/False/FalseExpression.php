@@ -11,7 +11,7 @@ namespace Vain\Expression\False;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class FalseExpression implements ExpressionInterface
 {
@@ -34,7 +34,7 @@ class FalseExpression implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['false', []];
     }
@@ -42,7 +42,7 @@ class FalseExpression implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData)
+    public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         return $this;
     }

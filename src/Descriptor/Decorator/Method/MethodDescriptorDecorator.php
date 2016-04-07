@@ -12,7 +12,7 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Exception\UnknownMethodDescriptorException;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class MethodDescriptorDecorator extends AbstractDescriptorDecorator
 {
@@ -54,7 +54,7 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['method', [$this->method, parent::serialize($serializer)]];
     }

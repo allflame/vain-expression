@@ -8,16 +8,16 @@
 
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class UnknownDescriptorSerializerException extends ExpressionSerializerException
 {
     /**
      * UnknownDescriptorFactoryException constructor.
-     * @param ExpressionSerializerInterface $serializer
+     * @param SerializerInterface $serializer
      * @param string $name
      */
-    public function __construct(ExpressionSerializerInterface $serializer, $name)
+    public function __construct(SerializerInterface $serializer, $name)
     {
         parent::__construct($serializer, sprintf('Cannot unserialize descriptor by unknown shortcut %s', $name), 0, null);
     }

@@ -10,7 +10,7 @@ namespace Vain\Expression\Descriptor\Decorator;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class AbstractDescriptorDecorator implements DescriptorInterface
 {
@@ -44,7 +44,7 @@ class AbstractDescriptorDecorator implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return $this->descriptor->serialize($serializer);
     }
@@ -52,7 +52,7 @@ class AbstractDescriptorDecorator implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
+    public function unserialize(SerializerInterface $serializer, array $serialized)
     {
         return $this->descriptor->unserialize($serializer, $serialized);
     }

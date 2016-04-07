@@ -10,7 +10,7 @@ namespace Vain\Expression\Descriptor\InPlace;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class InPlaceDescriptor implements DescriptorInterface
 {
@@ -45,7 +45,7 @@ class InPlaceDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['in_place', [serialize($this->value)]];
     }
@@ -53,7 +53,7 @@ class InPlaceDescriptor implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
+    public function unserialize(SerializerInterface $serializer, array $serialized)
     {
         list ($serializedValue) = $serialized;
         $this->value = unserialize($serializedValue);

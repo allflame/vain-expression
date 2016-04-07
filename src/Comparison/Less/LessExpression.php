@@ -11,7 +11,7 @@ namespace Vain\Expression\Comparison\Less;
 use Vain\Expression\Comparison\AbstractComparisonExpression;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class LessExpression extends AbstractComparisonExpression
 {
@@ -34,7 +34,7 @@ class LessExpression extends AbstractComparisonExpression
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['lt', parent::serialize($serializer)];
     }

@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Unary;
 
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\ExpressionInterface;
 
 abstract class AbstractUnaryExpression implements UnaryExpressionInterface
@@ -31,7 +31,7 @@ abstract class AbstractUnaryExpression implements UnaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return [$this->expression->serialize($serializer)];
     }
@@ -39,7 +39,7 @@ abstract class AbstractUnaryExpression implements UnaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serializedData)
+    public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         list ($expressionData) = $serializedData;
         $this->expression = $serializer->unserializeExpression($expressionData);

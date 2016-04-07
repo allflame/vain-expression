@@ -14,7 +14,7 @@ use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Exception\UnknownDescriptorSerializerException;
 
-class ExpressionSerializer implements ExpressionSerializerInterface
+class Serializer implements SerializerInterface
 {
     private $expressionFactory;
 

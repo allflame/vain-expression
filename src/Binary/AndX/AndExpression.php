@@ -11,7 +11,7 @@ namespace Vain\Expression\Binary\AndX;
 use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class AndExpression extends AbstractBinaryExpression
 {
@@ -34,7 +34,7 @@ class AndExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['and', parent::serialize($serializer)];
     }

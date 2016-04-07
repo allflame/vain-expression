@@ -11,7 +11,7 @@ namespace Vain\Expression\Binary\OrX;
 use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class OrExpression extends AbstractBinaryExpression
 {
@@ -34,7 +34,7 @@ class OrExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['or', parent::serialize($serializer)];
     }

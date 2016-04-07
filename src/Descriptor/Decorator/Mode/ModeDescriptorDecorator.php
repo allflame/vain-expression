@@ -11,7 +11,7 @@ namespace Vain\Expression\Descriptor\Decorator\Mode;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class ModeDescriptorDecorator extends AbstractDescriptorDecorator
 {
@@ -83,7 +83,7 @@ class ModeDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['mode', [$this->mode, parent::serialize($serializer)]];
     }
@@ -91,7 +91,7 @@ class ModeDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function unserialize(ExpressionSerializerInterface $serializer, array $serialized)
+    public function unserialize(SerializerInterface $serializer, array $serialized)
     {
         list ($this->mode, $parentData) = $serialized;
 

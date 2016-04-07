@@ -10,7 +10,7 @@ namespace Vain\Expression\Unary\Identity;
 
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 
 class IdentityExpression extends AbstractUnaryExpression
@@ -34,7 +34,7 @@ class IdentityExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['id', parent::serialize($serializer)];
     }

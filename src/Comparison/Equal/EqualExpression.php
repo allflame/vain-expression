@@ -11,7 +11,7 @@ namespace Vain\Expression\Comparison\Equal;
 use Vain\Expression\Comparison\AbstractComparisonExpression;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class EqualExpression extends AbstractComparisonExpression
 {
@@ -34,7 +34,7 @@ class EqualExpression extends AbstractComparisonExpression
     /**
      * @inheritDoc
      */
-    public function serialize(ExpressionSerializerInterface $serializer)
+    public function serialize(SerializerInterface $serializer)
     {
         return ['eq', parent::serialize($serializer)];
     }

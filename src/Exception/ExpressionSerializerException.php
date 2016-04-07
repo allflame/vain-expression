@@ -9,7 +9,7 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
-use Vain\Expression\Serializer\ExpressionSerializerInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 class ExpressionSerializerException extends CoreException
 {
@@ -17,19 +17,19 @@ class ExpressionSerializerException extends CoreException
 
     /**
      * DescriptorFactoryException constructor.
-     * @param ExpressionSerializerInterface $serializer
+     * @param SerializerInterface $serializer
      * @param string $message
      * @param int $code
      * @param \Exception $previous
      */
-    public function __construct(ExpressionSerializerInterface $serializer, $message, $code, $previous = null)
+    public function __construct(SerializerInterface $serializer, $message, $code, $previous = null)
     {
         $this->serializer = $serializer;
         parent::__construct($message, $code, $previous);
     }
 
     /**
-     * @return ExpressionSerializerInterface
+     * @return SerializerInterface
      */
     public function getSerializer()
     {
