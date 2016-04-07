@@ -20,7 +20,7 @@ class TrueExpression implements ExpressionInterface
      */
     public function evaluate(ExpressionEvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
-        return false;
+        return true;
     }
 
     /**
