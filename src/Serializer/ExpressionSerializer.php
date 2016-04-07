@@ -86,8 +86,14 @@ class ExpressionSerializer implements ExpressionSerializerInterface
             case 'mode':
                 list ($mode, $modeDescriptorData) = $descriptorData;
                 return $this->descriptorFactory->mode($this->unserializeDescriptor($modeDescriptorData), $mode);
+                break;
+            case 'function':
+                list ($mode, $funcDescriptorData) = $descriptorData;
+                return $this->descriptorFactory->func($this->unserializeDescriptor($funcDescriptorData), $mode);
+                break;
             default:
                 throw new UnknownDescriptorSerializerException($this, $type);
+                break;
         }
     }
 }
