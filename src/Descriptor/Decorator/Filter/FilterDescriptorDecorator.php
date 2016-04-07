@@ -51,7 +51,7 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
     {
         $value = parent::getValue($runtimeData);
 
-        if (false === $value instanceof \Traversable) {
+        if (false === is_array($value) && false === $value instanceof \Traversable) {
             throw new InaccessibleFilterDescriptorException($this, $value);
         }
 
