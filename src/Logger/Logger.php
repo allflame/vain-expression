@@ -13,6 +13,7 @@ use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Logger\LoggerInterface;
 use Vain\Expression\Parser\ParserInterface;
+use Psr\Log\LoggerInterface as PsrLoggerInterface;
 
 class Logger implements LoggerInterface
 {
@@ -20,9 +21,9 @@ class Logger implements LoggerInterface
 
     /**
      * Logger constructor.
-     * @param \Vain\Logger\LoggerInterface $logger
+     * @param PsrLoggerInterface $logger
      */
-    public function __construct(\Vain\Logger\LoggerInterface $logger)
+    public function __construct(PsrLoggerInterface $logger)
     {
         $this->logger = $logger;
     }
