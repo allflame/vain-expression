@@ -94,7 +94,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function id(ExpressionInterface $expression)
+    public function id(ExpressionInterface $expression = null)
     {
         return new IdentityExpression($expression);
     }
@@ -102,7 +102,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function not(ExpressionInterface $expression)
+    public function not(ExpressionInterface $expression = null)
     {
         return new NotExpression($expression);
     }
@@ -126,7 +126,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function andX(ExpressionInterface $firstExpression, ExpressionInterface $secondExpression)
+    public function andX(ExpressionInterface $firstExpression = null, ExpressionInterface $secondExpression = null)
     {
         return new AndExpression($firstExpression, $secondExpression);
     }
@@ -134,7 +134,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function orX(ExpressionInterface $firstExpression, ExpressionInterface $secondExpression)
+    public function orX(ExpressionInterface $firstExpression = null, ExpressionInterface $secondExpression = null)
     {
         return new OrExpression($firstExpression, $secondExpression);
     }
