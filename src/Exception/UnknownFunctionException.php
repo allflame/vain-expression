@@ -10,7 +10,7 @@ namespace Vain\Expression\Exception;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 
-class UnknownFunctionDescriptorException extends DescriptorException
+class UnknownFunctionException extends DescriptorException
 {
     /**
      * UnknownFunctionDescriptorException constructor.

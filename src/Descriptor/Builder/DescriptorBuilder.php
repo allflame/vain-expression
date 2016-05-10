@@ -213,6 +213,10 @@ class DescriptorBuilder
                 case 'filter':
                     $descriptor = $this->descriptorFactory->filter($descriptor, $value);
                     break;
+                case 'helper':
+                    list ($class, $method, $arguments) = $value;
+                    $descriptor =  $this->descriptorFactory->helper($descriptor, $class, $method, $arguments);
+                    break;
             }
         }
 

@@ -10,7 +10,7 @@ namespace Vain\Expression\Exception;
 
 use Vain\Expression\Serializer\SerializerInterface;
 
-class UnknownDescriptorSerializerException extends ExpressionSerializerException
+class UnknownDescriptorException extends ExpressionSerializerException
 {
     /**
      * UnknownDescriptorFactoryException constructor.

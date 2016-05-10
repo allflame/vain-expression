@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Module\Factory;
 
-use Vain\Expression\Exception\UnknownModuleFactoryException;
+use Vain\Expression\Exception\UnknownModuleException;
 use Vain\Expression\Module\System\RuntimeDataModule;
 use Vain\Expression\Module\System\TimeDataModule;
 
@@ -27,7 +27,7 @@ class ModuleFactory implements ModuleFactoryInterface
                 return new RuntimeDataModule();
                 break;
             default:
-                throw new UnknownModuleFactoryException($this, $moduleName);
+                throw new UnknownModuleException($this, $moduleName);
                 break;
         }
     }

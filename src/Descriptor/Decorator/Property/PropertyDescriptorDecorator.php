@@ -10,8 +10,8 @@ namespace Vain\Expression\Descriptor\Decorator\Property;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
-use Vain\Expression\Exception\InaccessiblePropertyDescriptorException;
-use Vain\Expression\Exception\UnknownPropertyDescriptorException;
+use Vain\Expression\Exception\InaccessiblePropertyException;
+use Vain\Expression\Exception\UnknownPropertyException;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
@@ -54,13 +54,13 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
         switch(true) {
             case is_array($data):
                 if (false === array_key_exists($this->property, $data)) {
-                    throw new UnknownPropertyDescriptorException($this, $this->property);
+                    throw new UnknownPropertyException($this, $this->property);
                 }
                 return $data[$this->property];
                 break;
             case $data instanceof \ArrayAccess:
                 if (false === $data->offsetExists($this->property)) {
-                    throw new UnknownPropertyDescriptorException($this, $this->property);
+                    throw new UnknownPropertyException($this, $this->property);
                 }
                 return $data->offsetGet($this->property);
                 break;
@@ -68,7 +68,7 @@ class PropertyDescriptorDecorator extends AbstractDescriptorDecorator
                 return $data->{$this->property};
                 break;
             default:
-                throw new InaccessiblePropertyDescriptorException($this, $data);
+                throw new InaccessiblePropertyException($this, $data);
                 break;
         }
     }

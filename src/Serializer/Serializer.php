@@ -12,7 +12,7 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Factory\DescriptorFactoryInterface;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Exception\UnknownDescriptorSerializerException;
+use Vain\Expression\Exception\UnknownDescriptorException;
 
 class Serializer implements SerializerInterface
 {
@@ -99,7 +99,7 @@ class Serializer implements SerializerInterface
                 return $this->descriptorFactory->filter($this->unserializeDescriptor($parentDescriptorData), $this->unserializeExpression($serializedExpression));
                 break;
             default:
-                throw new UnknownDescriptorSerializerException($this, $type);
+                throw new UnknownDescriptorException($this, $type);
                 break;
         }
     }

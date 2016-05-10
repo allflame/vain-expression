@@ -10,7 +10,7 @@ namespace Vain\Expression\Descriptor\Decorator\Filter;
 
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Expression\Exception\InaccessibleFilterDescriptorException;
+use Vain\Expression\Exception\InaccessibleFilterException;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\ParserInterface;
@@ -52,7 +52,7 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
         $value = parent::getValue($runtimeData);
 
         if (false === is_array($value) && false === $value instanceof \Traversable) {
-            throw new InaccessibleFilterDescriptorException($this, $value);
+            throw new InaccessibleFilterException($this, $value);
         }
 
         $filteredData = [];

@@ -70,6 +70,16 @@ interface DescriptorFactoryInterface
     public function filter(DescriptorInterface $descriptor, ExpressionInterface $expression);
 
     /**
+     * @param DescriptorInterface $descriptor
+     * @param string $class
+     * @param string $method
+     * @param array $arguments
+     * 
+     * @return DescriptorInterface
+     */
+    public function helper(DescriptorInterface $descriptor, $class, $method, array $arguments = []);
+
+    /**
      * @return DescriptorInterface
      */
     public function local();

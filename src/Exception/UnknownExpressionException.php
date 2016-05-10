@@ -10,7 +10,7 @@ namespace Vain\Expression\Exception;
 
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 
-class UnknownExpressionFactoryException extends ExpressionFactoryException
+class UnknownExpressionException extends ExpressionFactoryException
 {
     /**
      * VainExpressionFactoryUnklnownShortcutException constructor.

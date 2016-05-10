@@ -10,7 +10,7 @@ namespace Vain\Expression\Descriptor\Decorator\Method;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
-use Vain\Expression\Exception\UnknownMethodDescriptorException;
+use Vain\Expression\Exception\UnknownMethodException;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
@@ -50,7 +50,7 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
         $data = parent::getValue($runtimeData);
 
         if (false === method_exists($data, $this->method)) {
-            throw new UnknownMethodDescriptorException($this, $this->method);
+            throw new UnknownMethodException($this, $this->method);
         }
 
         return call_user_func([$data, $this->method]);

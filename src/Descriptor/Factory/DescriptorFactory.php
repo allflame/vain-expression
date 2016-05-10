@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Descriptor\Factory;
 
+use Descriptor\Decorator\Helper\HelperDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Filter\FilterDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\FunctionX\FunctionDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Mode\ModeDescriptorDecorator;
@@ -92,6 +93,14 @@ class DescriptorFactory implements DescriptorFactoryInterface
     public function filter(DescriptorInterface $descriptor, ExpressionInterface $expression)
     {
         return new FilterDescriptorDecorator($descriptor, $this->evaluator, $expression);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function helper(DescriptorInterface $descriptor, $class, $method, array $arguments = [])
+    {
+        return new HelperDescriptorDecorator($descriptor, $class, $method, $arguments);
     }
 
     /**

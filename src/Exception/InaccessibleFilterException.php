@@ -3,32 +3,30 @@
  * Created by PhpStorm.
  * User: allflame
  * Date: 4/7/16
- * Time: 10:36 AM
+ * Time: 11:43 AM
  */
 
 namespace Vain\Expression\Exception;
 
-
 use Vain\Expression\Descriptor\DescriptorInterface;
 
-class InaccessiblePropertyDescriptorException extends DescriptorException
+class InaccessibleFilterException extends DescriptorException
 {
-
     private $value;
 
     /**
-     * InaccessiblePropertyDescriptorException constructor.
+     * InaccessibleFilterDescriptorException constructor.
      * @param DescriptorInterface $descriptor
-     * @param mixed $value
+     * @param object $value
      */
     public function __construct(DescriptorInterface $descriptor, $value)
     {
         $this->value = $value;
-        parent::__construct($descriptor, sprintf('Cannot get property for unsupported value type %s', gettype($value)), 0, null);
+        parent::__construct($descriptor, sprintf('Cannot apply filter for non-traversable object'), 0, null);
     }
 
     /**
-     * @return mixed
+     * @return object
      */
     public function getValue()
     {

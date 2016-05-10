@@ -10,7 +10,7 @@ namespace Vain\Expression\Descriptor\Decorator\FunctionX;
 
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Expression\Exception\UnknownFunctionDescriptorException;
+use Vain\Expression\Exception\UnknownFunctionException;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
@@ -53,7 +53,7 @@ class FunctionDescriptorDecorator extends AbstractDescriptorDecorator
         $data = parent::getValue($runtimeData);
 
         if (false === function_exists($this->functionName)) {
-            throw new UnknownFunctionDescriptorException($this, $this->functionName);
+            throw new UnknownFunctionException($this, $this->functionName);
         }
 
         return call_user_func($this->functionName, $data, ...$this->arguments);

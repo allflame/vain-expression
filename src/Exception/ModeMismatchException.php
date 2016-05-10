@@ -11,7 +11,7 @@ namespace Vain\Expression\Exception;
 
 use Vain\Expression\Evaluator\EvaluatorInterface;
 
-class ModeMismatchExpressionEvaluatorException extends ExpressionEvaluatorException
+class ModeMismatchException extends ExpressionEvaluatorException
 {
     /**
      * ModeMismatchExpressionEvaluatorException constructor.

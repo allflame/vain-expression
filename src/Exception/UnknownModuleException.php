@@ -10,7 +10,7 @@ namespace Vain\Expression\Exception;
 
 use Vain\Expression\Module\Factory\ModuleFactoryInterface;
 
-class UnknownModuleFactoryException extends ModuleFactoryException
+class UnknownModuleException extends ModuleFactoryException
 {
     /**
      * UnknownSandboxModuleFactoryException constructor.
