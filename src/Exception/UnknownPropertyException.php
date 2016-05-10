@@ -13,7 +13,7 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 class UnknownPropertyException extends DescriptorException
 {
     /**
-     * UnknownPropertyDescriptorException constructor.
+     * UnknownPropertyException constructor.
      * @param DescriptorInterface $descriptor
      * @param string $name
      */
