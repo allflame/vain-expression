@@ -1,5 +1,5 @@
 {
-    "name": "mmjitsu/vain-expression",
+    "name": "vain/expression",
     "type": "shared-package",
     "authors": [
         {
@@ -16,9 +16,9 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "mmjitsu/vain-core" : "dev-master",
-        "mmjitsu/vain-logger" : "dev-master",
-        "mmjitsu/vain-comparator" : "dev-master"
+        "vain/core" : "dev-master",
+        "vain/logger" : "dev-master",
+        "vain/comparator" : "dev-master"
     },
     "repositories": [
         {
