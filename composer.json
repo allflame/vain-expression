@@ -36,6 +36,10 @@
         {
             "type": "git",
             "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-logger.git"
+        },
+        {
+            "type": "git",
+            "url": "http://gitlab.cosmonova.net.ua/taras.girnyk/vain-value.git"
         }
     ],
     "config": {
