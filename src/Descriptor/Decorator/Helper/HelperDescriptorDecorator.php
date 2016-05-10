@@ -6,7 +6,7 @@
  * Time: 11:29 AM
  */
 
-namespace Descriptor\Decorator\Helper;
+namespace Vain\Expression\Descriptor\Decorator\Helper;
 
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;

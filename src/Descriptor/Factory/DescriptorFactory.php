@@ -8,9 +8,9 @@
 
 namespace Vain\Expression\Descriptor\Factory;
 
-use Descriptor\Decorator\Helper\HelperDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Filter\FilterDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\FunctionX\FunctionDescriptorDecorator;
+use Vain\Expression\Descriptor\Decorator\Helper\HelperDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\Mode\ModeDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\InPlace\InPlaceDescriptor;

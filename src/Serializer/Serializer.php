@@ -98,6 +98,10 @@ class Serializer implements SerializerInterface
                 list ($serializedExpression, $parentDescriptorData) = $descriptorData;
                 return $this->descriptorFactory->filter($this->unserializeDescriptor($parentDescriptorData), $this->unserializeExpression($serializedExpression));
                 break;
+            case 'helper':
+                list ($class, $method, $arguments, $parentDescriptorData) = $descriptorData;
+                return $this->descriptorFactory->helper($this->unserializeDescriptor($parentDescriptorData), $class, $method, $arguments);
+                break;
             default:
                 throw new UnknownDescriptorException($this, $type);
                 break;
