@@ -165,6 +165,20 @@ class DescriptorBuilder
     }
 
     /**
+     * @param string $class
+     * @param string $method
+     * @param array $arguments
+     * 
+     * @return DescriptorBuilder
+     */
+    public function helper($class, $method, array $arguments = [])
+    {
+        $this->chain[] = ['helper', [$class, $method, $arguments]];
+
+        return $this;
+    }
+
+    /**
      * @return DescriptorBuilder
      */
     public function local()
