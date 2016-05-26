@@ -16,9 +16,8 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "vain/core" : "dev-master",
-        "vain/logger" : "dev-master",
-        "vain/comparator" : "dev-master"
+        "vain/logger" : "0.0.1",
+        "vain/comparator" : "0.0.1"
     },
     "repositories": [
         {
