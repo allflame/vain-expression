@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Logger;
 
+use Vain\Comparator\Result\ComparableResultInterface;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\ExpressionInterface;
@@ -25,11 +26,11 @@ interface LoggerInterface
     /**
      * @param ExpressionInterface $expression
      * @param EvaluatorInterface $evaluator
-     * @param bool $result
+     * @param ComparableResultInterface $result
      *
      * @return LoggerInterface
      */
-    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, $result);
+    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, ComparableResultInterface $result);
 
     /**
      * @param ExpressionInterface $expression

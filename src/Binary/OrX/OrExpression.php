@@ -20,7 +20,10 @@ class OrExpression extends AbstractBinaryExpression
      */
     public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
-        return $this->getFirstExpression()->evaluate($evaluator, $runtimeData) || $this->getSecondExpression()->evaluate($evaluator, $runtimeData);
+        $firstExpressionResult = $this->getFirstExpression()->evaluate($evaluator, $runtimeData);
+        $secondExpressionResult = $this->getSecondExpression()->evaluate($evaluator, $runtimeData);
+
+        return $firstExpressionResult->getStatus() ||  $secondExpressionResult->getStatus();
     }
 
     /**

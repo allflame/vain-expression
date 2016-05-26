@@ -20,7 +20,7 @@ class NotExpression extends AbstractUnaryExpression
      */
     public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
     {
-        return !$this->getExpression()->evaluate($evaluator, $runtimeData);
+        return $this->getExpression()->evaluate($evaluator, $runtimeData)->invert();
     }
 
     /**

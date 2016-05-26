@@ -9,6 +9,7 @@
 namespace Logger;
 
 
+use Vain\Comparator\Result\ComparableResultInterface;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Logger\LoggerInterface;
@@ -39,9 +40,9 @@ class Logger implements LoggerInterface
     /**
      * @inheritDoc
      */
-    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, $result)
+    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, ComparableResultInterface $result)
     {
-        if (false === $result) {
+        if (false === $result->getStatus()) {
             $this->logger->debug(sprintf('Finished evaluating expression %s with evaluator %s: FALSE', get_class($expression), get_class($evaluator)));
         } else {
             $this->logger->debug(sprintf('Finished evaluating expression %s with evaluator %s: TRUE', get_class($expression), get_class($evaluator)));

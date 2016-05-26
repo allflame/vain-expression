@@ -8,13 +8,15 @@
 
 namespace Vain\Expression\Evaluator;
 
+use Vain\Core\Result\ResultInterface;
+
 interface EvaluatableInterface
 {
     /**
      * @param EvaluatorInterface $evaluator
      * @param \ArrayAccess $runtimeData
      * 
-     * @return bool
+     * @return ResultInterface
      */
     public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null);
 }

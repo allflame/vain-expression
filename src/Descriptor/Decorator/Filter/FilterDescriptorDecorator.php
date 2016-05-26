@@ -57,7 +57,7 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
 
         $filteredData = [];
         foreach ($value as $singleElement) {
-            if (false === $this->expression->evaluate($this->evaluator, $singleElement)) {
+            if (false === $this->expression->evaluate($this->evaluator, $singleElement)->getStatus()) {
                 continue;
             }
             $filteredData[] = $singleElement;

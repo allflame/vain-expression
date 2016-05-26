@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Evaluator;
 
+use Vain\Comparator\Result\ComparableResultInterface;
 use Vain\Expression\Descriptor\DescriptorInterface;
 
 interface EvaluatorInterface
@@ -17,7 +18,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function eq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 
@@ -26,7 +27,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function neq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 
@@ -35,7 +36,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function gt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 
@@ -44,7 +45,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function gte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 
@@ -53,7 +54,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function lt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 
@@ -62,7 +63,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function lte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 
@@ -71,7 +72,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function in(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 
@@ -80,7 +81,7 @@ interface EvaluatorInterface
      * @param DescriptorInterface $against
      * @param \ArrayAccess $runtimeData
      *
-     * @return string
+     * @return ComparableResultInterface
      */
     public function like(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
 }
