@@ -8,27 +8,26 @@
 
 namespace Vain\Expression\Unary\Not;
 
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
+use Vain\Expression\Visitor\VisitorInterface;
 
 class NotExpression extends AbstractUnaryExpression
 {
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return $this->getExpression()->evaluate($evaluator, $runtimeData)->invert();
+        return $visitor->not($this);
     }
 
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-       return $parser->not($this->getExpression());
+        return sprintf('!(%s)', $this->getExpression());
     }
 
     /**

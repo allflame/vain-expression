@@ -8,18 +8,15 @@
 
 namespace Vain\Expression\Descriptor\Local;
 
-
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
 class LocalDescriptor implements DescriptorInterface
 {
-
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
         return '';
     }

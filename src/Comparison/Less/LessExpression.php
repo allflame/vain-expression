@@ -9,26 +9,25 @@
 namespace Vain\Expression\Comparison\Less;
 
 use Vain\Expression\Comparison\AbstractComparisonExpression;
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Visitor\VisitorInterface;
 
 class LessExpression extends AbstractComparisonExpression
 {
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return $evaluator->lt($this->getWhat(), $this->getAgainst(), $runtimeData);
+        return $visitor->lt($this);
     }
 
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-        return $parser->lt($this->getWhat(), $this->getAgainst());
+        return sprintf('%s < %s', $this->getWhat(), $this->getAgainst());
     }
 
     /**

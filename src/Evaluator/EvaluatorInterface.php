@@ -8,80 +8,22 @@
 
 namespace Vain\Expression\Evaluator;
 
-use Vain\Comparator\Result\ComparableResultInterface;
-use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Visitor\VisitorInterface;
 
-interface EvaluatorInterface
+interface EvaluatorInterface extends VisitorInterface
 {
     /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
+     * @param ExpressionInterface $expression
      *
-     * @return ComparableResultInterface
+     * @return EvaluatorInterface
      */
-    public function eq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
+    public function withExpression(ExpressionInterface $expression);
 
     /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
+     * @param \ArrayAccess $context
      *
-     * @return ComparableResultInterface
+     * @return EvaluatorInterface
      */
-    public function neq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
-
-    /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
-     *
-     * @return ComparableResultInterface
-     */
-    public function gt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
-
-    /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
-     *
-     * @return ComparableResultInterface
-     */
-    public function gte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
-
-    /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
-     *
-     * @return ComparableResultInterface
-     */
-    public function lt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
-
-    /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
-     *
-     * @return ComparableResultInterface
-     */
-    public function lte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
-
-    /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
-     *
-     * @return ComparableResultInterface
-     */
-    public function in(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
-
-    /**
-     * @param DescriptorInterface $what
-     * @param DescriptorInterface $against
-     * @param \ArrayAccess $runtimeData
-     *
-     * @return ComparableResultInterface
-     */
-    public function like(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null);
+    public function withContext(\ArrayAccess $context = null);
 }

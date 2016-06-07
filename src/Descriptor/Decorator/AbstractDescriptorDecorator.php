@@ -9,7 +9,6 @@
 namespace Vain\Expression\Descriptor\Decorator;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
 class AbstractDescriptorDecorator implements DescriptorInterface
@@ -28,9 +27,9 @@ class AbstractDescriptorDecorator implements DescriptorInterface
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-        return $this->descriptor->parse($parser);
+        return $this->descriptor->__toString();
     }
     
     /**

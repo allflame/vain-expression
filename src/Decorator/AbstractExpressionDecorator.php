@@ -8,10 +8,9 @@
 
 namespace Vain\Expression\Decorator;
 
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Visitor\VisitorInterface;
 
 abstract class AbstractExpressionDecorator implements ExpressionInterface
 {
@@ -37,17 +36,17 @@ abstract class AbstractExpressionDecorator implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return $this->expression->evaluate($evaluator, $runtimeData);
+        return $this->expression->accept($visitor);
     }
 
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-        return $this->expression->parse($parser);
+        return $this->expression->__toString();
     }
 
     /**

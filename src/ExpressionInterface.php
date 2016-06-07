@@ -8,13 +8,10 @@
 
 namespace Vain\Expression;
 
-use Vain\Expression\Evaluator\EvaluatableInterface;
-use Vain\Expression\Parser\ParseableInterface;
+use Vain\Core\String\StringInterface;
 use Vain\Expression\Serializer\SerializableInterface;
+use Vain\Expression\Visitor\VisitableInterface;
 
-interface ExpressionInterface extends
-    EvaluatableInterface,
-    ParseableInterface,
-    SerializableInterface
+interface ExpressionInterface extends VisitableInterface, SerializableInterface, StringInterface
 {
 }

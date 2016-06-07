@@ -8,27 +8,26 @@
 
 namespace Vain\Expression\Unary\Identity;
 
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
+use Vain\Expression\Visitor\VisitorInterface;
 
 class IdentityExpression extends AbstractUnaryExpression
 {
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return $this->getExpression()->evaluate($evaluator, $runtimeData);
+        return $visitor->id($this);
     }
 
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-        return $parser->id($this->getExpression());
+        return $this->getExpression()->__toString();
     }
 
     /**

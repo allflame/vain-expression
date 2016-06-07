@@ -9,28 +9,41 @@
 namespace Vain\Expression\Evaluator;
 
 use Vain\Comparator\Repository\ComparatorRepositoryInterface;
-use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Comparator\Result\ComparableResult;
+use Vain\Expression\Binary\BinaryExpressionInterface;
+use Vain\Expression\Comparison\ComparisonExpressionInterface;
+use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Unary\UnaryExpressionInterface;
 
 class Evaluator implements EvaluatorInterface
 {
+
     private $comparatorRepository;
+
+    private $expression;
+
+    private $context;
 
     /**
      * ExpressionEvaluator constructor.
      * @param ComparatorRepositoryInterface $comparatorRepository
+     * @param ExpressionInterface $expression
+     * @param \ArrayAccess $context
      */
-    public function __construct(ComparatorRepositoryInterface $comparatorRepository)
+    public function __construct(ComparatorRepositoryInterface $comparatorRepository, ExpressionInterface $expression = null, \ArrayAccess $context = null)
     {
         $this->comparatorRepository = $comparatorRepository;
+        $this->expression = $expression;
+        $this->context = $context;
     }
 
     /**
      * @inheritDoc
      */
-    public function eq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function eq(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->eq($whatValue, $againstValue);
     }
@@ -38,10 +51,10 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function neq(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function neq(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->neq($whatValue, $againstValue);
     }
@@ -49,10 +62,10 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function gt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function gt(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->gt($whatValue, $againstValue);
     }
@@ -60,10 +73,10 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function gte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function gte(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->gte($whatValue, $againstValue);
     }
@@ -71,10 +84,10 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function lt(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function lt(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->lt($whatValue, $againstValue);
     }
@@ -82,10 +95,10 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function lte(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function lte(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->lte($whatValue, $againstValue);
     }
@@ -93,10 +106,10 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function in(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function in(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->in($whatValue, $againstValue);
     }
@@ -104,11 +117,99 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function like(DescriptorInterface $what, DescriptorInterface $against, \ArrayAccess $runtimeData = null)
+    public function like(ComparisonExpressionInterface $comparisonExpression)
     {
-        $whatValue = $what->getValue($runtimeData);
-        $againstValue = $against->getValue($runtimeData);
+        $whatValue = $comparisonExpression->getWhat()->getValue($this->context);
+        $againstValue = $comparisonExpression->getAgainst()->getValue($this->context);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->like($whatValue, $againstValue);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function id(UnaryExpressionInterface $unaryExpression)
+    {
+        return $unaryExpression->getExpression()->accept($this);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function not(UnaryExpressionInterface $unaryExpression)
+    {
+        return $unaryExpression->getExpression()->accept($this)->invert();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function andX(BinaryExpressionInterface $binaryExpression)
+    {
+        $firstResult = $binaryExpression->getFirstExpression()->accept($this);
+        $secondResult = $binaryExpression->getFirstExpression()->accept($this);
+
+        if (false === $firstResult->getStatus()) {
+            return new ComparableResult(false);
+        }
+
+        if (false === $secondResult->getStatus()) {
+            return new ComparableResult(false);
+        }
+
+        return new ComparableResult(true);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function orX(BinaryExpressionInterface $binaryExpression)
+    {
+        $firstResult = $binaryExpression->getFirstExpression()->accept($this);
+        $secondResult = $binaryExpression->getFirstExpression()->accept($this);
+
+        if (false === $firstResult->getStatus() && false === $secondResult->getStatus()) {
+            return new ComparableResult(false);
+        }
+
+        return new ComparableResult(true);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function true(ExpressionInterface $expression)
+    {
+        return new ComparableResult(true);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function false(ExpressionInterface $expression)
+    {
+        return new ComparableResult(false);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function withExpression(ExpressionInterface $expression)
+    {
+        $clone = clone $this;
+        $clone->expression = $expression;
+
+        return $clone;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function withContext(\ArrayAccess $context = null)
+    {
+        $clone = clone $this;
+        $clone->context = $context;
+
+        return $clone;
     }
 }

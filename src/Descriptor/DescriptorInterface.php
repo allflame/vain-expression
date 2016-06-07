@@ -8,10 +8,10 @@
 
 namespace Vain\Expression\Descriptor;
 
-use Vain\Expression\Parser\ParseableInterface;
+use Vain\Core\String\StringInterface;
 use Vain\Expression\Serializer\SerializableInterface;
 
-interface DescriptorInterface extends SerializableInterface, ParseableInterface
+interface DescriptorInterface extends SerializableInterface, StringInterface
 {
     /**
      * @param \ArrayAccess $runtimeData

@@ -8,27 +8,28 @@
 
 namespace Vain\Expression\True;
 
-use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Visitor\VisitorInterface;
 
 class TrueExpression implements ExpressionInterface
 {
-    /**
-     * @inheritDoc
-     */
-    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
-    {
-        return true;
-    }
 
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function accept(VisitorInterface $visitor)
     {
-        return $parser->true();
+        return $visitor->true($this);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        return 'TRUE';
     }
 
     /**

@@ -10,8 +10,8 @@ namespace Vain\Expression\Serializer;
 
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Factory\DescriptorFactoryInterface;
-use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\Exception\UnknownDescriptorException;
 
 class Serializer implements SerializerInterface
@@ -32,9 +32,7 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * @param ExpressionInterface $expression
-     * 
-     * @return array
+     * @inheritDoc
      */
     public function serializeExpression(ExpressionInterface $expression)
     {

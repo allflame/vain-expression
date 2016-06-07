@@ -11,7 +11,6 @@ namespace Vain\Expression\Descriptor\Decorator\Method;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Exception\UnknownMethodException;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
 class MethodDescriptorDecorator extends AbstractDescriptorDecorator
@@ -32,9 +31,9 @@ class MethodDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-        $parent = parent::parse($parser);
+        $parent = parent::__toString();
         if ('' === $parent) {
             return $this->method;
         }

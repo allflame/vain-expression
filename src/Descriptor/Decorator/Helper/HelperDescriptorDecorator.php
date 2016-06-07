@@ -11,7 +11,6 @@ namespace Vain\Expression\Descriptor\Decorator\Helper;
 use Vain\Expression\Descriptor\Decorator\AbstractDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Exception\UnknownHelperException;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
 class HelperDescriptorDecorator extends AbstractDescriptorDecorator
@@ -39,13 +38,13 @@ class HelperDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
         if (0 === count($this->arguments)) {
-            return sprintf('%s::%s(%s)', $this->class, $this->method, parent::parse($parser));
+            return sprintf('%s::%s(%s)', $this->class, $this->method, parent::__toString());
         }
 
-        return sprintf('%s::%s(%s, %s)', $this->class, $this->method, parent::parse($parser), implode(', ', $this->arguments));
+        return sprintf('%s::%s(%s, %s)', $this->class, $this->method, parent::__toString(), implode(', ', $this->arguments));
     }
 
     /**

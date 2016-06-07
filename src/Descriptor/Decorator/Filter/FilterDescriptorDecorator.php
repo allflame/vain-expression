@@ -13,7 +13,6 @@ use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Exception\InaccessibleFilterException;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 
 class FilterDescriptorDecorator extends AbstractDescriptorDecorator
@@ -39,9 +38,9 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-        return sprintf('%s where %s', parent::parse($parser), $this->expression->parse($parser));
+        return sprintf('%s where %s', parent::__toString(), $this->expression->__toString());
     }
 
     /**
@@ -55,13 +54,16 @@ class FilterDescriptorDecorator extends AbstractDescriptorDecorator
             throw new InaccessibleFilterException($this, $value);
         }
 
+        $evaluator = $this->evaluator->withExpression($this->expression);
+
         $filteredData = [];
         foreach ($value as $singleElement) {
-            if (false === $this->expression->evaluate($this->evaluator, $singleElement)->getStatus()) {
+            if (false === $this->expression->accept($evaluator->withContext($singleElement))->getStatus()) {
                 continue;
             }
             $filteredData[] = $singleElement;
         }
+
         return $filteredData;
     }
 

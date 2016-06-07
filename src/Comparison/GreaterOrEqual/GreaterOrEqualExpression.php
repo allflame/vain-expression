@@ -9,26 +9,25 @@
 namespace Vain\Expression\Comparison\GreaterOrEqual;
 
 use Vain\Expression\Comparison\AbstractComparisonExpression;
-use Vain\Expression\Evaluator\EvaluatorInterface;
-use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Visitor\VisitorInterface;
 
 class GreaterOrEqualExpression extends AbstractComparisonExpression
 {
     /**
      * @inheritDoc
      */
-    public function evaluate(EvaluatorInterface $evaluator, \ArrayAccess $runtimeData = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return $evaluator->gte($this->getWhat(), $this->getAgainst(), $runtimeData);
+        return $visitor->gte($this);
     }
 
     /**
      * @inheritDoc
      */
-    public function parse(ParserInterface $parser)
+    public function __toString()
     {
-        return $parser->gte($this->getWhat(), $this->getAgainst());
+        return sprintf('%s >= %s', $this->getWhat(), $this->getAgainst());
     }
 
     /**

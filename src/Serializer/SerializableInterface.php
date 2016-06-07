@@ -2,11 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: allflame
- * Date: 4/4/16
- * Time: 10:50 AM
+ * Date: 6/7/16
+ * Time: 9:42 AM
  */
 
 namespace Vain\Expression\Serializer;
+
 
 interface SerializableInterface
 {
