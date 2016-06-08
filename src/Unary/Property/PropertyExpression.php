@@ -36,35 +36,7 @@ class PropertyExpression extends AbstractUnaryExpression
     {
         return $this->property;
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function getValue(\ArrayAccess $runtimeData = null)
-//    {
-//        $data = parent::getValue($runtimeData);
-//
-//        switch(true) {
-//            case is_array($data):
-//                if (false === array_key_exists($this->property, $data)) {
-//                    throw new UnknownPropertyException($this, $this->property);
-//                }
-//                return $data[$this->property];
-//                break;
-//            case $data instanceof \ArrayAccess:
-//                if (false === $data->offsetExists($this->property)) {
-//                    throw new UnknownPropertyException($this, $this->property);
-//                }
-//                return $data->offsetGet($this->property);
-//                break;
-//            case is_object($data):
-//                return $data->{$this->property};
-//                break;
-//            default:
-//                throw new InaccessiblePropertyException($this, $data);
-//                break;
-//        }
-//    }
+    
     /**
      * @inheritDoc
      */

@@ -35,35 +35,7 @@ class ModeExpression extends AbstractUnaryExpression
     {
         return $this->mode;
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function getValue(\ArrayAccess $runtimeData = null)
-//    {
-//        $value = parent::getValue($runtimeData);
-//
-//        switch ($this->mode) {
-//            case 'int':
-//                return (int)$value;
-//                break;
-//            case 'string':
-//                return (string)$value;
-//                break;
-//            case 'float':
-//            case 'double':
-//                return (float)$value;
-//                break;
-//            case 'bool':
-//            case 'boolean':
-//                return (bool)$value;
-//                break;
-//            default:
-//                return $value;
-//        }
-//    }
-
-
+    
     /**
      * @inheritDoc
      */

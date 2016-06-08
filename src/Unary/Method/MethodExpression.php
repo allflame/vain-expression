@@ -47,20 +47,7 @@ class MethodExpression extends AbstractUnaryExpression
     {
         return $this->arguments;
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function getValue(\ArrayAccess $runtimeData = null)
-//    {
-//        $data = parent::getValue($runtimeData);
-//
-//        if (false === method_exists($data, $this->method)) {
-//            throw new UnknownMethodException($this, $this->method);
-//        }
-//
-//        return call_user_func([$data, $this->method]);
-//    }
+    
     /**
      * @inheritDoc
      */

@@ -42,15 +42,6 @@ class ModuleExpression implements ExpressionInterface
         return $visitor->module($this);
     }
 
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function getValue(\ArrayAccess $runtimeData = null)
-//    {
-//        return $this->module->getData($runtimeData);
-//    }
-//
     /**
      * @inheritDoc
      */

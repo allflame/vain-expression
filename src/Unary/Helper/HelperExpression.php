@@ -60,19 +60,6 @@ class HelperExpression extends AbstractUnaryExpression
         return $this->arguments;
     }
 
-//    /**
-//     * @inheritDoc
-//     */
-//    public function getValue(\ArrayAccess $runtimeData = null)
-//    {
-//        $data = parent::getValue($runtimeData);
-//
-//        if (false === method_exists($this->class, $this->method)) {
-//            throw new UnknownHelperException($this, $this->class, $this->method);
-//        }
-//
-//        return call_user_func([$this->class, $this->method], $data, ...$this->arguments);
-//    }
     /**
      * @inheritDoc
      */
@@ -80,7 +67,6 @@ class HelperExpression extends AbstractUnaryExpression
     {
         return $visitor->helper($this);
     }
-
 
     /**
      * @inheritDoc

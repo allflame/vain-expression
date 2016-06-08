@@ -37,30 +37,6 @@ class FilterExpression extends AbstractUnaryExpression
         return $this->filterExpression;
     }
 
-//    /**
-//     * @inheritDoc
-//     */
-//    public function getValue(\ArrayAccess $runtimeData = null)
-//    {
-//        $value = parent::getValue($runtimeData);
-//
-//        if (false === is_array($value) && false === $value instanceof \Traversable) {
-//            throw new InaccessibleFilterException($this, $value);
-//        }
-//
-//        $evaluator = $this->evaluator->withExpression($this->expression);
-//
-//        $filteredData = [];
-//        foreach ($value as $singleElement) {
-//            if (false === $this->expression->accept($evaluator->withContext($singleElement))->getStatus()) {
-//                continue;
-//            }
-//            $filteredData[] = $singleElement;
-//        }
-//
-//        return $filteredData;
-//    }
-
     /**
      * @inheritDoc
      */

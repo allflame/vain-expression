@@ -57,28 +57,6 @@ class FunctionExpression extends AbstractUnaryExpression
     }
 
 
-//    /**
-//     * @inheritDoc
-//     */
-//    public function getValue(\ArrayAccess $runtimeData = null)
-//    {
-//        $data = parent::getValue($runtimeData);
-//
-//        if (false === function_exists($this->functionName)) {
-//            throw new UnknownFunctionException($this, $this->functionName);
-//        }
-//
-//        return call_user_func($this->functionName, $data, ...$this->arguments);
-//    }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function serialize(SerializerInterface $serializer)
-//    {
-//        return ['function', [$this->functionName, $this->arguments, parent::serialize($serializer)]];
-//    }
-
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         list ($this->functionName, $serializedArguments, $parentData) = $serializedData;
