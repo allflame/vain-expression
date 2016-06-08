@@ -10,14 +10,14 @@ namespace Vain\Expression\Factory;
 
 use Vain\Expression\Binary\AndX\AndExpression;
 use Vain\Expression\Binary\OrX\OrExpression;
-use Vain\Expression\Comparison\Equal\EqualExpression;
-use Vain\Expression\Comparison\Greater\GreaterExpression;
-use Vain\Expression\Comparison\GreaterOrEqual\GreaterOrEqualExpression;
-use Vain\Expression\Comparison\In\InExpression;
-use Vain\Expression\Comparison\Less\LessExpression;
-use Vain\Expression\Comparison\LessOrEqual\LessOrEqualExpression;
-use Vain\Expression\Comparison\Like\LikeExpression;
-use Vain\Expression\Comparison\NotEqual\NotEqualExpression;
+use Vain\Expression\Binary\Equal\EqualExpression;
+use Vain\Expression\Binary\Greater\GreaterExpression;
+use Vain\Expression\Binary\GreaterOrEqual\GreaterOrEqualExpression;
+use Vain\Expression\Binary\In\InExpression;
+use Vain\Expression\Binary\Less\LessExpression;
+use Vain\Expression\Binary\LessOrEqual\LessOrEqualExpression;
+use Vain\Expression\Binary\Like\LikeExpression;
+use Vain\Expression\Binary\NotEqual\NotEqualExpression;
 use Vain\Expression\Exception\UnknownExpressionException;
 use Vain\Expression\False\FalseExpression;
 use Vain\Expression\True\TrueExpression;
@@ -32,7 +32,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
      */
     public function eq($what, $against, $type = null)
     {
-        return new EqualExpression($what, $against, $type);
+        return new EqualExpression($what, $against);
     }
 
     /**
@@ -191,6 +191,4 @@ class ExpressionFactory implements ExpressionFactoryInterface
                 throw new UnknownExpressionException($this, $shortcut);
         }
     }
-
-
 }

@@ -29,12 +29,4 @@ class NotExpression extends AbstractUnaryExpression
     {
         return sprintf('!(%s)', $this->getExpression());
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function serialize(SerializerInterface $serializer)
-    {
-        return ['not', parent::serialize($serializer)];
-    }
 }

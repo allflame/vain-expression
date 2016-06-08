@@ -44,11 +44,6 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
         return $this->secondExpression;
     }
 
-    public function serialize(SerializerInterface $serializer)
-    {
-        return [$this->firstExpression->serialize($serializer), $this->secondExpression->serialize($serializer)];
-    }
-
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         list ($firstExpressionData, $secondExpressionData) = $serializedData;

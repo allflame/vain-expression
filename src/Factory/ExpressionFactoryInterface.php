@@ -9,14 +9,14 @@ namespace Vain\Expression\Factory;
 
 use Vain\Expression\Binary\AndX\AndExpression;
 use Vain\Expression\Binary\OrX\OrExpression;
-use Vain\Expression\Comparison\Equal\EqualExpression;
-use Vain\Expression\Comparison\Greater\GreaterExpression;
-use Vain\Expression\Comparison\GreaterOrEqual\GreaterOrEqualExpression;
-use Vain\Expression\Comparison\In\InExpression;
-use Vain\Expression\Comparison\Less\LessExpression;
-use Vain\Expression\Comparison\LessOrEqual\LessOrEqualExpression;
-use Vain\Expression\Comparison\Like\LikeExpression;
-use Vain\Expression\Comparison\NotEqual\NotEqualExpression;
+use Vain\Expression\Binary\Equal\EqualExpression;
+use Vain\Expression\Binary\Greater\GreaterExpression;
+use Vain\Expression\Binary\GreaterOrEqual\GreaterOrEqualExpression;
+use Vain\Expression\Binary\In\InExpression;
+use Vain\Expression\Binary\Less\LessExpression;
+use Vain\Expression\Binary\LessOrEqual\LessOrEqualExpression;
+use Vain\Expression\Binary\Like\LikeExpression;
+use Vain\Expression\Binary\NotEqual\NotEqualExpression;
 use Vain\Expression\False\FalseExpression;
 use Vain\Expression\Unary\Identity\IdentityExpression;
 use Vain\Expression\Unary\Not\NotExpression;
@@ -26,76 +26,68 @@ use Vain\Expression\True\TrueExpression;
 interface ExpressionFactoryInterface
 {
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return EqualExpression
      */
-    public function eq($what, $against, $type = null);
+    public function eq(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return NotEqualExpression
      */
-    public function neq($what, $against, $type = null);
+    public function neq(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return GreaterExpression
      */
-    public function gt($what, $against, $type = null);
+    public function gt(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return GreaterOrEqualExpression
      */
-    public function gte($what, $against, $type = null);
+    public function gte(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return LessExpression
      */
-    public function lt($what, $against, $type = null);
+    public function lt(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return LessOrEqualExpression
      */
-    public function lte($what, $against, $type = null);
+    public function lte(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return InExpression
      */
-    public function in($what, $against, $type = null);
+    public function in(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
-     * @param mixed $what
-     * @param mixed $against
-     * @param string $type
+     * @param ExpressionInterface $what
+     * @param ExpressionInterface $against
      *
      * @return LikeExpression
      */
-    public function like($what, $against, $type = null);
+    public function like(ExpressionInterface $what = null, ExpressionInterface $against = null);
 
     /**
      * @param ExpressionInterface $expression
@@ -137,6 +129,72 @@ interface ExpressionFactoryInterface
      */
     public function orX(ExpressionInterface $firstExpression, ExpressionInterface $secondExpression);
 
+    /**
+     * @param mixed $value
+     *
+     * @return DescriptorInterface
+     */
+    public function inplace($value = null);
+
+    /**
+     * @param string $module
+     *
+     * @return DescriptorInterface
+     */
+    public function module($module);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     * @param string $method
+     * @param array $arguments
+     *
+     * @return DescriptorInterface
+     */
+    public function method(DescriptorInterface $descriptor, $method, array $arguments = []);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     * @param string $property
+     *
+     * @return DescriptorInterface
+     */
+    public function property(DescriptorInterface $descriptor, $property);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     * @param string $functionName
+     * @param array $arguments
+     *
+     * @return DescriptorInterface
+     */
+    public function func(DescriptorInterface $descriptor, $functionName, array $arguments = []);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     * @param string $mode
+     *
+     * @return DescriptorInterface
+     */
+    public function mode(DescriptorInterface $descriptor, $mode);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     * @param ExpressionInterface $expression
+     *
+     * @return DescriptorInterface
+     */
+    public function filter(DescriptorInterface $descriptor, ExpressionInterface $expression);
+
+    /**
+     * @param DescriptorInterface $descriptor
+     * @param string $class
+     * @param string $method
+     * @param array $arguments
+     *
+     * @return DescriptorInterface
+     */
+    public function helper(DescriptorInterface $descriptor, $class, $method, array $arguments = []);
+    
     /**
      * @param string $shortcut
      *

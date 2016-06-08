@@ -8,109 +8,190 @@
 
 namespace Vain\Expression\Visitor;
 
-use Vain\Comparator\Result\ComparableResultInterface;
-use Vain\Expression\Binary\BinaryExpressionInterface;
-use Vain\Expression\Comparison\ComparisonExpressionInterface;
-use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\UnaryExpressionInterface;
+use Vain\Expression\Binary\AndX\AndExpression;
+use Vain\Expression\Binary\OrX\OrExpression;
+use Vain\Expression\Binary\Equal\EqualExpression;
+use Vain\Expression\Binary\Greater\GreaterExpression;
+use Vain\Expression\Binary\GreaterOrEqual\GreaterOrEqualExpression;
+use Vain\Expression\Binary\In\InExpression;
+use Vain\Expression\Binary\Less\LessExpression;
+use Vain\Expression\Binary\LessOrEqual\LessOrEqualExpression;
+use Vain\Expression\Binary\Like\LikeExpression;
+use Vain\Expression\Binary\NotEqual\NotEqualExpression;
+use Vain\Expression\False\FalseExpression;
+use Vain\Expression\Terminal\InPlace\InPlaceExpression;
+use Vain\Expression\Terminal\Local\LocalExpression;
+use Vain\Expression\Terminal\Module\ModuleExpression;
+use Vain\Expression\True\TrueExpression;
+use Vain\Expression\Unary\Filter\FilterExpression;
+use Vain\Expression\Unary\FunctionX\FunctionExpression;
+use Vain\Expression\Unary\Helper\HelperExpression;
+use Vain\Expression\Unary\Identity\IdentityExpression;
+use Vain\Expression\Unary\Method\MethodExpression;
+use Vain\Expression\Unary\Mode\ModeExpression;
+use Vain\Expression\Unary\Not\NotExpression;
+use Vain\Expression\Unary\Property\PropertyExpression;
 
 interface VisitorInterface
 {
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param EqualExpression $equalExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function eq(ComparisonExpressionInterface $comparisonExpression);
+    public function eq(EqualExpression $equalExpression);
 
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param NotEqualExpression $notEqualExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function neq(ComparisonExpressionInterface $comparisonExpression);
+    public function neq(NotEqualExpression $notEqualExpression);
 
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param GreaterExpression $greaterExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function gt(ComparisonExpressionInterface $comparisonExpression);
+    public function gt(GreaterExpression $greaterExpression);
 
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param GreaterOrEqualExpression $greaterOrEqualExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function gte(ComparisonExpressionInterface $comparisonExpression);
+    public function gte(GreaterOrEqualExpression $greaterOrEqualExpression);
 
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param LessExpression $lessExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function lt(ComparisonExpressionInterface $comparisonExpression);
+    public function lt(LessExpression $lessExpression);
 
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param LessOrEqualExpression $lessOrEqualExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function lte(ComparisonExpressionInterface $comparisonExpression);
+    public function lte(LessOrEqualExpression $lessOrEqualExpression);
 
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param InExpression $inExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function in(ComparisonExpressionInterface $comparisonExpression);
+    public function in(InExpression $inExpression);
 
     /**
-     * @param ComparisonExpressionInterface $comparisonExpression
+     * @param LikeExpression $likeExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function like(ComparisonExpressionInterface $comparisonExpression);
+    public function like(LikeExpression $likeExpression);
 
     /**
-     * @param ExpressionInterface $expression
+     * @param TrueExpression $trueExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function true(ExpressionInterface $expression);
+    public function true(TrueExpression $trueExpression);
 
     /**
-     * @param ExpressionInterface $expression
+     * @param FalseExpression $falseExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function false(ExpressionInterface $expression);
+    public function false(FalseExpression $falseExpression);
 
     /**
-     * @param UnaryExpressionInterface $unaryExpression
+     * @param IdentityExpression $identityExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function id(UnaryExpressionInterface $unaryExpression);
+    public function id(IdentityExpression $identityExpression);
 
     /**
-     * @param UnaryExpressionInterface $unaryExpression
+     * @param NotExpression $notExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function not(UnaryExpressionInterface $unaryExpression);
+    public function not(NotExpression $notExpression);
 
     /**
-     * @param BinaryExpressionInterface $binaryExpression
+     * @param AndExpression $andExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function andX(BinaryExpressionInterface $binaryExpression);
+    public function andX(AndExpression $andExpression);
 
     /**
-     * @param BinaryExpressionInterface $binaryExpression
+     * @param OrExpression $orExpression
      *
-     * @return ComparableResultInterface
+     * @return mixed
      */
-    public function orX(BinaryExpressionInterface $binaryExpression);
+    public function orX(OrExpression $orExpression);
+
+    /**
+     * @param InPlaceExpression $inPlaceExpression
+     *
+     * @return mixed
+     */
+    public function inPlace(InPlaceExpression $inPlaceExpression);
+
+    /**
+     * @param ModuleExpression $moduleExpression
+     *
+     * @return mixed
+     */
+    public function module(ModuleExpression $moduleExpression);
+
+    /**
+     * @param MethodExpression $methodExpression
+     *
+     * @return mixed
+     */
+    public function method(MethodExpression $methodExpression);
+
+    /**
+     * @param PropertyExpression $propertyExpression
+     *
+     * @return mixed
+     */
+    public function property(PropertyExpression $propertyExpression);
+
+    /**
+     * @param FunctionExpression $functionExpression
+     *
+     * @return mixed
+     */
+    public function functionX(FunctionExpression $functionExpression);
+
+    /**
+     * @param ModeExpression $modeExpression
+     *
+     * @return mixed
+     */
+    public function mode(ModeExpression $modeExpression);
+
+    /**
+     * @param FilterExpression $filterExpression
+     *
+     * @return mixed
+     */
+    public function filter(FilterExpression $filterExpression);
+
+    /**
+     * @param HelperExpression $helperExpression
+     *
+     * @return mixed
+     */
+    public function helper(HelperExpression $helperExpression);
+
+    /**
+     * @param LocalExpression $localExpression
+     *
+     * @return mixed
+     */
+    public function local(LocalExpression $localExpression);
 }

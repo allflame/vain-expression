@@ -10,14 +10,14 @@ namespace Vain\Expression\Descriptor\Factory;
 
 use Vain\Expression\Descriptor\Decorator\Filter\FilterDescriptorDecorator;
 use Vain\Expression\Descriptor\Decorator\FunctionX\FunctionDescriptorDecorator;
-use Vain\Expression\Descriptor\Decorator\Helper\HelperDescriptorDecorator;
+use Vain\Expression\Descriptor\Decorator\Helper\HelperExpression;
 use Vain\Expression\Descriptor\Decorator\Mode\ModeDescriptorDecorator;
 use Vain\Expression\Descriptor\DescriptorInterface;
 use Vain\Expression\Descriptor\InPlace\InPlaceDescriptor;
-use Vain\Expression\Descriptor\Decorator\Method\MethodDescriptorDecorator;
+use Vain\Expression\Descriptor\Decorator\Method\MethodExpression;
 use Vain\Expression\Descriptor\Decorator\Property\PropertyDescriptorDecorator;
-use Vain\Expression\Descriptor\Local\LocalDescriptor;
-use Vain\Expression\Descriptor\Module\ModuleDescriptor;
+use Vain\Expression\Descriptor\Local\LocalExpression;
+use Vain\Expression\Descriptor\Module\ModuleExpression;
 use Vain\Expression\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Module\Repository\ModuleRepositoryInterface;
@@ -52,7 +52,7 @@ class DescriptorFactory implements DescriptorFactoryInterface
      */
     public function module($module)
     {
-        return new ModuleDescriptor($this->moduleRepository->getModule($module));
+        return new ModuleExpression($this->moduleRepository->getModule($module));
     }
 
     /**
@@ -60,7 +60,7 @@ class DescriptorFactory implements DescriptorFactoryInterface
      */
     public function method(DescriptorInterface $descriptor, $method, array $arguments = [])
     {
-        return new MethodDescriptorDecorator($descriptor, $method, $arguments);
+        return new MethodExpression($descriptor, $method, $arguments);
     }
 
     /**
@@ -100,7 +100,7 @@ class DescriptorFactory implements DescriptorFactoryInterface
      */
     public function helper(DescriptorInterface $descriptor, $class, $method, array $arguments = [])
     {
-        return new HelperDescriptorDecorator($descriptor, $class, $method, $arguments);
+        return new HelperExpression($descriptor, $class, $method, $arguments);
     }
 
     /**
@@ -108,6 +108,6 @@ class DescriptorFactory implements DescriptorFactoryInterface
      */
     public function local()
     {
-        return new LocalDescriptor();
+        return new LocalExpression();
     }
 }

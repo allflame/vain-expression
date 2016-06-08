@@ -14,7 +14,6 @@ use Vain\Expression\Visitor\VisitorInterface;
 
 class AndExpression extends AbstractBinaryExpression
 {
-
     /**
      * @inheritDoc
      */
@@ -29,13 +28,5 @@ class AndExpression extends AbstractBinaryExpression
     public function __toString()
     {
         return sprintf('(%s AND %s)', $this->getFirstExpression(), $this->getSecondExpression());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function serialize(SerializerInterface $serializer)
-    {
-        return ['and', parent::serialize($serializer)];
     }
 }

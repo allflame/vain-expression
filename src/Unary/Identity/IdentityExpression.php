@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Unary\Identity;
 
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
@@ -28,13 +27,5 @@ class IdentityExpression extends AbstractUnaryExpression
     public function __toString()
     {
         return $this->getExpression()->__toString();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function serialize(SerializerInterface $serializer)
-    {
-        return ['id', parent::serialize($serializer)];
     }
 }

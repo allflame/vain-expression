@@ -31,14 +31,6 @@ abstract class AbstractUnaryExpression implements UnaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function serialize(SerializerInterface $serializer)
-    {
-        return [$this->expression->serialize($serializer)];
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         list ($expressionData) = $serializedData;
