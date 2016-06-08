@@ -44,22 +44,6 @@ abstract class AbstractExpressionDecorator implements ExpressionInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
-    {
-        return $this->expression->__toString();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function serialize(SerializerInterface $serializer)
-    {
-        return $this->expression->serialize($serializer);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         return $this->expression->unserialize($serializer, $serializedData);
