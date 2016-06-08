@@ -8,8 +8,6 @@
 
 namespace Vain\Expression\Factory;
 
-use Vain\Data\Module\DataModuleInterface;
-use Vain\Data\Provider\Module\Repository\ModuleRepositoryInterface;
 use Vain\Expression\Binary\AndX\AndExpression;
 use Vain\Expression\Binary\OrX\OrExpression;
 use Vain\Expression\Binary\Equal\EqualExpression;
@@ -39,17 +37,6 @@ use Vain\Expression\Unary\Property\PropertyExpression;
 class ExpressionFactory implements ExpressionFactoryInterface
 {
 
-    private $moduleRepository;
-
-    /**
-     * ExpressionFactory constructor.
-     * @param ModuleRepositoryInterface $moduleRepository
-     */
-    public function __construct(ModuleRepositoryInterface $moduleRepository)
-    {
-        $this->moduleRepository = $moduleRepository;
-    }
-
     /**
      * @inheritDoc
      */
@@ -73,7 +60,6 @@ class ExpressionFactory implements ExpressionFactoryInterface
     {
         return new LocalExpression();
     }
-
 
     /**
      * @inheritDoc
