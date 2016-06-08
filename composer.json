@@ -16,17 +16,12 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "vain/core" : "dev-master",
-        "vain/data" : "dev-master"
+        "vain/core" : "dev-master"
     },
     "repositories": [
         {
             "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-core.git"
-        },
-        {
-            "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/taras.girnyk/vain-data.git"
+            "url": "https://github.com/allflame/vain-core.git"
         }
     ],
     "config": {

@@ -23,7 +23,7 @@ class PropertyExpression extends AbstractUnaryExpression
      * @param ExpressionInterface $expression
      * @param string $property
      */
-    public function __construct(ExpressionInterface $expression, $property)
+    public function __construct(ExpressionInterface $expression = null, $property = '')
     {
         $this->property = $property;
         parent::__construct($expression);
@@ -35,19 +35,6 @@ class PropertyExpression extends AbstractUnaryExpression
     public function getProperty()
     {
         return $this->property;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        $parent = parent::__toString();
-        if ('' === $parent) {
-            return $this->property;
-        }
-
-        return sprintf('%s.%s', $parent, $this->property);
     }
 
 //    /**

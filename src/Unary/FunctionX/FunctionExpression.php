@@ -25,7 +25,7 @@ class FunctionExpression extends AbstractUnaryExpression
      * @param string $functionName
      * @param array $arguments
      */
-    public function __construct(ExpressionInterface $expression, $functionName, array $arguments = [])
+    public function __construct(ExpressionInterface $expression, $functionName = '', array $arguments = [])
     {
         $this->functionName = $functionName;
         $this->arguments = $arguments;
@@ -46,18 +46,6 @@ class FunctionExpression extends AbstractUnaryExpression
     public function getArguments()
     {
         return $this->arguments;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        if (0 === count($this->arguments)) {
-            return sprintf('%s(%s)', $this->functionName,  $this->getExpression()->__toString());
-        }
-
-        return sprintf('%s(%s, %s)', $this->functionName, $this->getExpression()->__toString(), implode(', ', $this->arguments));
     }
 
     /**
@@ -93,7 +81,8 @@ class FunctionExpression extends AbstractUnaryExpression
 
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
-        list ($this->functionName, $this->arguments, $parentData) = $serializedData;
+        list ($this->functionName, $serializedArguments, $parentData) = $serializedData;
+        $this->arguments = json_decode($serializedArguments, true);
 
         return parent::unserialize($serializer, $parentData);
     }

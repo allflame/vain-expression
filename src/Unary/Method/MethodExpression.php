@@ -17,14 +17,18 @@ class MethodExpression extends AbstractUnaryExpression
 {
     private $method;
 
+    private $arguments;
+
     /**
      * PropertyDescriptorDecorator constructor.
      * @param ExpressionInterface $expression
      * @param string $method
+     * @param array $arguments
      */
-    public function __construct(ExpressionInterface $expression, $method)
+    public function __construct(ExpressionInterface $expression = null, $method = '', array $arguments = [])
     {
         $this->method = $method;
+        $this->arguments = $arguments;
         parent::__construct($expression);
     }
 
@@ -37,16 +41,11 @@ class MethodExpression extends AbstractUnaryExpression
     }
 
     /**
-     * @inheritDoc
+     * @return array
      */
-    public function __toString()
+    public function getArguments()
     {
-        $parent = parent::__toString();
-        if ('' === $parent) {
-            return $this->method;
-        }
-
-        return sprintf('%s.%s', $parent, $this->method);
+        return $this->arguments;
     }
 
 //    /**
@@ -70,18 +69,10 @@ class MethodExpression extends AbstractUnaryExpression
         return $visitor->method($this);
     }
 
-//    /**
-//     * @inheritDoc
-//     */
-//    public function serialize(SerializerInterface $serializer)
-//    {
-//        return ['method', [$this->method, parent::serialize($serializer)]];
-//    }
-
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         list ($this->method, $parentData) = $serializedData;
 
-        return parent::unserialize($serializer, $serializedData);
+        return parent::unserialize($serializer, $parentData);
     }
 }

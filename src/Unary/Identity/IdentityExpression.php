@@ -20,12 +20,4 @@ class IdentityExpression extends AbstractUnaryExpression
     {
         return $visitor->id($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return $this->getExpression()->__toString();
-    }
 }

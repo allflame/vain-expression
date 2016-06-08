@@ -8,11 +8,10 @@
 
 namespace Vain\Expression;
 
-use Vain\Core\String\StringInterface;
 use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Visitor\VisitableInterface;
 
-interface ExpressionInterface extends VisitableInterface, StringInterface
+interface ExpressionInterface extends VisitableInterface
 {
     /**
      * @param SerializerInterface $serializer

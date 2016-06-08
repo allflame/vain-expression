@@ -23,7 +23,7 @@ class FilterExpression extends AbstractUnaryExpression
      * @param ExpressionInterface $expression
      * @param ExpressionInterface $filterExpression
      */
-    public function __construct(ExpressionInterface $expression, ExpressionInterface $filterExpression)
+    public function __construct(ExpressionInterface $expression = null, ExpressionInterface $filterExpression = null)
     {
         $this->filterExpression = $filterExpression;
         parent::__construct($expression);
@@ -35,14 +35,6 @@ class FilterExpression extends AbstractUnaryExpression
     public function getFilterExpression()
     {
         return $this->filterExpression;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s where %s', $this->getExpression()->__toString(), $this->filterExpression->__toString());
     }
 
 //    /**
@@ -76,14 +68,6 @@ class FilterExpression extends AbstractUnaryExpression
     {
         return $visitor->filter($this);
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function serialize(SerializerInterface $serializer)
-//    {
-//        return ['filter', [$this->expression->serialize($serializer), parent::serialize($serializer)]];
-//    }
 
     /**
      * @inheritDoc

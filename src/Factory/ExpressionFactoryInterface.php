@@ -7,6 +7,7 @@
  */
 namespace Vain\Expression\Factory;
 
+use Vain\Data\Module\DataModuleInterface;
 use Vain\Expression\Binary\AndX\AndExpression;
 use Vain\Expression\Binary\OrX\OrExpression;
 use Vain\Expression\Binary\Equal\EqualExpression;
@@ -132,68 +133,73 @@ interface ExpressionFactoryInterface
     /**
      * @param mixed $value
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function inplace($value = null);
+    public function inPlace($value = null);
 
     /**
-     * @param string $module
+     * @return ExpressionInterface
+     */
+    public function local();
+
+    /**
+     * @param DataModuleInterface $module
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function module($module);
+    public function module(DataModuleInterface $module);
 
     /**
-     * @param DescriptorInterface $descriptor
+     * @param ExpressionInterface $expression
      * @param string $method
      * @param array $arguments
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function method(DescriptorInterface $descriptor, $method, array $arguments = []);
+    public function method(ExpressionInterface $expression, $method, array $arguments = []);
 
     /**
-     * @param DescriptorInterface $descriptor
+     * @param ExpressionInterface $expression
      * @param string $property
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function property(DescriptorInterface $descriptor, $property);
+    public function property(ExpressionInterface $expression, $property);
 
     /**
-     * @param DescriptorInterface $descriptor
+     * @param ExpressionInterface $expression
      * @param string $functionName
      * @param array $arguments
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function func(DescriptorInterface $descriptor, $functionName, array $arguments = []);
+    public function func(ExpressionInterface $expression, $functionName, array $arguments = []);
 
     /**
-     * @param DescriptorInterface $descriptor
+     * @param ExpressionInterface $expression
      * @param string $mode
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function mode(DescriptorInterface $descriptor, $mode);
+    public function mode(ExpressionInterface $expression, $mode);
 
     /**
-     * @param DescriptorInterface $descriptor
      * @param ExpressionInterface $expression
+     * @param ExpressionInterface $filterExpression
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function filter(DescriptorInterface $descriptor, ExpressionInterface $expression);
+    public function filter(ExpressionInterface $expression, ExpressionInterface $filterExpression);
 
     /**
-     * @param DescriptorInterface $descriptor
+     * @param ExpressionInterface $expression
      * @param string $class
      * @param string $method
      * @param array $arguments
      *
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function helper(DescriptorInterface $descriptor, $class, $method, array $arguments = []);
+    public function helper(ExpressionInterface $expression, $class, $method, array $arguments = []);
     
     /**
      * @param string $shortcut

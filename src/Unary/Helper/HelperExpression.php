@@ -28,7 +28,7 @@ class HelperExpression extends AbstractUnaryExpression
      * @param string $method
      * @param array $arguments
      */
-    public function __construct(ExpressionInterface $expression, $class, $method, array $arguments)
+    public function __construct(ExpressionInterface $expression = null, $class = '', $method = '', array $arguments = [])
     {
         $this->class = $class;
         $this->method = $method;
@@ -60,18 +60,6 @@ class HelperExpression extends AbstractUnaryExpression
         return $this->arguments;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        if (0 === count($this->arguments)) {
-            return sprintf('%s::%s(%s)', $this->class, $this->method, $this->getExpression()->__toString());
-        }
-
-        return sprintf('%s::%s(%s, %s)', $this->class, $this->method, $this->getExpression()->__toString(), implode(', ', $this->arguments));
-    }
-
 //    /**
 //     * @inheritDoc
 //     */
@@ -94,20 +82,13 @@ class HelperExpression extends AbstractUnaryExpression
     }
 
 
-//    /**
-//     * @inheritDoc
-//     */
-//    public function serialize(SerializerInterface $serializer)
-//    {
-//        return ['helper', [$this->class, $this->method, parent::serialize($serializer)]];
-//    }
-
     /**
      * @inheritDoc
      */
     public function unserialize(SerializerInterface $serializer, array $serialized)
     {
-        list ($this->class, $this->method, $parentData) = $serialized;
+        list ($this->class, $this->method, $serializedArguments, $parentData) = $serialized;
+        $this->arguments = json_decode($serializedArguments, true);
 
         return parent::unserialize($serializer, $parentData);
     }

@@ -21,7 +21,7 @@ class ModuleExpression implements ExpressionInterface
      * AbstractModuleDescriptor constructor.
      * @param DataModuleInterface $module
      */
-    public function __construct(DataModuleInterface $module)
+    public function __construct(DataModuleInterface $module = null)
     {
         $this->module = $module;
     }
@@ -42,13 +42,6 @@ class ModuleExpression implements ExpressionInterface
         return $visitor->module($this);
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return $this->module->__toString();
-    }
 
 //    /**
 //     * @inheritDoc

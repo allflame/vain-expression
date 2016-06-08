@@ -22,7 +22,7 @@ class ModeExpression extends AbstractUnaryExpression
      * @param ExpressionInterface $expression
      * @param string $mode
      */
-    public function __construct(ExpressionInterface $expression, $mode)
+    public function __construct(ExpressionInterface $expression = null, $mode = '')
     {
         $this->mode = $mode;
         parent::__construct($expression);
@@ -64,33 +64,6 @@ class ModeExpression extends AbstractUnaryExpression
 //    }
 
 
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        $value = parent::__toString();
-        switch ($this->mode) {
-            case 'string':
-                return sprintf('"%s"', $value);
-                break;
-            case 'float':
-            case 'double':
-                return (float)$value;
-                break;
-            case 'bool':
-            case 'boolean':
-                return ($value) ? 'true' : 'false';
-                break;
-            case 'time':
-                return $value->format(DATE_W3C);
-                break;
-            default:
-                return (string)$value;
-        }
-    }
-
     /**
      * @inheritDoc
      */
@@ -98,14 +71,6 @@ class ModeExpression extends AbstractUnaryExpression
     {
         return $visitor->mode($this);
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function serialize(SerializerInterface $serializer)
-//    {
-//        return ['mode', [$this->mode, parent::serialize($serializer)]];
-//    }
 
     /**
      * @inheritDoc

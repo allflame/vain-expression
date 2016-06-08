@@ -14,13 +14,6 @@ use Vain\Expression\Visitor\VisitorInterface;
 
 class LocalExpression implements ExpressionInterface
 {
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return '';
-    }
 
     /**
      * @inheritDoc
@@ -29,14 +22,6 @@ class LocalExpression implements ExpressionInterface
     {
         return $visitor->local($this);
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function serialize(SerializerInterface $serializer)
-//    {
-//        return ['local', []];
-//    }
 
     /**
      * @inheritDoc
