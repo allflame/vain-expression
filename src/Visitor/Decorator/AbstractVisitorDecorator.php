@@ -47,6 +47,14 @@ class AbstractVisitorDecorator implements VisitorInterface
     }
 
     /**
+     * @return VisitorInterface
+     */
+    public function getVisitor()
+    {
+        return $this->visitor;
+    }
+
+    /**
      * @inheritDoc
      */
     public function eq(EqualExpression $equalExpression)
