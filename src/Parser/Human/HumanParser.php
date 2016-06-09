@@ -22,6 +22,7 @@ use Vain\Expression\Boolean\False\FalseExpression;
 use Vain\Expression\Boolean\Not\NotExpression;
 use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Local\LocalExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
@@ -31,9 +32,8 @@ use Vain\Expression\NonTerminal\Helper\HelperExpression;
 use Vain\Expression\NonTerminal\Method\MethodExpression;
 use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\NonTerminal\Property\PropertyExpression;
-use Vain\Expression\Visitor\VisitorInterface;
 
-class HumanParser implements VisitorInterface
+class HumanParser implements ParserInterface
 {
     /**
      * @inheritDoc
