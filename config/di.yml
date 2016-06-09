@@ -1,0 +1,11 @@
+services:
+    expression.factory:
+        class: Vain\Expression\Factory\ExpressionFactory
+    expression.builder:
+        class: Vain\Expression\Builder\ExpressionBuilder
+        arguments: ['@expression.factory']
+    expression.parser.human:
+        class: Vain\Expression\Parser\Human\HumanParser
+    expression.serializer:
+        class: Vain\Expression\Serializer\Serializer
+        arguments: ['@expression.factory']
