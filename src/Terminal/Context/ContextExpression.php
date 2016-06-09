@@ -6,13 +6,13 @@
  * Time: 7:50 PM
  */
 
-namespace Vain\Expression\Terminal\Local;
+namespace Vain\Expression\Terminal\Context;
 
 use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class LocalExpression implements TerminalExpressionInterface
+class ContextExpression implements TerminalExpressionInterface
 {
 
     /**
@@ -20,7 +20,7 @@ class LocalExpression implements TerminalExpressionInterface
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $visitor->local($this);
+        return $visitor->context($this);
     }
 
     /**

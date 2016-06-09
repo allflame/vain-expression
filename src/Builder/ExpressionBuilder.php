@@ -180,9 +180,9 @@ class ExpressionBuilder
     /**
      * @return ExpressionBuilder
      */
-    public function local()
+    public function context()
     {
-        $this->type = 'local';
+        $this->type = 'context';
 
         return $this;
     }
@@ -196,8 +196,8 @@ class ExpressionBuilder
             case 'in_place':
                 $descriptor = $this->expressionFactory->inPlace($this->value);
                 break;
-            case 'local':
-                $descriptor = $this->expressionFactory->local();
+            case 'context':
+                $descriptor = $this->expressionFactory->context();
                 break;
             default:
                 $descriptor = $this->expressionFactory->module($this->expressionFactory->inPlace($this->module));

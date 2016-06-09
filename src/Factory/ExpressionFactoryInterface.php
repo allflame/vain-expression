@@ -29,7 +29,7 @@ use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
 use Vain\Expression\NonTerminal\Property\PropertyExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
-use Vain\Expression\Terminal\Local\LocalExpression;
+use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\ExpressionInterface;
 
 interface ExpressionFactoryInterface
@@ -146,9 +146,9 @@ interface ExpressionFactoryInterface
     public function inPlace($value = null);
 
     /**
-     * @return LocalExpression
+     * @return ContextExpression
      */
-    public function local();
+    public function context();
 
     /**
      * @param ExpressionInterface $expression

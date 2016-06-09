@@ -23,7 +23,7 @@ use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Not\NotExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
-use Vain\Expression\Terminal\Local\LocalExpression;
+use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
 use Vain\Expression\NonTerminal\Filter\FilterExpression;
@@ -56,9 +56,9 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function local()
+    public function context()
     {
-        return new LocalExpression();
+        return new ContextExpression();
     }
 
     /**
@@ -233,8 +233,8 @@ class ExpressionFactory implements ExpressionFactoryInterface
             case 'false':
                 return $this->false();
                 break;
-            case 'local':
-                return $this->local();
+            case 'context':
+                return $this->context();
                 break;
             case 'in_place':
                 return $this->inPlace();
