@@ -167,7 +167,7 @@ class ExpressionBuilder
      * @param string $class
      * @param string $method
      * @param array $arguments
-     * 
+     *
      * @return ExpressionBuilder
      */
     public function helper($class, $method, array $arguments = [])
@@ -194,13 +194,13 @@ class ExpressionBuilder
     {
         switch ($this->type) {
             case 'in_place':
-                $descriptor = $this->expressionFactory->inPlace($this->value);
+                $expression = $this->expressionFactory->inPlace($this->value);
                 break;
             case 'context':
-                $descriptor = $this->expressionFactory->context();
+                $expression = $this->expressionFactory->context();
                 break;
             default:
-                $descriptor = $this->expressionFactory->module($this->expressionFactory->inPlace($this->module));
+                $expression = $this->expressionFactory->module($this->expressionFactory->inPlace($this->module));
         }
 
         foreach ($this->chain as $element) {
@@ -209,37 +209,37 @@ class ExpressionBuilder
                 case 'property':
                     $properties = explode('.', $value);
                     foreach ($properties as $property) {
-                        $descriptor = $this->expressionFactory->property($descriptor, $property);
+                        $expression = $this->expressionFactory->property($expression, $property);
                     }
                     break;
                 case 'method':
                     list ($name, $arguments) = $value;
                     $methods = explode('.', $name);
                     foreach ($methods as $method) {
-                        $descriptor = $this->expressionFactory->method($descriptor, $method, $arguments);
+                        $expression = $this->expressionFactory->method($expression, $method, $arguments);
                     }
                     break;
                 case 'function':
                     list ($name, $arguments) = $value;
-                    $descriptor = $this->expressionFactory->func($descriptor, $name, $arguments);
+                    $expression = $this->expressionFactory->func($expression, $name, $arguments);
                     break;
                 case 'filter':
-                    $descriptor = $this->expressionFactory->filter($descriptor, $value);
+                    $expression = $this->expressionFactory->filter($expression, $value);
                     break;
                 case 'helper':
                     list ($class, $method, $arguments) = $value;
-                    $descriptor =  $this->expressionFactory->helper($descriptor, $class, $method, $arguments);
+                    $expression =  $this->expressionFactory->helper($expression, $class, $method, $arguments);
                     break;
             }
         }
 
         if (null !== $this->mode) {
-            $descriptor = $this->expressionFactory->mode($descriptor, $this->mode);
+            $expression = $this->expressionFactory->mode($expression, $this->mode);
         }
 
         $this->type = $this->value = $this->module = $this->mode = null;
         $this->chain = [];
 
-        return $descriptor;
+        return $expression;
     }
 }
