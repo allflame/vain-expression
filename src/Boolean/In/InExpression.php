@@ -21,12 +21,4 @@ class InExpression extends AbstractBinaryExpression implements BooleanExpression
     {
         return $visitor->in($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s in %s', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }

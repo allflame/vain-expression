@@ -21,12 +21,4 @@ class LikeExpression extends AbstractBinaryExpression implements BooleanExpressi
     {
         return $visitor->like($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s like %s', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }

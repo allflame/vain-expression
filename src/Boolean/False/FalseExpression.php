@@ -25,14 +25,6 @@ class FalseExpression implements BooleanExpressionInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
-    {
-        return 'FALSE';
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         return $this;

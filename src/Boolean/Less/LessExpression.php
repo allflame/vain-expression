@@ -21,12 +21,4 @@ class LessExpression extends AbstractBinaryExpression implements BooleanExpressi
     {
         return $visitor->lt($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s < %s', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }

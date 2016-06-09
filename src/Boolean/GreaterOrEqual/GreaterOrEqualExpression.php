@@ -21,12 +21,4 @@ class GreaterOrEqualExpression extends AbstractBinaryExpression implements Boole
     {
         return $visitor->gte($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s >= %s', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }

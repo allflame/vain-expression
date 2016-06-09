@@ -21,12 +21,4 @@ class EqualExpression extends AbstractBinaryExpression implements BooleanExpress
     {
         return $visitor->eq($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s = %s', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }

@@ -21,12 +21,4 @@ class AndExpression extends AbstractBinaryExpression implements BooleanExpressio
     {
         return $visitor->andX($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('(%s AND %s)', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }
