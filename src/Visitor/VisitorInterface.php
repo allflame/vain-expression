@@ -8,29 +8,29 @@
 
 namespace Vain\Expression\Visitor;
 
-use Vain\Expression\Binary\AndX\AndExpression;
-use Vain\Expression\Binary\OrX\OrExpression;
-use Vain\Expression\NonTerminal\Equal\EqualExpression;
-use Vain\Expression\NonTerminal\Greater\GreaterExpression;
-use Vain\Expression\NonTerminal\GreaterOrEqual\GreaterOrEqualExpression;
-use Vain\Expression\NonTerminal\In\InExpression;
-use Vain\Expression\NonTerminal\Less\LessExpression;
-use Vain\Expression\NonTerminal\LessOrEqual\LessOrEqualExpression;
-use Vain\Expression\NonTerminal\Like\LikeExpression;
-use Vain\Expression\NonTerminal\NotEqual\NotEqualExpression;
-use Vain\Expression\False\FalseExpression;
+use Vain\Expression\Boolean\AndX\AndExpression;
+use Vain\Expression\Boolean\OrX\OrExpression;
+use Vain\Expression\Boolean\Equal\EqualExpression;
+use Vain\Expression\Boolean\Greater\GreaterExpression;
+use Vain\Expression\Boolean\GreaterOrEqual\GreaterOrEqualExpression;
+use Vain\Expression\Boolean\In\InExpression;
+use Vain\Expression\Boolean\Less\LessExpression;
+use Vain\Expression\Boolean\LessOrEqual\LessOrEqualExpression;
+use Vain\Expression\Boolean\Like\LikeExpression;
+use Vain\Expression\Boolean\NotEqual\NotEqualExpression;
+use Vain\Expression\Boolean\Identity\IdentityExpression;
+use Vain\Expression\Boolean\Not\NotExpression;
+use Vain\Expression\Boolean\False\FalseExpression;
+use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Local\LocalExpression;
-use Vain\Expression\Terminal\Module\ModuleExpression;
-use Vain\Expression\True\TrueExpression;
-use Vain\Expression\Terminal\Filter\FilterExpression;
-use Vain\Expression\Terminal\FunctionX\FunctionExpression;
-use Vain\Expression\Terminal\Helper\HelperExpression;
-use Vain\Expression\Unary\Identity\IdentityExpression;
-use Vain\Expression\Terminal\Method\MethodExpression;
-use Vain\Expression\Terminal\Mode\ModeExpression;
-use Vain\Expression\Unary\Not\NotExpression;
-use Vain\Expression\Terminal\Property\PropertyExpression;
+use Vain\Expression\NonTerminal\Module\ModuleExpression;
+use Vain\Expression\NonTerminal\Filter\FilterExpression;
+use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
+use Vain\Expression\NonTerminal\Helper\HelperExpression;
+use Vain\Expression\NonTerminal\Method\MethodExpression;
+use Vain\Expression\NonTerminal\Mode\ModeExpression;
+use Vain\Expression\NonTerminal\Property\PropertyExpression;
 
 interface VisitorInterface
 {

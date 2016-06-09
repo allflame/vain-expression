@@ -8,8 +8,8 @@
 
 namespace Vain\Expression\Binary;
 
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Serializer\SerializerInterface;
 
 abstract class AbstractBinaryExpression implements BinaryExpressionInterface
 {

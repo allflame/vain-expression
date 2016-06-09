@@ -9,8 +9,9 @@
 namespace Vain\Expression\Binary;
 
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
-interface BinaryExpressionInterface extends ExpressionInterface
+interface BinaryExpressionInterface extends NonTerminalExpressionInterface
 {
     /**
      * @return ExpressionInterface

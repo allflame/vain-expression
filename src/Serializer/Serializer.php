@@ -9,30 +9,30 @@
 namespace Vain\Expression\Serializer;
 
 use Vain\Data\Provider\Module\Repository\ModuleRepositoryInterface;
-use Vain\Expression\Binary\AndX\AndExpression;
-use Vain\Expression\NonTerminal\Equal\EqualExpression;
-use Vain\Expression\NonTerminal\Greater\GreaterExpression;
-use Vain\Expression\NonTerminal\GreaterOrEqual\GreaterOrEqualExpression;
-use Vain\Expression\NonTerminal\In\InExpression;
-use Vain\Expression\NonTerminal\Less\LessExpression;
-use Vain\Expression\NonTerminal\LessOrEqual\LessOrEqualExpression;
-use Vain\Expression\NonTerminal\Like\LikeExpression;
-use Vain\Expression\NonTerminal\NotEqual\NotEqualExpression;
-use Vain\Expression\Binary\OrX\OrExpression;
+use Vain\Expression\Boolean\AndX\AndExpression;
+use Vain\Expression\Boolean\Equal\EqualExpression;
+use Vain\Expression\Boolean\Greater\GreaterExpression;
+use Vain\Expression\Boolean\GreaterOrEqual\GreaterOrEqualExpression;
+use Vain\Expression\Boolean\In\InExpression;
+use Vain\Expression\Boolean\Less\LessExpression;
+use Vain\Expression\Boolean\LessOrEqual\LessOrEqualExpression;
+use Vain\Expression\Boolean\Like\LikeExpression;
+use Vain\Expression\Boolean\NotEqual\NotEqualExpression;
+use Vain\Expression\Boolean\OrX\OrExpression;
+use Vain\Expression\Boolean\Not\NotExpression;
+use Vain\Expression\Boolean\False\FalseExpression;
+use Vain\Expression\Boolean\True\TrueExpression;
+use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
-use Vain\Expression\False\FalseExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Local\LocalExpression;
-use Vain\Expression\Terminal\Module\ModuleExpression;
-use Vain\Expression\True\TrueExpression;
-use Vain\Expression\Terminal\Filter\FilterExpression;
-use Vain\Expression\Terminal\FunctionX\FunctionExpression;
-use Vain\Expression\Terminal\Helper\HelperExpression;
-use Vain\Expression\Unary\Identity\IdentityExpression;
-use Vain\Expression\Terminal\Method\MethodExpression;
-use Vain\Expression\Terminal\Mode\ModeExpression;
-use Vain\Expression\Unary\Not\NotExpression;
-use Vain\Expression\Terminal\Property\PropertyExpression;
+use Vain\Expression\NonTerminal\Module\ModuleExpression;
+use Vain\Expression\NonTerminal\Filter\FilterExpression;
+use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
+use Vain\Expression\NonTerminal\Helper\HelperExpression;
+use Vain\Expression\NonTerminal\Method\MethodExpression;
+use Vain\Expression\NonTerminal\Mode\ModeExpression;
+use Vain\Expression\NonTerminal\Property\PropertyExpression;
 
 class Serializer implements SerializerInterface
 {
@@ -246,60 +246,4 @@ class Serializer implements SerializerInterface
 
         return $expression->unserialize($this, $expressionData);
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function serializeDescriptor(DescriptorInterface $descriptor)
-//    {
-//        return $descriptor->serialize($this);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function unserializeDescriptor(array $serializedData)
-//    {
-//        list ($type, $descriptorData) = $serializedData;
-//
-//        switch ($type) {
-//            case 'in_place':
-//                return $this->descriptorFactory->inplace()->unserialize($this, $descriptorData);
-//                break;
-//            case 'local':
-//                return $this->descriptorFactory->local();
-//                break;
-//            case 'module':
-//                list ($moduleName) = $descriptorData;
-//                return $this->descriptorFactory->module($moduleName);
-//                break;
-//            case 'property':
-//                list ($property, $parentDescriptorData) = $descriptorData;
-//                return $this->descriptorFactory->property($this->unserializeDescriptor($parentDescriptorData), $property);
-//                break;
-//            case 'method':
-//                list ($method, $arguments, $parentDescriptorData) = $descriptorData;
-//                return $this->descriptorFactory->method($this->unserializeDescriptor($parentDescriptorData), $method, $arguments);
-//                break;
-//            case 'mode':
-//                list ($mode, $parentDescriptorData) = $descriptorData;
-//                return $this->descriptorFactory->mode($this->unserializeDescriptor($parentDescriptorData), $mode);
-//                break;
-//            case 'function':
-//                list ($function, $arguments, $parentDescriptorData) = $descriptorData;
-//                return $this->descriptorFactory->func($this->unserializeDescriptor($parentDescriptorData), $function, $arguments);
-//                break;
-//            case 'filter':
-//                list ($serializedExpression, $parentDescriptorData) = $descriptorData;
-//                return $this->descriptorFactory->filter($this->unserializeDescriptor($parentDescriptorData), $this->unserializeExpression($serializedExpression));
-//                break;
-//            case 'helper':
-//                list ($class, $method, $arguments, $parentDescriptorData) = $descriptorData;
-//                return $this->descriptorFactory->helper($this->unserializeDescriptor($parentDescriptorData), $class, $method, $arguments);
-//                break;
-//            default:
-//                throw new UnknownDescriptorException($this, $type);
-//                break;
-//        }
-//    }
 }
