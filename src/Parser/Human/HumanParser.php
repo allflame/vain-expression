@@ -64,7 +64,7 @@ class HumanParser implements VisitorInterface
      */
     public function module(ModuleExpression $moduleExpression)
     {
-        return $moduleExpression->getModule()->__toString();
+        return $moduleExpression->getExpression()->accept($this);
     }
 
     /**
