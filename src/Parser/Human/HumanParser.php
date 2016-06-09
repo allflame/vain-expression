@@ -92,7 +92,7 @@ class HumanParser implements ParserInterface
      */
     public function property(PropertyExpression $propertyExpression)
     {
-        return sprintf('%s.%s', $propertyExpression->accept($this), $propertyExpression->getProperty());
+        return sprintf('%s.%s', $propertyExpression->getExpression()->accept($this), $propertyExpression->getProperty());
     }
 
     /**
