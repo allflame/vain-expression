@@ -13,7 +13,7 @@ use Vain\Expression\Factory\ExpressionFactoryInterface;
 class UnknownExpressionException extends ExpressionFactoryException
 {
     /**
-     * VainExpressionFactoryUnklnownShortcutException constructor.
+     * UnknownExpressionException constructor.
      * @param ExpressionFactoryInterface $expressionFactory
      * @param string $shortcut
      */

@@ -8,31 +8,31 @@
 
 namespace Vain\Expression\Factory;
 
-use Vain\Expression\Binary\AndX\AndExpression;
-use Vain\Expression\Binary\OrX\OrExpression;
-use Vain\Expression\Binary\Equal\EqualExpression;
-use Vain\Expression\Binary\Greater\GreaterExpression;
-use Vain\Expression\Binary\GreaterOrEqual\GreaterOrEqualExpression;
-use Vain\Expression\Binary\In\InExpression;
-use Vain\Expression\Binary\Less\LessExpression;
-use Vain\Expression\Binary\LessOrEqual\LessOrEqualExpression;
-use Vain\Expression\Binary\Like\LikeExpression;
-use Vain\Expression\Binary\NotEqual\NotEqualExpression;
-use Vain\Expression\Exception\UnknownExpressionException;
-use Vain\Expression\False\FalseExpression;
+use Vain\Expression\Boolean\AndX\AndExpression;
+use Vain\Expression\Boolean\OrX\OrExpression;
+use Vain\Expression\Boolean\Equal\EqualExpression;
+use Vain\Expression\Boolean\Greater\GreaterExpression;
+use Vain\Expression\Boolean\GreaterOrEqual\GreaterOrEqualExpression;
+use Vain\Expression\Boolean\In\InExpression;
+use Vain\Expression\Boolean\Less\LessExpression;
+use Vain\Expression\Boolean\LessOrEqual\LessOrEqualExpression;
+use Vain\Expression\Boolean\Like\LikeExpression;
+use Vain\Expression\Boolean\NotEqual\NotEqualExpression;
+use Vain\Expression\Boolean\False\FalseExpression;
+use Vain\Expression\Boolean\True\TrueExpression;
+use Vain\Expression\Boolean\Not\NotExpression;
+use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Local\LocalExpression;
-use Vain\Expression\Terminal\Module\ModuleExpression;
-use Vain\Expression\True\TrueExpression;
-use Vain\Expression\Unary\Filter\FilterExpression;
-use Vain\Expression\Unary\FunctionX\FunctionExpression;
-use Vain\Expression\Unary\Helper\HelperExpression;
-use Vain\Expression\Unary\Identity\IdentityExpression;
-use Vain\Expression\Unary\Method\MethodExpression;
-use Vain\Expression\Unary\Mode\ModeExpression;
-use Vain\Expression\Unary\Not\NotExpression;
+use Vain\Expression\NonTerminal\Mode\ModeExpression;
+use Vain\Expression\NonTerminal\Module\ModuleExpression;
+use Vain\Expression\NonTerminal\Filter\FilterExpression;
+use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
+use Vain\Expression\NonTerminal\Helper\HelperExpression;
+use Vain\Expression\NonTerminal\Property\PropertyExpression;
+use Vain\Expression\NonTerminal\Method\MethodExpression;
+use Vain\Expression\Exception\UnknownExpressionException;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\Property\PropertyExpression;
 
 class ExpressionFactory implements ExpressionFactoryInterface
 {
@@ -72,9 +72,9 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function module(DataModuleInterface $module = null)
+    public function module(ExpressionInterface $expression = null)
     {
-        return new ModuleExpression($module);
+        return new ModuleExpression($expression);
     }
 
     /**

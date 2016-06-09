@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Serializer;
 
-use Vain\Data\Provider\Module\Repository\ModuleRepositoryInterface;
 use Vain\Expression\Boolean\AndX\AndExpression;
 use Vain\Expression\Boolean\Equal\EqualExpression;
 use Vain\Expression\Boolean\Greater\GreaterExpression;
@@ -38,17 +37,13 @@ class Serializer implements SerializerInterface
 {
     private $expressionFactory;
 
-    private $moduleRepository;
-
     /**
      * VainExpressionSerializer constructor.
      * @param ExpressionFactoryInterface $expressionFactory
-     * @param ModuleRepositoryInterface $moduleRepository
      */
-    public function __construct(ExpressionFactoryInterface $expressionFactory, ModuleRepositoryInterface $moduleRepository)
+    public function __construct(ExpressionFactoryInterface $expressionFactory)
     {
         $this->expressionFactory = $expressionFactory;
-        $this->moduleRepository = $moduleRepository;
     }
 
     /**
@@ -88,7 +83,7 @@ class Serializer implements SerializerInterface
      */
     public function module(ModuleExpression $moduleExpression)
     {
-        return ['module', [$moduleExpression->getModule()->__toString()]];
+        return ['module', [$moduleExpression->getExpression()->accept($this)]];
     }
 
     /**

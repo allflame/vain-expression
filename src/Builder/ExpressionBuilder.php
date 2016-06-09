@@ -28,13 +28,11 @@ class ExpressionBuilder
 
     /**
      * ExpressionBuilder constructor.
-     * @param ModuleRepositoryInterface $moduleRepository
      * @param ExpressionFactoryInterface $expressionFactory
      */
-    public function __construct(ModuleRepositoryInterface $moduleRepository, ExpressionFactoryInterface $expressionFactory)
+    public function __construct(ExpressionFactoryInterface $expressionFactory)
     {
         $this->expressionFactory = $expressionFactory;
-        $this->moduleRepository = $moduleRepository;
     }
 
     /**
@@ -94,7 +92,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function inplace($value)
+    public function inPlace($value)
     {
         $this->type = 'in_place';
         $this->value = $value;
@@ -190,9 +188,9 @@ class ExpressionBuilder
     }
 
     /**
-     * @return DescriptorInterface
+     * @return ExpressionInterface
      */
-    public function getDescriptor()
+    public function getExpression()
     {
         switch ($this->type) {
             case 'in_place':

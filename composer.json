@@ -21,7 +21,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/allflame/vain-core.git"
+            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-core.git"
         }
     ],
     "config": {

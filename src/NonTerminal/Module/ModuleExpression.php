@@ -8,45 +8,17 @@
 
 namespace Vain\Expression\NonTerminal\Module;
 
-use Vain\Data\Module\DataModuleInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class ModuleExpression implements NonTerminalExpressionInterface
+class ModuleExpression extends AbstractUnaryExpression implements NonTerminalExpressionInterface
 {
-    private $module;
-
-    /**
-     * AbstractModuleDescriptor constructor.
-     * @param DataModuleInterface $module
-     */
-    public function __construct(DataModuleInterface $module = null)
-    {
-        $this->module = $module;
-    }
-
-    /**
-     * @return DataModuleInterface
-     */
-    public function getModule()
-    {
-        return $this->module;
-    }
-
     /**
      * @inheritDoc
      */
     public function accept(VisitorInterface $visitor)
     {
         return $visitor->module($this);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize(SerializerInterface $serializer, array $serialized)
-    {
-        return $this;
     }
 }

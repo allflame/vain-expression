@@ -8,8 +8,6 @@
 
 namespace Vain\Expression\Visitor;
 
-use Vain\Core\Result\ResultInterface;
-
 interface VisitableInterface
 {
     /**
