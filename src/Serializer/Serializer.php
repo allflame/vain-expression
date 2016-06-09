@@ -24,7 +24,7 @@ use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
-use Vain\Expression\Terminal\Local\LocalExpression;
+use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
 use Vain\Expression\NonTerminal\Filter\FilterExpression;
 use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
@@ -65,9 +65,9 @@ class Serializer implements SerializerInterface
     /**
      * @inheritDoc
      */
-    public function local(LocalExpression $localExpression)
+    public function context(ContextExpression $contextExpression)
     {
-        return ['local', []];
+        return ['context', []];
     }
 
     /**
