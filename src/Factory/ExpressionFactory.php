@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Factory;
 
-
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
 use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;

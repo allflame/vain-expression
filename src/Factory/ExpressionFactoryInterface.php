@@ -146,7 +146,6 @@ interface ExpressionFactoryInterface
      */
     public function terminal($value);
 
-
     /**
      * @param ExpressionInterface $expression
      * @param ExpressionInterface $method
