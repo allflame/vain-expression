@@ -6,14 +6,15 @@
  * Time: 11:29 AM
  */
 
-namespace Vain\Expression\Unary\Helper;
+namespace Vain\Expression\Terminal\Helper;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class HelperExpression extends AbstractUnaryExpression
+class HelperExpression extends AbstractUnaryExpression implements TerminalExpressionInterface
 {
     private $class;
 

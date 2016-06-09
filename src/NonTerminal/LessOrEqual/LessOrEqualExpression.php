@@ -6,19 +6,19 @@
  * Time: 9:43 AM
  */
 
-namespace Vain\Expression\Binary\Less;
+namespace Vain\Expression\NonTerminal\LessOrEqual;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class LessExpression extends AbstractBinaryExpression
+class LessOrEqualExpression extends AbstractBinaryExpression
 {
     /**
      * @inheritDoc
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $visitor->lt($this);
+        return $visitor->lte($this);
     }
 
     /**
@@ -26,6 +26,6 @@ class LessExpression extends AbstractBinaryExpression
      */
     public function __toString()
     {
-        return sprintf('%s < %s', $this->getFirstExpression(), $this->getSecondExpression());
+        return sprintf('%s <= %s', $this->getFirstExpression(), $this->getSecondExpression());
     }
 }

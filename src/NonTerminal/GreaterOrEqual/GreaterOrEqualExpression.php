@@ -3,22 +3,22 @@
  * Created by PhpStorm.
  * User: allflame
  * Date: 4/1/16
- * Time: 9:43 AM
+ * Time: 9:42 AM
  */
 
-namespace Vain\Expression\Binary\LessOrEqual;
+namespace Vain\Expression\NonTerminal\GreaterOrEqual;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class LessOrEqualExpression extends AbstractBinaryExpression
+class GreaterOrEqualExpression extends AbstractBinaryExpression
 {
     /**
      * @inheritDoc
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $visitor->lte($this);
+        return $visitor->gte($this);
     }
 
     /**
@@ -26,6 +26,6 @@ class LessOrEqualExpression extends AbstractBinaryExpression
      */
     public function __toString()
     {
-        return sprintf('%s <= %s', $this->getFirstExpression(), $this->getSecondExpression());
+        return sprintf('%s >= %s', $this->getFirstExpression(), $this->getSecondExpression());
     }
 }

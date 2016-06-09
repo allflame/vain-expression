@@ -15,7 +15,7 @@ interface VisitableInterface
     /**
      * @param VisitorInterface $visitor
      * 
-     * @return ResultInterface
+     * @return mixed
      */
     public function accept(VisitorInterface $visitor);
 }

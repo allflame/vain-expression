@@ -2,32 +2,33 @@
 /**
  * Created by PhpStorm.
  * User: allflame
- * Date: 4/7/16
- * Time: 12:24 PM
+ * Date: 4/6/16
+ * Time: 9:53 AM
  */
 
-namespace Vain\Expression\Unary\FunctionX;
+namespace Vain\Expression\Terminal\Method;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class FunctionExpression extends AbstractUnaryExpression
+class MethodExpression extends AbstractUnaryExpression implements TerminalExpressionInterface
 {
-    private $functionName;
+    private $method;
 
     private $arguments;
 
     /**
-     * FunctionDescriptorDecorator constructor.
+     * PropertyDescriptorDecorator constructor.
      * @param ExpressionInterface $expression
-     * @param string $functionName
+     * @param string $method
      * @param array $arguments
      */
-    public function __construct(ExpressionInterface $expression, $functionName = '', array $arguments = [])
+    public function __construct(ExpressionInterface $expression = null, $method = '', array $arguments = [])
     {
-        $this->functionName = $functionName;
+        $this->method = $method;
         $this->arguments = $arguments;
         parent::__construct($expression);
     }
@@ -35,9 +36,9 @@ class FunctionExpression extends AbstractUnaryExpression
     /**
      * @return string
      */
-    public function getFunctionName()
+    public function getMethod()
     {
-        return $this->functionName;
+        return $this->method;
     }
 
     /**
@@ -47,20 +48,18 @@ class FunctionExpression extends AbstractUnaryExpression
     {
         return $this->arguments;
     }
-
+    
     /**
      * @inheritDoc
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $visitor->functionX($this);
+        return $visitor->method($this);
     }
-
 
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
-        list ($this->functionName, $serializedArguments, $parentData) = $serializedData;
-        $this->arguments = json_decode($serializedArguments, true);
+        list ($this->method, $parentData) = $serializedData;
 
         return parent::unserialize($serializer, $parentData);
     }

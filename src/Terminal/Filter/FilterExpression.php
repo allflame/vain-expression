@@ -6,14 +6,15 @@
  * Time: 10:57 AM
  */
 
-namespace Vain\Expression\Unary\Filter;
+namespace Vain\Expression\Terminal\Filter;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class FilterExpression extends AbstractUnaryExpression
+class FilterExpression extends AbstractUnaryExpression implements TerminalExpressionInterface
 {
 
     private $filterExpression;

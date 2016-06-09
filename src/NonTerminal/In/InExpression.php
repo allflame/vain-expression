@@ -3,22 +3,22 @@
  * Created by PhpStorm.
  * User: allflame
  * Date: 4/1/16
- * Time: 9:32 AM
+ * Time: 9:43 AM
  */
 
-namespace Vain\Expression\Binary\Equal;
+namespace Vain\Expression\NonTerminal\In;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class EqualExpression extends AbstractBinaryExpression
+class InExpression extends AbstractBinaryExpression
 {
     /**
      * @inheritDoc
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $visitor->eq($this);
+        return $visitor->in($this);
     }
 
     /**
@@ -26,6 +26,6 @@ class EqualExpression extends AbstractBinaryExpression
      */
     public function __toString()
     {
-        return sprintf('%s = %s', $this->getFirstExpression(), $this->getSecondExpression());
+        return sprintf('%s in %s', $this->getFirstExpression(), $this->getSecondExpression());
     }
 }

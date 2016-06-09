@@ -9,11 +9,11 @@
 namespace Vain\Expression\Terminal\Module;
 
 use Vain\Data\Module\DataModuleInterface;
-use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class ModuleExpression implements ExpressionInterface
+class ModuleExpression implements TerminalExpressionInterface
 {
     private $module;
 

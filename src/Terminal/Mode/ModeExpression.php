@@ -3,38 +3,38 @@
  * Created by PhpStorm.
  * User: allflame
  * Date: 4/6/16
- * Time: 9:53 AM
+ * Time: 10:16 AM
  */
 
-namespace Vain\Expression\Unary\Property;
+namespace Vain\Expression\Terminal\Mode;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class PropertyExpression extends AbstractUnaryExpression
+class ModeExpression extends AbstractUnaryExpression implements TerminalExpressionInterface
 {
-
-    private $property;
+    private $mode;
 
     /**
-     * PropertyDescriptorDecorator constructor.
+     * ModeDescriptorDecorator constructor.
      * @param ExpressionInterface $expression
-     * @param string $property
+     * @param string $mode
      */
-    public function __construct(ExpressionInterface $expression = null, $property = '')
+    public function __construct(ExpressionInterface $expression = null, $mode = '')
     {
-        $this->property = $property;
+        $this->mode = $mode;
         parent::__construct($expression);
     }
 
     /**
      * @return string
      */
-    public function getProperty()
+    public function getMode()
     {
-        return $this->property;
+        return $this->mode;
     }
     
     /**
@@ -42,7 +42,7 @@ class PropertyExpression extends AbstractUnaryExpression
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $visitor->property($this);
+        return $visitor->mode($this);
     }
 
     /**
@@ -50,7 +50,7 @@ class PropertyExpression extends AbstractUnaryExpression
      */
     public function unserialize(SerializerInterface $serializer, array $serialized)
     {
-        list ($this->property, $parentData) = $serialized;
+        list ($this->mode, $parentData) = $serialized;
 
         return parent::unserialize($serializer, $parentData);
     }

@@ -8,11 +8,11 @@
 
 namespace Vain\Expression\Terminal\Local;
 
-use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class LocalExpression implements ExpressionInterface
+class LocalExpression implements TerminalExpressionInterface
 {
 
     /**
