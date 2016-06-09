@@ -37,14 +37,6 @@ class InPlaceExpression implements TerminalExpressionInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
-    {
-        return (string)$this->value;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function accept(VisitorInterface $visitor)
     {
         return $visitor->inPlace($this);

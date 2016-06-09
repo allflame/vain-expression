@@ -21,12 +21,4 @@ class LessOrEqualExpression extends AbstractBinaryExpression implements BooleanE
     {
         return $visitor->lte($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s <= %s', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }

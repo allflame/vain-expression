@@ -26,14 +26,6 @@ class TrueExpression implements BooleanExpressionInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
-    {
-        return 'TRUE';
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function unserialize(SerializerInterface $serializer, array $serializedData)
     {
         return $this;

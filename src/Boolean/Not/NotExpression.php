@@ -21,12 +21,4 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
     {
         return $visitor->not($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('!(%s)', $this->getExpression());
-    }
 }

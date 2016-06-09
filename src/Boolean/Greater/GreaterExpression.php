@@ -21,12 +21,4 @@ class GreaterExpression extends AbstractBinaryExpression implements BooleanExpre
     {
         return $visitor->gt($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return sprintf('%s > %s', $this->getFirstExpression(), $this->getSecondExpression());
-    }
 }
