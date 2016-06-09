@@ -6,13 +6,12 @@
  * Time: 12:40 PM
  */
 
-namespace Vain\Expression\Descriptor\Builder;
+namespace Vain\Expression\Builder;
 
-use Vain\Expression\Descriptor\DescriptorInterface;
-use Vain\Expression\Descriptor\Factory\DescriptorFactoryInterface;
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Factory\ExpressionFactoryInterface;
 
-class DescriptorBuilder
+class ExpressionBuilder
 {
 
     private $type;
@@ -28,18 +27,20 @@ class DescriptorBuilder
     private $descriptorFactory;
 
     /**
-     * DescriptorBuilder constructor.
-     * @param DescriptorFactoryInterface $descriptorFactory
+     * ExpressionBuilder constructor.
+     * @param ModuleRepositoryInterface $moduleRepository
+     * @param ExpressionFactoryInterface $expressionFactory
      */
-    public function __construct(DescriptorFactoryInterface $descriptorFactory)
+    public function __construct(ModuleRepositoryInterface $moduleRepository, ExpressionFactoryInterface $expressionFactory)
     {
-        $this->descriptorFactory = $descriptorFactory;
+        $this->expressionFactory = $expressionFactory;
+        $this->moduleRepository = $moduleRepository;
     }
 
     /**
      * @param string $mode
      *
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function mode($mode)
     {
@@ -49,7 +50,7 @@ class DescriptorBuilder
     }
 
     /**
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function int()
     {
@@ -59,7 +60,7 @@ class DescriptorBuilder
     }
 
     /**
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function string()
     {
@@ -69,7 +70,7 @@ class DescriptorBuilder
     }
 
     /**
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function float()
     {
@@ -79,7 +80,7 @@ class DescriptorBuilder
     }
 
     /**
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function bool()
     {
@@ -91,7 +92,7 @@ class DescriptorBuilder
     /**
      * @param mixed $value
      *
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function inplace($value)
     {
@@ -105,7 +106,7 @@ class DescriptorBuilder
      * @param string $method
      * @param array $arguments
      *
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function method($method, array $arguments = [])
     {
@@ -117,7 +118,7 @@ class DescriptorBuilder
     /**
      * @param string $module
      *
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function module($module)
     {
@@ -130,7 +131,7 @@ class DescriptorBuilder
     /**
      * @param string $property
      *
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function property($property)
     {
@@ -143,7 +144,7 @@ class DescriptorBuilder
      * @param string $name
      * @param array $arguments
      *
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function func($name, array $arguments = [])
     {
@@ -155,7 +156,7 @@ class DescriptorBuilder
     /**
      * @param ExpressionInterface $expression
      *
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function filter(ExpressionInterface $expression)
     {
@@ -169,7 +170,7 @@ class DescriptorBuilder
      * @param string $method
      * @param array $arguments
      * 
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function helper($class, $method, array $arguments = [])
     {
@@ -179,7 +180,7 @@ class DescriptorBuilder
     }
 
     /**
-     * @return DescriptorBuilder
+     * @return ExpressionBuilder
      */
     public function local()
     {
