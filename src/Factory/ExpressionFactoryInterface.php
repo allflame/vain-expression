@@ -28,6 +28,7 @@ use Vain\Expression\NonTerminal\Method\MethodExpression;
 use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
 use Vain\Expression\NonTerminal\Property\PropertyExpression;
+use Vain\Expression\Result\ResultExpressionInterface;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\ExpressionInterface;
@@ -208,7 +209,12 @@ interface ExpressionFactoryInterface
      * @return HelperExpression
      */
     public function helper(ExpressionInterface $expression = null, $class = '', $method = '', array $arguments = []);
-    
+
+    /**
+     * @return ResultExpressionInterface
+     */
+    public function result();
+
     /**
      * @param string $shortcut
      *
