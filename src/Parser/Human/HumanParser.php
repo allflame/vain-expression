@@ -41,7 +41,7 @@ class HumanParser implements ParserInterface
      */
     public function result(ResultExpressionInterface $resultExpression)
     {
-        return $resultExpression->getStatus() ? 'true' : 'false';
+        return $resultExpression->__toString();
     }
 
     /**
