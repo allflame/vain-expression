@@ -23,6 +23,7 @@ use Vain\Expression\Boolean\False\FalseExpression;
 use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
+use Vain\Expression\Result\ResultExpressionInterface;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
@@ -33,7 +34,7 @@ use Vain\Expression\NonTerminal\Method\MethodExpression;
 use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\NonTerminal\Property\PropertyExpression;
 
-class Serializer implements SerializerInterface
+class AbstractSerializer implements SerializerInterface
 {
     private $expressionFactory;
 
@@ -44,6 +45,14 @@ class Serializer implements SerializerInterface
     public function __construct(ExpressionFactoryInterface $expressionFactory)
     {
         $this->expressionFactory = $expressionFactory;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function result(ResultExpressionInterface $resultExpression)
+    {
+        return ['result', serialize($resultExpression)];
     }
 
     /**
@@ -230,13 +239,15 @@ class Serializer implements SerializerInterface
         return ['or', [$orExpression->getFirstExpression()->accept($this), $orExpression->getSecondExpression()->accept($this)]];
     }
 
-
     /**
      * @inheritDoc
      */
     public function unserializeExpression(array $serializedData)
     {
         list ($type, $expressionData) = $serializedData;
+        if ($type === 'result') {
+            return unserialize($expressionData);
+        }
         $expression = $this->expressionFactory->create($type);
 
         return $expression->unserialize($this, $expressionData);

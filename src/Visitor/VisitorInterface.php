@@ -22,6 +22,7 @@ use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Boolean\Not\NotExpression;
 use Vain\Expression\Boolean\False\FalseExpression;
 use Vain\Expression\Boolean\True\TrueExpression;
+use Vain\Expression\Result\ResultExpressionInterface;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
@@ -194,4 +195,11 @@ interface VisitorInterface
      * @return mixed
      */
     public function context(ContextExpression $contextExpression);
+
+    /**
+     * @param ResultExpressionInterface $resultExpression
+     *
+     * @return mixed
+     */
+    public function result(ResultExpressionInterface $resultExpression);
 }

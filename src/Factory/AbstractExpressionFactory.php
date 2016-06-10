@@ -34,7 +34,7 @@ use Vain\Expression\NonTerminal\Method\MethodExpression;
 use Vain\Expression\Exception\UnknownExpressionException;
 use Vain\Expression\ExpressionInterface;
 
-class ExpressionFactory implements ExpressionFactoryInterface
+abstract class AbstractExpressionFactory implements ExpressionFactoryInterface
 {
 
     /**
