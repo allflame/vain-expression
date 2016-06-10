@@ -69,7 +69,6 @@ class FunctionExpression implements NonTerminalExpressionInterface
         }
 
         return call_user_func($function, $this->data->interpret($context), ...$this->arguments->interpret($context));
-
     }
 
     /**

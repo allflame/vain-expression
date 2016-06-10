@@ -83,7 +83,7 @@ class MethodExpression implements NonTerminalExpressionInterface
         }
 
         return sprintf('%s->%s(%s, %s)', $this->data, $this->method, $this->arguments);
-    }
+   }
 
 
 }
