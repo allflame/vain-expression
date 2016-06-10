@@ -247,7 +247,7 @@ class HumanParser implements ParserInterface
      */
     public function andX(AndExpression $andExpression)
     {
-        return sprintf('%s and %s', $andExpression->getFirstExpression(), $andExpression->getSecondExpression());
+        return sprintf('%s and %s', $andExpression->getFirstExpression()->accept($this), $andExpression->getSecondExpression()->accept($this));
     }
 
     /**
@@ -255,6 +255,6 @@ class HumanParser implements ParserInterface
      */
     public function orX(OrExpression $orExpression)
     {
-        return sprintf('%s or %s', $orExpression->getFirstExpression(), $orExpression->getSecondExpression());
+        return sprintf('%s or %s', $orExpression->getFirstExpression()->accept($this), $orExpression->getSecondExpression()->accept($this));
     }
 }
