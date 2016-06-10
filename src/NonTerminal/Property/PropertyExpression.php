@@ -9,7 +9,6 @@
 namespace Vain\Expression\NonTerminal\Property;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
@@ -48,10 +47,19 @@ class PropertyExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serialized)
+    public function serialize()
     {
-        list ($this->property, $parentData) = $serialized;
+        return json_encode(['property' => $this->property, 'parent' => parent::serialize()]);
+    }
 
-        return parent::unserialize($serializer, $parentData);
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        $serializedData = json_decode($serialized);
+        $this->property = $serializedData->property;
+
+        return parent::unserialize($serializedData->parent);
     }
 }

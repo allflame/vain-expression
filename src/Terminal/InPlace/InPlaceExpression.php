@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Terminal\InPlace;
 
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 
@@ -41,14 +40,22 @@ class InPlaceExpression implements TerminalExpressionInterface
     {
         return $visitor->inPlace($this);
     }
-    
+
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serialized)
+    public function serialize()
     {
-        list ($serializedValue) = $serialized;
-        $this->value = unserialize($serializedValue);
+        return json_encode(['value' => serialize($this->value)]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        $serializedData = json_decode($serialized);
+        $this->value = unserialize($serializedData->value);
 
         return $this;
     }

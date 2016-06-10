@@ -8,16 +8,9 @@
 
 namespace Vain\Expression;
 
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Visitor\VisitableInterface;
 
-interface ExpressionInterface extends VisitableInterface
+interface ExpressionInterface extends VisitableInterface, \Serializable
 {
-    /**
-     * @param SerializerInterface $serializer
-     * @param array $serializedData
-     *
-     * @return ExpressionInterface
-     */
-    public function unserialize(SerializerInterface $serializer, array $serializedData);
+
 }

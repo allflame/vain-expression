@@ -9,7 +9,6 @@
 namespace Vain\Expression\NonTerminal\Method;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
@@ -56,10 +55,30 @@ class MethodExpression extends AbstractUnaryExpression
         return $visitor->method($this);
     }
 
-    public function unserialize(SerializerInterface $serializer, array $serializedData)
+    /**
+     * @inheritDoc
+     */
+    public function serialize()
     {
-        list ($this->method, $parentData) = $serializedData;
+        $serializedArguments = [];
+        foreach ($this->arguments as $argument) {
+            $serializedArguments[] = serialize($argument);
+        }
 
-        return parent::unserialize($serializer, $parentData);
+        return json_encode(['method' => $this->method, 'arguments' => $serializedArguments, 'parent' => parent::serialize()]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        $serializedData = json_decode($serialized);
+        $this->method = $serializedData->method;
+        foreach ($serializedData->serializedArguments as $serializedArgument) {
+            $this->arguments[] = unserialize($serializedArgument);
+        }
+
+        return parent::unserialize($serializedData->parent);
     }
 }

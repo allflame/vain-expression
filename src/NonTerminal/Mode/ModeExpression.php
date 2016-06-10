@@ -9,7 +9,6 @@
 namespace Vain\Expression\NonTerminal\Mode;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
@@ -47,10 +46,19 @@ class ModeExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serialized)
+    public function serialize()
     {
-        list ($this->mode, $parentData) = $serialized;
+        return json_encode(['mode' => $this->mode, 'parent' => parent::serialize()]);
+    }
 
-        return parent::unserialize($serializer, $parentData);
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        $serializedData = json_decode($serialized);
+        $this->mode = $serializedData->method;
+
+        return parent::unserialize($serializedData->parent);
     }
 }
