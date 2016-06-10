@@ -4,3 +4,5 @@ services:
         arguments: ['@expression.factory']
     expression.parser.human:
         class: Vain\Expression\Parser\Human\HumanParser
+    expression.factory:
+        class: Vain\Expression\Factory\ExpressionFactory
