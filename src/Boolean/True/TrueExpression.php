@@ -9,10 +9,10 @@
 namespace Vain\Expression\Boolean\True;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
 
-class TrueExpression implements BooleanExpressionInterface
+class TrueExpression extends AbstractZeroAryExpression implements BooleanExpressionInterface
 {
 
     /**
@@ -21,13 +21,5 @@ class TrueExpression implements BooleanExpressionInterface
     public function accept(VisitorInterface $visitor)
     {
         return $visitor->true($this);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize(SerializerInterface $serializer, array $serializedData)
-    {
-        return $this;
     }
 }

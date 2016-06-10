@@ -9,7 +9,6 @@
 namespace Vain\Expression\Binary;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
 
 abstract class AbstractBinaryExpression implements BinaryExpressionInterface
 {
@@ -44,11 +43,22 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
         return $this->secondExpression;
     }
 
-    public function unserialize(SerializerInterface $serializer, array $serializedData)
+    /**
+     * @inheritDoc
+     */
+    public function serialize()
     {
-        list ($firstExpressionData, $secondExpressionData) = $serializedData;
-        $this->firstExpression = $serializer->unserializeExpression($firstExpressionData);
-        $this->secondExpression = $serializer->unserializeExpression($secondExpressionData);
+        return json_encode(['firstExpression' => serialize($this->firstExpression), 'secondExpression' => serialize($this->secondExpression)]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serializedString)
+    {
+        $serializedData = json_decode($serializedString);
+        $this->firstExpression = unserialize($serializedData->firstExpression);
+        $this->secondExpression = unserialize($serializedData->secondExpression);
 
         return $this;
     }

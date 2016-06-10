@@ -8,13 +8,11 @@
 
 namespace Vain\Expression\Terminal\Context;
 
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Terminal\TerminalExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 
 class ContextExpression implements TerminalExpressionInterface
 {
-
     /**
      * @inheritDoc
      */
@@ -26,7 +24,15 @@ class ContextExpression implements TerminalExpressionInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serialized)
+    public function serialize()
+    {
+        return json_encode([]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
     {
         return $this;
     }

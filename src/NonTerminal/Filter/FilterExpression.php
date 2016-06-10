@@ -9,7 +9,6 @@
 namespace Vain\Expression\NonTerminal\Filter;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Unary\AbstractUnaryExpression;
 use Vain\Expression\Visitor\VisitorInterface;
 
@@ -48,11 +47,19 @@ class FilterExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serialized)
+    public function serialize()
     {
-        list ($serializedExpression, $parentData) = $serialized;
-        $this->filterExpression = $serializer->unserializeExpression($serializedExpression);
-        
-        return parent::unserialize($serializer, $parentData);
+        return json_encode(['filterExpression' => serialize($this->filterExpression), 'parent' => parent::serialize()]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        $serializedData = json_decode($serialized);
+        $this->filterExpression = unserialize($serializedData->filterExpression);
+
+        return parent::unserialize($serializedData->parent);
     }
 }
