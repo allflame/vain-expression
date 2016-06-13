@@ -11,7 +11,7 @@ namespace Vain\Expression\Result;
 use Vain\Core\Result\ResultInterface;
 use Vain\Expression\ExpressionInterface;
 
-interface ResultExpressionInterface extends ResultInterface, ExpressionInterface
+interface ExpressionResultInterface extends ResultInterface, ExpressionInterface
 {
 
 }
