@@ -8,60 +8,23 @@
 
 namespace Vain\Expression\Result;
 
-use Vain\Core\Result\ResultInterface;
+use Vain\Core\Result\AbstractResult;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 
-class ExpressionResult implements ExpressionResultInterface
+class ExpressionResult extends AbstractResult implements ExpressionResultInterface
 {
     private $expression;
 
-    private $result;
-
     /**
      * ExpressionResult constructor.
+     * @param boolean $status
      * @param ExpressionInterface $expression
-     * @param ResultInterface $result
      */
-    public function __construct(ExpressionInterface $expression, ResultInterface $result)
+    public function __construct($status, ExpressionInterface $expression)
     {
         $this->expression = $expression;
-        $this->result = $result;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isSuccessful()
-    {
-        return $this->result->isSuccessful();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getStatus()
-    {
-        return $this->result->getStatus();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function invert()
-    {
-        $copy = clone $this;
-        $copy->result = $copy->result->invert();
-
-        return $copy;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        return $this->result->__toString();
+        parent::__construct($status);
     }
 
     /**
@@ -77,7 +40,7 @@ class ExpressionResult implements ExpressionResultInterface
      */
     public function serialize()
     {
-        return json_encode([serialize($this->expression), serialize($this->result)]);
+        return json_encode(['expression' => serialize($this->expression), 'parent' => parent::serialize()]);
     }
 
     /**
@@ -87,8 +50,7 @@ class ExpressionResult implements ExpressionResultInterface
     {
         $serializedData = json_decode($serialized);
         $this->expression = $serializedData->expression;
-        $this->result = $serializedData->result;
 
-        return $this;
+        return parent::unserialize($serializedData->parent);
     }
 }

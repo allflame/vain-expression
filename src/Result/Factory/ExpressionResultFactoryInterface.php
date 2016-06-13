@@ -8,7 +8,7 @@
 
 namespace Vain\Expression\Result\Factory;
 
-use Vain\Core\Result\ResultInterface;
+use Vain\Comparator\Result\ComparatorResultInterface;
 use Vain\Expression\Boolean\AndX\AndExpression;
 use Vain\Expression\Boolean\False\FalseExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
@@ -36,27 +36,27 @@ interface ExpressionResultFactoryInterface
 
     /**
      * @param IdentityExpression $expression
-     * @param ResultInterface $result
+     * @param ExpressionResultInterface $result
      *
      * @return ExpressionResultInterface
      */
-    public function id(IdentityExpression $expression, ResultInterface $result);
+    public function id(IdentityExpression $expression, ExpressionResultInterface $result);
 
     /**
      * @param NotExpression $expression
-     * @param ResultInterface $result
+     * @param ExpressionResultInterface $result
      *
      * @return ExpressionResultInterface
      */
-    public function not(NotExpression $expression, ResultInterface $result);
+    public function not(NotExpression $expression, ExpressionResultInterface $result);
 
     /**
      * @param ExpressionInterface $expression
-     * @param ResultInterface $result
+     * @param ComparatorResultInterface $result
      *
      * @return ExpressionResultInterface
      */
-    public function comparison(ExpressionInterface $expression, ResultInterface $result);
+    public function comparison(ExpressionInterface $expression, ComparatorResultInterface $result);
 
     /**
      * @param AndExpression $binaryExpression

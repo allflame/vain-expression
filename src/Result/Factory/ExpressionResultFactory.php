@@ -8,8 +8,8 @@
 
 namespace Vain\Expression\Result\Factory;
 
+use Vain\Comparator\Result\ComparatorResultInterface;
 use Vain\Core\Result\Factory\ResultFactoryInterface;
-use Vain\Core\Result\ResultInterface;
 use Vain\Expression\Boolean\AndX\AndExpression;
 use Vain\Expression\Boolean\False\FalseExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
@@ -39,7 +39,7 @@ class ExpressionResultFactory implements ExpressionResultFactoryInterface
      */
     public function false(FalseExpression $expression)
     {
-        return new ExpressionResult($expression, $this->resultFactory->failed());
+        return new ExpressionResult(false, $expression);
     }
 
     /**
@@ -47,31 +47,31 @@ class ExpressionResultFactory implements ExpressionResultFactoryInterface
      */
     public function true(TrueExpression $expression)
     {
-        return new ExpressionResult($expression, $this->resultFactory->successful());
+        return new ExpressionResult(true, $expression);
     }
 
     /**
      * @inheritDoc
      */
-    public function id(IdentityExpression $expression, ResultInterface $result)
+    public function id(IdentityExpression $expression, ExpressionResultInterface $expressionResult)
     {
-        return new ExpressionResult($expression, $result);
+        return new ExpressionResult($expressionResult->getStatus(), $expressionResult);
     }
 
     /**
      * @inheritDoc
      */
-    public function not(NotExpression $expression, ResultInterface $result)
+    public function not(NotExpression $expression, ExpressionResultInterface $result)
     {
-        return new ExpressionResult($expression, $result);
+        return new ExpressionResult($result->getStatus(), $result);
     }
 
     /**
      * @inheritDoc
      */
-    public function comparison(ExpressionInterface $expression, ResultInterface $result)
+    public function comparison(ExpressionInterface $expression, ComparatorResultInterface $result)
     {
-        return new ExpressionResult($expression, $result);
+        return new ExpressionResult($result->getStatus(), new IdentityExpression($result));
     }
 
     /**
@@ -79,7 +79,7 @@ class ExpressionResultFactory implements ExpressionResultFactoryInterface
      */
     public function andX(AndExpression $expression, ExpressionResultInterface $firstResult, ExpressionResultInterface $secondResult)
     {
-        return new ExpressionResult($expression, new ExpressionResult(new AndExpression($firstResult, $secondResult), $this->resultFactory->createResult($firstResult->getStatus() && $secondResult->getStatus())));
+        return new ExpressionResult($firstResult->getStatus() && $secondResult->getStatus(), new AndExpression($firstResult, $secondResult));
     }
 
     /**
@@ -87,6 +87,6 @@ class ExpressionResultFactory implements ExpressionResultFactoryInterface
      */
     public function orX(OrExpression $expression, ExpressionResultInterface $firstResult, ExpressionResultInterface $secondResult)
     {
-        return new ExpressionResult($expression, new ExpressionResult(new AndExpression($firstResult, $secondResult), $this->resultFactory->createResult($firstResult->getStatus() || $secondResult->getStatus())));
+        return new ExpressionResult($firstResult->getStatus() || $secondResult->getStatus(), new OrExpression($firstResult, $secondResult));
     }
 }
