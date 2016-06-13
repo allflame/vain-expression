@@ -32,6 +32,10 @@
         {
             "type": "git",
             "url": "http://gitlab.cosmonova.net.ua/taras.girnyk/vain-data.git"
+        },
+        {
+            "type": "git",
+            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-value.git"
         }
     ],
     "config": {
