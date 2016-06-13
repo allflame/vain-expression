@@ -4,15 +4,6 @@ services:
         arguments: ['@expression.factory']
     expression.factory:
         class: Vain\Expression\Factory\ExpressionFactory
-<<<<<<< 0e3fb245b0d7e62446fd348d2d34435c6fa28330
         arguments: ['@expression.boolean.result.factory']
     expression.boolean.result.factory:
         class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
-=======
-    expression.result.factory:
-        class: Vain\Expression\Result\Factory\ExpressionResultFactory
-        arguments: ['@result.factory']
-    expression.interpreter:
-        class: Vain\Expression\Interpreter\Interpreter
-        arguments: ['@data.module.repository', '@comparator.repository', '@expression.result.factory']
->>>>>>> Fixed di config
