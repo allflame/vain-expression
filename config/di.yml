@@ -6,3 +6,9 @@ services:
         class: Vain\Expression\Parser\Human\HumanParser
     expression.factory:
         class: Vain\Expression\Factory\ExpressionFactory
+    expression.result.factory:
+        class: Vain\Expression\Factory\ExpressionFactory
+        arguments: ['@result.factory']
+    expression.interpreter:
+        class:
+        arguments: ['@data.module.repository', '@comparator.repository', '@expression.result.factory']
