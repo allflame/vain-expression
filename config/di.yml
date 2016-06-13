@@ -10,5 +10,5 @@ services:
         class: Vain\Expression\Factory\ExpressionFactory
         arguments: ['@result.factory']
     expression.interpreter:
-        class:
+        class: Vain\Expression\Interpreter\Interpreter
         arguments: ['@data.module.repository', '@comparator.repository', '@expression.result.factory']
