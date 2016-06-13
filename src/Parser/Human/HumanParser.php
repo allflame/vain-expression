@@ -24,6 +24,7 @@ use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Result\ExpressionResultInterface;
+use Vain\Expression\Rule\RuleInterface;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
@@ -257,4 +258,14 @@ class HumanParser implements ParserInterface
     {
         return sprintf('%s or %s', $orExpression->getFirstExpression()->accept($this), $orExpression->getSecondExpression()->accept($this));
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function rule(RuleInterface $rule)
+    {
+        return sprintf('[%s: %s]', $rule->getName(), $rule->getExpression()->accept($this));
+    }
+
+
 }
