@@ -23,7 +23,7 @@ use Vain\Expression\Boolean\Not\NotExpression;
 use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Result\ResultExpressionInterface;
+use Vain\Expression\Result\ExpressionResultInterface;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
@@ -39,7 +39,7 @@ class HumanParser implements ParserInterface
     /**
      * @inheritDoc
      */
-    public function result(ResultExpressionInterface $resultExpression)
+    public function result(ExpressionResultInterface $resultExpression)
     {
         return $resultExpression->__toString();
     }
