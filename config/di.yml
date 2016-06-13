@@ -7,7 +7,7 @@ services:
     expression.factory:
         class: Vain\Expression\Factory\ExpressionFactory
     expression.result.factory:
-        class: Vain\Expression\Factory\ExpressionFactory
+        class: Vain\Expression\Result\Factory\ExpressionResultFactory
         arguments: ['@result.factory']
     expression.interpreter:
         class: Vain\Expression\Interpreter\Interpreter
