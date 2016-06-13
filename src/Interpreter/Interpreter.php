@@ -31,6 +31,8 @@ use Vain\Expression\Exception\UnknownHelperException;
 use Vain\Expression\Exception\UnknownMethodException;
 use Vain\Expression\Exception\UnknownPropertyException;
 use Vain\Expression\Result\Factory\ExpressionResultFactoryInterface;
+use Vain\Expression\Rule\Result\RuleResult;
+use Vain\Expression\Rule\RuleInterface;
 use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
@@ -362,6 +364,14 @@ class Interpreter implements InterpreterInterface
     public function false(FalseExpression $expression)
     {
         return $this->resultFactory->false($expression);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rule(RuleInterface $rule)
+    {
+        return new RuleResult($rule, $rule->getExpression()->accept($this));
     }
 
     /**
