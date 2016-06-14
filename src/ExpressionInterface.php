@@ -8,7 +8,7 @@
 
 namespace Vain\Expression;
 
-interface ExpressionInterface extends \Serializable
+interface ExpressionInterface
 {
 
 }

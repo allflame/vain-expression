@@ -10,12 +10,6 @@ namespace Vain\Expression\Result\Factory;
 
 use Vain\Comparator\Result\ComparatorResultInterface;
 use Vain\Core\Result\Factory\ResultFactoryInterface;
-use Vain\Expression\Boolean\AndX\AndExpression;
-use Vain\Expression\Boolean\False\FalseExpression;
-use Vain\Expression\Boolean\Identity\IdentityExpression;
-use Vain\Expression\Boolean\Not\NotExpression;
-use Vain\Expression\Boolean\OrX\OrExpression;
-use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Result\ExpressionResult;
 use Vain\Expression\Result\ExpressionResultInterface;
