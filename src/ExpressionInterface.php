@@ -8,7 +8,12 @@
 
 namespace Vain\Expression;
 
+<<<<<<< 734a7052ab54a68457528f9d21de0615659b8e37
 use Vain\Core\String\StringInterface;
+=======
+interface ExpressionInterface
+{
+>>>>>>> Merge remote-tracking branch 'github/dev' into dev
 
 interface ExpressionInterface extends StringInterface
 {
