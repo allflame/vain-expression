@@ -8,9 +8,7 @@
 
 namespace Vain\Expression;
 
-use Vain\Expression\Visitor\VisitableInterface;
-
-interface ExpressionInterface extends VisitableInterface, \Serializable
+interface ExpressionInterface extends \Serializable
 {
 
 }

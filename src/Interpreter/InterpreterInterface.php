@@ -6,9 +6,9 @@
  * Time: 11:01 AM
  */
 
-namespace Vain\Expression\Interpreter;
+namespace Vain\Boolean\Interpreter;
 
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Boolean\Visitor\VisitorInterface;
 
 interface InterpreterInterface extends VisitorInterface
 {
