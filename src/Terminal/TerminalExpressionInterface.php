@@ -12,5 +12,10 @@ use Vain\Expression\ExpressionInterface;
 
 interface TerminalExpressionInterface extends ExpressionInterface
 {
-
+    /**
+     * @param \ArrayAccess|null $context
+     *
+     * @return mixed
+     */
+    public function interpret(\ArrayAccess $context = null);
 }
