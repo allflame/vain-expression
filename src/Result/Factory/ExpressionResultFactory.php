@@ -71,7 +71,7 @@ class ExpressionResultFactory implements ExpressionResultFactoryInterface
      */
     public function comparison(ExpressionInterface $expression, ComparatorResultInterface $result)
     {
-        return new ExpressionResult($result->getStatus(), new IdentityExpression($result));
+        return new ExpressionResult($result->getStatus(), $result);
     }
 
     /**
