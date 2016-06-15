@@ -8,31 +8,18 @@
 
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Interpreter\InterpreterInterface;
+use Vain\Expression\NonTerminal\Property\PropertyExpression;
 
-class InaccessiblePropertyException extends InterpreterException
+class InaccessiblePropertyException extends InterpretationException
 {
-
-    private $value;
-
     /**
      * InaccessiblePropertyException constructor.
-     * @param InterpreterInterface $interpreter
-     * @param ExpressionInterface $expression
-     * @param string $value
+     * @param PropertyExpression $expression
+     * @param \ArrayAccess $context
+     * @param string $data
      */
-    public function __construct(InterpreterInterface $interpreter, ExpressionInterface $expression, $value)
+    public function __construct(PropertyExpression $expression, \ArrayAccess $context, $data)
     {
-        $this->value = $value;
-        parent::__construct($interpreter, $expression, sprintf('Cannot get property for unsupported value type %s', gettype($value)), 0, null);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getValue()
-    {
-        return $this->value;
+        parent::__construct($expression, $context, sprintf('Cannot extract property for data of type %s', gettype($data)), 0, null);
     }
 }

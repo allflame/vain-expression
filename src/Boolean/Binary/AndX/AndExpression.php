@@ -25,6 +25,6 @@ class AndExpression extends AbstractBinaryExpression
      */
     public function __toString()
     {
-        return sprintf('(%s and %s)', $this->getFirstExpression()->__toString(), $this->getSecondExpression()->__toString());
+        return sprintf('(%s and %s)', $this->getFirstExpression(), $this->getSecondExpression());
     }
 }

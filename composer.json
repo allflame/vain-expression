@@ -16,26 +16,12 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "vain/core" : "dev-dev",
-        "vain/data" : "dev-dev",
-        "vain/comparator" : "dev-dev"
+        "vain/core" : "dev-dev"
     },
     "repositories": [
         {
             "type": "git",
             "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-core.git"
-        },
-        {
-            "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-comparator.git"
-        },
-        {
-            "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/taras.girnyk/vain-data.git"
-        },
-        {
-            "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-value.git"
         }
     ],
     "config": {

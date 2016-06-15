@@ -8,32 +8,33 @@
 
 namespace Vain\Expression\NonTerminal\Mode;
 
+use Vain\Expression\Exception\UnknownModeException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 class ModeExpression implements NonTerminalExpressionInterface
 {
-    private $expression;
+    private $data;
 
     private $mode;
 
     /**
      * ModeDescriptorDecorator constructor.
-     * @param ExpressionInterface $expression
+     * @param ExpressionInterface $data
      * @param ExpressionInterface $mode
      */
-    public function __construct(ExpressionInterface $expression, ExpressionInterface $mode)
+    public function __construct(ExpressionInterface $data, ExpressionInterface $mode)
     {
-        $this->expression = $expression;
+        $this->data = $data;
         $this->mode = $mode;
     }
 
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getData()
     {
-        return $this->expression;
+        return $this->data;
     }
 
     /**
@@ -49,7 +50,32 @@ class ModeExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        // TODO: Implement interpret() method.
+        $value = $this->data->interpret($context);
+        $mode = $this->mode->interpret($context);
+
+        switch ($mode) {
+            case 'int':
+                return (int)$value;
+                break;
+            case 'string':
+                return (string)$value;
+                break;
+            case 'float':
+            case 'double':
+                return (float)$value;
+                break;
+            case 'bool':
+            case 'boolean':
+                return (bool)$value;
+                break;
+            case 'time':
+            case 'datetime':
+            case 'date':
+            case 'object':
+                return $value;
+            default:
+                throw new UnknownModeException($this, $context, $mode);
+        }
     }
 
     /**
@@ -57,10 +83,10 @@ class ModeExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        $value = $this->expression->__toString();
+        $value = $this->data->__toString();
         switch ($this->getMode()) {
             case 'string':
-                return sprintf('"%s"', $value);
+                return sprintf("'%s'", $value);
                 break;
             case 'float':
             case 'double':
@@ -70,6 +96,8 @@ class ModeExpression implements NonTerminalExpressionInterface
             case 'boolean':
                 return ($value) ? 'true' : 'false';
                 break;
+            case 'array':
+                return implode(', ', $value);
             case 'time':
                 return $value->format(DATE_W3C);
                 break;

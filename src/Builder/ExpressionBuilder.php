@@ -10,6 +10,7 @@ namespace Vain\Expression\Builder;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
+use Vain\Expression\Terminal\TerminalExpression;
 
 class ExpressionBuilder
 {
@@ -194,13 +195,10 @@ class ExpressionBuilder
     {
         switch ($this->type) {
             case 'in_place':
-                $expression = $this->expressionFactory->inPlace($this->value);
-                break;
-            case 'context':
-                $expression = $this->expressionFactory->context();
+                $expression = $this->expressionFactory->terminal($this->value);
                 break;
             default:
-                $expression = $this->expressionFactory->module($this->expressionFactory->inPlace($this->module));
+                $expression = $this->expressionFactory->context();
         }
 
         foreach ($this->chain as $element) {
@@ -209,32 +207,32 @@ class ExpressionBuilder
                 case 'property':
                     $properties = explode('.', $value);
                     foreach ($properties as $property) {
-                        $expression = $this->expressionFactory->property($expression, $property);
+                        $expression = $this->expressionFactory->property($expression, new TerminalExpression($property));
                     }
                     break;
                 case 'method':
                     list ($name, $arguments) = $value;
                     $methods = explode('.', $name);
                     foreach ($methods as $method) {
-                        $expression = $this->expressionFactory->method($expression, $method, $arguments);
+                        $expression = $this->expressionFactory->method($expression, new TerminalExpression($method), new TerminalExpression($arguments));
                     }
                     break;
                 case 'function':
                     list ($name, $arguments) = $value;
-                    $expression = $this->expressionFactory->func($expression, $name, $arguments);
+                    $expression = $this->expressionFactory->func($expression, new TerminalExpression($name), new TerminalExpression($arguments));
                     break;
                 case 'filter':
                     $expression = $this->expressionFactory->filter($expression, $value);
                     break;
                 case 'helper':
                     list ($class, $method, $arguments) = $value;
-                    $expression =  $this->expressionFactory->helper($expression, $class, $method, $arguments);
+                    $expression =  $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method), new TerminalExpression($arguments));
                     break;
             }
         }
 
         if (null !== $this->mode) {
-            $expression = $this->expressionFactory->mode($expression, $this->mode);
+            $expression = $this->expressionFactory->mode($expression, new TerminalExpression($this->mode));
         }
 
         $this->type = $this->value = $this->module = $this->mode = null;

@@ -8,41 +8,43 @@
 
 namespace Vain\Expression\NonTerminal\Filter;
 
+use Vain\Expression\Boolean\BooleanExpressionInterface;
+use Vain\Expression\Exception\InaccessibleFilterException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 class FilterExpression implements NonTerminalExpressionInterface
 {
 
-    private $expression;
+    private $data;
 
-    private $filterExpression;
+    private $filter;
 
     /**
      * FilterDescriptorDecorator constructor.
-     * @param ExpressionInterface $expression
-     * @param ExpressionInterface $filterExpression
+     * @param ExpressionInterface $data
+     * @param BooleanExpressionInterface $filter
      */
-    public function __construct(ExpressionInterface $expression, ExpressionInterface $filterExpression)
+    public function __construct(ExpressionInterface $data, BooleanExpressionInterface $filter)
     {
-        $this->expression = $expression;
-        $this->filterExpression = $filterExpression;
+        $this->data = $data;
+        $this->filter = $filter;
     }
 
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getData()
     {
-        return $this->expression;
+        return $this->data;
     }
 
     /**
-     * @return ExpressionInterface
+     * @return BooleanExpressionInterface
      */
-    public function getFilterExpression()
+    public function getFilter()
     {
-        return $this->filterExpression;
+        return $this->filter;
     }
 
     /**
@@ -50,7 +52,22 @@ class FilterExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        // TODO: Implement interpret() method.
+        $data = $this->data->interpret($context);
+
+        if (false === is_array($data) && false === $data instanceof \Traversable) {
+            throw new InaccessibleFilterException($this, $context, $data);
+        }
+
+        $filteredData = [];
+        foreach ($data as $singleElement) {
+            if (false === $this->filter->interpret($singleElement)->getStatus()) {
+                continue;
+            }
+            $filteredData[] = $singleElement;
+        }
+
+        return $filteredData;
+
     }
 
     /**
@@ -58,6 +75,6 @@ class FilterExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        return sprintf('%s where %s', $this->expression->__toString(), $this->filterExpression->__toString());
+        return sprintf('%s where %s', $this->data, $this->filter);
     }
 }

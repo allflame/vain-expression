@@ -42,6 +42,6 @@ class TerminalExpression implements TerminalExpressionInterface
      */
     public function __toString()
     {
-        return (string)$this->value;
+        return $this->value;
     }
 }

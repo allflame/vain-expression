@@ -8,12 +8,13 @@
 
 namespace Vain\Expression\NonTerminal\Helper;
 
+use Vain\Expression\Exception\UnknownHelperException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 class HelperExpression implements NonTerminalExpressionInterface
 {
-    private $expression;
+    private $data;
 
     private $class;
 
@@ -23,17 +24,25 @@ class HelperExpression implements NonTerminalExpressionInterface
 
     /**
      * PropertyDescriptorDecorator constructor.
-     * @param ExpressionInterface $expression
-     * @param string $class
-     * @param string $method
-     * @param array $arguments
+     * @param ExpressionInterface $data
+     * @param ExpressionInterface $class
+     * @param ExpressionInterface $method
+     * @param ExpressionInterface $arguments
      */
-    public function __construct(ExpressionInterface $expression, $class, $method, array $arguments = [])
+    public function __construct(ExpressionInterface $data, ExpressionInterface $class, ExpressionInterface $method, ExpressionInterface $arguments = null)
     {
-        $this->expression = $expression;
+        $this->data = $data;
         $this->class = $class;
         $this->method = $method;
         $this->arguments = $arguments;
+    }
+
+    /**
+     * @return ExpressionInterface
+     */
+    public function getData()
+    {
+        return $this->data;
     }
 
     /**
@@ -65,7 +74,14 @@ class HelperExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        // TODO: Implement interpret() method.
+        $class = $this->class->interpret($context);
+        $method = $this->method->interpret($context);
+
+        if (false === method_exists($class, $method)) {
+            throw new UnknownHelperException($this, $context, $class, $method);
+        }
+
+        return call_user_func([$class, $method], $this->data->interpret($context), ...$this->arguments->interpret($context));
     }
 
     /**
@@ -73,10 +89,10 @@ class HelperExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        if (0 === count($this->arguments)) {
-            return sprintf('%s::%s(%s)', $this->class, $this->expression->__toString(), $this->method);
+        if (null === $this->arguments) {
+            return sprintf('%s::%s(%s)', $this->class, $this->data, $this->method);
         }
 
-        return sprintf('%s::%s(%s, %s)', $this->class, $this->expression->__toString(), $this->method, implode(', ', $this->arguments));
+        return sprintf('%s::%s(%s, %s)', $this->class, $this->data, $this->method, $this->arguments);
     }
 }

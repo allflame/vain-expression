@@ -2,13 +2,9 @@ services:
     expression.builder:
         class: Vain\Expression\Builder\ExpressionBuilder
         arguments: ['@expression.factory']
-    expression.parser.human:
-        class: Vain\Expression\Parser\Human\HumanParser
     expression.factory:
         class: Vain\Expression\Factory\ExpressionFactory
-    expression.result.factory:
+        arguments: ['@comparator.repository', '@expression.boolean.result.factory']
+    expression.boolean.result.factory:
         class: Vain\Expression\Result\Factory\ExpressionResultFactory
         arguments: ['@result.factory']
-    expression.interpreter:
-        class: Vain\Expression\Interpreter\Interpreter
-        arguments: ['@data.module.repository', '@comparator.repository', '@expression.result.factory']

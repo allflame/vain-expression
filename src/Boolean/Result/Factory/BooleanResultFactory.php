@@ -23,23 +23,12 @@ use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 class BooleanResultFactory implements BooleanResultFactoryInterface
 {
 
-    private $resultFactory;
-
-    /**
-     * ExpressionResultFactory constructor.
-     * @param ResultFactoryInterface $resultFactory
-     */
-    public function __construct(ResultFactoryInterface $resultFactory)
-    {
-        $this->resultFactory = $resultFactory;
-    }
-
     /**
      * @inheritDoc
      */
     public function false(FalseExpression $expression)
     {
-        return new BooleanResult($expression, $this->resultFactory->failed());
+        return new BooleanResult($expression, false, new FalseExpression($this));
     }
 
     /**
@@ -47,7 +36,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function true(TrueExpression $expression)
     {
-        return new BooleanResult($expression, $this->resultFactory->successful());
+        return new BooleanResult($expression, true, new TrueExpression($this));
     }
 
     /**
@@ -55,7 +44,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function id(IdentityExpression $expression, BooleanResultInterface $result)
     {
-        return new BooleanResult($expression, $result);
+        return new BooleanResult($expression, $result->getStatus(), $result);
     }
 
     /**
@@ -63,7 +52,8 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function not(NotExpression $expression, BooleanResultInterface $result)
     {
-        return new BooleanResult($expression, $result);
+        $result = $result->invert();
+        return new BooleanResult($expression, $result->getStatus(), $result);
     }
 
     /**
@@ -71,7 +61,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function comparison(ComparisonExpressionInterface $expression, ComparatorResultInterface $comparatorResult)
     {
-        return new BooleanResult($expression, $comparatorResult);
+        return new BooleanResult($expression, $comparatorResult->getStatus(), new IdentityExpression($comparatorResult, $this));
     }
 
     /**
