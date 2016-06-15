@@ -9,11 +9,12 @@
 namespace Vain\Expression\NonTerminal\Filter;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\AbstractUnaryExpression;
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
-class FilterExpression extends AbstractUnaryExpression
+class FilterExpression implements NonTerminalExpressionInterface
 {
+
+    private $expression;
 
     private $filterExpression;
 
@@ -22,10 +23,18 @@ class FilterExpression extends AbstractUnaryExpression
      * @param ExpressionInterface $expression
      * @param ExpressionInterface $filterExpression
      */
-    public function __construct(ExpressionInterface $expression = null, ExpressionInterface $filterExpression = null)
+    public function __construct(ExpressionInterface $expression, ExpressionInterface $filterExpression)
     {
+        $this->expression = $expression;
         $this->filterExpression = $filterExpression;
-        parent::__construct($expression);
+    }
+
+    /**
+     * @return ExpressionInterface
+     */
+    public function getExpression()
+    {
+        return $this->expression;
     }
 
     /**
@@ -39,27 +48,16 @@ class FilterExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function accept(VisitorInterface $visitor)
+    public function interpret(\ArrayAccess $context = null)
     {
-        return $visitor->filter($this);
+        // TODO: Implement interpret() method.
     }
 
     /**
      * @inheritDoc
      */
-    public function serialize()
+    public function __toString()
     {
-        return json_encode(['filterExpression' => serialize($this->filterExpression), 'parent' => parent::serialize()]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        $serializedData = json_decode($serialized);
-        $this->filterExpression = unserialize($serializedData->filterExpression);
-
-        return parent::unserialize($serializedData->parent);
+        return sprintf('%s where %s', $this->expression->__toString(), $this->filterExpression->__toString());
     }
 }

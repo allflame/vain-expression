@@ -9,56 +9,72 @@
 namespace Vain\Expression\NonTerminal\Mode;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\AbstractUnaryExpression;
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
-class ModeExpression extends AbstractUnaryExpression
+class ModeExpression implements NonTerminalExpressionInterface
 {
+    private $expression;
+
     private $mode;
 
     /**
      * ModeDescriptorDecorator constructor.
      * @param ExpressionInterface $expression
-     * @param string $mode
+     * @param ExpressionInterface $mode
      */
-    public function __construct(ExpressionInterface $expression = null, $mode = '')
+    public function __construct(ExpressionInterface $expression, ExpressionInterface $mode)
     {
+        $this->expression = $expression;
         $this->mode = $mode;
-        parent::__construct($expression);
     }
 
     /**
-     * @return string
+     * @return ExpressionInterface
+     */
+    public function getExpression()
+    {
+        return $this->expression;
+    }
+
+    /**
+     * @return ExpressionInterface
      */
     public function getMode()
     {
         return $this->mode;
     }
-    
+
     /**
      * @inheritDoc
      */
-    public function accept(VisitorInterface $visitor)
+    public function interpret(\ArrayAccess $context = null)
     {
-        return $visitor->mode($this);
+        // TODO: Implement interpret() method.
     }
 
     /**
      * @inheritDoc
      */
-    public function serialize()
+    public function __toString()
     {
-        return json_encode(['mode' => $this->mode, 'parent' => parent::serialize()]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        $serializedData = json_decode($serialized);
-        $this->mode = $serializedData->method;
-
-        return parent::unserialize($serializedData->parent);
+        $value = $this->expression->__toString();
+        switch ($this->getMode()) {
+            case 'string':
+                return sprintf('"%s"', $value);
+                break;
+            case 'float':
+            case 'double':
+                return (float)$value;
+                break;
+            case 'bool':
+            case 'boolean':
+                return ($value) ? 'true' : 'false';
+                break;
+            case 'time':
+                return $value->format(DATE_W3C);
+                break;
+            default:
+                return (string)$value;
+        }
     }
 }

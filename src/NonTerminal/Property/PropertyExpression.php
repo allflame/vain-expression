@@ -9,11 +9,12 @@
 namespace Vain\Expression\NonTerminal\Property;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\AbstractUnaryExpression;
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
-class PropertyExpression extends AbstractUnaryExpression
+class PropertyExpression implements NonTerminalExpressionInterface
 {
+
+    private $expression;
 
     private $property;
 
@@ -22,10 +23,18 @@ class PropertyExpression extends AbstractUnaryExpression
      * @param ExpressionInterface $expression
      * @param string $property
      */
-    public function __construct(ExpressionInterface $expression = null, $property = '')
+    public function __construct(ExpressionInterface $expression, $property)
     {
+        $this->expression = $expression;
         $this->property = $property;
-        parent::__construct($expression);
+    }
+
+    /**
+     * @return ExpressionInterface
+     */
+    public function getExpression()
+    {
+        return $this->expression;
     }
 
     /**
@@ -35,31 +44,20 @@ class PropertyExpression extends AbstractUnaryExpression
     {
         return $this->property;
     }
-    
+
     /**
      * @inheritDoc
      */
-    public function accept(VisitorInterface $visitor)
+    public function interpret(\ArrayAccess $context = null)
     {
-        return $visitor->property($this);
+        // TODO: Implement interpret() method.
     }
 
     /**
      * @inheritDoc
      */
-    public function serialize()
+    public function __toString()
     {
-        return json_encode(['property' => $this->property, 'parent' => parent::serialize()]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        $serializedData = json_decode($serialized);
-        $this->property = $serializedData->property;
-
-        return parent::unserialize($serializedData->parent);
+        return sprintf('%s.%s', $this->expression->__toString(), $this->property);
     }
 }

@@ -8,8 +8,8 @@
 
 namespace Vain\Expression\Rule;
 
-use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Core\Result\ResultInterface;
+use Vain\Expression\Boolean\BooleanExpressionInterface;
 
 class Rule implements RuleInterface
 {
@@ -19,13 +19,13 @@ class Rule implements RuleInterface
 
     /**
      * Rule constructor.
-     * @param $name
-     * @param ExpressionInterface $expression
+     * @param string $name
+     * @param BooleanExpressionInterface $booleanExpression
      */
-    public function __construct($name, ExpressionInterface $expression)
+    public function __construct($name, BooleanExpressionInterface $booleanExpression)
     {
         $this->name = $name;
-        $this->expression = $expression;
+        $this->expression = $booleanExpression;
     }
 
     /**
@@ -37,7 +37,7 @@ class Rule implements RuleInterface
     }
 
     /**
-     * @return ExpressionInterface
+     * @return BooleanExpressionInterface
      */
     public function getExpression()
     {
@@ -47,28 +47,17 @@ class Rule implements RuleInterface
     /**
      * @inheritDoc
      */
-    public function accept(VisitorInterface $visitor)
+    public function interpret(\ArrayAccess $context = null)
     {
-        return $visitor->rule($this);
+        // TODO: Implement interpret() method.
     }
 
     /**
      * @inheritDoc
      */
-    public function serialize()
+    public function __toString()
     {
-        return json_encode(['name' => $this->name, 'expression' => serialize($this->expression)]);
+        // TODO: Implement __toString() method.
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        $serializedData = json_decode($serialized);
-        $this->name = $serializedData->name;
-        $this->expression = unserialize($serializedData->expression);
-
-        return $this;
-    }
 }

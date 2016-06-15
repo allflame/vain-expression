@@ -8,17 +8,56 @@
 
 namespace Vain\Expression\NonTerminal\Module;
 
+use Vain\Data\Module\Repository\ModuleRepositoryInterface;
+use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
-use Vain\Expression\Unary\AbstractUnaryExpression;
-use Vain\Expression\Visitor\VisitorInterface;
 
-class ModuleExpression extends AbstractUnaryExpression implements NonTerminalExpressionInterface
+class ModuleExpression implements NonTerminalExpressionInterface
 {
+    private $expression;
+
+    private $moduleRepository;
+
+    /**
+     * ModuleExpression constructor.
+     * @param ExpressionInterface $expression
+     * @param ModuleRepositoryInterface $moduleRepository
+     */
+    public function __construct(ExpressionInterface $expression, ModuleRepositoryInterface $moduleRepository)
+    {
+        $this->expression = $expression;
+        $this->moduleRepository = $moduleRepository;
+    }
+
+    /**
+     * @return ExpressionInterface
+     */
+    public function getExpression()
+    {
+        return $this->expression;
+    }
+
+    /**
+     * @return ModuleRepositoryInterface
+     */
+    public function getModuleRepository()
+    {
+        return $this->moduleRepository;
+    }
+
     /**
      * @inheritDoc
      */
-    public function accept(VisitorInterface $visitor)
+    public function interpret(\ArrayAccess $context = null)
     {
-        return $visitor->module($this);
+        // TODO: Implement interpret() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        return $this->expression->__toString();
     }
 }
