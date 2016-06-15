@@ -9,17 +9,21 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\Method\MethodExpression;
-use Vain\Expression\Interpreter\InterpreterInterface;
 
-class UnknownMethodException extends InterpreterException
+/**
+ * @method MethodExpression getExpression
+ */
+class UnknownMethodException extends InterpretationException
 {
     /**
      * UnknownMethodException constructor.
-     * @param InterpreterInterface $interpreter
      * @param MethodExpression $expression
+     * @param \ArrayAccess $context
+     * @param object $data
+     * @param string $method
      */
-    public function __construct(InterpreterInterface $interpreter, MethodExpression $expression)
+    public function __construct(MethodExpression $expression, \ArrayAccess $context, $data, $method)
     {
-        parent::__construct($interpreter, $expression, sprintf('Method %s does not exists in data', $expression->getMethod()), 0, null);
+        parent::__construct($expression, $context, sprintf('Method %s does not exists in data', get_class($data), $method), 0, null);
     }
 }

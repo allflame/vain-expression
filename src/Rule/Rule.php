@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Rule;
 
-use Vain\Core\Result\ResultInterface;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 
 class Rule implements RuleInterface

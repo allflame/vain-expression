@@ -26,6 +26,6 @@ class IdentityExpression extends AbstractUnaryExpression implements BooleanExpre
      */
     public function __toString()
     {
-        return $this->getExpression()->__toString();
+        return $this->getExpression();
     }
 }

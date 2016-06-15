@@ -8,12 +8,13 @@
 
 namespace Vain\Expression\NonTerminal\FunctionX;
 
+use Vain\Expression\Exception\UnknownFunctionException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 class FunctionExpression implements NonTerminalExpressionInterface
 {
-    private $expression;
+    private $data;
 
     private $functionName;
 
@@ -21,13 +22,13 @@ class FunctionExpression implements NonTerminalExpressionInterface
 
     /**
      * FunctionDescriptorDecorator constructor.
-     * @param ExpressionInterface $expression
-     * @param string $functionName
-     * @param array $arguments
+     * @param ExpressionInterface $data
+     * @param ExpressionInterface $functionName
+     * @param ExpressionInterface $arguments
      */
-    public function __construct(ExpressionInterface $expression, $functionName, array $arguments = [])
+    public function __construct(ExpressionInterface $data, ExpressionInterface $functionName, ExpressionInterface $arguments = null)
     {
-        $this->expression = $expression;
+        $this->data = $data;
         $this->functionName = $functionName;
         $this->arguments = $arguments;
     }
@@ -35,13 +36,13 @@ class FunctionExpression implements NonTerminalExpressionInterface
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getData()
     {
-        return $this->expression;
+        return $this->data;
     }
 
     /**
-     * @return string
+     * @return ExpressionInterface
      */
     public function getFunctionName()
     {
@@ -49,7 +50,7 @@ class FunctionExpression implements NonTerminalExpressionInterface
     }
 
     /**
-     * @return array
+     * @return ExpressionInterface
      */
     public function getArguments()
     {
@@ -61,7 +62,14 @@ class FunctionExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        // TODO: Implement interpret() method.
+        $function = $this->functionName->interpret($context);
+
+        if (false === function_exists($function)) {
+            throw new UnknownFunctionException($this, $context, $function);
+        }
+
+        return call_user_func($function, $this->data->interpret($context), ...$this->arguments->interpret($context));
+
     }
 
     /**
@@ -69,10 +77,10 @@ class FunctionExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        if (0 === count($this->arguments)) {
-            return sprintf('%s(%s)', $this->functionName, $this->expression->__toString());
+        if (null === $this->arguments) {
+            return sprintf('%s(%s)', $this->functionName, $this->data);
         }
 
-        return sprintf('%s(%s, %s)', $this->functionName, $this->expression->__toString(), implode(', ', $this->arguments));
+        return sprintf('%s(%s, %s)', $this->functionName, $this->data, $this->arguments);
     }
 }

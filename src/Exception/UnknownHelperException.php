@@ -9,17 +9,22 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\Helper\HelperExpression;
-use Vain\Expression\Interpreter\InterpreterInterface;
 
-class UnknownHelperException extends InterpreterException
+/**
+ * @method HelperExpression getExpression
+ */
+class UnknownHelperException extends InterpretationException
 {
+
     /**
      * UnknownHelperException constructor.
-     * @param InterpreterInterface $interpreter
-     * @param HelperExpression $expression
+     * @param HelperExpression $helperExpression
+     * @param \ArrayAccess $context
+     * @param string $class
+     * @param string $method
      */
-    public function __construct(InterpreterInterface $interpreter, HelperExpression $expression)
+    public function __construct(HelperExpression $helperExpression, \ArrayAccess $context, $class, $method)
     {
-        parent::__construct($interpreter, $expression, sprintf('Helper method %s::%s is not registered', $expression->getClass(), $expression->getMethod()), 0, null);
+        parent::__construct($helperExpression, $context, sprintf('Helper method %s::%s is not registered', $class, $method), 0, null);
     }
 }

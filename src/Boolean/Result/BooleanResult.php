@@ -8,24 +8,29 @@
 
 namespace Vain\Expression\Boolean\Result;
 
-use Vain\Core\Result\ResultInterface;
+use Vain\Core\Result\AbstractResult;
+use Vain\Expression\Boolean\BooleanExpressionInterface;
 
-class BooleanResult implements BooleanResultInterface
+class BooleanResult extends AbstractResult implements BooleanResultInterface
 {
-    /**
-     * @inheritDoc
-     */
-    public function serialize()
-    {
-        // TODO: Implement serialize() method.
-    }
+    
+    private $expression;
+    
+    private $status;
+    
+    private $result;
 
     /**
-     * @inheritDoc
+     * BooleanResult constructor.
+     * @param BooleanExpressionInterface $expression
+     * @param $status
+     * @param BooleanExpressionInterface $result
      */
-    public function unserialize($serialized)
+    public function __construct(BooleanExpressionInterface $expression, $status, BooleanExpressionInterface $result)
     {
-        // TODO: Implement unserialize() method.
+        $this->expression = $expression;
+        $this->status = $status;
+        $this->result = $result;
     }
 
     /**
@@ -33,39 +38,15 @@ class BooleanResult implements BooleanResultInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        // TODO: Implement interpret() method.
+        return $this->result->interpret($context);
     }
 
     /**
-     * @inheritDoc
-     */
-    public function isSuccessful()
-    {
-        // TODO: Implement isSuccessful() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getStatus()
-    {
-        // TODO: Implement getStatus() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function invert()
-    {
-        // TODO: Implement invert() method.
-    }
-
-    /**
-     * @inheritDoc
+     * @return string
      */
     public function __toString()
     {
-        // TODO: Implement __toString() method.
+        return $this->result;
     }
 
 }

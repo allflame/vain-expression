@@ -8,33 +8,35 @@
 
 namespace Vain\Expression\NonTerminal\Property;
 
+use Vain\Expression\Exception\InaccessiblePropertyException;
+use Vain\Expression\Exception\UnknownPropertyException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 class PropertyExpression implements NonTerminalExpressionInterface
 {
 
-    private $expression;
+    private $data;
 
     private $property;
 
     /**
      * PropertyDescriptorDecorator constructor.
-     * @param ExpressionInterface $expression
-     * @param string $property
+     * @param ExpressionInterface $data
+     * @param ExpressionInterface $property
      */
-    public function __construct(ExpressionInterface $expression, $property)
+    public function __construct(ExpressionInterface $data, ExpressionInterface $property)
     {
-        $this->expression = $expression;
+        $this->data = $data;
         $this->property = $property;
     }
 
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getData()
     {
-        return $this->expression;
+        return $this->data;
     }
 
     /**
@@ -50,7 +52,33 @@ class PropertyExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        // TODO: Implement interpret() method.
+        $data = $this->data->interpret($context);
+        $property = $this->property->interpret($context);
+
+        switch(true) {
+            case is_array($data):
+                if (false === array_key_exists($property, $data)) {
+                    throw new UnknownPropertyException($this, $context, $data, $property);
+                }
+                return $data[$property];
+                break;
+            case $data instanceof \ArrayAccess:
+                if (false === $data->offsetExists($property)) {
+                    throw new UnknownPropertyException($this, $context, $data, $property);
+                }
+                return $data->offsetGet($property);
+                break;
+            case is_object($data):
+                if (false === property_exists($data, $property)) {
+                    throw new UnknownPropertyException($this, $context, $data, $property);
+                }
+                return $data->{$property};
+                break;
+            default:
+                throw new InaccessiblePropertyException($this, $context, $data);
+                break;
+        }
+
     }
 
     /**
@@ -58,6 +86,6 @@ class PropertyExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        return sprintf('%s.%s', $this->expression->__toString(), $this->property);
+        return sprintf('%s.%s', $this->data, $this->property);
     }
 }

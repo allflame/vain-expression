@@ -9,36 +9,27 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
-use Vain\Expression\Interpreter\InterpreterInterface;
 use Vain\Expression\ExpressionInterface;
 
-class InterpreterException extends CoreException
+class InterpretationException extends CoreException
 {
-    private $interpreter;
-
     private $expression;
+
+    private $context;
 
     /**
      * ExpressionEvaluatorException constructor.
-     * @param InterpreterInterface $interpreter
      * @param ExpressionInterface $expression
+     * @param \ArrayAccess $context
      * @param string $message
      * @param int $code
      * @param \Exception $previous
      */
-    public function __construct(InterpreterInterface $interpreter, ExpressionInterface $expression, $message, $code, \Exception $previous = null)
+    public function __construct(ExpressionInterface $expression, \ArrayAccess $context = null, $message, $code, \Exception $previous = null)
     {
-        $this->interpreter = $interpreter;
         $this->expression = $expression;
+        $this->context = $context;
         parent::__construct($message, $code, $previous);
-    }
-
-    /**
-     * @return InterpreterInterface
-     */
-    public function getInterpreter()
-    {
-        return $this->interpreter;
     }
 
     /**
@@ -47,5 +38,13 @@ class InterpreterException extends CoreException
     public function getExpression()
     {
         return $this->expression;
+    }
+
+    /**
+     * @return \ArrayAccess
+     */
+    public function getContext()
+    {
+        return $this->context;
     }
 }

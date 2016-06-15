@@ -8,9 +8,7 @@
 
 namespace Vain\Expression\Decorator;
 
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Visitor\VisitorInterface;
 
 abstract class AbstractExpressionDecorator implements ExpressionInterface
 {
@@ -31,21 +29,5 @@ abstract class AbstractExpressionDecorator implements ExpressionInterface
     public function getExpression()
     {
         return $this->expression;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function accept(VisitorInterface $visitor)
-    {
-        return $this->expression->accept($visitor);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize(SerializerInterface $serializer, array $serializedData)
-    {
-        return $this->expression->unserialize($serializer, $serializedData);
     }
 }

@@ -9,17 +9,21 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
-use Vain\Expression\Interpreter\InterpreterInterface;
 
-class UnknownFunctionException extends InterpreterException
+/**
+ * @method FunctionExpression getExpression
+ */
+class UnknownFunctionException extends InterpretationException
 {
+
     /**
      * UnknownFunctionException constructor.
-     * @param InterpreterInterface $interpreter
      * @param FunctionExpression $expression
+     * @param \ArrayAccess $context
+     * @param int $functionName
      */
-    public function __construct(InterpreterInterface $interpreter, FunctionExpression $expression)
+    public function __construct(FunctionExpression $expression, \ArrayAccess $context, $functionName)
     {
-        parent::__construct($interpreter, $expression, sprintf('Function %s is not registered', $expression->getFunctionName()), 0, null);
+        parent::__construct($expression, $context, sprintf('Function %s is not registered', $functionName), 0, null);
     }
 }

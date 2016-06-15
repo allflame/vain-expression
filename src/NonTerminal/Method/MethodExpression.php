@@ -8,12 +8,13 @@
 
 namespace Vain\Expression\NonTerminal\Method;
 
+use Vain\Expression\Exception\UnknownMethodException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 class MethodExpression implements NonTerminalExpressionInterface
 {
-    private $expression;
+    private $data;
 
     private $method;
 
@@ -21,13 +22,13 @@ class MethodExpression implements NonTerminalExpressionInterface
 
     /**
      * PropertyDescriptorDecorator constructor.
-     * @param ExpressionInterface $expression
-     * @param string $method
-     * @param array $arguments
+     * @param ExpressionInterface $data
+     * @param ExpressionInterface $method
+     * @param ExpressionInterface $arguments
      */
-    public function __construct(ExpressionInterface $expression, $method, array $arguments = [])
+    public function __construct(ExpressionInterface $data, ExpressionInterface $method, ExpressionInterface $arguments = null)
     {
-        $this->expression = $expression;
+        $this->data = $data;
         $this->method = $method;
         $this->arguments = $arguments;
     }
@@ -35,13 +36,13 @@ class MethodExpression implements NonTerminalExpressionInterface
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getData()
     {
-        return $this->expression;
+        return $this->data;
     }
 
     /**
-     * @return string
+     * @return ExpressionInterface
      */
     public function getMethod()
     {
@@ -49,7 +50,7 @@ class MethodExpression implements NonTerminalExpressionInterface
     }
 
     /**
-     * @return array
+     * @return ExpressionInterface
      */
     public function getArguments()
     {
@@ -61,13 +62,15 @@ class MethodExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        $data = $this->expression->interpret($context);
+        $data = $this->data->interpret($context);
+        $method = $this->method->interpret($context);
 
-        if (false === method_exists($data, $this->method)) {
-            throw new UnknownMethodException($this, $data, $this->method);
+        if (false === method_exists($data, $method)) {
+            throw new UnknownMethodException($this, $context, $data, $method);
         }
 
-        return call_user_func([$data, $this->method], ...$this->arguments);
+        return call_user_func([$data, $method], ...$this->arguments->interpret($context));
+
     }
 
     /**
@@ -75,11 +78,11 @@ class MethodExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        if (0 === count($this->arguments)) {
-            return sprintf('%s->%s()', $this->expression->__toString(), $this->method);
+        if (null === $this->arguments) {
+            return sprintf('%s->%s()', $this->data, $this->method);
         }
 
-        return sprintf('%s->%s(%s, %s)', $this->expression->__toString(), $this->method, implode(', ', $this->arguments));
+        return sprintf('%s->%s(%s, %s)', $this->data, $this->method, $this->arguments);
     }
 
 

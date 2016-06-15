@@ -9,29 +9,17 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Interpreter\InterpreterInterface;
 
-class InaccessibleFilterException extends InterpreterException
+class InaccessibleFilterException extends InterpretationException
 {
-    private $value;
-
     /**
      * InaccessibleFilterException constructor.
-     * @param InterpreterInterface $interpreter
      * @param ExpressionInterface $expression
-     * @param string $value
+     * @param \ArrayAccess $context
+     * @param mixed $data
      */
-    public function __construct(InterpreterInterface $interpreter, ExpressionInterface $expression, $value)
+    public function __construct(ExpressionInterface $expression, \ArrayAccess $context, $data)
     {
-        $this->value = $value;
-        parent::__construct($interpreter, $expression, sprintf('Cannot apply filter for non-traversable object'), 0, null);
-    }
-
-    /**
-     * @return object
-     */
-    public function getValue()
-    {
-        return $this->value;
+        parent::__construct($expression, $context, sprintf('Cannot apply filter for non-traversable object of type %s', gettype($data)), 0, null);
     }
 }
