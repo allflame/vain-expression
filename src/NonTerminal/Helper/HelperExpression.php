@@ -89,7 +89,7 @@ class HelperExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        if (null === $this->arguments) {
+        if ('' === $this->arguments->__toString()) {
             return sprintf('%s::%s(%s)', $this->class, $this->data, $this->method);
         }
 
