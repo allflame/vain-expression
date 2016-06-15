@@ -8,6 +8,7 @@
 
 namespace Vain\Expression\Builder;
 
+use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\Terminal\TerminalExpression;
@@ -162,6 +163,48 @@ class ExpressionBuilder
         $this->chain[] = ['filter', $expression];
 
         return $this;
+    }
+
+    /**
+     * @param BooleanExpressionInterface $expression
+     *
+     * @return BooleanExpressionInterface
+     */
+    public function not(BooleanExpressionInterface $expression)
+    {
+        return $this->expressionFactory->not($expression);
+    }
+
+    /**
+     * @param BooleanExpressionInterface $expression
+     *
+     * @return BooleanExpressionInterface
+     */
+    public function id(BooleanExpressionInterface $expression)
+    {
+        return $this->expressionFactory->id($expression);
+    }
+
+    /**
+     * @param BooleanExpressionInterface $first
+     * @param BooleanExpressionInterface $second
+     *
+     * @return BooleanExpressionInterface
+     */
+    public function orX(BooleanExpressionInterface $first, BooleanExpressionInterface $second)
+    {
+        return $this->expressionFactory->orX($first, $second);
+    }
+
+    /**
+     * @param BooleanExpressionInterface $first
+     * @param BooleanExpressionInterface $second
+     *
+     * @return BooleanExpressionInterface
+     */
+    public function andX(BooleanExpressionInterface $first, BooleanExpressionInterface $second)
+    {
+        return $this->expressionFactory->andX($first, $second);
     }
 
     /**
