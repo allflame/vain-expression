@@ -56,6 +56,6 @@ class Rule implements RuleInterface
      */
     public function __toString()
     {
-        return $this->expression;
+        return $this->expression->__toString();
     }
 }
