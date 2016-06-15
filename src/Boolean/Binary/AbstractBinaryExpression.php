@@ -8,15 +8,16 @@
 
 namespace Vain\Expression\Boolean\Binary;
 
-use Vain\Expression\Boolean\AbstractBooleanExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 
-abstract class AbstractBinaryExpression extends AbstractBooleanExpression implements BinaryExpressionInterface
+abstract class AbstractBinaryExpression implements BinaryExpressionInterface
 {
     private $firstExpression;
     
     private $secondExpression;
+
+    private $resultFactory;
 
     /**
      * AbstractBinaryExpression constructor.
@@ -28,7 +29,7 @@ abstract class AbstractBinaryExpression extends AbstractBooleanExpression implem
     {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
-        parent::__construct($resultFactory);
+        $this->resultFactory = $resultFactory;
     }
 
     /**
@@ -48,22 +49,10 @@ abstract class AbstractBinaryExpression extends AbstractBooleanExpression implem
     }
 
     /**
-     * @inheritDoc
+     * @return BooleanResultFactoryInterface
      */
-    public function serialize()
+    public function getResultFactory()
     {
-        return json_encode(['firstExpression' => serialize($this->firstExpression), 'secondExpression' => serialize($this->secondExpression)]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serializedString)
-    {
-        $serializedData = json_decode($serializedString);
-        $this->firstExpression = unserialize($serializedData->firstExpression);
-        $this->secondExpression = unserialize($serializedData->secondExpression);
-
-        return $this;
+        return $this->resultFactory;
     }
 }
