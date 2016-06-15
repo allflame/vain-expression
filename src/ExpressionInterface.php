@@ -8,7 +8,15 @@
 
 namespace Vain\Expression;
 
-interface ExpressionInterface
-{
+use Vain\Core\Result\ResultInterface;
+use Vain\Core\String\StringInterface;
 
+interface ExpressionInterface extends StringInterface
+{
+    /**
+     * @param \ArrayAccess|null $context
+     *
+     * @return ResultInterface
+     */
+    public function interpret(\ArrayAccess $context = null);
 }

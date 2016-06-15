@@ -2,21 +2,16 @@
 /**
  * Created by PhpStorm.
  * User: allflame
- * Date: 6/10/16
- * Time: 9:41 AM
+ * Date: 3/31/16
+ * Time: 1:00 PM
  */
 
-namespace Vain\Expression\Rule;
+namespace Vain\Expression\Boolean\Unary;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 
-interface RuleInterface extends BooleanExpressionInterface
+interface UnaryExpressionInterface extends BooleanExpressionInterface
 {
-    /**
-     * @return string
-     */
-    public function getName();
-
     /**
      * @return BooleanExpressionInterface
      */

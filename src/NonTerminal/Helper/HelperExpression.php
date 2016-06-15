@@ -9,11 +9,12 @@
 namespace Vain\Expression\NonTerminal\Helper;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Unary\AbstractUnaryExpression;
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
-class HelperExpression extends AbstractUnaryExpression
+class HelperExpression implements NonTerminalExpressionInterface
 {
+    private $expression;
+
     private $class;
 
     private $method;
@@ -27,12 +28,12 @@ class HelperExpression extends AbstractUnaryExpression
      * @param string $method
      * @param array $arguments
      */
-    public function __construct(ExpressionInterface $expression = null, $class = '', $method = '', array $arguments = [])
+    public function __construct(ExpressionInterface $expression, $class, $method, array $arguments = [])
     {
+        $this->expression = $expression;
         $this->class = $class;
         $this->method = $method;
         $this->arguments = $arguments;
-        parent::__construct($expression);
     }
 
     /**
@@ -62,36 +63,20 @@ class HelperExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function accept(VisitorInterface $visitor)
+    public function interpret(\ArrayAccess $context = null)
     {
-        return $visitor->helper($this);
+        // TODO: Implement interpret() method.
     }
 
     /**
      * @inheritDoc
      */
-    public function serialize()
+    public function __toString()
     {
-        $serializedArguments = [];
-        foreach ($this->arguments as $argument) {
-            $serializedArguments[] = serialize($argument);
+        if (0 === count($this->arguments)) {
+            return sprintf('%s::%s(%s)', $this->class, $this->expression->__toString(), $this->method);
         }
 
-        return json_encode(['class' => $this->class, 'method' => $this->method, 'arguments' => $serializedArguments, 'parent' => parent::serialize()]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        $serializedData = json_decode($serialized);
-        $this->class= $serializedData->class;
-        $this->method = $serializedData->method;
-        foreach ($serializedData->serializedArguments as $serializedArgument) {
-            $this->arguments[] = unserialize($serializedArgument);
-        }
-
-        return parent::unserialize($serializedData->parent);
+        return sprintf('%s::%s(%s, %s)', $this->class, $this->expression->__toString(), $this->method, implode(', ', $this->arguments));
     }
 }
