@@ -48,7 +48,7 @@ class Rule implements RuleInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        // TODO: Implement interpret() method.
+        return $this->expression->interpret($context);
     }
 
     /**
@@ -56,7 +56,6 @@ class Rule implements RuleInterface
      */
     public function __toString()
     {
-        // TODO: Implement __toString() method.
+        return $this->expression;
     }
-
 }
