@@ -11,6 +11,7 @@ namespace Vain\Expression\Builder;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
+use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\Terminal\TerminalExpression;
 
 class ExpressionBuilder
@@ -257,19 +258,31 @@ class ExpressionBuilder
                     list ($name, $arguments) = $value;
                     $methods = explode('.', $name);
                     foreach ($methods as $method) {
-                        $expression = $this->expressionFactory->method($expression, new TerminalExpression($method), new TerminalExpression($arguments));
+                        if ([] === $arguments) {
+                            $expression = $this->expressionFactory->method($expression, new TerminalExpression($method));
+                        } else {
+                            $expression = $this->expressionFactory->method($expression, new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
+                        }
                     }
                     break;
                 case 'function':
                     list ($name, $arguments) = $value;
-                    $expression = $this->expressionFactory->func($expression, new TerminalExpression($name), new TerminalExpression($arguments));
+                    if ([] === $arguments) {
+                        $expression = $this->expressionFactory->func($expression, new TerminalExpression($name));
+                    } else {
+                        $expression = $this->expressionFactory->func($expression, new TerminalExpression($name), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
+                    }
                     break;
                 case 'filter':
                     $expression = $this->expressionFactory->filter($expression, $value);
                     break;
                 case 'helper':
                     list ($class, $method, $arguments) = $value;
-                    $expression =  $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method), new TerminalExpression($arguments));
+                    if ([] === $arguments) {
+                        $expression = $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method));
+                    } else {
+                        $expression = $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
+                    }
                     break;
             }
         }
