@@ -258,31 +258,19 @@ class ExpressionBuilder
                     list ($name, $arguments) = $value;
                     $methods = explode('.', $name);
                     foreach ($methods as $method) {
-                        if ([] === $arguments) {
-                            $expression = $this->expressionFactory->method($expression, new TerminalExpression($method));
-                        } else {
-                            $expression = $this->expressionFactory->method($expression, new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
-                        }
+                        $expression = $this->expressionFactory->method($expression, new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
                     }
                     break;
                 case 'function':
                     list ($name, $arguments) = $value;
-                    if ([] === $arguments) {
-                        $expression = $this->expressionFactory->func($expression, new TerminalExpression($name));
-                    } else {
-                        $expression = $this->expressionFactory->func($expression, new TerminalExpression($name), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
-                    }
+                    $expression = $this->expressionFactory->func($expression, new TerminalExpression($name), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
                     break;
                 case 'filter':
                     $expression = $this->expressionFactory->filter($expression, $value);
                     break;
                 case 'helper':
                     list ($class, $method, $arguments) = $value;
-                    if ([] === $arguments) {
-                        $expression = $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method));
-                    } else {
-                        $expression = $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
-                    }
+                    $expression = $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
                     break;
             }
         }
