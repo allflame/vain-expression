@@ -26,7 +26,7 @@ class MethodExpression implements NonTerminalExpressionInterface
      * @param ExpressionInterface $method
      * @param ExpressionInterface $arguments
      */
-    public function __construct(ExpressionInterface $data, ExpressionInterface $method, ExpressionInterface $arguments = null)
+    public function __construct(ExpressionInterface $data, ExpressionInterface $method, ExpressionInterface $arguments)
     {
         $this->data = $data;
         $this->method = $method;
@@ -78,7 +78,7 @@ class MethodExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        if (null === $this->arguments) {
+        if ('' === $this->arguments->__toString()) {
             return sprintf('%s->%s()', $this->data, $this->method);
         }
 
