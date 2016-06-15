@@ -6,5 +6,4 @@ services:
         class: Vain\Expression\Factory\ExpressionFactory
         arguments: ['@expression.boolean.result.factory']
     expression.boolean.result.factory:
-        class: Vain\Expression\Result\Factory\ExpressionResultFactory
-        arguments: ['@result.factory']
+        class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
