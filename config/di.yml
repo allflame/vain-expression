@@ -4,7 +4,7 @@ services:
         arguments: ['@expression.factory']
     expression.factory:
         class: Vain\Expression\Factory\ExpressionFactory
-        arguments: ['@comparator.repository', '@expression.boolean.result.factory']
+        arguments: ['@expression.boolean.result.factory']
     expression.boolean.result.factory:
         class: Vain\Expression\Result\Factory\ExpressionResultFactory
         arguments: ['@result.factory']
