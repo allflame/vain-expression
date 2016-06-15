@@ -13,9 +13,9 @@ use Vain\Expression\Boolean\BooleanExpressionInterface;
 
 class BooleanResult extends AbstractResult implements BooleanResultInterface
 {
-    
+
     private $expression;
-    
+
     private $result;
 
     /**
@@ -44,7 +44,6 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
      */
     public function __toString()
     {
-        return $this->result;
+        return $this->result->__toString();
     }
-
 }
