@@ -8,17 +8,15 @@
 
 namespace Vain\Expression\Boolean\Result\Factory;
 
-use Vain\Comparator\Result\ComparatorResultInterface;
-use Vain\Core\Result\Factory\ResultFactoryInterface;
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
+use Vain\Expression\Boolean\Binary\BinaryExpressionInterface;
 use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\Result\BooleanResult;
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
-use Vain\Expression\Boolean\Unary\Identity\IdentityExpression;
-use Vain\Expression\Boolean\Unary\Not\NotExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\ComparisonExpressionInterface;
+use Vain\Expression\Boolean\Unary\UnaryExpressionInterface;
 use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
 use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
+use Vain\Expression\Boolean\ZeroAry\ZeroAryExpressionInterface;
 
 class BooleanResultFactory implements BooleanResultFactoryInterface
 {
@@ -26,7 +24,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function false(FalseExpression $expression)
+    public function false(ZeroAryExpressionInterface $expression)
     {
         return new BooleanResult($expression, false, new FalseExpression($this));
     }
@@ -34,7 +32,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function true(TrueExpression $expression)
+    public function true(ZeroAryExpressionInterface $expression)
     {
         return new BooleanResult($expression, true, new TrueExpression($this));
     }
@@ -42,7 +40,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function id(IdentityExpression $expression, BooleanResultInterface $result)
+    public function id(UnaryExpressionInterface $expression, BooleanResultInterface $result)
     {
         return new BooleanResult($expression, $result->getStatus(), $result);
     }
@@ -50,7 +48,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function not(NotExpression $expression, BooleanResultInterface $result)
+    public function not(UnaryExpressionInterface $expression, BooleanResultInterface $result)
     {
         $result = $result->invert();
         return new BooleanResult($expression, $result->getStatus(), $result);
@@ -59,15 +57,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function comparison(ComparisonExpressionInterface $expression, ComparatorResultInterface $comparatorResult)
-    {
-        return new BooleanResult($expression, $comparatorResult->getStatus(), new IdentityExpression($comparatorResult, $this));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function andX(AndExpression $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
+    public function andX(BinaryExpressionInterface $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
     {
         return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), new AndExpression($firstResult, $secondResult, $this));
     }
@@ -75,7 +65,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function orX(OrExpression $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
+    public function orX(BinaryExpressionInterface $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
     {
         return new BooleanResult($expression, $firstResult->getStatus() || $secondResult->getStatus(), new OrExpression($firstResult, $secondResult, $this));
     }
