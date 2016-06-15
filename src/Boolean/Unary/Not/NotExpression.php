@@ -26,6 +26,6 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
      */
     public function __toString()
     {
-        return sprintf('!%s', $this->getExpression()->__toString());
+        return sprintf('!%s', $this->getExpression());
     }
 }
