@@ -13,14 +13,6 @@ use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Boolean\Unary\Identity\IdentityExpression;
 use Vain\Expression\Boolean\Unary\Not\NotExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Equal\EqualExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Greater\GreaterExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\GreaterOrEqual\GreaterOrEqualExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\In\InExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Less\LessExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\LessOrEqual\LessOrEqualExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Like\LikeExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\NotEqual\NotEqualExpression;
 use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
 use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 use Vain\Expression\ExpressionInterface;
@@ -35,77 +27,77 @@ use Vain\Expression\Terminal\TerminalExpression;
 
 interface ExpressionFactoryInterface
 {
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return EqualExpression
-     */
-    public function eq(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return NotEqualExpression
-     */
-    public function neq(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return GreaterExpression
-     */
-    public function gt(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return GreaterOrEqualExpression
-     */
-    public function gte(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return LessExpression
-     */
-    public function lt(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return LessOrEqualExpression
-     */
-    public function lte(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return InExpression
-     */
-    public function in(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
-    /**
-     * @param ExpressionInterface $what
-     * @param ExpressionInterface $against
-     * @param string $mode
-     *
-     * @return LikeExpression
-     */
-    public function like(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return EqualExpression
+//     */
+//    public function eq(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return NotEqualExpression
+//     */
+//    public function neq(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return GreaterExpression
+//     */
+//    public function gt(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return GreaterOrEqualExpression
+//     */
+//    public function gte(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return LessExpression
+//     */
+//    public function lt(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return LessOrEqualExpression
+//     */
+//    public function lte(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return InExpression
+//     */
+//    public function in(ExpressionInterface $what, ExpressionInterface $against, $mode);
+//
+//    /**
+//     * @param ExpressionInterface $what
+//     * @param ExpressionInterface $against
+//     * @param string $mode
+//     *
+//     * @return LikeExpression
+//     */
+//    public function like(ExpressionInterface $what, ExpressionInterface $against, $mode);
 
     /**
      * @param BooleanExpressionInterface $expression

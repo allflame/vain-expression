@@ -16,8 +16,6 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
     
     private $expression;
     
-    private $status;
-    
     private $result;
 
     /**
@@ -29,8 +27,8 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
     public function __construct(BooleanExpressionInterface $expression, $status, BooleanExpressionInterface $result)
     {
         $this->expression = $expression;
-        $this->status = $status;
         $this->result = $result;
+        parent::__construct($status);
     }
 
     /**
