@@ -9,21 +9,12 @@
 namespace Vain\Expression\Factory;
 
 
-use Vain\Comparator\Repository\ComparatorRepositoryInterface;
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
 use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 use Vain\Expression\Boolean\Unary\Identity\IdentityExpression;
 use Vain\Expression\Boolean\Unary\Not\NotExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Equal\EqualExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Greater\GreaterExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\GreaterOrEqual\GreaterOrEqualExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\In\InExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Less\LessExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\LessOrEqual\LessOrEqualExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\Like\LikeExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\NotEqual\NotEqualExpression;
 use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
 use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 use Vain\Expression\ExpressionInterface;
@@ -41,82 +32,78 @@ class ExpressionFactory implements ExpressionFactoryInterface
     
     private $resultFactory;
 
-    private $comparatorRepository;
-
     /**
      * ExpressionFactory constructor.
      * @param BooleanResultFactoryInterface $resultFactory
-     * @param ComparatorRepositoryInterface $comparatorRepository
      */
-    public function __construct(BooleanResultFactoryInterface $resultFactory, ComparatorRepositoryInterface $comparatorRepository)
+    public function __construct(BooleanResultFactoryInterface $resultFactory)
     {
         $this->resultFactory = $resultFactory;
-        $this->comparatorRepository = $comparatorRepository;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function eq(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new EqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function neq(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new NotEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function gt(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new GreaterExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function gte(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new GreaterOrEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function lt(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new LessExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function lte(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new LessOrEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function in(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new InExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function like(ExpressionInterface $what, ExpressionInterface $against, $mode)
-    {
-        return new LikeExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-    }
+//    /**
+//     * @inheritDoc
+//     */
+//    public function eq(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new EqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function neq(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new NotEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function gt(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new GreaterExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function gte(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new GreaterOrEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function lt(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new LessExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function lte(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new LessOrEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function in(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new InExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function like(ExpressionInterface $what, ExpressionInterface $against, $mode)
+//    {
+//        return new LikeExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
+//    }
 
     /**
      * @inheritDoc
