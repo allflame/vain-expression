@@ -78,7 +78,6 @@ class PropertyExpression implements NonTerminalExpressionInterface
                 throw new InaccessiblePropertyException($this, $context, $data);
                 break;
         }
-
     }
 
     /**

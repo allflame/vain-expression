@@ -70,7 +70,6 @@ class MethodExpression implements NonTerminalExpressionInterface
         }
 
         return call_user_func([$data, $method], ...$this->arguments->interpret($context));
-
     }
 
     /**
@@ -83,7 +82,5 @@ class MethodExpression implements NonTerminalExpressionInterface
         }
 
         return sprintf('%s->%s(%s, %s)', $this->data, $this->method, $this->arguments);
-   }
-
-
+    }
 }

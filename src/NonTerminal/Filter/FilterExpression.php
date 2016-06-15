@@ -67,7 +67,6 @@ class FilterExpression implements NonTerminalExpressionInterface
         }
 
         return $filteredData;
-
     }
 
     /**
