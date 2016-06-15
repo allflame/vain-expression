@@ -59,7 +59,16 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function andX(BinaryExpressionInterface $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
     {
-        return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), new AndExpression($firstResult, $secondResult, $this));
+        if (false === $firstResult->getStatus() && false === $secondResult->getStatus()) {
+            return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), new AndExpression($firstResult, $secondResult, $this));
+        }
+
+        if (false === $firstResult->getStatus()) {
+            return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), $firstResult);
+        }
+
+        return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), $secondResult);
+        //return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), new AndExpression($firstResult, $secondResult, $this));
     }
 
     /**
@@ -67,6 +76,15 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function orX(BinaryExpressionInterface $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
     {
-        return new BooleanResult($expression, $firstResult->getStatus() || $secondResult->getStatus(), new OrExpression($firstResult, $secondResult, $this));
+        if (false === $firstResult->getStatus() && false === $secondResult->getStatus()) {
+            return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), new OrExpression($firstResult, $secondResult, $this));
+        }
+
+        if (false === $firstResult->getStatus()) {
+            return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), $secondResult);
+        }
+
+        return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), $firstResult);
+        //    return new BooleanResult($expression, $firstResult->getStatus() || $secondResult->getStatus(), new OrExpression($firstResult, $secondResult, $this));
     }
 }
