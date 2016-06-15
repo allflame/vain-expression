@@ -72,6 +72,7 @@ class ModeExpression implements NonTerminalExpressionInterface
             case 'datetime':
             case 'date':
             case 'object':
+            case 'array':
                 return $value;
             default:
                 throw new UnknownModeException($this, $context, $mode);
@@ -99,6 +100,8 @@ class ModeExpression implements NonTerminalExpressionInterface
             case 'array':
                 return implode(', ', $value);
             case 'time':
+            case 'datetime':
+            case 'date':
                 return $value->format(DATE_W3C);
                 break;
             default:
