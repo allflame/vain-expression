@@ -8,13 +8,14 @@
 
 namespace Vain\Expression\Boolean\Unary;
 
-use Vain\Expression\Boolean\AbstractBooleanExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 
-abstract class AbstractUnaryExpression extends AbstractBooleanExpression implements UnaryExpressionInterface
+abstract class AbstractUnaryExpression implements UnaryExpressionInterface
 {
     private $expression;
+
+    private $resultFactory;
 
     /**
      * AbstractUnaryExpression constructor.
@@ -24,7 +25,7 @@ abstract class AbstractUnaryExpression extends AbstractBooleanExpression impleme
     public function __construct(BooleanExpressionInterface $expression, BooleanResultFactoryInterface $resultFactory)
     {
         $this->expression = $expression;
-        parent::__construct($resultFactory);
+        $this->resultFactory = $resultFactory;
     }
 
     /**
@@ -34,22 +35,12 @@ abstract class AbstractUnaryExpression extends AbstractBooleanExpression impleme
     {
         return $this->expression;
     }
-    /**
-     * @inheritDoc
-     */
-    public function serialize()
-    {
-        return json_encode(['expression' => serialize($this->expression)]);
-    }
 
     /**
-     * @inheritDoc
+     * @return BooleanResultFactoryInterface
      */
-    public function unserialize($serializedString)
+    public function getResultFactory()
     {
-        $serializedData = json_decode($serializedString);
-        $this->expression = unserialize($serializedData->expression);
-
-        return $this;
+        return $this->resultFactory;
     }
 }
