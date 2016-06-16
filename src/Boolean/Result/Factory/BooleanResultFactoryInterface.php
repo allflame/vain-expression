@@ -8,9 +8,7 @@
 
 namespace Vain\Expression\Boolean\Result\Factory;
 
-use Vain\Comparator\Result\ComparatorResultInterface;
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
-use Vain\Expression\Boolean\ZeroAry\Comparison\ComparisonExpressionInterface;
 use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
 use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 use Vain\Expression\Boolean\Unary\Identity\IdentityExpression;
@@ -49,14 +47,6 @@ interface BooleanResultFactoryInterface
      * @return BooleanResultInterface
      */
     public function not(NotExpression $expression, BooleanResultInterface $result);
-
-    /**
-     * @param ComparisonExpressionInterface $expression
-     * @param ComparatorResultInterface $comparatorResult
-     *
-     * @return BooleanResultInterface
-     */
-    public function comparison(ComparisonExpressionInterface $expression, ComparatorResultInterface $comparatorResult);
 
     /**
      * @param AndExpression $binaryExpression

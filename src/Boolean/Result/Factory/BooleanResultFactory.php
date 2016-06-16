@@ -8,15 +8,12 @@
 
 namespace Vain\Expression\Boolean\Result\Factory;
 
-use Vain\Comparator\Result\ComparatorResultInterface;
-use Vain\Core\Result\Factory\ResultFactoryInterface;
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
 use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\Result\BooleanResult;
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
 use Vain\Expression\Boolean\Unary\Identity\IdentityExpression;
 use Vain\Expression\Boolean\Unary\Not\NotExpression;
-use Vain\Expression\Boolean\ZeroAry\Comparison\ComparisonExpressionInterface;
 use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
 use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 
@@ -54,14 +51,6 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     {
         $result = $result->invert();
         return new BooleanResult($expression, $result->getStatus(), $result);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function comparison(ComparisonExpressionInterface $expression, ComparatorResultInterface $comparatorResult)
-    {
-        return new BooleanResult($expression, $comparatorResult->getStatus(), new IdentityExpression($comparatorResult, $this));
     }
 
     /**

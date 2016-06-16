@@ -46,5 +46,4 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
     {
         return $this->result;
     }
-
 }
