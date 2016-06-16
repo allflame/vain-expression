@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 3/31/16
- * Time: 1:01 PM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\Unary;
 
@@ -11,6 +14,11 @@ use Vain\Expression\Boolean\AbstractBooleanExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 
+/**
+ * Class AbstractUnaryExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 abstract class AbstractUnaryExpression extends AbstractBooleanExpression implements UnaryExpressionInterface
 {
     private $expression;

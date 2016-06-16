@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/7/16
- * Time: 10:57 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\NonTerminal\Filter;
 
@@ -12,6 +15,11 @@ use Vain\Expression\Exception\InaccessibleFilterException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
+/**
+ * Class FilterExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class FilterExpression implements NonTerminalExpressionInterface
 {
     private $data;

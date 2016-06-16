@@ -1,15 +1,23 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/4/16
- * Time: 11:12 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 
+/**
+ * Class ExpressionFactoryException
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class ExpressionFactoryException extends CoreException
 {
     private $expressionFactory;

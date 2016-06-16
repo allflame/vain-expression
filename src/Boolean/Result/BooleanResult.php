@@ -1,15 +1,23 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/14/16
- * Time: 6:38 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\Result;
 
 use Vain\Core\Result\AbstractResult;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 
+/**
+ * Class BooleanResult
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class BooleanResult extends AbstractResult implements BooleanResultInterface
 {
     private $expression;

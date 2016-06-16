@@ -1,14 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/10/16
- * Time: 10:36 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\ZeroAry;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 
+/**
+ * Interface ZeroAryExpressionInterface
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 interface ZeroAryExpressionInterface extends BooleanExpressionInterface
 {
 }

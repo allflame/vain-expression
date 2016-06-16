@@ -1,12 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/15/16
- * Time: 8:07 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Terminal;
 
+/**
+ * Class TerminalExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class TerminalExpression implements TerminalExpressionInterface
 {
     private $value;

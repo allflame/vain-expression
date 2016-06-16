@@ -1,15 +1,23 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/16/16
- * Time: 10:07 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Conditional\SwitchX;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
+/**
+ * Class SwitchExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class SwitchExpression implements NonTerminalExpressionInterface
 {
     private $check;

@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/1/16
- * Time: 9:12 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\Binary;
 
@@ -11,6 +14,11 @@ use Vain\Expression\Boolean\AbstractBooleanExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 
+/**
+ * Class AbstractBinaryExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 abstract class AbstractBinaryExpression extends AbstractBooleanExpression implements BinaryExpressionInterface
 {
     private $firstExpression;

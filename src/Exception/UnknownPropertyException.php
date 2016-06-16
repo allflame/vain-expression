@@ -1,15 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/5/16
- * Time: 6:29 PM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\Property\PropertyExpression;
 
 /**
+ * Class UnknownPropertyException
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ *
  * @method PropertyExpression getExpression
  */
 class UnknownPropertyException extends InterpretationException

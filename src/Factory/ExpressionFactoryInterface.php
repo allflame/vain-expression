@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/1/16
- * Time: 10:47 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Factory;
 
@@ -24,6 +27,11 @@ use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\NonTerminal\Property\PropertyExpression;
 use Vain\Expression\Terminal\TerminalExpression;
 
+/**
+ * Interface ExpressionFactoryInterface
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 interface ExpressionFactoryInterface
 {
     /**

@@ -1,15 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/15/16
- * Time: 10:04 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\Mode\ModeExpression;
 
 /**
+ * Class UnknownModeException
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ * 
  * @method ModeExpression getExpression
  */
 class UnknownModeException extends InterpretationException

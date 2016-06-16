@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/13/16
- * Time: 11:22 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\Result\Factory;
 
@@ -16,6 +19,11 @@ use Vain\Expression\Boolean\Unary\Not\NotExpression;
 use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
 use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 
+/**
+ * Class BooleanResultFactory
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class BooleanResultFactory implements BooleanResultFactoryInterface
 {
     /**

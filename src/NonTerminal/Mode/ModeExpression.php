@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/6/16
- * Time: 10:16 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\NonTerminal\Mode;
 
@@ -11,6 +14,11 @@ use Vain\Expression\Exception\UnknownModeException;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
+/**
+ * Class ModeExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class ModeExpression implements NonTerminalExpressionInterface
 {
     private $data;

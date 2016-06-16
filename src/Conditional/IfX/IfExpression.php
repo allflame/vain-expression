@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/16/16
- * Time: 10:01 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Conditional\IfX;
 
@@ -11,6 +14,11 @@ use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
+/**
+ * Class IfExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class IfExpression implements NonTerminalExpressionInterface
 {
     private $condition;

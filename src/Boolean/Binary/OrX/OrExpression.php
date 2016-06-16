@@ -1,15 +1,23 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/1/16
- * Time: 9:15 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\Binary\OrX;
 
 use Vain\Expression\Boolean\Binary\AbstractBinaryExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 
+/**
+ * Class OrExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class OrExpression extends AbstractBinaryExpression implements BooleanExpressionInterface
 {
     /**

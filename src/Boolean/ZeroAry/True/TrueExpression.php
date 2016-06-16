@@ -1,14 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/4/16
- * Time: 11:20 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\ZeroAry\True;
 
 use Vain\Expression\Boolean\ZeroAry\AbstractZeroAryExpression;
 
+/**
+ * Class TrueExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class TrueExpression extends AbstractZeroAryExpression
 {
     /**

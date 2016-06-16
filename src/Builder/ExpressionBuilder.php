@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/6/16
- * Time: 12:40 PM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Builder;
 
@@ -13,6 +16,11 @@ use Vain\Expression\Factory\ExpressionFactoryInterface;
 use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Expression\Terminal\TerminalExpression;
 
+/**
+ * Class ExpressionBuilder
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class ExpressionBuilder
 {
     private $type;

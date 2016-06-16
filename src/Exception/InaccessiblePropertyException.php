@@ -1,14 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/7/16
- * Time: 10:36 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\Property\PropertyExpression;
 
+/**
+ * Class InaccessiblePropertyException
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class InaccessiblePropertyException extends InterpretationException
 {
     /**

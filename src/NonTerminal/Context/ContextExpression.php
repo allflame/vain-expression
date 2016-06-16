@@ -1,14 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/15/16
- * Time: 10:23 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\NonTerminal\Context;
 
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
+/**
+ * Class ContextExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class ContextExpression implements NonTerminalExpressionInterface
 {
     /**

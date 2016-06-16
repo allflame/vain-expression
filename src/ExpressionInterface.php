@@ -1,15 +1,23 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 3/31/16
- * Time: 12:56 PM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression;
 
 use Vain\Core\ArrayX\ArrayInterface;
 use Vain\Core\String\StringInterface;
 
+/**
+ * Interface ExpressionInterface
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 interface ExpressionInterface extends StringInterface, ArrayInterface
 {
     /**

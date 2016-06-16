@@ -1,15 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/7/16
- * Time: 12:29 PM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
 
 /**
+ * Class UnknownFunctionException
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ *
  * @method FunctionExpression getExpression
  */
 class UnknownFunctionException extends InterpretationException

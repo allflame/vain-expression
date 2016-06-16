@@ -1,14 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 4/1/16
- * Time: 9:15 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 namespace Vain\Expression\Boolean\Binary\AndX;
 
 use Vain\Expression\Boolean\Binary\AbstractBinaryExpression;
 
+/**
+ * Class AndExpression
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class AndExpression extends AbstractBinaryExpression
 {
     /**
