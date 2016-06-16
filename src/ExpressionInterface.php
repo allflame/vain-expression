@@ -8,9 +8,10 @@
 
 namespace Vain\Expression;
 
+use Vain\Core\ArrayX\ArrayInterface;
 use Vain\Core\String\StringInterface;
 
-interface ExpressionInterface extends StringInterface
+interface ExpressionInterface extends StringInterface, ArrayInterface
 {
     /**
      * @param \ArrayAccess|null $context
@@ -18,9 +19,4 @@ interface ExpressionInterface extends StringInterface
      * @return mixed
      */
     public function interpret(\ArrayAccess $context = null);
-
-    /**
-     * @return array
-     */
-    public function toArray();
 }
