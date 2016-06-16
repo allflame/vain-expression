@@ -20,11 +20,11 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
 
     /**
      * BooleanResult constructor.
+     * @param bool $status
      * @param BooleanExpressionInterface $expression
-     * @param $status
      * @param BooleanExpressionInterface $result
      */
-    public function __construct(BooleanExpressionInterface $expression, $status, BooleanExpressionInterface $result)
+    public function __construct($status, BooleanExpressionInterface $expression, BooleanExpressionInterface $result)
     {
         $this->expression = $expression;
         $this->result = $result;
@@ -44,6 +44,14 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
      */
     public function __toString()
     {
-        return $this->result;
+        return $this->result->__toString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['result', ['status' => $this->getStatus(), 'expression' => $this->expression->toArray(), 'result' => $this->result->toArray()]];
     }
 }

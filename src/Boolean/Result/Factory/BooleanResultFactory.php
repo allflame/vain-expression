@@ -25,7 +25,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function false(FalseExpression $expression)
     {
-        return new BooleanResult($expression, false, new FalseExpression($this));
+        return new BooleanResult(false, $expression, new FalseExpression($this));
     }
 
     /**
@@ -33,7 +33,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function true(TrueExpression $expression)
     {
-        return new BooleanResult($expression, true, new TrueExpression($this));
+        return new BooleanResult(true, $expression, new TrueExpression($this));
     }
 
     /**
@@ -41,7 +41,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function id(IdentityExpression $expression, BooleanResultInterface $result)
     {
-        return new BooleanResult($expression, $result->getStatus(), $result);
+        return new BooleanResult($result->getStatus(), $expression, $result);
     }
 
     /**
@@ -49,8 +49,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function not(NotExpression $expression, BooleanResultInterface $result)
     {
-        $result = $result->invert();
-        return new BooleanResult($expression, $result->getStatus(), $result);
+        return new BooleanResult($result->getStatus(), $expression, $result);
     }
 
     /**
@@ -58,7 +57,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function andX(AndExpression $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
     {
-        return new BooleanResult($expression, $firstResult->getStatus() && $secondResult->getStatus(), new AndExpression($firstResult, $secondResult, $this));
+        return new BooleanResult($firstResult->getStatus() && $secondResult->getStatus(), $expression, new AndExpression($firstResult, $secondResult, $this));
     }
 
     /**
@@ -66,6 +65,6 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
      */
     public function orX(OrExpression $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
     {
-        return new BooleanResult($expression, $firstResult->getStatus() || $secondResult->getStatus(), new OrExpression($firstResult, $secondResult, $this));
+        return new BooleanResult($firstResult->getStatus() || $secondResult->getStatus(), $expression, new OrExpression($firstResult, $secondResult, $this));
     }
 }

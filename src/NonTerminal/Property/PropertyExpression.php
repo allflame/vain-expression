@@ -87,4 +87,14 @@ class PropertyExpression implements NonTerminalExpressionInterface
     {
         return sprintf('%s.%s', $this->data, $this->property);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['property', ['data' => $this->data->toArray(), 'property' => $this->property->toArray()]];
+    }
+
+
 }

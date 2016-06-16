@@ -26,6 +26,14 @@ class OrExpression extends AbstractBinaryExpression implements BooleanExpression
      */
     public function __toString()
     {
-        return sprintf('(%s or %s)', $this->getFirstExpression(), $this->getSecondExpression());
+        return sprintf('%s or %s', $this->getFirstExpression(), $this->getSecondExpression());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['or', ['firstExpression' => $this->getFirstExpression()->toArray(), 'secondExpression' => $this->getSecondExpression()->toArray()]];
     }
 }

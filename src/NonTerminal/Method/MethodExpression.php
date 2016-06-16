@@ -83,4 +83,12 @@ class MethodExpression implements NonTerminalExpressionInterface
 
         return sprintf('%s->%s(%s, %s)', $this->data, $this->method, $this->arguments);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['method', ['data' => $this->data->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
+    }
 }

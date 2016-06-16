@@ -28,4 +28,12 @@ class IdentityExpression extends AbstractUnaryExpression implements BooleanExpre
     {
         return $this->getExpression();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['id', ['expression' => $this->getExpression()->toArray()]];
+    }
 }

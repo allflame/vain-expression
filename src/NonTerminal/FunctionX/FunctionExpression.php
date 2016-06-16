@@ -82,4 +82,12 @@ class FunctionExpression implements NonTerminalExpressionInterface
 
         return sprintf('%s(%s, %s)', $this->functionName, $this->data, $this->arguments);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['function', ['data' => $this->data->toArray(), 'functionName' => $this->functionName->toArray(), 'arguments' => $this->arguments->toArray()]];
+    }
 }

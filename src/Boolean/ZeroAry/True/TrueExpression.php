@@ -27,4 +27,12 @@ class TrueExpression extends AbstractZeroAryExpression
     {
         return 'true';
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['true', []];
+    }
 }

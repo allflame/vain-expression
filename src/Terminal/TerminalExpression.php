@@ -44,4 +44,12 @@ class TerminalExpression implements TerminalExpressionInterface
     {
         return $this->value;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['terminal', ['value' => serialize($this->value)]];
+    }
 }

@@ -108,4 +108,12 @@ class ModeExpression implements NonTerminalExpressionInterface
                 return (string)$value;
         }
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['mode', ['data' => $this->data->toArray(), 'mode' => $this->mode->toArray()]];
+    }
 }

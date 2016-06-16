@@ -28,4 +28,12 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
     {
         return sprintf('!%s', $this->getExpression());
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['not', ['expression' => $this->getExpression()->toArray()]];
+    }
 }

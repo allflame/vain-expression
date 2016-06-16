@@ -76,4 +76,12 @@ class FilterExpression implements NonTerminalExpressionInterface
     {
         return sprintf('%s where %s', $this->data, $this->filter);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['filter', ['data' => $this->data->toArray(), 'filter' => $this->filter->toArray()]];
+    }
 }

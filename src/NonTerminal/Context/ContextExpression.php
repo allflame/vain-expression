@@ -27,4 +27,12 @@ class ContextExpression implements NonTerminalExpressionInterface
     {
         return 'context';
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['context', []];
+    }
 }

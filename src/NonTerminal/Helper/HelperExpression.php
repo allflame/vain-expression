@@ -95,4 +95,12 @@ class HelperExpression implements NonTerminalExpressionInterface
 
         return sprintf('%s::%s(%s, %s)', $this->class, $this->data, $this->method, $this->arguments);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['helper', ['data' => $this->data->toArray(), 'class' => $this->class->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
+    }
 }

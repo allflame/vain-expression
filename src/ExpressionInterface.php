@@ -18,4 +18,9 @@ interface ExpressionInterface extends StringInterface
      * @return mixed
      */
     public function interpret(\ArrayAccess $context = null);
+
+    /**
+     * @return array
+     */
+    public function toArray();
 }

@@ -27,4 +27,12 @@ class FalseExpression extends AbstractZeroAryExpression
     {
         return 'false';
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['false', []];
+    }
 }
