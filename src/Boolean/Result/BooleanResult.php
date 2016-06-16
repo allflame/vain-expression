@@ -52,6 +52,6 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
      */
     public function toArray()
     {
-        return ['result', array_merge(parent::toArray(), ['expression' => $this->expression->toArray(), 'result' => $this->result->toArray()])];
+        return ['boolean_result', array_merge(parent::toArray(), ['expression' => $this->expression->toArray(), 'result' => $this->result->toArray()])];
     }
 }
