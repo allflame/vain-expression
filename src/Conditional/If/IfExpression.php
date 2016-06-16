@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Conditional\IfX;
 
-
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;

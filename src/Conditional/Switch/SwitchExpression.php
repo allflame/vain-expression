@@ -8,7 +8,6 @@
 
 namespace Vain\Expression\Conditional\SwitchX;
 
-
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
