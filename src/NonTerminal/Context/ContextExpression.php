@@ -33,6 +33,6 @@ class ContextExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['context', []];
+        return ['context' => []];
     }
 }

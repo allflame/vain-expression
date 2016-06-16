@@ -34,6 +34,6 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
      */
     public function toArray()
     {
-        return ['not', ['expression' => $this->getExpression()->toArray()]];
+        return ['not' => ['expression' => $this->getExpression()->toArray()]];
     }
 }

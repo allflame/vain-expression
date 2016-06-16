@@ -50,6 +50,6 @@ class TerminalExpression implements TerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['terminal', ['value' => json_encode($this->value)]];
+        return ['terminal' => ['value' => json_encode($this->value)]];
     }
 }

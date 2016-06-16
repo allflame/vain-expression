@@ -101,6 +101,6 @@ class HelperExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['helper', ['data' => $this->data->toArray(), 'class' => $this->class->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
+        return ['helper' => ['data' => $this->data->toArray(), 'class' => $this->class->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
     }
 }

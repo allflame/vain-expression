@@ -33,6 +33,6 @@ class TrueExpression extends AbstractZeroAryExpression
      */
     public function toArray()
     {
-        return ['true', []];
+        return ['true' => []];
     }
 }

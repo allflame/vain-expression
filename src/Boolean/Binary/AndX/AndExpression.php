@@ -33,6 +33,6 @@ class AndExpression extends AbstractBinaryExpression
      */
     public function toArray()
     {
-        return ['and', ['firstExpression' => $this->getFirstExpression()->toArray(), 'secondExpression' => $this->getSecondExpression()->toArray()]];
+        return ['and' => ['firstExpression' => $this->getFirstExpression()->toArray(), 'secondExpression' => $this->getSecondExpression()->toArray()]];
     }
 }

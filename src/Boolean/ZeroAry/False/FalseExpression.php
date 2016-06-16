@@ -33,6 +33,6 @@ class FalseExpression extends AbstractZeroAryExpression
      */
     public function toArray()
     {
-        return ['false', []];
+        return ['false' => []];
     }
 }

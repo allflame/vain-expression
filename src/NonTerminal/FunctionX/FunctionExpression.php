@@ -88,6 +88,6 @@ class FunctionExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['function', ['data' => $this->data->toArray(), 'functionName' => $this->functionName->toArray(), 'arguments' => $this->arguments->toArray()]];
+        return ['function' => ['data' => $this->data->toArray(), 'functionName' => $this->functionName->toArray(), 'arguments' => $this->arguments->toArray()]];
     }
 }

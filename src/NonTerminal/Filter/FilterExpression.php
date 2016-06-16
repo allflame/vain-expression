@@ -82,6 +82,6 @@ class FilterExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['filter', ['data' => $this->data->toArray(), 'filter' => $this->filter->toArray()]];
+        return ['filter' => ['data' => $this->data->toArray(), 'filter' => $this->filter->toArray()]];
     }
 }

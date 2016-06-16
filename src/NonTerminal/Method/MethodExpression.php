@@ -89,6 +89,6 @@ class MethodExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['method', ['data' => $this->data->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
+        return ['method' => ['data' => $this->data->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
     }
 }

@@ -93,8 +93,6 @@ class PropertyExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['property', ['data' => $this->data->toArray(), 'property' => $this->property->toArray()]];
+        return ['property' => ['data' => $this->data->toArray(), 'property' => $this->property->toArray()]];
     }
-
-
 }
