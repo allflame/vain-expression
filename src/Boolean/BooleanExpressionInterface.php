@@ -5,7 +5,6 @@
  * Date: 6/9/16
  * Time: 7:28 AM
  */
-
 namespace Vain\Expression\Boolean;
 
 use Vain\Expression\Boolean\Result\BooleanResultInterface;

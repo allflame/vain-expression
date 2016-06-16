@@ -5,7 +5,6 @@
  * Date: 6/15/16
  * Time: 10:23 AM
  */
-
 namespace Vain\Expression\NonTerminal\Context;
 
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;

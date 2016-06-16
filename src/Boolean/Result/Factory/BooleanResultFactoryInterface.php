@@ -5,7 +5,6 @@
  * Date: 6/13/16
  * Time: 10:55 AM
  */
-
 namespace Vain\Expression\Boolean\Result\Factory;
 
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
@@ -33,7 +32,7 @@ interface BooleanResultFactoryInterface
     public function true(TrueExpression $expression);
 
     /**
-     * @param IdentityExpression $expression
+     * @param IdentityExpression     $expression
      * @param BooleanResultInterface $result
      *
      * @return BooleanResultInterface
@@ -41,7 +40,7 @@ interface BooleanResultFactoryInterface
     public function id(IdentityExpression $expression, BooleanResultInterface $result);
 
     /**
-     * @param NotExpression $expression
+     * @param NotExpression          $expression
      * @param BooleanResultInterface $result
      *
      * @return BooleanResultInterface
@@ -49,20 +48,28 @@ interface BooleanResultFactoryInterface
     public function not(NotExpression $expression, BooleanResultInterface $result);
 
     /**
-     * @param AndExpression $binaryExpression
+     * @param AndExpression          $binaryExpression
      * @param BooleanResultInterface $firstResult
      * @param BooleanResultInterface $secondResult
      *
      * @return BooleanResultInterface
      */
-    public function andX(AndExpression $binaryExpression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult);
+    public function andX(
+        AndExpression $binaryExpression,
+        BooleanResultInterface $firstResult,
+        BooleanResultInterface $secondResult
+    );
 
     /**
-     * @param OrExpression $binaryExpression
+     * @param OrExpression           $binaryExpression
      * @param BooleanResultInterface $firstResult
      * @param BooleanResultInterface $secondResult
      *
      * @return BooleanResultInterface
      */
-    public function orX(OrExpression $binaryExpression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult);
+    public function orX(
+        OrExpression $binaryExpression,
+        BooleanResultInterface $firstResult,
+        BooleanResultInterface $secondResult
+    );
 }

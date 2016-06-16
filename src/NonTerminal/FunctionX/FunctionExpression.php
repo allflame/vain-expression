@@ -5,7 +5,6 @@
  * Date: 4/7/16
  * Time: 12:24 PM
  */
-
 namespace Vain\Expression\NonTerminal\FunctionX;
 
 use Vain\Expression\Exception\UnknownFunctionException;
@@ -22,12 +21,16 @@ class FunctionExpression implements NonTerminalExpressionInterface
 
     /**
      * FunctionDescriptorDecorator constructor.
+     *
      * @param ExpressionInterface $data
      * @param ExpressionInterface $functionName
      * @param ExpressionInterface $arguments
      */
-    public function __construct(ExpressionInterface $data, ExpressionInterface $functionName, ExpressionInterface $arguments)
-    {
+    public function __construct(
+        ExpressionInterface $data,
+        ExpressionInterface $functionName,
+        ExpressionInterface $arguments
+    ) {
         $this->data = $data;
         $this->functionName = $functionName;
         $this->arguments = $arguments;
@@ -63,7 +66,6 @@ class FunctionExpression implements NonTerminalExpressionInterface
     public function interpret(\ArrayAccess $context = null)
     {
         $function = $this->functionName->interpret($context);
-
         if (false === function_exists($function)) {
             throw new UnknownFunctionException($this, $context, $function);
         }
@@ -88,6 +90,12 @@ class FunctionExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['function' => ['data' => $this->data->toArray(), 'functionName' => $this->functionName->toArray(), 'arguments' => $this->arguments->toArray()]];
+        return [
+            'function' => [
+                'data' => $this->data->toArray(),
+                'functionName' => $this->functionName->toArray(),
+                'arguments' => $this->arguments->toArray()
+            ]
+        ];
     }
 }

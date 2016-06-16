@@ -5,7 +5,6 @@
  * Date: 6/15/16
  * Time: 8:07 AM
  */
-
 namespace Vain\Expression\Terminal;
 
 class TerminalExpression implements TerminalExpressionInterface
@@ -14,6 +13,7 @@ class TerminalExpression implements TerminalExpressionInterface
 
     /**
      * TerminalExpression constructor.
+     *
      * @param mixed $value
      */
     public function __construct($value)

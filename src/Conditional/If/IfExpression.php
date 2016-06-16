@@ -5,7 +5,6 @@
  * Date: 6/16/16
  * Time: 10:01 AM
  */
-
 namespace Vain\Expression\Conditional\IfX;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -22,17 +21,20 @@ class IfExpression implements NonTerminalExpressionInterface
 
     /**
      * IfExpression constructor.
+     *
      * @param BooleanExpressionInterface $condition
-     * @param ExpressionInterface $then
-     * @param ExpressionInterface $else
+     * @param ExpressionInterface        $then
+     * @param ExpressionInterface        $else
      */
-    public function __construct(BooleanExpressionInterface $condition, ExpressionInterface $then, ExpressionInterface $else)
-    {
+    public function __construct(
+        BooleanExpressionInterface $condition,
+        ExpressionInterface $then,
+        ExpressionInterface $else
+    ) {
         $this->condition = $condition;
         $this->then = $then;
         $this->else = $else;
     }
-
 
     /**
      * @inheritDoc
@@ -59,7 +61,12 @@ class IfExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['if' => ['condition' => $this->condition->toArray(), 'then' => $this->then->toArray(), 'else' => $this->else->toArray()]];
+        return [
+            'if' => [
+                'condition' => $this->condition->toArray(),
+                'then' => $this->then->toArray(),
+                'else' => $this->else->toArray()
+            ]
+        ];
     }
-
 }

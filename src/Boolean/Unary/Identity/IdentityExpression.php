@@ -5,7 +5,6 @@
  * Date: 4/1/16
  * Time: 9:08 AM
  */
-
 namespace Vain\Expression\Boolean\Unary\Identity;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -18,7 +17,11 @@ class IdentityExpression extends AbstractUnaryExpression implements BooleanExpre
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->getResultFactory()->id($this, $this->getExpression()->interpret($context));
+        return $this->getResultFactory()
+                    ->id(
+                        $this,
+                        $this->getExpression()->interpret($context)
+                    );
     }
 
     /**
@@ -34,6 +37,10 @@ class IdentityExpression extends AbstractUnaryExpression implements BooleanExpre
      */
     public function toArray()
     {
-        return ['id' => ['expression' => $this->getExpression()->toArray()]];
+        return [
+            'id' => [
+                'expression' => $this->getExpression()->toArray()
+            ]
+        ];
     }
 }

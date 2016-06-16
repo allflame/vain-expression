@@ -5,7 +5,6 @@
  * Date: 4/1/16
  * Time: 9:12 AM
  */
-
 namespace Vain\Expression\Boolean\Binary;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;

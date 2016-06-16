@@ -5,7 +5,6 @@
  * Date: 4/1/16
  * Time: 9:15 AM
  */
-
 namespace Vain\Expression\Boolean\Binary\AndX;
 
 use Vain\Expression\Boolean\Binary\AbstractBinaryExpression;
@@ -17,7 +16,12 @@ class AndExpression extends AbstractBinaryExpression
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->getResultFactory()->andX($this, $this->getFirstExpression()->interpret($context), $this->getSecondExpression()->interpret($context));
+        return $this->getResultFactory()
+                    ->andX(
+                        $this,
+                        $this->getFirstExpression()->interpret($context),
+                        $this->getSecondExpression()->interpret($context)
+                    );
     }
 
     /**
@@ -33,6 +37,11 @@ class AndExpression extends AbstractBinaryExpression
      */
     public function toArray()
     {
-        return ['and' => ['firstExpression' => $this->getFirstExpression()->toArray(), 'secondExpression' => $this->getSecondExpression()->toArray()]];
+        return [
+            'and' => [
+                'firstExpression' => $this->getFirstExpression()->toArray(),
+                'secondExpression' => $this->getSecondExpression()->toArray()
+            ]
+        ];
     }
 }

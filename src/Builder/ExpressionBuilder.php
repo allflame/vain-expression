@@ -5,7 +5,6 @@
  * Date: 4/6/16
  * Time: 12:40 PM
  */
-
 namespace Vain\Expression\Builder;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -16,7 +15,6 @@ use Vain\Expression\Terminal\TerminalExpression;
 
 class ExpressionBuilder
 {
-
     private $type;
 
     private $module;
@@ -31,6 +29,7 @@ class ExpressionBuilder
 
     /**
      * ExpressionBuilder constructor.
+     *
      * @param ExpressionFactoryInterface $expressionFactory
      */
     public function __construct(ExpressionFactoryInterface $expressionFactory)
@@ -105,7 +104,7 @@ class ExpressionBuilder
 
     /**
      * @param string $method
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return ExpressionBuilder
      */
@@ -143,7 +142,7 @@ class ExpressionBuilder
 
     /**
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return ExpressionBuilder
      */
@@ -211,7 +210,7 @@ class ExpressionBuilder
     /**
      * @param string $class
      * @param string $method
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return ExpressionBuilder
      */
@@ -244,41 +243,63 @@ class ExpressionBuilder
             default:
                 $expression = $this->expressionFactory->context();
         }
-
         foreach ($this->chain as $element) {
             list ($type, $value) = $element;
             switch ($type) {
                 case 'property':
                     $properties = explode('.', $value);
                     foreach ($properties as $property) {
-                        $expression = $this->expressionFactory->property($expression, new TerminalExpression($property));
+                        $expression = $this->expressionFactory->property(
+                            $expression,
+                            new TerminalExpression($property)
+                        );
                     }
                     break;
                 case 'method':
                     list ($name, $arguments) = $value;
                     $methods = explode('.', $name);
                     foreach ($methods as $method) {
-                        $expression = $this->expressionFactory->method($expression, new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
+                        $expression = $this->expressionFactory->method(
+                            $expression,
+                            new TerminalExpression($method),
+                            new ModeExpression(
+                                new TerminalExpression($arguments),
+                                new TerminalExpression('array')
+                            )
+                        );
                     }
                     break;
                 case 'function':
                     list ($name, $arguments) = $value;
-                    $expression = $this->expressionFactory->func($expression, new TerminalExpression($name), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
+                    $expression = $this->expressionFactory->func(
+                        $expression,
+                        new TerminalExpression($name),
+                        new ModeExpression(
+                            new TerminalExpression($arguments),
+                            new TerminalExpression('array')
+                        )
+                    );
                     break;
                 case 'filter':
                     $expression = $this->expressionFactory->filter($expression, $value);
                     break;
                 case 'helper':
                     list ($class, $method, $arguments) = $value;
-                    $expression = $this->expressionFactory->helper($expression, new TerminalExpression($class), new TerminalExpression($method), new ModeExpression(new TerminalExpression($arguments), new TerminalExpression('array')));
+                    $expression = $this->expressionFactory->helper(
+                        $expression,
+                        new TerminalExpression($class),
+                        new TerminalExpression($method),
+                        new ModeExpression(
+                            new TerminalExpression($arguments),
+                            new TerminalExpression('array')
+                        )
+                    );
                     break;
             }
         }
-
         if (null !== $this->mode) {
             $expression = $this->expressionFactory->mode($expression, new TerminalExpression($this->mode));
         }
-
         $this->type = $this->value = $this->module = $this->mode = null;
         $this->chain = [];
 

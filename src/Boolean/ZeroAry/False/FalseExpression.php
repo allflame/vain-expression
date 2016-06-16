@@ -5,7 +5,6 @@
  * Date: 4/4/16
  * Time: 11:16 AM
  */
-
 namespace Vain\Expression\Boolean\ZeroAry\False;
 
 use Vain\Expression\Boolean\ZeroAry\AbstractZeroAryExpression;

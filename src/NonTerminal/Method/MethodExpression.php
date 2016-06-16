@@ -5,7 +5,6 @@
  * Date: 4/6/16
  * Time: 9:53 AM
  */
-
 namespace Vain\Expression\NonTerminal\Method;
 
 use Vain\Expression\Exception\UnknownMethodException;
@@ -22,6 +21,7 @@ class MethodExpression implements NonTerminalExpressionInterface
 
     /**
      * PropertyDescriptorDecorator constructor.
+     *
      * @param ExpressionInterface $data
      * @param ExpressionInterface $method
      * @param ExpressionInterface $arguments
@@ -64,7 +64,6 @@ class MethodExpression implements NonTerminalExpressionInterface
     {
         $data = $this->data->interpret($context);
         $method = $this->method->interpret($context);
-
         if (false === method_exists($data, $method)) {
             throw new UnknownMethodException($this, $context, $data, $method);
         }
@@ -89,6 +88,12 @@ class MethodExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['method' => ['data' => $this->data->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
+        return [
+            'method' => [
+                'data' => $this->data->toArray(),
+                'method' => $this->method->toArray(),
+                'arguments' => $this->arguments->toArray()
+            ]
+        ];
     }
 }

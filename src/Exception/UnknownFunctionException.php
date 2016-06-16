@@ -5,7 +5,6 @@
  * Date: 4/7/16
  * Time: 12:29 PM
  */
-
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
@@ -15,12 +14,12 @@ use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
  */
 class UnknownFunctionException extends InterpretationException
 {
-
     /**
      * UnknownFunctionException constructor.
+     *
      * @param FunctionExpression $expression
-     * @param \ArrayAccess $context
-     * @param int $functionName
+     * @param \ArrayAccess       $context
+     * @param int                $functionName
      */
     public function __construct(FunctionExpression $expression, \ArrayAccess $context, $functionName)
     {

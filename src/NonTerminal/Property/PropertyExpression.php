@@ -5,7 +5,6 @@
  * Date: 4/6/16
  * Time: 9:53 AM
  */
-
 namespace Vain\Expression\NonTerminal\Property;
 
 use Vain\Expression\Exception\InaccessiblePropertyException;
@@ -15,13 +14,13 @@ use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 class PropertyExpression implements NonTerminalExpressionInterface
 {
-
     private $data;
 
     private $property;
 
     /**
      * PropertyDescriptorDecorator constructor.
+     *
      * @param ExpressionInterface $data
      * @param ExpressionInterface $property
      */
@@ -54,24 +53,26 @@ class PropertyExpression implements NonTerminalExpressionInterface
     {
         $data = $this->data->interpret($context);
         $property = $this->property->interpret($context);
-
-        switch(true) {
+        switch (true) {
             case is_array($data):
                 if (false === array_key_exists($property, $data)) {
                     throw new UnknownPropertyException($this, $context, $data, $property);
                 }
+
                 return $data[$property];
                 break;
             case $data instanceof \ArrayAccess:
                 if (false === $data->offsetExists($property)) {
                     throw new UnknownPropertyException($this, $context, $data, $property);
                 }
+
                 return $data->offsetGet($property);
                 break;
             case is_object($data):
                 if (false === property_exists($data, $property)) {
                     throw new UnknownPropertyException($this, $context, $data, $property);
                 }
+
                 return $data->{$property};
                 break;
             default:

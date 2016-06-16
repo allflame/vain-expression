@@ -5,7 +5,6 @@
  * Date: 6/13/16
  * Time: 11:22 AM
  */
-
 namespace Vain\Expression\Boolean\Result\Factory;
 
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
@@ -19,7 +18,6 @@ use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 
 class BooleanResultFactory implements BooleanResultFactoryInterface
 {
-
     /**
      * @inheritDoc
      */
@@ -55,16 +53,30 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function andX(AndExpression $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
-    {
-        return new BooleanResult($firstResult->getStatus() && $secondResult->getStatus(), $expression, new AndExpression($firstResult, $secondResult, $this));
+    public function andX(
+        AndExpression $expression,
+        BooleanResultInterface $firstResult,
+        BooleanResultInterface $secondResult
+    ) {
+        return new BooleanResult(
+            $firstResult->getStatus() && $secondResult->getStatus(),
+            $expression,
+            new AndExpression($firstResult, $secondResult, $this)
+        );
     }
 
     /**
      * @inheritDoc
      */
-    public function orX(OrExpression $expression, BooleanResultInterface $firstResult, BooleanResultInterface $secondResult)
-    {
-        return new BooleanResult($firstResult->getStatus() || $secondResult->getStatus(), $expression, new OrExpression($firstResult, $secondResult, $this));
+    public function orX(
+        OrExpression $expression,
+        BooleanResultInterface $firstResult,
+        BooleanResultInterface $secondResult
+    ) {
+        return new BooleanResult(
+            $firstResult->getStatus() || $secondResult->getStatus(),
+            $expression,
+            new OrExpression($firstResult, $secondResult, $this)
+        );
     }
 }

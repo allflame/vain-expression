@@ -7,7 +7,6 @@
  */
 namespace Vain\Expression\Factory;
 
-
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
 use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -27,78 +26,6 @@ use Vain\Expression\Terminal\TerminalExpression;
 
 interface ExpressionFactoryInterface
 {
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return EqualExpression
-//     */
-//    public function eq(ExpressionInterface $what, ExpressionInterface $against, $mode);
-//
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return NotEqualExpression
-//     */
-//    public function neq(ExpressionInterface $what, ExpressionInterface $against, $mode);
-//
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return GreaterExpression
-//     */
-//    public function gt(ExpressionInterface $what, ExpressionInterface $against, $mode);
-//
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return GreaterOrEqualExpression
-//     */
-//    public function gte(ExpressionInterface $what, ExpressionInterface $against, $mode);
-//
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return LessExpression
-//     */
-//    public function lt(ExpressionInterface $what, ExpressionInterface $against, $mode);
-//
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return LessOrEqualExpression
-//     */
-//    public function lte(ExpressionInterface $what, ExpressionInterface $against, $mode);
-//
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return InExpression
-//     */
-//    public function in(ExpressionInterface $what, ExpressionInterface $against, $mode);
-//
-//    /**
-//     * @param ExpressionInterface $what
-//     * @param ExpressionInterface $against
-//     * @param string $mode
-//     *
-//     * @return LikeExpression
-//     */
-//    public function like(ExpressionInterface $what, ExpressionInterface $against, $mode);
-
     /**
      * @param BooleanExpressionInterface $expression
      *
@@ -153,7 +80,11 @@ interface ExpressionFactoryInterface
      *
      * @return MethodExpression
      */
-    public function method(ExpressionInterface $expression, ExpressionInterface $method, ExpressionInterface $arguments = null);
+    public function method(
+        ExpressionInterface $expression,
+        ExpressionInterface $method,
+        ExpressionInterface $arguments = null
+    );
 
     /**
      * @param ExpressionInterface $expression
@@ -170,7 +101,11 @@ interface ExpressionFactoryInterface
      *
      * @return FunctionExpression
      */
-    public function func(ExpressionInterface $expression, ExpressionInterface $functionName, ExpressionInterface $arguments = null);
+    public function func(
+        ExpressionInterface $expression,
+        ExpressionInterface $functionName,
+        ExpressionInterface $arguments = null
+    );
 
     /**
      * @param ExpressionInterface $expression
@@ -181,7 +116,7 @@ interface ExpressionFactoryInterface
     public function mode(ExpressionInterface $expression, ExpressionInterface $mode);
 
     /**
-     * @param ExpressionInterface $expression
+     * @param ExpressionInterface        $expression ,
      * @param BooleanExpressionInterface $filterExpression
      *
      * @return FilterExpression
@@ -196,7 +131,12 @@ interface ExpressionFactoryInterface
      *
      * @return HelperExpression
      */
-    public function helper(ExpressionInterface $expression, ExpressionInterface $class, ExpressionInterface $method, ExpressionInterface $arguments = null);
+    public function helper(
+        ExpressionInterface $expression,
+        ExpressionInterface $class,
+        ExpressionInterface $method,
+        ExpressionInterface $arguments = null
+    );
 
     /**
      * @return ContextExpression

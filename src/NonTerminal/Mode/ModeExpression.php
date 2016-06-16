@@ -5,7 +5,6 @@
  * Date: 4/6/16
  * Time: 10:16 AM
  */
-
 namespace Vain\Expression\NonTerminal\Mode;
 
 use Vain\Expression\Exception\UnknownModeException;
@@ -20,6 +19,7 @@ class ModeExpression implements NonTerminalExpressionInterface
 
     /**
      * ModeDescriptorDecorator constructor.
+     *
      * @param ExpressionInterface $data
      * @param ExpressionInterface $mode
      */
@@ -52,7 +52,6 @@ class ModeExpression implements NonTerminalExpressionInterface
     {
         $value = $this->data->interpret($context);
         $mode = $this->mode->interpret($context);
-
         switch ($mode) {
             case 'int':
                 return (int)$value;

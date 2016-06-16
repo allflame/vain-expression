@@ -5,7 +5,6 @@
  * Date: 3/31/16
  * Time: 1:01 PM
  */
-
 namespace Vain\Expression\Boolean\Unary;
 
 use Vain\Expression\Boolean\AbstractBooleanExpression;
@@ -18,7 +17,8 @@ abstract class AbstractUnaryExpression extends AbstractBooleanExpression impleme
 
     /**
      * AbstractUnaryExpression constructor.
-     * @param BooleanExpressionInterface $expression
+     *
+     * @param BooleanExpressionInterface    $expression
      * @param BooleanResultFactoryInterface $resultFactory
      */
     public function __construct(BooleanExpressionInterface $expression, BooleanResultFactoryInterface $resultFactory)
@@ -34,6 +34,7 @@ abstract class AbstractUnaryExpression extends AbstractBooleanExpression impleme
     {
         return $this->expression;
     }
+
     /**
      * @inheritDoc
      */

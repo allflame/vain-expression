@@ -5,9 +5,7 @@
  * Date: 4/1/16
  * Time: 10:05 AM
  */
-
 namespace Vain\Expression\Factory;
-
 
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
 use Vain\Expression\Boolean\Binary\OrX\OrExpression;
@@ -29,81 +27,17 @@ use Vain\Expression\Terminal\TerminalExpression;
 
 class ExpressionFactory implements ExpressionFactoryInterface
 {
-    
     private $resultFactory;
 
     /**
      * ExpressionFactory constructor.
+     *
      * @param BooleanResultFactoryInterface $resultFactory
      */
     public function __construct(BooleanResultFactoryInterface $resultFactory)
     {
         $this->resultFactory = $resultFactory;
     }
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function eq(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new EqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function neq(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new NotEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function gt(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new GreaterExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function gte(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new GreaterOrEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function lt(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new LessExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function lte(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new LessOrEqualExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function in(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new InExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function like(ExpressionInterface $what, ExpressionInterface $against, $mode)
-//    {
-//        return new LikeExpression($what, $against, $this->comparatorRepository->getComparator($mode), $this->resultFactory);
-//    }
 
     /**
      * @inheritDoc
@@ -164,8 +98,11 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function method(ExpressionInterface $data, ExpressionInterface $method, ExpressionInterface $arguments = null)
-    {
+    public function method(
+        ExpressionInterface $data,
+        ExpressionInterface $method,
+        ExpressionInterface $arguments = null
+    ) {
         return new MethodExpression($data, $method, $arguments);
     }
 
@@ -180,8 +117,11 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function func(ExpressionInterface $data, ExpressionInterface $function, ExpressionInterface $arguments = null)
-    {
+    public function func(
+        ExpressionInterface $data,
+        ExpressionInterface $function,
+        ExpressionInterface $arguments = null
+    ) {
         return new FunctionExpression($data, $function, $arguments);
     }
 
@@ -204,8 +144,12 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function helper(ExpressionInterface $data, ExpressionInterface $class, ExpressionInterface $method, ExpressionInterface $arguments = null)
-    {
+    public function helper(
+        ExpressionInterface $data,
+        ExpressionInterface $class,
+        ExpressionInterface $method,
+        ExpressionInterface $arguments = null
+    ) {
         return new HelperExpression($data, $class, $method, $arguments);
     }
 
@@ -216,85 +160,4 @@ class ExpressionFactory implements ExpressionFactoryInterface
     {
         return new ContextExpression();
     }
-
-
-//    /**
-//     * @inheritDoc
-//     */
-//    public function create($shortcut)
-//    {
-//        switch ($shortcut) {
-//            case 'true':
-//                return $this->true();
-//                break;
-//            case 'false':
-//                return $this->false();
-//                break;
-//            case 'context':
-//                return $this->context();
-//                break;
-//            case 'in_place':
-//                return $this->inPlace();
-//                break;
-//            case 'mode':
-//                return $this->mode();
-//                break;
-//            case 'module':
-//                return $this->module();
-//                break;
-//            case 'method':
-//                return $this->method();
-//                break;
-//            case 'property':
-//                return $this->property();
-//                break;
-//            case 'function':
-//                return $this->func();
-//                break;
-//            case 'helper':
-//                return $this->helper();
-//                break;
-//            case 'filter':
-//                return $this->filter();
-//                break;
-//            case 'id':
-//                return $this->id();
-//                break;
-//            case 'not':
-//                return $this->not();
-//                break;
-//            case 'eq':
-//                return $this->eq();
-//                break;
-//            case 'neq':
-//                return $this->neq();
-//                break;
-//            case 'gt':
-//                return $this->gt();
-//                break;
-//            case 'gte':
-//                return $this->gte();
-//                break;
-//            case 'lt':
-//                return $this->lt();
-//                break;
-//            case 'lte':
-//                return $this->lte();
-//                break;
-//            case 'in':
-//                return $this->in();
-//                break;
-//            case 'like':
-//                return $this->like();
-//                break;
-//            case 'and':
-//                return $this->andX();
-//                break;
-//            case 'or':
-//                return $this->orX();
-//                break;
-//            default:
-//                throw new UnknownExpressionException($this, $shortcut);
-//        }
-//    }
 }

@@ -5,7 +5,6 @@
  * Date: 6/16/16
  * Time: 10:07 AM
  */
-
 namespace Vain\Expression\Conditional\SwitchX;
 
 use Vain\Expression\ExpressionInterface;
@@ -21,9 +20,10 @@ class SwitchExpression implements NonTerminalExpressionInterface
 
     /**
      * SwitchExpression constructor.
-     * @param ExpressionInterface $check
+     *
+     * @param ExpressionInterface   $check
      * @param ExpressionInterface[] $map
-     * @param ExpressionInterface $default
+     * @param ExpressionInterface   $default
      */
     public function __construct(ExpressionInterface $check, array $map, ExpressionInterface $default)
     {
@@ -50,7 +50,19 @@ class SwitchExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        return sprintf('switch (%s) {%s default: %s}', implode(', ', array_map(function ($key, $value) { return sprintf('%s: %s', $key, $value);}, $this->map)), $this->default);
+        return sprintf(
+            'switch (%s) {%s default: %s}',
+            implode(
+                ', ',
+                array_map(
+                    function ($key, $value) {
+                        return sprintf('%s: %s', $key, $value);
+                    },
+                    $this->map
+                )
+            ),
+            $this->default
+        );
     }
 
     /**
@@ -63,6 +75,12 @@ class SwitchExpression implements NonTerminalExpressionInterface
             $mapped[$key] = $expression->toArray();
         }
 
-        return ['switch' => ['check' => $this->check->toArray(), 'map' => $mapped, 'default' => $this->default->toArray()]];
+        return [
+            'switch' => [
+                'check' => $this->check->toArray(),
+                'map' => $mapped,
+                'default' => $this->default->toArray()
+            ]
+        ];
     }
 }

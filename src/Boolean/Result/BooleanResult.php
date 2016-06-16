@@ -5,7 +5,6 @@
  * Date: 6/14/16
  * Time: 6:38 AM
  */
-
 namespace Vain\Expression\Boolean\Result;
 
 use Vain\Core\Result\AbstractResult;
@@ -13,14 +12,14 @@ use Vain\Expression\Boolean\BooleanExpressionInterface;
 
 class BooleanResult extends AbstractResult implements BooleanResultInterface
 {
-    
     private $expression;
-    
+
     private $result;
 
     /**
      * BooleanResult constructor.
-     * @param bool $status
+     *
+     * @param bool                       $status
      * @param BooleanExpressionInterface $expression
      * @param BooleanExpressionInterface $result
      */
@@ -52,6 +51,12 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
      */
     public function toArray()
     {
-        return ['boolean_result', array_merge(parent::toArray(), ['expression' => $this->expression->toArray(), 'result' => $this->result->toArray()])];
+        return [
+            'boolean_result',
+            array_merge(
+                parent::toArray(),
+                ['expression' => $this->expression->toArray(), 'result' => $this->result->toArray()]
+            )
+        ];
     }
 }

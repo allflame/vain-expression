@@ -5,7 +5,6 @@
  * Date: 5/10/16
  * Time: 11:29 AM
  */
-
 namespace Vain\Expression\NonTerminal\Helper;
 
 use Vain\Expression\Exception\UnknownHelperException;
@@ -24,13 +23,18 @@ class HelperExpression implements NonTerminalExpressionInterface
 
     /**
      * PropertyDescriptorDecorator constructor.
+     *
      * @param ExpressionInterface $data
      * @param ExpressionInterface $class
      * @param ExpressionInterface $method
      * @param ExpressionInterface $arguments
      */
-    public function __construct(ExpressionInterface $data, ExpressionInterface $class, ExpressionInterface $method, ExpressionInterface $arguments = null)
-    {
+    public function __construct(
+        ExpressionInterface $data,
+        ExpressionInterface $class,
+        ExpressionInterface $method,
+        ExpressionInterface $arguments = null
+    ) {
         $this->data = $data;
         $this->class = $class;
         $this->method = $method;
@@ -76,12 +80,15 @@ class HelperExpression implements NonTerminalExpressionInterface
     {
         $class = $this->class->interpret($context);
         $method = $this->method->interpret($context);
-
         if (false === method_exists($class, $method)) {
             throw new UnknownHelperException($this, $context, $class, $method);
         }
 
-        return call_user_func([$class, $method], $this->data->interpret($context), ...$this->arguments->interpret($context));
+        return call_user_func(
+            [$class, $method],
+            $this->data->interpret($context),
+            ...$this->arguments->interpret($context)
+        );
     }
 
     /**
@@ -101,6 +108,13 @@ class HelperExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['helper' => ['data' => $this->data->toArray(), 'class' => $this->class->toArray(), 'method' => $this->method->toArray(), 'arguments' => $this->arguments->toArray()]];
+        return [
+            'helper' => [
+                'data' => $this->data->toArray(),
+                'class' => $this->class->toArray(),
+                'method' => $this->method->toArray(),
+                'arguments' => $this->arguments->toArray()
+            ]
+        ];
     }
 }

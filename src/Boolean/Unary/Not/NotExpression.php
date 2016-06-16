@@ -5,7 +5,6 @@
  * Date: 4/1/16
  * Time: 9:10 AM
  */
-
 namespace Vain\Expression\Boolean\Unary\Not;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -18,7 +17,11 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->getResultFactory()->not($this, $this->getExpression()->interpret($context)->invert());
+        return $this->getResultFactory()
+                    ->not(
+                        $this,
+                        $this->getExpression()->interpret($context)->invert()
+                    );
     }
 
     /**
@@ -34,6 +37,10 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
      */
     public function toArray()
     {
-        return ['not' => ['expression' => $this->getExpression()->toArray()]];
+        return [
+            'not' => [
+                'expression' => $this->getExpression()->toArray()
+            ]
+        ];
     }
 }

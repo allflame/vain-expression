@@ -5,7 +5,6 @@
  * Date: 4/4/16
  * Time: 11:18 PM
  */
-
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
@@ -19,14 +18,20 @@ class InterpretationException extends CoreException
 
     /**
      * ExpressionEvaluatorException constructor.
+     *
      * @param ExpressionInterface $expression
-     * @param \ArrayAccess $context
-     * @param string $message
-     * @param int $code
-     * @param \Exception $previous
+     * @param \ArrayAccess        $context
+     * @param string              $message
+     * @param int                 $code
+     * @param \Exception          $previous
      */
-    public function __construct(ExpressionInterface $expression, \ArrayAccess $context = null, $message, $code, \Exception $previous = null)
-    {
+    public function __construct(
+        ExpressionInterface $expression,
+        \ArrayAccess $context = null,
+        $message,
+        $code,
+        \Exception $previous = null
+    ) {
         $this->expression = $expression;
         $this->context = $context;
         parent::__construct($message, $code, $previous);

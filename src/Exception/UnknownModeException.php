@@ -5,7 +5,6 @@
  * Date: 6/15/16
  * Time: 10:04 AM
  */
-
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\NonTerminal\Mode\ModeExpression;
@@ -17,9 +16,10 @@ class UnknownModeException extends InterpretationException
 {
     /**
      * UnknownModeException constructor.
+     *
      * @param ModeExpression $expression
-     * @param \ArrayAccess $context
-     * @param string $mode
+     * @param \ArrayAccess   $context
+     * @param string         $mode
      */
     public function __construct(ModeExpression $expression, \ArrayAccess $context, $mode)
     {
