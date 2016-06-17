@@ -18,14 +18,14 @@ use Vain\Expression\Exception\DuplicateModuleException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class Compiler implements CompositeCompilerInterface
+class Compiler implements CompilerCompositeInterface
 {
     private $modules;
 
     /**
      * @inheritDoc
      */
-    public function register(CompilerModuleInterface $compilerModule)
+    public function registerCompiler(CompilerModuleInterface $compilerModule)
     {
         foreach ($compilerModule->getTokens() as $token) {
             if (array_key_exists($token, $this->modules)) {

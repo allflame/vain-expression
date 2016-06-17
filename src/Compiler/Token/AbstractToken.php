@@ -21,16 +21,44 @@ abstract class AbstractToken implements TokenInterface
 
     private $cursor;
 
+    private $length;
+
     /**
      * AbstractToken constructor.
      *
      * @param mixed $value
      * @param int   $cursor
+     * @param int   $length
      */
-    public function __construct($value, $cursor)
+    public function __construct($value, $cursor, $length)
     {
         $this->value = $value;
         $this->cursor = $cursor;
+        $this->length = $length;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCursor()
+    {
+        return $this->cursor;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLength()
+    {
+        return $this->length;
     }
 
     /**

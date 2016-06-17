@@ -18,12 +18,12 @@ use Vain\Expression\Compiler\Module\CompilerModuleInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface CompositeCompilerInterface extends CompilerInterface
+interface CompilerCompositeInterface extends CompilerInterface
 {
     /**
      * @param CompilerModuleInterface $compilerModule
      *
-     * @return CompositeCompilerInterface
+     * @return CompilerCompositeInterface
      */
-    public function register(CompilerModuleInterface $compilerModule);
+    public function registerCompiler(CompilerModuleInterface $compilerModule);
 }

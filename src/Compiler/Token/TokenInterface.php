@@ -26,4 +26,10 @@ interface TokenInterface extends StringInterface
      * @return mixed
      */
     public function test($type, $value = null);
+
+    /**
+     *
+     * @return int
+     */
+    public function getLength();
 }
