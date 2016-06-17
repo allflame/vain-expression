@@ -10,6 +10,7 @@
  */
 namespace Vain\Expression\Boolean\ZeroAry\True;
 
+use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
 
@@ -18,7 +19,7 @@ use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class TrueExpression extends AbstractZeroAryExpression
+class TrueExpression extends AbstractZeroAryExpression implements BooleanExpressionInterface
 {
     private $resultFactory;
 

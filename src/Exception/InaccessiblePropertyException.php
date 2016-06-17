@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\NonTerminal\Property\PropertyExpression;
+use Vain\Expression\Property\PropertyExpression;
 
 /**
  * Class InaccessiblePropertyException

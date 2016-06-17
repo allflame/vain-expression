@@ -17,7 +17,7 @@ use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class TerminalExpression extends AbstractZeroAryExpression implements TerminalExpressionInterface
+class TerminalExpression extends AbstractZeroAryExpression
 {
     private $value;
 

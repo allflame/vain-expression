@@ -8,24 +8,20 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\NonTerminal\Property;
+namespace Vain\Expression\Property;
 
+use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Exception\InaccessiblePropertyException;
 use Vain\Expression\Exception\UnknownPropertyException;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 /**
  * Class PropertyExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class PropertyExpression implements NonTerminalExpressionInterface
+class PropertyExpression extends AbstractBinaryExpression
 {
-    private $data;
-
-    private $property;
-
     /**
      * PropertyDescriptorDecorator constructor.
      *
@@ -34,24 +30,7 @@ class PropertyExpression implements NonTerminalExpressionInterface
      */
     public function __construct(ExpressionInterface $data, ExpressionInterface $property)
     {
-        $this->data = $data;
-        $this->property = $property;
-    }
-
-    /**
-     * @return ExpressionInterface
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProperty()
-    {
-        return $this->property;
+        parent::__construct($data, $property);
     }
 
     /**
@@ -59,8 +38,8 @@ class PropertyExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        $data = $this->data->interpret($context);
-        $property = $this->property->interpret($context);
+        $data = $this->getFirstExpression()->interpret($context);
+        $property = $this->getSecondExpression()->interpret($context);
         switch (true) {
             case is_array($data):
                 if (false === array_key_exists($property, $data)) {
@@ -94,7 +73,7 @@ class PropertyExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        return sprintf('%s.%s', $this->data, $this->property);
+        return sprintf('%s.%s', $this->getFirstExpression(), $this->getSecondExpression());
     }
 
     /**
@@ -102,6 +81,6 @@ class PropertyExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['property' => ['data' => $this->data->toArray(), 'property' => $this->property->toArray()]];
+        return ['property' => parent::toArray()];
     }
 }

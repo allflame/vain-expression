@@ -8,16 +8,16 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\NonTerminal\Context;
+namespace Vain\Expression\Context;
 
-use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
+use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
 
 /**
  * Class ContextExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ContextExpression implements NonTerminalExpressionInterface
+class ContextExpression extends AbstractZeroAryExpression
 {
     /**
      * @inheritDoc

@@ -22,7 +22,7 @@ use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
  * @method BooleanExpressionInterface getFirstExpression
  * @method BooleanExpressionInterface getSecondExpression
  */
-class AndExpression extends AbstractBinaryExpression
+class AndExpression extends AbstractBinaryExpression implements BooleanExpressionInterface
 {
     private $resultFactory;
 

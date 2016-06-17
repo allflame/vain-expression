@@ -8,24 +8,22 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\NonTerminal\Filter;
+namespace Vain\Expression\Filter;
 
+use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\Exception\InaccessibleFilterException;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 /**
  * Class FilterExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ *
+ * @method BooleanExpressionInterface getSecondExpression
  */
-class FilterExpression implements NonTerminalExpressionInterface
+class FilterExpression extends AbstractBinaryExpression
 {
-    private $data;
-
-    private $filter;
-
     /**
      * FilterDescriptorDecorator constructor.
      *
@@ -34,24 +32,7 @@ class FilterExpression implements NonTerminalExpressionInterface
      */
     public function __construct(ExpressionInterface $data, BooleanExpressionInterface $filter)
     {
-        $this->data = $data;
-        $this->filter = $filter;
-    }
-
-    /**
-     * @return ExpressionInterface
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @return BooleanExpressionInterface
-     */
-    public function getFilter()
-    {
-        return $this->filter;
+        parent::__construct($data, $filter);
     }
 
     /**
@@ -59,13 +40,13 @@ class FilterExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        $data = $this->data->interpret($context);
+        $data = $this->getFirstExpression()->interpret($context);
         if (false === is_array($data) && false === $data instanceof \Traversable) {
             throw new InaccessibleFilterException($this, $context, $data);
         }
         $filteredData = [];
         foreach ($data as $singleElement) {
-            if (false === $this->filter->interpret($singleElement)->getStatus()) {
+            if (false === $this->getSecondExpression()->interpret($singleElement)->getStatus()) {
                 continue;
             }
             $filteredData[] = $singleElement;
@@ -79,7 +60,7 @@ class FilterExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        return sprintf('%s where %s', $this->data, $this->filter);
+        return sprintf('%s where %s', $this->getFirstExpression(), $this->getSecondExpression());
     }
 
     /**
@@ -87,6 +68,6 @@ class FilterExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['filter' => ['data' => $this->data->toArray(), 'filter' => $this->filter->toArray()]];
+        return ['filter' => parent::toArray()];
     }
 }

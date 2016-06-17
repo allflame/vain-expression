@@ -13,7 +13,7 @@ namespace Vain\Expression\Builder;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
-use Vain\Expression\NonTerminal\Mode\ModeExpression;
+use Vain\Expression\Mode\ModeExpression;
 use Vain\Expression\Terminal\TerminalExpression;
 
 /**

@@ -10,13 +10,13 @@
  */
 namespace Vain\Expression\ZeroAry;
 
-use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Terminal\TerminalExpressionInterface;
 
 /**
  * Interface ZeroAryExpressionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ZeroAryExpressionInterface extends ExpressionInterface
+interface ZeroAryExpressionInterface extends TerminalExpressionInterface
 {
 }

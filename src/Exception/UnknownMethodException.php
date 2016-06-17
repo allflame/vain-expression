@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\NonTerminal\Method\MethodExpression;
+use Vain\Expression\Method\MethodExpression;
 
 /**
  * Class UnknownMethodException

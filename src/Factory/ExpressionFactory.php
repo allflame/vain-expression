@@ -19,13 +19,13 @@ use Vain\Expression\Boolean\Unary\Not\NotExpression;
 use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
 use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\NonTerminal\Context\ContextExpression;
-use Vain\Expression\NonTerminal\Filter\FilterExpression;
-use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
-use Vain\Expression\NonTerminal\Helper\HelperExpression;
-use Vain\Expression\NonTerminal\Method\MethodExpression;
-use Vain\Expression\NonTerminal\Mode\ModeExpression;
-use Vain\Expression\NonTerminal\Property\PropertyExpression;
+use Vain\Expression\Context\ContextExpression;
+use Vain\Expression\Filter\FilterExpression;
+use Vain\Expression\FunctionX\FunctionExpression;
+use Vain\Expression\Helper\HelperExpression;
+use Vain\Expression\Method\MethodExpression;
+use Vain\Expression\Mode\ModeExpression;
+use Vain\Expression\Property\PropertyExpression;
 use Vain\Expression\Terminal\TerminalExpression;
 
 /**

@@ -8,23 +8,19 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\NonTerminal\Mode;
+namespace Vain\Expression\Mode;
 
+use Vain\Expression\Binary\AbstractBinaryExpression;
 use Vain\Expression\Exception\UnknownModeException;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 /**
  * Class ModeExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ModeExpression implements NonTerminalExpressionInterface
+class ModeExpression extends AbstractBinaryExpression
 {
-    private $data;
-
-    private $mode;
-
     /**
      * ModeDescriptorDecorator constructor.
      *
@@ -33,24 +29,7 @@ class ModeExpression implements NonTerminalExpressionInterface
      */
     public function __construct(ExpressionInterface $data, ExpressionInterface $mode)
     {
-        $this->data = $data;
-        $this->mode = $mode;
-    }
-
-    /**
-     * @return ExpressionInterface
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @return ExpressionInterface
-     */
-    public function getMode()
-    {
-        return $this->mode;
+        parent::__construct($data, $mode);
     }
 
     /**
@@ -58,8 +37,8 @@ class ModeExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        $value = $this->data->interpret($context);
-        $mode = $this->mode->interpret($context);
+        $value = $this->getFirstExpression()->interpret($context);
+        $mode = $this->getSecondExpression()->interpret($context);
         switch ($mode) {
             case 'int':
                 return (int)$value;
@@ -91,8 +70,8 @@ class ModeExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        $value = $this->data->__toString();
-        switch ($this->getMode()) {
+        $value = $this->getFirstExpression()->__toString();
+        switch ($this->getSecondExpression()->__toString()) {
             case 'string':
                 return sprintf("'%s'", $value);
                 break;
@@ -121,6 +100,6 @@ class ModeExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return ['mode' => ['data' => $this->data->toArray(), 'mode' => $this->mode->toArray()]];
+        return ['mode' => parent::toArray()];
     }
 }

@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\NonTerminal\Helper\HelperExpression;
+use Vain\Expression\Helper\HelperExpression;
 
 /**
  * Class UnknownHelperException

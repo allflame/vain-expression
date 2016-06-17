@@ -12,21 +12,17 @@ namespace Vain\Expression\Conditional\IfX;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
+use Vain\Expression\Ternary\AbstractTernaryExpression;
 
 /**
  * Class IfExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ *
+ * @method BooleanExpressionInterface getFirstExpression
  */
-class IfExpression implements NonTerminalExpressionInterface
+class IfExpression extends AbstractTernaryExpression
 {
-    private $condition;
-
-    private $then;
-
-    private $else;
-
     /**
      * IfExpression constructor.
      *
@@ -39,9 +35,7 @@ class IfExpression implements NonTerminalExpressionInterface
         ExpressionInterface $then,
         ExpressionInterface $else
     ) {
-        $this->condition = $condition;
-        $this->then = $then;
-        $this->else = $else;
+        parent::__construct($condition, $then, $else);
     }
 
     /**
@@ -49,11 +43,11 @@ class IfExpression implements NonTerminalExpressionInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        if ($this->condition->interpret($context)) {
-            return $this->then->interpret($context);
+        if ($this->getFirstExpression()->interpret($context)->getStatus()) {
+            return $this->getSecondExpression()->interpret($context);
         }
 
-        return $this->else->interpret($context);
+        return $this->getThirdExpression()->interpret($context);
     }
 
     /**
@@ -61,7 +55,12 @@ class IfExpression implements NonTerminalExpressionInterface
      */
     public function __toString()
     {
-        return sprintf('if (%s) then (%s) else (%s)', $this->condition, $this->then, $this->else);
+        return sprintf(
+            'if (%s) then (%s) else (%s)',
+            $this->getFirstExpression(),
+            $this->getSecondExpression(),
+            $this->getThirdExpression()
+        );
     }
 
     /**
@@ -69,12 +68,6 @@ class IfExpression implements NonTerminalExpressionInterface
      */
     public function toArray()
     {
-        return [
-            'if' => [
-                'condition' => $this->condition->toArray(),
-                'then' => $this->then->toArray(),
-                'else' => $this->else->toArray()
-            ]
-        ];
+        return ['if' => parent::toArray()];
     }
 }

@@ -8,20 +8,33 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Unary;
+namespace Vain\Expression\Ternary;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\NonTerminal\NonTerminalExpressionInterface;
 
 /**
- * Interface UnaryExpressionInterface
+ * Interface TernaryExpressionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface UnaryExpressionInterface extends NonTerminalExpressionInterface
+interface TernaryExpressionInterface extends NonTerminalExpressionInterface
 {
     /**
+     *
      * @return ExpressionInterface
      */
-    public function getExpression();
+    public function getFirstExpression();
+
+    /**
+     *
+     * @return ExpressionInterface
+     */
+    public function getSecondExpression();
+
+    /**
+     *
+     * @return ExpressionInterface
+     */
+    public function getThirdExpression();
 }
