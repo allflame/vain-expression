@@ -8,21 +8,20 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Compiler;
+namespace Vain\Expression\Compiler\Module;
 
-use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Compiler\CompilerInterface;
 
 /**
- * Interface CompilerInterface
+ * Interface CompilerModuleInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface CompilerInterface
+interface CompilerModuleInterface extends CompilerInterface
 {
     /**
-     * @param string $string
      *
-     * @return ExpressionInterface
+     * @return array[]
      */
-    public function compile($string);
+    public function getTokens();
 }

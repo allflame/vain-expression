@@ -8,21 +8,22 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Compiler;
+namespace Vain\Expression\Compiler\Token;
 
-use Vain\Expression\ExpressionInterface;
+use Vain\Core\String\StringInterface;
 
 /**
- * Interface CompilerInterface
+ * Interface TokenInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface CompilerInterface
+interface TokenInterface extends StringInterface
 {
     /**
-     * @param string $string
+     * @param int $type
+     * @param mixed $value
      *
-     * @return ExpressionInterface
+     * @return mixed
      */
-    public function compile($string);
+    public function test($type, $value = null);
 }

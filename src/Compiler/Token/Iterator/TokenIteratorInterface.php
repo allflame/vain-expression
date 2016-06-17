@@ -8,21 +8,19 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Compiler;
+namespace Vain\Expression\Compiler\Token\Iterator;
 
-use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Compiler\Token\TokenInterface;
 
 /**
- * Interface CompilerInterface
+ * Interface TokenIteratorInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ *
+ * @method TokenInterface current
+ * @method TokenInterface next
  */
-interface CompilerInterface
+interface TokenIteratorInterface extends \Iterator
 {
-    /**
-     * @param string $string
-     *
-     * @return ExpressionInterface
-     */
-    public function compile($string);
+ 
 }
