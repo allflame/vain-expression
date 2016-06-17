@@ -10,7 +10,8 @@
  */
 namespace Vain\Expression\Boolean\ZeroAry\False;
 
-use Vain\Expression\Boolean\ZeroAry\AbstractZeroAryExpression;
+use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
+use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
 
 /**
  * Class FalseExpression
@@ -19,12 +20,24 @@ use Vain\Expression\Boolean\ZeroAry\AbstractZeroAryExpression;
  */
 class FalseExpression extends AbstractZeroAryExpression
 {
+    private $resultFactory;
+
+    /**
+     * FalseExpression constructor.
+     *
+     * @param BooleanResultFactoryInterface $resultFactory
+     */
+    public function __construct(BooleanResultFactoryInterface $resultFactory)
+    {
+        $this->resultFactory = $resultFactory;
+    }
+
     /**
      * @inheritDoc
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->getResultFactory()->false($this);
+        return $this->resultFactory->false($this);
     }
 
     /**

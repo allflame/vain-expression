@@ -16,7 +16,7 @@ use Vain\Expression\NonTerminal\Mode\ModeExpression;
  * Class UnknownModeException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- * 
+ *
  * @method ModeExpression getExpression
  */
 class UnknownModeException extends InterpretationException

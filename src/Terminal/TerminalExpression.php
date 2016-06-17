@@ -10,12 +10,14 @@
  */
 namespace Vain\Expression\Terminal;
 
+use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
+
 /**
  * Class TerminalExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class TerminalExpression implements TerminalExpressionInterface
+class TerminalExpression extends AbstractZeroAryExpression implements TerminalExpressionInterface
 {
     private $value;
 

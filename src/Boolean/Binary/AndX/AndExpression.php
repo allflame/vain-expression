@@ -10,26 +10,57 @@
  */
 namespace Vain\Expression\Boolean\Binary\AndX;
 
-use Vain\Expression\Boolean\Binary\AbstractBinaryExpression;
+use Vain\Expression\Binary\AbstractBinaryExpression;
+use Vain\Expression\Boolean\BooleanExpressionInterface;
+use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 
 /**
  * Class AndExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ *
+ * @method BooleanExpressionInterface getFirstExpression
+ * @method BooleanExpressionInterface getSecondExpression
  */
 class AndExpression extends AbstractBinaryExpression
 {
+    private $resultFactory;
+
+    /**
+     * AndExpression constructor.
+     *
+     * @param BooleanExpressionInterface    $firstExpression
+     * @param BooleanExpressionInterface    $secondExpression
+     * @param BooleanResultFactoryInterface $resultFactory
+     */
+    public function __construct(
+        BooleanExpressionInterface $firstExpression,
+        BooleanExpressionInterface $secondExpression,
+        BooleanResultFactoryInterface $resultFactory
+    ) {
+        $this->resultFactory = $resultFactory;
+        parent::__construct($firstExpression, $secondExpression);
+    }
+
+    /**
+     * @return BooleanResultFactoryInterface
+     */
+    public function getResultFactory()
+    {
+        return $this->resultFactory;
+    }
+
     /**
      * @inheritDoc
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->getResultFactory()
-                    ->andX(
-                        $this,
-                        $this->getFirstExpression()->interpret($context),
-                        $this->getSecondExpression()->interpret($context)
-                    );
+        return $this->resultFactory
+            ->andX(
+                $this,
+                $this->getFirstExpression()->interpret($context),
+                $this->getSecondExpression()->interpret($context)
+            );
     }
 
     /**

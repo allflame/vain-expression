@@ -16,7 +16,7 @@ use Vain\Expression\NonTerminal\Method\MethodExpression;
  * Class UnknownMethodException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- * 
+ *
  * @method MethodExpression getExpression
  */
 class UnknownMethodException extends InterpretationException

@@ -11,7 +11,8 @@
 namespace Vain\Expression\Boolean\Unary\Not;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
-use Vain\Expression\Boolean\Unary\AbstractUnaryExpression;
+use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
+use Vain\Expression\Unary\AbstractUnaryExpression;
 
 /**
  * Class NotExpression
@@ -20,16 +21,38 @@ use Vain\Expression\Boolean\Unary\AbstractUnaryExpression;
  */
 class NotExpression extends AbstractUnaryExpression implements BooleanExpressionInterface
 {
+    private $resultFactory;
+
+    /**
+     * IdentityExpression constructor.
+     *
+     * @param BooleanExpressionInterface    $expression
+     * @param BooleanResultFactoryInterface $resultFactory
+     */
+    public function __construct(BooleanExpressionInterface $expression, BooleanResultFactoryInterface $resultFactory)
+    {
+        $this->resultFactory = $resultFactory;
+        parent::__construct($expression);
+    }
+
+    /**
+     * @return BooleanResultFactoryInterface
+     */
+    public function getResultFactory()
+    {
+        return $this->resultFactory;
+    }
+
     /**
      * @inheritDoc
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->getResultFactory()
-                    ->not(
-                        $this,
-                        $this->getExpression()->interpret($context)->invert()
-                    );
+        return $this->resultFactory
+            ->not(
+                $this,
+                $this->getExpression()->interpret($context)->invert()
+            );
     }
 
     /**

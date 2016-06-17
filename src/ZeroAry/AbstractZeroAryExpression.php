@@ -8,15 +8,13 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Boolean\ZeroAry;
-
-use Vain\Expression\Boolean\AbstractBooleanExpression;
+namespace Vain\Expression\ZeroAry;
 
 /**
  * Class AbstractZeroAryExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractZeroAryExpression extends AbstractBooleanExpression implements ZeroAryExpressionInterface
+abstract class AbstractZeroAryExpression implements ZeroAryExpressionInterface
 {
 }

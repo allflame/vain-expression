@@ -8,15 +8,15 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Boolean\ZeroAry;
+namespace Vain\Expression\ZeroAry;
 
-use Vain\Expression\Boolean\BooleanExpressionInterface;
+use Vain\Expression\ExpressionInterface;
 
 /**
  * Interface ZeroAryExpressionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ZeroAryExpressionInterface extends BooleanExpressionInterface
+interface ZeroAryExpressionInterface extends ExpressionInterface
 {
 }

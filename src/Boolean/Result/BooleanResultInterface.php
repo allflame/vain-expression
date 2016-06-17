@@ -17,7 +17,7 @@ use Vain\Expression\Boolean\BooleanExpressionInterface;
  * Interface BooleanResultInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- * 
+ *
  * @method BooleanResultInterface invert
  */
 interface BooleanResultInterface extends ResultInterface, BooleanExpressionInterface

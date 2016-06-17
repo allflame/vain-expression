@@ -8,24 +8,24 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Boolean\Binary;
+namespace Vain\Expression\Binary;
 
-use Vain\Expression\Boolean\BooleanExpressionInterface;
+use Vain\Expression\ExpressionInterface;
 
 /**
  * Interface BinaryExpressionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface BinaryExpressionInterface extends BooleanExpressionInterface
+interface BinaryExpressionInterface extends ExpressionInterface
 {
     /**
-     * @return BooleanExpressionInterface
+     * @return ExpressionInterface
      */
     public function getFirstExpression();
 
     /**
-     * @return BooleanExpressionInterface
+     * @return ExpressionInterface
      */
     public function getSecondExpression();
 }
