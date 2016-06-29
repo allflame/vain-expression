@@ -37,4 +37,12 @@ class StringLexerModule extends AbstractLexerModule
 
         return new StringToken(stripcslashes(substr($match[0], 1, -1)), $currentPosition + 1, strlen($match[0]));
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function consistent()
+    {
+        return true;
+    }
 }

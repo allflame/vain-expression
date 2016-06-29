@@ -42,4 +42,12 @@ class NumberLexerModule extends AbstractLexerModule
 
         return new NumberToken($number, $currentPosition + 1, strlen($match[0]));
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function consistent()
+    {
+        return true;
+    }
 }

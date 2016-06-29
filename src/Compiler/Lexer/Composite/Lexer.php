@@ -76,30 +76,14 @@ class Lexer implements LexerCompositeInterface
                 throw new SyntaxErrorException($this, $expression, $position, sprintf('Unexpected character "%s"', $expression[$position]));
             }
         }
-//            switch (true) {
-//                case false !== strpos('([{', $expression[$position]):
-//                    $brackets[] = [$expression[$position], $position];
-//                    $tokens[] = new PunctuationToken($expression[$position], $position + 1);
-//                    ++$position;
-//                    break;
-//                case false !== strpos(')]}', $expression[$position]):
-//                    if ([] === $brackets) {
-//                        throw new SyntaxErrorException($this, $expression, $position, 'Unexpected character');
-//                    }
-//                    list($expect, $lastBracketPosition) = array_pop($brackets);
-//                    if ($expression[$position] != strtr($expect, '([{', ')]}')) {
-//                        throw new SyntaxErrorException($this, $expression, $lastBracketPosition, sprintf('Unclosed "%s"', $expect));
-//                    }
-//                    $tokens[] = new PunctuationToken($expression[$position], $position + 1);
-//                    ++$position;
-//                    break;
-//            }
 
+        $this->queue->rewind();
+        foreach ($this->queue as $module) {
+            if (false === $module->consistent()) {
+
+            }
+        }
         $tokens[] = new EofToken(null, $position + 1, 0);
-//        if ([] !== $brackets) {
-//            list($expect, $lastBracketPosition) = array_pop($brackets);
-//            throw new SyntaxErrorException($this, $expression, $lastBracketPosition, sprintf('Unclosed "%s"', $expect));
-//        }
 
         return new TokenIterator($tokens);
     }

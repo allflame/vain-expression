@@ -39,4 +39,9 @@ interface LexerModuleInterface
      * @return TokenInterface
      */
     public function process($string, $currentPosition);
+
+    /**
+     * @return boolean
+     */
+    public function consistent();
 }

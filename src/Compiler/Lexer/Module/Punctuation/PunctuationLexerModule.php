@@ -35,4 +35,12 @@ class PunctuationLexerModule extends AbstractLexerModule
     {
         return new PunctuationToken($string[$currentPosition], $currentPosition + 1, 1);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function consistent()
+    {
+        return true;
+    }
 }

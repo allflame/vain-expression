@@ -37,4 +37,12 @@ class NameLexerModule extends AbstractLexerModule
         
         return new NameToken($match[0], $currentPosition + 1, strlen($match[0]));
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function consistent()
+    {
+        return true;
+    }
 }
