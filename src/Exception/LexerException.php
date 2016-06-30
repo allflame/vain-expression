@@ -11,7 +11,7 @@
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\CoreException;
-use Vain\Expression\Compiler\Lexer\LexerInterface;
+use Vain\Expression\Lexer\LexerInterface;
 
 /**
  * Class LexerException

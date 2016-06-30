@@ -1,9 +1,33 @@
 services:
-    expression.builder:
-        class: Vain\Expression\Builder\ExpressionBuilder
-        arguments: ['@expression.factory']
-    expression.factory:
-        class: Vain\Expression\Factory\ExpressionFactory
-        arguments: ['@expression.boolean.result.factory']
-    expression.boolean.result.factory:
-        class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
+  expression.builder:
+    class: Vain\Expression\Builder\ExpressionBuilder
+    arguments: ['@expression.factory']
+  expression.factory:
+    class: Vain\Expression\Factory\ExpressionFactory
+    arguments: ['@expression.boolean.result.factory']
+  expression.boolean.result.factory:
+    class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
+  expression.compiler:
+    class: Vain\Expression\Compiler\Composite\Compiler
+    arguments: []
+  expression.lexer:
+    class: Vain\Expression\Lexer\Composite\Lexer
+    arguments: ['@lexer.module.name', '@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number']
+  lexer.module.name:
+    class: Vain\Expression\Lexer\Module\Name\NameLexerModule
+    arguments: [100]
+  lexer.module.operator:
+    class: Vain\Expression\Lexer\Module\Operator\OperatorLexerModule
+    arguments: [200]
+  lexer.module.string:
+    class: Vain\Expression\Lexer\Module\String\StringLexerModule
+    arguments: [300]
+  lexer.module.bracket:
+    class: Vain\Expression\Lexer\Module\Bracket\BracketLexerModule
+    arguments: [400]
+  lexer.module.punctunation:
+    class: Vain\Expression\Lexer\Module\Punctuation\PunctuationLexerModule
+    arguments: [500]
+  lexer.module.number:
+    class: Vain\Expression\Lexer\Module\Number\NumberLexerModule
+    arguments: [600]
