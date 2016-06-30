@@ -12,6 +12,7 @@ namespace Vain\Expression\Compiler\Composite;
 
 use Vain\Expression\Compiler\Module\CompilerModuleInterface;
 use Vain\Expression\Exception\DuplicateModuleException;
+use Vain\Expression\Lexer\LexerInterface;
 
 /**
  * Class Compiler
@@ -21,6 +22,22 @@ use Vain\Expression\Exception\DuplicateModuleException;
 class Compiler implements CompilerCompositeInterface
 {
     private $modules;
+
+    private $lexer;
+
+    /**
+     * Compiler constructor.
+     *
+     * @param LexerInterface            $lexer
+     * @param CompilerModuleInterface[] $modules
+     */
+    public function __construct(LexerInterface $lexer, array $modules)
+    {
+        $this->lexer = $lexer;
+        foreach ($modules as $module) {
+            $this->registerCompiler($module);
+        }
+    }
 
     /**
      * @inheritDoc
@@ -42,6 +59,8 @@ class Compiler implements CompilerCompositeInterface
      */
     public function compile($string)
     {
-        trigger_error('Method compile is not implemented', E_USER_ERROR);
+        $tokens = $this->lexer->process($string);
+        
+        
     }
 }
