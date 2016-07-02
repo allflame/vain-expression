@@ -11,10 +11,10 @@
 namespace Vain\Expression\Lexer\Composite;
 
 use Vain\Expression\Exception\DuplicatePriorityException;
+use Vain\Expression\Exception\InconsistentStateException;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 use Vain\Expression\Token\Eof\EofToken;
 use Vain\Expression\Token\Iterator\TokenIterator;
-use Vain\Expression\Exception\SyntaxErrorException;
 
 /**
  * Class Lexer
@@ -66,7 +66,7 @@ class Lexer implements LexerCompositeInterface
         $tokens = $brackets = [];
         krsort($this->modules);
         while ($position < $eof) {
-            if (' ' == $expression[$position]) {
+            if (' ' === $expression[$position]) {
                 ++$position;
                 continue;
             }
@@ -84,7 +84,7 @@ class Lexer implements LexerCompositeInterface
 
         foreach ($this->modules as $module) {
             if (false === $module->consistent()) {
-                throw new SyntaxErrorException($this, $expression, $eof, sprintf('Module %s reported inconsistent state', get_class($module)));
+                throw new InconsistentStateException($this, $module);
             }
         }
         $tokens[] = new EofToken(null, $position + 1, 0);

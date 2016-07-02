@@ -10,25 +10,55 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\Lexer\LexerInterface;
+use Vain\Expression\Lexer\Module\LexerModuleInterface;
 
 /**
  * Class SyntaxErrorException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class SyntaxErrorException extends LexerException
+class SyntaxErrorException extends LexerModuleException
 {
+    private $string;
+
+    private $position;
+
     /**
      * SyntaxErrorException constructor.
      *
-     * @param LexerInterface $lexer
-     * @param string         $expression
-     * @param int            $position
-     * @param string         $message
+     * @param LexerModuleInterface $module
+     * @param string               $string
+     * @param int                  $position
+     * @param string               $message
+     * @param int                  $code
+     * @param \Exception|null      $previous
      */
-    public function __construct(LexerInterface $lexer, $expression, $position, $message)
+    public function __construct(
+        LexerModuleInterface $module,
+        $string,
+        $position,
+        $message,
+        $code,
+        \Exception $previous = null
+    ) {
+        $this->string = $string;
+        $this->position = $position;
+        parent::__construct($module, sprintf('Syntax error on position %d of string %s: %s', $position, $string, $message), $code, $previous);
+    }
+
+    /**
+     * @return string
+     */
+    public function getString()
     {
-        parent::__construct($lexer, sprintf('Syntax error near character #%d in %s: %s', $position, $expression, $message), 0, null);
+        return $this->string;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

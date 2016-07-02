@@ -10,6 +10,9 @@
  */
 namespace Vain\Expression\Lexer\Module\Bracket;
 
+use Vain\Expression\Exception\BracketPrecedenceException;
+use Vain\Expression\Exception\UnclosedBracketException;
+use Vain\Expression\Exception\WrongBracketException;
 use Vain\Expression\Lexer\Module\AbstractLexerModule;
 use Vain\Expression\Token\Bracket\BracketToken;
 
@@ -35,11 +38,7 @@ class BracketLexerModule extends AbstractLexerModule
     {
         $symbol = $string[$currentPosition];
 
-        if (false !== strpos('([{', $symbol)) {
-            return true;
-        }
-
-        if (false !== strpos(')]}', $symbol) && end($this->brackets) === $this->bracketMap[$symbol]) {
+        if (false !== strpos('()[]{}', $symbol)) {
             return true;
         }
 
@@ -55,6 +54,12 @@ class BracketLexerModule extends AbstractLexerModule
         if (false !== strpos('([{', $symbol)) {
             $this->brackets[] = $symbol;
         } else {
+            if ([] === $this->brackets) {
+                throw new BracketPrecedenceException($this, $string, $currentPosition, $this->bracketMap[$symbol]);
+            }
+            if (end($this->brackets) !== $this->bracketMap[$symbol]) {
+                throw new WrongBracketException($this, $string, $currentPosition, end($this->bracketMap));
+            }
             array_pop($this->brackets);
         }
 
@@ -66,6 +71,10 @@ class BracketLexerModule extends AbstractLexerModule
      */
     public function consistent()
     {
-        return (0 === count($this->brackets));
+        if (0 !== count($this->brackets)) {
+            throw new UnclosedBracketException($this, $this->brackets);
+        }
+
+        return true;
     }
 }

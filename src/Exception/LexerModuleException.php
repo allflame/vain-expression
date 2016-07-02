@@ -30,8 +30,12 @@ class LexerModuleException extends CoreException
      * @param int                  $code
      * @param \Exception|null      $previous
      */
-    public function __construct(LexerModuleInterface $module, $message, $code, \Exception $previous = null)
-    {
+    public function __construct(
+        LexerModuleInterface $module,
+        $message,
+        $code,
+        \Exception $previous = null
+    ) {
         $this->module = $module;
         parent::__construct($message, $code, $previous);
     }

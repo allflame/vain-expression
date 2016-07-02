@@ -13,26 +13,31 @@ namespace Vain\Expression\Exception;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 
 /**
- * Class UnknownCharacterException
+ * Class BracketPrecedenceException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class UnknownCharacterException extends SyntaxErrorException
+class BracketPrecedenceException extends SyntaxErrorException
 {
     /**
-     * UnknownCharacterException constructor.
+     * BracketPrecedenceException constructor.
      *
      * @param LexerModuleInterface $module
      * @param string               $string
      * @param int                  $position
+     * @param string               $expectedPrecedence
      */
-    public function __construct(LexerModuleInterface $module, $string, $position)
+    public function __construct(LexerModuleInterface $module, $string, $position, $expectedPrecedence)
     {
         parent::__construct(
             $module,
             $string,
             $position,
-            sprintf('Unexpected character "%s"', $string[$position]),
+            sprintf(
+                'Open bracket %s is expected before closing one %s',
+                $expectedPrecedence,
+                $string[$position]
+            ),
             0,
             null
         );
