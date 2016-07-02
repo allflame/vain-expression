@@ -35,11 +35,11 @@ class BracketLexerModule extends AbstractLexerModule
     {
         $symbol = $string[$currentPosition];
 
-        if (strpos('([{', $symbol)) {
+        if (false !== strpos('([{', $symbol)) {
             return true;
         }
 
-        if (strpos(')]{', $symbol) && end($this->brackets) === $this->bracketMap[$symbol]) {
+        if (false !== strpos(')]{', $symbol) && end($this->brackets) === $this->bracketMap[$symbol]) {
             return true;
         }
 
