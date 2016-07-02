@@ -29,6 +29,6 @@ class SyntaxErrorException extends LexerException
      */
     public function __construct(LexerInterface $lexer, $expression, $position, $message)
     {
-        parent::__construct($lexer, sprintf('Syntax error near %d in %s: %s', $position, $expression, $message), 0, null);
+        parent::__construct($lexer, sprintf('Syntax error near character #%d in %s: %s', $position, $expression, $message), 0, null);
     }
 }
