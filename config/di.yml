@@ -9,7 +9,7 @@ services:
     class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
   expression.compiler:
     class: Vain\Expression\Compiler\Composite\Compiler
-    arguments: []
+    arguments: ['@expression.lexer']
   expression.lexer:
     class: Vain\Expression\Lexer\Composite\Lexer
     arguments: [['@lexer.module.name', '@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number', '@lexer.module.unknown']]

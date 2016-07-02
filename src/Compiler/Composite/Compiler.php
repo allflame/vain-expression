@@ -31,7 +31,7 @@ class Compiler implements CompilerCompositeInterface
      * @param LexerInterface            $lexer
      * @param CompilerModuleInterface[] $modules
      */
-    public function __construct(LexerInterface $lexer, array $modules)
+    public function __construct(LexerInterface $lexer, array $modules = [])
     {
         $this->lexer = $lexer;
         foreach ($modules as $module) {
@@ -59,8 +59,6 @@ class Compiler implements CompilerCompositeInterface
      */
     public function compile($string)
     {
-        $tokens = $this->lexer->process($string);
-        
-        
+        return $this->lexer->process($string);
     }
 }
