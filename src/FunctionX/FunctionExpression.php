@@ -49,8 +49,7 @@ class FunctionExpression extends AbstractTernaryExpression
         return call_user_func(
             $function,
             $this->getFirstExpression()->interpret($context),
-            ...
-            $this->getSecondExpression()->interpret($context)
+            ...$this->getThirdExpression()->interpret($context)
         );
     }
 
