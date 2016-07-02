@@ -10,6 +10,7 @@
  */
 namespace Vain\Expression\Lexer\Composite;
 
+use Vain\Expression\Exception\DuplicatePriorityException;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 use Vain\Expression\Token\Eof\EofToken;
 use Vain\Expression\Token\Iterator\TokenIterator;
@@ -27,7 +28,7 @@ class Lexer implements LexerCompositeInterface
     /**
      * @var LexerModuleInterface[]
      */
-    private $modules;
+    private $modules = [];
 
     /**
      * Lexer constructor.
@@ -48,7 +49,7 @@ class Lexer implements LexerCompositeInterface
     {
         $priority = $module->getPriority();
         if (array_key_exists($module->getPriority(), $this->modules)) {
-
+            throw new DuplicatePriorityException($this, $module, $this->modules[$priority]);
         }
         $this->modules[$priority] = $module;
 
