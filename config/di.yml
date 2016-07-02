@@ -7,8 +7,8 @@ services:
     arguments: ['@expression.boolean.result.factory']
   expression.boolean.result.factory:
     class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
-  expression.compiler:
-    class: Vain\Expression\Compiler\Composite\Compiler
+  expression.parser:
+    class: Vain\Expression\Parser\Composite\Parser
     arguments: ['@expression.lexer']
   expression.lexer:
     class: Vain\Expression\Lexer\Composite\Lexer

@@ -8,21 +8,21 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Compiler;
+namespace Vain\Expression\Parser;
 
 use Vain\Expression\ExpressionInterface;
 
 /**
- * Interface CompilerInterface
+ * Interface ParserInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface CompilerInterface
+interface ParserInterface
 {
     /**
      * @param string $string
      *
      * @return ExpressionInterface
      */
-    public function compile($string);
+    public function parse($string);
 }

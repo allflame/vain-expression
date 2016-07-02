@@ -25,5 +25,5 @@ interface LexerCompositeInterface extends LexerInterface
      *
      * @return LexerCompositeInterface
      */
-    public function registerLexer(LexerModuleInterface $module);
+    public function addModule(LexerModuleInterface $module);
 }

@@ -38,14 +38,14 @@ class Lexer implements LexerCompositeInterface
     public function __construct(array $modules = [])
     {
         foreach ($modules as $module) {
-            $this->registerLexer($module);
+            $this->addModule($module);
         }
     }
 
     /**
      * @inheritDoc
      */
-    public function registerLexer(LexerModuleInterface $module)
+    public function addModule(LexerModuleInterface $module)
     {
         $priority = $module->getPriority();
         if (array_key_exists($module->getPriority(), $this->modules)) {
