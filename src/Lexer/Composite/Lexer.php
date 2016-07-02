@@ -10,14 +10,13 @@
  */
 namespace Vain\Expression\Lexer\Composite;
 
-use Vain\Expression\Lexer\Composite\Queue\LexerQueue;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 use Vain\Expression\Token\Eof\EofToken;
 use Vain\Expression\Token\Iterator\TokenIterator;
 use Vain\Expression\Exception\SyntaxErrorException;
 
 /**
- * Class Lexeruse Vain\Expression\Lexer\LexerInterface;
+ * Class Lexer
 
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
@@ -25,7 +24,10 @@ use Vain\Expression\Exception\SyntaxErrorException;
 class Lexer implements LexerCompositeInterface
 {
 
-    private $queue;
+    /**
+     * @var LexerModuleInterface[]
+     */
+    private $modules;
 
     /**
      * Lexer constructor.
@@ -34,9 +36,8 @@ class Lexer implements LexerCompositeInterface
      */
     public function __construct(array $modules = [])
     {
-        $this->queue = new LexerQueue();
         foreach ($modules as $module) {
-            $this->queue->insert($module, $module->getPriority());
+            $this->registerLexer($module);
         }
     }
 
@@ -45,7 +46,11 @@ class Lexer implements LexerCompositeInterface
      */
     public function registerLexer(LexerModuleInterface $module)
     {
-        $this->queue->insert($module, $module->getPriority());
+        $priority = $module->getPriority();
+        if (array_key_exists($module->getPriority(), $this->modules)) {
+
+        }
+        $this->modules[$priority] = $module;
 
         return $this;
     }
@@ -60,26 +65,18 @@ class Lexer implements LexerCompositeInterface
         $tokens = $brackets = [];
 
         while ($position < $eof) {
-            $current = $this->queue->top();
-            while (null !== $current) {
-                if (false === $current->test($expression, $position)) {
-                    $this->queue->next();
-                    $current = $this->queue->current();
+            foreach ($this->modules as $module) {
+                if (false === $module->test($expression, $position)) {
                     continue;
                 }
-                $token = $current->process($expression, $position);
+                $token = $module->process($expression, $position);
                 $tokens[] = $token;
                 $position += $token->getLength();
-                $this->queue->rewind();
-            }
-
-            if (null === $current) {
-                throw new SyntaxErrorException($this, $expression, $position, sprintf('Unexpected character "%s"', $expression[$position]));
+                break;
             }
         }
 
-        $this->queue->rewind();
-        foreach ($this->queue as $module) {
+        foreach ($this->modules as $module) {
             if (false === $module->consistent()) {
                 throw new SyntaxErrorException($this, $expression, $eof, sprintf('Module %s reported inconsistent state', get_class($module)));
             }

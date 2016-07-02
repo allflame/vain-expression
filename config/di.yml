@@ -12,7 +12,10 @@ services:
     arguments: []
   expression.lexer:
     class: Vain\Expression\Lexer\Composite\Lexer
-    arguments: [['@lexer.module.name', '@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number']]
+    arguments: [['@lexer.module.name', '@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number', '@lexer.module.unknown']]
+  lexer.module.unknown:
+      class: Vain\Expression\Lexer\Module\Unknown\UnknownLexerModule
+      arguemnts: [0]
   lexer.module.name:
     class: Vain\Expression\Lexer\Module\Name\NameLexerModule
     arguments: [100]
@@ -31,3 +34,4 @@ services:
   lexer.module.number:
     class: Vain\Expression\Lexer\Module\Number\NumberLexerModule
     arguments: [600]
+
