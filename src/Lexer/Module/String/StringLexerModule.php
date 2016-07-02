@@ -25,7 +25,7 @@ class StringLexerModule extends AbstractLexerModule
      */
     public function test($string, $currentPosition)
     {
-        return 1 === preg_match('/"([^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(?:\\\\.[^\'\\\\]*)*)\'/As', $string, $match, null, $currentPosition);
+        return (1 === preg_match('/"([^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(?:\\\\.[^\'\\\\]*)*)\'/As', $string, $match, null, $currentPosition));
     }
 
     /**

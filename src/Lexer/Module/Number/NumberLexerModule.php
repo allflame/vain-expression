@@ -25,7 +25,7 @@ class NumberLexerModule extends AbstractLexerModule
      */
     public function test($string, $currentPosition)
     {
-        return 1 === preg_match('/[0-9]+(?:\.[0-9]+)?/A', $string, $match, null, $currentPosition);
+        return (1 === preg_match('/[0-9]+(?:\.[0-9]+)?/A', $string, $match, null, $currentPosition));
     }
 
     /**
