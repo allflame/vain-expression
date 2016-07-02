@@ -63,7 +63,8 @@ class Lexer implements LexerCompositeInterface
             $current = $this->queue->top();
             while (null !== $current) {
                 if (false === $current->test($expression, $position)) {
-                    $current = $this->queue->next();
+                    $this->queue->next();
+                    $current = $this->queue->current();
                     continue;
                 }
                 $token = $current->process($expression, $position);
@@ -71,7 +72,7 @@ class Lexer implements LexerCompositeInterface
                 $position += $token->getLength();
                 $this->queue->rewind();
             }
-            
+
             if (null === $current) {
                 throw new SyntaxErrorException($this, $expression, $position, sprintf('Unexpected character "%s"', $expression[$position]));
             }
