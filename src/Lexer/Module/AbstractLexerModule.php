@@ -24,7 +24,7 @@ abstract class AbstractLexerModule implements LexerModuleInterface
      *
      * @param int $priority
      */
-    public function __construct($priority = 100)
+    public function __construct($priority)
     {
         $this->priority = $priority;
     }
