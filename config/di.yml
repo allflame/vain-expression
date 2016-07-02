@@ -14,8 +14,8 @@ services:
     class: Vain\Expression\Lexer\Composite\Lexer
     arguments: [['@lexer.module.name', '@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number', '@lexer.module.unknown']]
   lexer.module.unknown:
-      class: Vain\Expression\Lexer\Module\Unknown\UnknownLexerModule
-      arguemnts: [0]
+    class: Vain\Expression\Lexer\Module\Unknown\UnknownLexerModule
+    arguemnts: [1]
   lexer.module.name:
     class: Vain\Expression\Lexer\Module\Name\NameLexerModule
     arguments: [100]
