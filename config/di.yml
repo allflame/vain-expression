@@ -25,7 +25,7 @@ services:
   lexer.module.bracket:
     class: Vain\Expression\Lexer\Module\Bracket\BracketLexerModule
     arguments: [400]
-  lexer.module.punctunation:
+  lexer.module.punctuation:
     class: Vain\Expression\Lexer\Module\Punctuation\PunctuationLexerModule
     arguments: [500]
   lexer.module.number:
