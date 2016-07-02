@@ -35,7 +35,7 @@ class OperatorLexerModule extends AbstractLexerModule
     {
         preg_match('/not in(?=[\s(])|\!\=\=|not(?=[\s(])|and(?=[\s(])|\=\=\=|\>\=|or(?=[\s(])|\<\=|\*\*|\.\.|in(?=[\s(])|&&|\|\||matches|\=\=|\!\=|\*|~|%|\/|\>|\||\!|\^|&|\+|\<|\-/A', $string, $match, null, $currentPosition);
 
-        new OperatorToken($match[0], $currentPosition + 1, strlen($match[0]));
+        return new OperatorToken($match[0], $currentPosition + 1, strlen($match[0]));
     }
 
     /**
