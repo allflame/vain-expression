@@ -15,23 +15,23 @@ services:
     arguments: [['@lexer.module.name', '@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number', '@lexer.module.unknown']]
   lexer.module.unknown:
     class: Vain\Expression\Lexer\Module\Unknown\UnknownLexerModule
-    arguments: [1000]
+    arguments: [0]
   lexer.module.name:
     class: Vain\Expression\Lexer\Module\Name\NameLexerModule
-    arguments: [600]
+    arguments: [100]
   lexer.module.operator:
     class: Vain\Expression\Lexer\Module\Operator\OperatorLexerModule
-    arguments: [500]
+    arguments: [200]
   lexer.module.string:
     class: Vain\Expression\Lexer\Module\String\StringLexerModule
-    arguments: [400]
+    arguments: [300]
   lexer.module.bracket:
     class: Vain\Expression\Lexer\Module\Bracket\BracketLexerModule
-    arguments: [300]
+    arguments: [400]
   lexer.module.punctuation:
     class: Vain\Expression\Lexer\Module\Punctuation\PunctuationLexerModule
-    arguments: [200]
+    arguments: [500]
   lexer.module.number:
     class: Vain\Expression\Lexer\Module\Number\NumberLexerModule
-    arguments: [100]
+    arguments: [600]
 
