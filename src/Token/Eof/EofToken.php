@@ -12,6 +12,7 @@ namespace Vain\Expression\Token\Eof;
 
 use Vain\Expression\Token\AbstractToken;
 use Vain\Expression\Token\TokenInterface;
+use Vain\Expression\Token\Visitor\VisitorInterface;
 
 /**
  * Class EofToken
@@ -23,9 +24,9 @@ class EofToken extends AbstractToken implements TokenInterface
     /**
      * @inheritDoc
      */
-    public function doTest($type, $value = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return 'eof' === $type;
+        return $visitor->eof($this);
     }
 
     /**

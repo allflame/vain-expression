@@ -12,6 +12,7 @@ namespace Vain\Expression\Parser\Composite;
 
 use Vain\Expression\Lexer\LexerInterface;
 use Vain\Expression\Parser\Module\ParserModuleInterface;
+use Vain\Expression\Token\Iterator\TokenIteratorInterface;
 
 /**
  * Class Parser
@@ -55,13 +56,30 @@ class Parser implements ParserCompositeInterface
         return $this;
     }
 
+    protected function parseExpression(TokenIteratorInterface $iterator)
+    {
+
+
+
+    }
+
     /**
      * @inheritDoc
      */
     public function parse($string)
     {
-        $tokenIterator =  $this->lexer->process($string);
+        $iterator =  $this->lexer->process($string);
 
+        $token = $iterator->current();
 
+        foreach ($this->modules as $module) {
+            if (false === $module->start($token)) {
+                continue;
+            }
+
+            $module->process($this, $iterator);
+        }
+
+        return $tokenIterator;
     }
 }

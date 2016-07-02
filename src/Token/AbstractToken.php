@@ -60,24 +60,4 @@ abstract class AbstractToken implements TokenInterface
     {
         return $this->length;
     }
-
-    /**
-     * @param string $type
-     * @param null   $value
-     *
-     * @return boolean
-     */
-    abstract public function doTest($type, $value = null);
-
-    /**
-     * @inheritDoc
-     */
-    public function test($type, $value = null)
-    {
-        if (false === (null === $this->value || $value === $this->value)) {
-            return false;
-        }
-
-        return $this->doTest($type, $value);
-    }
 }

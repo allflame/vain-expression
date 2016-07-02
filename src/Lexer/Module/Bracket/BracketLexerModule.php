@@ -53,6 +53,7 @@ class BracketLexerModule extends AbstractLexerModule
         $symbol = $string[$currentPosition];
         if (false !== strpos('([{', $symbol)) {
             $this->brackets[] = $symbol;
+            $open = true;
         } else {
             if ([] === $this->brackets) {
                 throw new BracketPrecedenceException($this, $string, $currentPosition, $this->bracketMap[$symbol]);
@@ -61,9 +62,10 @@ class BracketLexerModule extends AbstractLexerModule
                 throw new WrongBracketException($this, $string, $currentPosition, end($this->bracketMap));
             }
             array_pop($this->brackets);
+            $open = false;
         }
 
-        return new BracketToken($symbol, $currentPosition + 1, 1);
+        return new BracketToken($symbol, $currentPosition + 1, 1, $open);
     }
 
     /**

@@ -11,6 +11,7 @@
 namespace Vain\Expression\Token\Number;
 
 use Vain\Expression\Token\AbstractToken;
+use Vain\Expression\Token\Visitor\VisitorInterface;
 
 /**
  * Class NumberToken
@@ -22,9 +23,9 @@ class NumberToken extends AbstractToken
     /**
      * @inheritDoc
      */
-    public function doTest($type, $value = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return 'number' === $type;
+        return $visitor->number($this);
     }
 
     /**

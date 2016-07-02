@@ -11,6 +11,7 @@
 namespace Vain\Expression\Token\Punctuation;
 
 use Vain\Expression\Token\AbstractToken;
+use Vain\Expression\Token\Visitor\VisitorInterface;
 
 /**
  * Class PunctuationToken
@@ -22,9 +23,9 @@ class PunctuationToken extends AbstractToken
     /**
      * @inheritDoc
      */
-    public function doTest($type, $value = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return 'punctuation' === $type;
+        return $visitor->punctuation($this);
     }
 
     /**

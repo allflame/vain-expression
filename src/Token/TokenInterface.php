@@ -11,6 +11,8 @@
 namespace Vain\Expression\Token;
 
 use Vain\Core\String\StringInterface;
+use Vain\Expression\Parser\Module\ParserModuleInterface;
+use Vain\Expression\Token\Visitor\VisitorInterface;
 
 /**
  * Interface TokenInterface
@@ -20,12 +22,16 @@ use Vain\Core\String\StringInterface;
 interface TokenInterface extends StringInterface
 {
     /**
-     * @param int $type
-     * @param mixed $value
+     * @param VisitorInterface $visitor
      *
      * @return mixed
      */
-    public function test($type, $value = null);
+    public function accept(VisitorInterface $visitor);
+
+    /**
+     * @return string
+     */
+    public function getValue();
 
     /**
      *

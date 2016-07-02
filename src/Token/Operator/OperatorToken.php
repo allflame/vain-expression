@@ -11,6 +11,7 @@
 namespace Vain\Expression\Token\Operator;
 
 use Vain\Expression\Token\AbstractToken;
+use Vain\Expression\Token\Visitor\VisitorInterface;
 
 /**
  * Class OperatorToken
@@ -22,9 +23,9 @@ class OperatorToken extends AbstractToken
     /**
      * @inheritDoc
      */
-    public function doTest($type, $value = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return 'operator' === $type;
+        return $visitor->operator($this);
     }
 
     /**

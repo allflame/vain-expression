@@ -11,6 +11,7 @@
 namespace Vain\Expression\Token\String;
 
 use Vain\Expression\Token\AbstractToken;
+use Vain\Expression\Token\Visitor\VisitorInterface;
 
 /**
  * Class StringToken
@@ -22,9 +23,9 @@ class StringToken extends AbstractToken
     /**
      * @inheritDoc
      */
-    public function doTest($type, $value = null)
+    public function accept(VisitorInterface $visitor)
     {
-        return 'string' === $type;
+        return $visitor->string($this);
     }
 
     /**
