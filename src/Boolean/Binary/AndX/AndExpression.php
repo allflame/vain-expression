@@ -76,11 +76,6 @@ class AndExpression extends AbstractBinaryExpression implements BooleanExpressio
      */
     public function toArray()
     {
-        return [
-            'and' => [
-                'firstExpression' => $this->getFirstExpression()->toArray(),
-                'secondExpression' => $this->getSecondExpression()->toArray()
-            ]
-        ];
+        return ['and' => parent::toArray()];
     }
 }

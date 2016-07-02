@@ -52,4 +52,15 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     {
         return $this->secondExpression;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return [
+            'firstExpression' => $this->getFirstExpression()->toArray(),
+            'secondExpression' => $this->getSecondExpression()->toArray()
+        ];
+    }
 }

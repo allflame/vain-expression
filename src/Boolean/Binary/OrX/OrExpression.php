@@ -76,11 +76,6 @@ class OrExpression extends AbstractBinaryExpression implements BooleanExpression
      */
     public function toArray()
     {
-        return [
-            'or' => [
-                'firstExpression' => $this->getFirstExpression()->toArray(),
-                'secondExpression' => $this->getSecondExpression()->toArray()
-            ]
-        ];
+        return ['or' => parent::toArray()];
     }
 }
