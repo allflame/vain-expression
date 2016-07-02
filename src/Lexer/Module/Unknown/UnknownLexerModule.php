@@ -41,6 +41,6 @@ class UnknownLexerModule extends AbstractLexerModule
      */
     public function consistent()
     {
-        return false;
+        return true;
     }
 }
