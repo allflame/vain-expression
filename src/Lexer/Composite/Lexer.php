@@ -64,8 +64,13 @@ class Lexer implements LexerCompositeInterface
         $expression = str_replace(["\r", "\n", "\t", "\v", "\f"], ' ', $string);
         $position = 0; $eof = strlen($expression);
         $tokens = $brackets = [];
-        ksort($this->modules);
+        krsort($this->modules);
         while ($position < $eof) {
+            if (' ' == $expression[$position]) {
+                ++$position;
+                continue;
+            }
+
             foreach ($this->modules as $module) {
                 if (false === $module->test($expression, $position)) {
                     continue;
