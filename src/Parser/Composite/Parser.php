@@ -74,6 +74,8 @@ class Parser implements ParserCompositeInterface
                     continue;
                 }
                 $this->expression = $module->process($this, $iterator);
+                $token = $iterator->next();
+                break;
             }
         }
 

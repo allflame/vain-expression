@@ -34,7 +34,7 @@ class NumberLexerModule extends AbstractLexerModule
     public function process($expression, $currentPosition)
     {
         $numberString = '';
-        while ($this->test($expression, $currentPosition)) {
+        while (strlen($expression) > $currentPosition && $this->test($expression, $currentPosition)) {
             $numberString += $expression[$currentPosition];
             $currentPosition++;
         }

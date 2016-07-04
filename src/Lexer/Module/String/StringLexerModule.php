@@ -34,7 +34,7 @@ class StringLexerModule extends AbstractLexerModule
     public function process($expression, $currentPosition)
     {
         $string = '';
-        while ($this->test($expression, $currentPosition)) {
+        while (strlen($expression) > $currentPosition && $this->test($expression, $currentPosition)) {
             $string .= $expression[$currentPosition];
         }
         $stringLength = strlen($string);
