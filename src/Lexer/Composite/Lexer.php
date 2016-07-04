@@ -13,7 +13,6 @@ namespace Vain\Expression\Lexer\Composite;
 use Vain\Expression\Exception\DuplicatePriorityException;
 use Vain\Expression\Exception\InconsistentStateException;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
-use Vain\Expression\Lexer\Token\Eof\EofToken;
 use Vain\Expression\Lexer\Token\Iterator\TokenIterator;
 
 /**
@@ -87,7 +86,6 @@ class Lexer implements LexerCompositeInterface
                 throw new InconsistentStateException($this, $module);
             }
         }
-        $tokens[] = new EofToken(null, $position + 1, 0);
 
         return new TokenIterator($tokens);
     }
