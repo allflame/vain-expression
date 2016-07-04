@@ -41,11 +41,11 @@ services:
   parser.terminal.module.process:
     class: Vain\Expression\Terminal\Module\TerminalProcessModule
   parser.math.module:
-    class: \Vain\Expression\Math\Module\MathInitModule
+    class: Vain\Expression\Math\Module\MathInitModule
     arguments: ['@parser.math.module.init', '@parser.math.module.process']
   parser.math.module.init:
     class: Vain\Expression\Math\Module\MathInitModule
   parser.math.module.process:
-    class: \Vain\Expression\Math\Module\MathProcessModule
+    class: Vain\Expression\Math\Module\MathProcessModule
 
 
