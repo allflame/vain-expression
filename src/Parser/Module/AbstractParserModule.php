@@ -24,7 +24,7 @@ use Vain\Expression\Lexer\Token\TokenInterface;
 abstract class AbstractParserModule implements ParserModuleInterface
 {
     private $init;
-    
+
     private $process;
 
     /**
@@ -52,6 +52,9 @@ abstract class AbstractParserModule implements ParserModuleInterface
      */
     public function process(ParserInterface $parser, TokenIteratorInterface $iterator)
     {
-        return $this->process->withParser($parser)->withIterator($iterator)->process();
+        $expression =  $this->process->withParser($parser)->withIterator($iterator)->process();
+        $iterator->next();
+
+        return $expression;
     }
 }

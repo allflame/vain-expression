@@ -58,7 +58,7 @@ class TokenIterator implements TokenIteratorInterface
      */
     public function valid()
     {
-        return false === current($this->tokens);
+        return false !== current($this->tokens);
     }
 
     /**

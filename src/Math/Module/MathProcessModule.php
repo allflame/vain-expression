@@ -66,27 +66,27 @@ class MathProcessModule extends AbstractProcessModule
         switch ($token->getValue()) {
             case '+':
                 $this->getIterator()->next();
-                return new PlusExpression($left, $this->getParser()->parse($this->getIterator()));
+                return new PlusExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
                 break;
             case '-':
                 $this->getIterator()->next();
-                return new MinusExpression($left, $this->getParser()->parse($this->getIterator()));
+                return new MinusExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
                 break;
             case '*':
                 $this->getIterator()->next();
-                return new MultiplyExpression($left, $this->getParser()->parse($this->getIterator()));
+                return new MultiplyExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
                 break;
             case '/':
                 $this->getIterator()->next();
-                return new DivideExpression($left, $this->getParser()->parse($this->getIterator()));
+                return new DivideExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
                 break;
             case '**':
                 $this->getIterator()->next();
-                return new PowExpression($left, $this->getParser()->parse($this->getIterator()));
+                return new PowExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
                 break;
             case '%':
                 $this->getIterator()->next();
-                return new FractionExpression($left, $this->getParser()->parse($this->getIterator()));
+                return new FractionExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
                 break;
             default:
                 throw new UnsupportedTokenException($this, $token);
