@@ -11,7 +11,7 @@
 namespace Vain\Expression\Lexer\Module\Punctuation;
 
 use Vain\Expression\Lexer\Module\AbstractLexerModule;
-use Vain\Expression\Token\Punctuation\PunctuationToken;
+use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 
 /**
  * Class PunctuationLexerModule
@@ -31,9 +31,9 @@ class PunctuationLexerModule extends AbstractLexerModule
     /**
      * @inheritDoc
      */
-    public function process($string, $currentPosition)
+    public function process($expression, $currentPosition)
     {
-        return new PunctuationToken($string[$currentPosition], $currentPosition + 1, 1);
+        return new PunctuationToken($expression[$currentPosition], $currentPosition + 1, 1);
     }
 
     /**

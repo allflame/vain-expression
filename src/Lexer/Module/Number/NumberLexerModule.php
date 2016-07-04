@@ -11,7 +11,7 @@
 namespace Vain\Expression\Lexer\Module\Number;
 
 use Vain\Expression\Lexer\Module\AbstractLexerModule;
-use Vain\Expression\Token\Number\NumberToken;
+use Vain\Expression\Lexer\Token\Number\NumberToken;
 
 /**
  * Class NumberLexerModule
@@ -25,22 +25,24 @@ class NumberLexerModule extends AbstractLexerModule
      */
     public function test($string, $currentPosition)
     {
-        return (1 === preg_match('/[0-9]+(?:\.[0-9]+)?/A', $string, $match, null, $currentPosition));
+        return (false !== strpos('0123456789.', $string[$currentPosition]));
     }
 
     /**
      * @inheritDoc
      */
-    public function process($string, $currentPosition)
+    public function process($expression, $currentPosition)
     {
-        preg_match('/[0-9]+(?:\.[0-9]+)?/A', $string, $match, null, $currentPosition);
+        $numberString = '';
+        while ($this->test($expression, $currentPosition)) {
+            $numberString += $expression[$currentPosition];
+            $currentPosition++;
+        }
+        if (PHP_INT_MAX > $number = (float) $numberString)  {
 
-        $number = (float) $match[0];
-        if (ctype_digit($match[0]) && $number <= PHP_INT_MAX) {
-            $number = (int) $match[0];
         }
 
-        return new NumberToken($number, $currentPosition + 1, strlen($match[0]));
+        return new NumberToken($number, $currentPosition + 1, strlen($numberString));
     }
 
     /**

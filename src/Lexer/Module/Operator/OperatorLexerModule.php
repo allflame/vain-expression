@@ -11,7 +11,7 @@
 namespace Vain\Expression\Lexer\Module\Operator;
 
 use Vain\Expression\Lexer\Module\AbstractLexerModule;
-use Vain\Expression\Token\Operator\OperatorToken;
+use Vain\Expression\Lexer\Token\Operator\OperatorToken;
 
 /**
  * Class OperatorLexerModule
@@ -20,22 +20,49 @@ use Vain\Expression\Token\Operator\OperatorToken;
  */
 class OperatorLexerModule extends AbstractLexerModule
 {
+    const OPERATORS = [
+        '+' => true,
+        '-' => true,
+        '*' => true,
+        '**' => true,
+        '/' => true,
+        '|' => true,
+        '||' => true,
+        '&' => true,
+        '&&' => true,
+        '==' => true,
+        '!' => true,
+        '!=' => true,
+        '>' => true,
+        '>=' => true,
+        '<' => true,
+        '<=' => true,
+        '%%' => true,
+    ];
+
     /**
      * @inheritDoc
      */
     public function test($string, $currentPosition)
     {
-        return (1 === preg_match('/not in(?=[\s(])|\!\=\=|not(?=[\s(])|and(?=[\s(])|\=\=\=|\>\=|or(?=[\s(])|\<\=|\*\*|\.\.|in(?=[\s(])|&&|\|\||matches|\=\=|\!\=|\*|~|%|\/|\>|\||\!|\^|&|\+|\<|\-/A', $string, $match, null, $currentPosition));
+        return array_key_exists($string[$currentPosition], self::OPERATORS);
     }
 
     /**
      * @inheritDoc
      */
-    public function process($string, $currentPosition)
+    public function process($expression, $currentPosition)
     {
-        preg_match('/not in(?=[\s(])|\!\=\=|not(?=[\s(])|and(?=[\s(])|\=\=\=|\>\=|or(?=[\s(])|\<\=|\*\*|\.\.|in(?=[\s(])|&&|\|\||matches|\=\=|\!\=|\*|~|%|\/|\>|\||\!|\^|&|\+|\<|\-/A', $string, $match, null, $currentPosition);
+        if (strlen($expression) < $currentPosition + 1) {
+            $twoSymbolOperator = substr($expression, $currentPosition, 2);
+            if (false === array_key_exists($twoSymbolOperator, self::OPERATORS)) {
+                return new OperatorToken($expression[$currentPosition], $currentPosition + 1, 1);
+            }
 
-        return new OperatorToken($match[0], $currentPosition + 1, strlen($match[0]));
+            return new OperatorToken($expression[$currentPosition], $currentPosition + 2, 2);
+        }
+
+        return new OperatorToken($expression[$currentPosition], $currentPosition + 1, 1);
     }
 
     /**

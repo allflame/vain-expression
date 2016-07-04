@@ -11,7 +11,7 @@
 namespace Vain\Expression\Lexer\Module\String;
 
 use Vain\Expression\Lexer\Module\AbstractLexerModule;
-use Vain\Expression\Token\String\StringToken;
+use Vain\Expression\Lexer\Token\String\StringToken;
 
 /**
  * Class StringLexerModule
@@ -25,17 +25,21 @@ class StringLexerModule extends AbstractLexerModule
      */
     public function test($string, $currentPosition)
     {
-        return (1 === preg_match('/"([^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(?:\\\\.[^\'\\\\]*)*)\'/As', $string, $match, null, $currentPosition));
+        return ctype_alnum($string[$currentPosition]);
     }
 
     /**
      * @inheritDoc
      */
-    public function process($string, $currentPosition)
+    public function process($expression, $currentPosition)
     {
-        preg_match('/"([^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(?:\\\\.[^\'\\\\]*)*)\'/As', $string, $match, null, $currentPosition);
+        $string = '';
+        while ($this->test($expression, $currentPosition)) {
+            $string .= $expression[$currentPosition];
+        }
+        $stringLength = strlen($string);
 
-        return new StringToken(stripcslashes(substr($match[0], 1, -1)), $currentPosition + 1, strlen($match[0]));
+        return new StringToken($string, $currentPosition + $stringLength, $stringLength);
     }
 
     /**

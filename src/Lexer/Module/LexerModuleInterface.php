@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Lexer\Module;
 
-use Vain\Expression\Token\TokenInterface;
+use Vain\Expression\Lexer\Token\TokenInterface;
 
 /**
  * Interface LexerModuleInterface
@@ -33,12 +33,12 @@ interface LexerModuleInterface
     public function test($string, $currentPosition);
 
     /**
-     * @param string $string
-     * @param int $currentPosition
+     * @param string $expression
+     * @param int    $currentPosition
      *
      * @return TokenInterface
      */
-    public function process($string, $currentPosition);
+    public function process($expression, $currentPosition);
 
     /**
      * @return boolean

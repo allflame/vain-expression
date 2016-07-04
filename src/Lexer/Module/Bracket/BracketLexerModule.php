@@ -14,7 +14,7 @@ use Vain\Expression\Exception\BracketPrecedenceException;
 use Vain\Expression\Exception\UnclosedBracketException;
 use Vain\Expression\Exception\WrongBracketException;
 use Vain\Expression\Lexer\Module\AbstractLexerModule;
-use Vain\Expression\Token\Bracket\BracketToken;
+use Vain\Expression\Lexer\Token\Bracket\BracketToken;
 
 /**
  * Class BracketLexerModule
@@ -48,18 +48,18 @@ class BracketLexerModule extends AbstractLexerModule
     /**
      * @inheritDoc
      */
-    public function process($string, $currentPosition)
+    public function process($expression, $currentPosition)
     {
-        $symbol = $string[$currentPosition];
+        $symbol = $expression[$currentPosition];
         if (false !== strpos('([{', $symbol)) {
             $this->brackets[] = $symbol;
             $open = true;
         } else {
             if ([] === $this->brackets) {
-                throw new BracketPrecedenceException($this, $string, $currentPosition, $this->bracketMap[$symbol]);
+                throw new BracketPrecedenceException($this, $expression, $currentPosition, $this->bracketMap[$symbol]);
             }
             if (end($this->brackets) !== $this->bracketMap[$symbol]) {
-                throw new WrongBracketException($this, $string, $currentPosition, end($this->bracketMap));
+                throw new WrongBracketException($this, $expression, $currentPosition, end($this->bracketMap));
             }
             array_pop($this->brackets);
             $open = false;

@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Lexer;
 
-use Vain\Expression\Token\Iterator\TokenIteratorInterface;
+use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 
 /**
  * Interface LexerInterface

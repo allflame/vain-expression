@@ -31,9 +31,9 @@ class UnknownLexerModule extends AbstractLexerModule
     /**
      * @inheritDoc
      */
-    public function process($string, $currentPosition)
+    public function process($expression, $currentPosition)
     {
-        throw new UnknownCharacterException($this, $string, $currentPosition);
+        throw new UnknownCharacterException($this, $expression, $currentPosition);
     }
 
     /**

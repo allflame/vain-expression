@@ -13,8 +13,8 @@ namespace Vain\Expression\Lexer\Composite;
 use Vain\Expression\Exception\DuplicatePriorityException;
 use Vain\Expression\Exception\InconsistentStateException;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
-use Vain\Expression\Token\Eof\EofToken;
-use Vain\Expression\Token\Iterator\TokenIterator;
+use Vain\Expression\Lexer\Token\Eof\EofToken;
+use Vain\Expression\Lexer\Token\Iterator\TokenIterator;
 
 /**
  * Class Lexer

@@ -10,9 +10,9 @@
  */
 namespace Vain\Expression\Parser\Composite;
 
-use Vain\Expression\Lexer\LexerInterface;
+use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\Module\ParserModuleInterface;
-use Vain\Expression\Token\Iterator\TokenIteratorInterface;
+use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 
 /**
  * Class Parser
@@ -21,21 +21,23 @@ use Vain\Expression\Token\Iterator\TokenIteratorInterface;
  */
 class Parser implements ParserCompositeInterface
 {
+    /**
+     * @var ParserModuleInterface[]
+     */
     private $modules;
 
-    private $lexer;
-
+    /**
+     * @var ExpressionInterface
+     */
     private $expression;
 
     /**
      * Compiler constructor.
      *
-     * @param LexerInterface            $lexer
      * @param ParserModuleInterface[] $modules
      */
-    public function __construct(LexerInterface $lexer, array $modules = [])
+    public function __construct(array $modules = [])
     {
-        $this->lexer = $lexer;
         foreach ($modules as $module) {
             $this->addModule($module);
         }
@@ -46,40 +48,34 @@ class Parser implements ParserCompositeInterface
      */
     public function addModule(ParserModuleInterface $module)
     {
-//        foreach ($module->getTokens() as $token) {
-//            if (array_key_exists($token, $this->modules)) {
-//                throw new DuplicateModuleException($this, $compilerModule, $this->modules[$token], $token);
-//            }
-//            $this->modules[$token] = $compilerModule;
-//        }
+        $this->modules[] = $module;
 
         return $this;
-    }
-
-    protected function parseExpression(TokenIteratorInterface $iterator)
-    {
-
-
-
     }
 
     /**
      * @inheritDoc
      */
-    public function parse($string)
+    public function getExpression()
     {
-        $iterator =  $this->lexer->process($string);
+        return $this->expression;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function parse(TokenIteratorInterface $iterator)
+    {
 
         $token = $iterator->current();
-
         foreach ($this->modules as $module) {
             if (false === $module->start($token)) {
                 continue;
             }
 
-            $module->process($this, $iterator);
+            $this->expression = $module->process($this, $iterator);
         }
 
-        return $tokenIterator;
+        return $this;
     }
 }

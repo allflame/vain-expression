@@ -11,6 +11,7 @@
 namespace Vain\Expression\Parser;
 
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 
 /**
  * Interface ParserInterface
@@ -20,9 +21,14 @@ use Vain\Expression\ExpressionInterface;
 interface ParserInterface
 {
     /**
-     * @param string $string
+     * @return mixed
+     */
+    public function getExpression();
+    
+    /**
+     * @param TokenIteratorInterface $iterator
      *
      * @return ExpressionInterface
      */
-    public function parse($string);
+    public function parse(TokenIteratorInterface $iterator);
 }

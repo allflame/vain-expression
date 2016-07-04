@@ -8,32 +8,36 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Parser\Module;
+namespace Vain\Expression\Parser\Module\Process;
 
 use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Lexer\Token\Visitor\VisitorInterface;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
-use Vain\Expression\Lexer\Token\TokenInterface;
 
 /**
- * Interface ParserModuleInterface
+ * Interface ParserProcessModuleInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ParserModuleInterface
+interface ParserProcessModuleInterface extends VisitorInterface
 {
     /**
-     * @param TokenInterface $token
+     * @param ParserInterface $parser
      *
-     * @return bool
+     * @return ParserProcessModuleInterface
      */
-    public function start(TokenInterface $token);
+    public function withParser(ParserInterface $parser);
 
     /**
-     * @param ParserInterface        $parser
      * @param TokenIteratorInterface $iterator
      *
+     * @return ParserProcessModuleInterface
+     */
+    public function withIterator(TokenIteratorInterface $iterator);
+
+    /**
      * @return ExpressionInterface
      */
-    public function process(ParserInterface $parser, TokenIteratorInterface $iterator);
+    public function process();
 }
