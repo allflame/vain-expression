@@ -52,9 +52,6 @@ abstract class AbstractParserModule implements ParserModuleInterface
      */
     public function process(ParserInterface $parser, TokenIteratorInterface $iterator)
     {
-        $expression =  $this->process->withParser($parser)->withIterator($iterator)->process();
-        $iterator->next();
-
-        return $expression;
+        return $this->process->withParser($parser)->withIterator($iterator)->process();
     }
 }
