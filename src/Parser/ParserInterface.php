@@ -21,14 +21,14 @@ use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 interface ParserInterface
 {
     /**
-     * @return mixed
+     * @return ExpressionInterface
      */
     public function getExpression();
     
     /**
      * @param TokenIteratorInterface $iterator
      *
-     * @return ExpressionInterface
+     * @return ParserInterface
      */
     public function parse(TokenIteratorInterface $iterator);
 }
