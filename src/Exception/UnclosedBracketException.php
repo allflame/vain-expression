@@ -10,24 +10,29 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\Lexer\Module\LexerModuleInterface;
+use Vain\Expression\Parser\ParserInterface;
+use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
 
 /**
  * Class UnclosedBracketException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class UnclosedBracketException extends LexerModuleException
+class UnclosedBracketException extends ParserException
 {
     /**
      * InconsistentBracketException constructor.
      *
-     * @param LexerModuleInterface $module
-     * @param array                $brackets
+     * @param ParserInterface             $parser
+     * @param BracketOperatorParserRecord $record
      */
-    public function __construct(LexerModuleInterface $module, array $brackets)
+    public function __construct(ParserInterface $parser, BracketOperatorParserRecord $record)
     {
-
-        parent::__construct($module, sprintf('There are still unclosed brackets %s', implode(', ', $brackets)), 0, null);
+        parent::__construct(
+            $parser,
+            sprintf('Encountered unclosed bracket %s at %d', $record->getToken()->getValue(), $record->getToken()->getCursor()),
+            0,
+            null
+        );
     }
 }

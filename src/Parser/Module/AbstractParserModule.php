@@ -10,11 +10,8 @@
  */
 namespace Vain\Expression\Parser\Module;
 
-use Vain\Expression\Parser\Module\Init\ParserInitModuleInterface;
-use Vain\Expression\Parser\Module\Process\ParserProcessModuleInterface;
-use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 use Vain\Expression\Lexer\Token\TokenInterface;
+use Vain\Expression\Parser\Translate\ParserTranslateModuleInterface;
 
 /**
  * Class AbstractParserModule
@@ -23,6 +20,8 @@ use Vain\Expression\Lexer\Token\TokenInterface;
  */
 abstract class AbstractParserModule implements ParserModuleInterface
 {
+    private $translate;
+
     private $init;
 
     private $process;
@@ -30,28 +29,35 @@ abstract class AbstractParserModule implements ParserModuleInterface
     /**
      * AbstractParserModule constructor.
      *
-     * @param ParserInitModuleInterface    $init
-     * @param ParserProcessModuleInterface $process
+     * @param ParserTranslateModuleInterface $translate
      */
-    public function __construct(ParserInitModuleInterface $init, ParserProcessModuleInterface $process)
+    public function __construct(ParserTranslateModuleInterface $translate)
     {
-        $this->init = $init;
-        $this->process = $process;
+        $this->translate = $translate;
+//        $this->init = $init;
+//        $this->process = $process;
     }
 
+//    /**
+//     * @inheritDoc
+//     */
+//    public function rpl(TokenInterface $token, \SplStack $rpl, \SplStack $operators, $precedence)
+//    {
+//        return $token->accept($this->init->withRpl($rpl)->withOperators($operators)->withPrecedence($precedence)->withProcessModule($this->process));
+//    }
+//
+//    /**
+//     * @inheritDoc
+//     */
+//    public function process(ParserInterface $parser, TokenIteratorInterface $iterator)
+//    {
+//        return $this->process->withParser($parser)->withIterator($iterator)->process();
+//    }
     /**
      * @inheritDoc
      */
-    public function start(TokenInterface $token)
+    public function translate(TokenInterface $token)
     {
-        return $token->accept($this->init);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function process(ParserInterface $parser, TokenIteratorInterface $iterator)
-    {
-        return $this->process->withParser($parser)->withIterator($iterator)->process();
+        return $token->accept($this->translate);
     }
 }

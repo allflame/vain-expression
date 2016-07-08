@@ -11,50 +11,24 @@
 namespace Vain\Expression\Terminal\Module;
 
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
-use Vain\Expression\Parser\Module\Init\ParserInitModuleInterface;
-use Vain\Expression\Lexer\Token\Bracket\BracketToken;
-use Vain\Expression\Lexer\Token\Eof\EofToken;
-use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 use Vain\Expression\Lexer\Token\String\StringToken;
+use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
+use Vain\Expression\Parser\Translate\AbstractParserTranslateModule;
 
 /**
- * Class PrimaryInitModule
+ * Class TerminalTranslateModule
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class TerminalInitModule implements ParserInitModuleInterface
+class TerminalTranslateModule extends AbstractParserTranslateModule
 {
-    /**
-     * @inheritDoc
-     */
-    public function bracket(BracketToken $token)
-    {
-        return false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function eof(EofToken $token)
-    {
-        return false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function number(NumberToken $token)
-    {
-        return true;
-    }
-
     /**
      * @inheritDoc
      */
     public function operator(OperatorToken $token)
     {
-        return false;
+        return null;
     }
 
     /**
@@ -62,7 +36,7 @@ class TerminalInitModule implements ParserInitModuleInterface
      */
     public function punctuation(PunctuationToken $token)
     {
-        return false;
+        return null;
     }
 
     /**
@@ -70,6 +44,6 @@ class TerminalInitModule implements ParserInitModuleInterface
      */
     public function string(StringToken $token)
     {
-        return true;
+        return new TerminalParserRecord($token);
     }
 }

@@ -23,30 +23,14 @@ class StringLexerModule extends AbstractLexerModule
     /**
      * @inheritDoc
      */
-    public function test($string, $currentPosition)
-    {
-        return ctype_alnum($string[$currentPosition]);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function process($expression, $currentPosition)
     {
         $string = '';
-        while (strlen($expression) > $currentPosition && $this->test($expression, $currentPosition)) {
+        while (strlen($expression) > $currentPosition && ctype_alnum($string[$currentPosition])) {
             $string .= $expression[$currentPosition];
         }
         $stringLength = strlen($string);
 
         return new StringToken($string, $currentPosition + $stringLength, $stringLength);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function consistent()
-    {
-        return true;
     }
 }

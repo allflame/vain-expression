@@ -8,16 +8,15 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Terminal\Module;
+namespace Vain\Expression\Parser\Translate;
 
-use Vain\Expression\Parser\Module\AbstractParserModule;
+use Vain\Expression\Lexer\Token\Visitor\VisitorInterface;
 
 /**
- * Class TerminalParserModule
+ * Interface ParserTranslateModule
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class TerminalParserModule extends AbstractParserModule
+interface ParserTranslateModuleInterface extends VisitorInterface
 {
-    
 }

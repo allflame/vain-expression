@@ -11,7 +11,6 @@
 namespace Vain\Expression\Lexer\Composite;
 
 use Vain\Expression\Exception\DuplicatePriorityException;
-use Vain\Expression\Exception\InconsistentStateException;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 use Vain\Expression\Lexer\Token\Iterator\TokenIterator;
 
@@ -71,19 +70,12 @@ class Lexer implements LexerCompositeInterface
             }
 
             foreach ($this->modules as $module) {
-                if (false === $module->test($expression, $position)) {
+                if (null === ($token = $module->process($expression, $position))) {
                     continue;
                 }
-                $token = $module->process($expression, $position);
                 $tokens[] = $token;
                 $position += $token->getLength();
                 break;
-            }
-        }
-
-        foreach ($this->modules as $module) {
-            if (false === $module->consistent()) {
-                throw new InconsistentStateException($this, $module);
             }
         }
 

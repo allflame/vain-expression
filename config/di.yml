@@ -9,9 +9,16 @@ services:
     class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
   expression.parser:
     class: Vain\Expression\Parser\Composite\Parser
+    arguments: ['@expression.parser.record.queue', '@expression.parser.rpl.queue', '@expression.parser.operator.stack']
     calls:
       - [addModule, ['@parser.terminal.module']]
       - [addModule, ['@parser.math.module']]
+  expression.parser.record.queue:
+    class: Vain\Expression\Parser\Record\Queue\ParserRecordQueue
+  expression.parser.rpl.queue:
+    class: Vain\Expression\Parser\Record\Queue\ParserRecordQueue
+  expression.parser.operator.stack:
+    class: Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack
   expression.lexer:
     class: Vain\Expression\Lexer\Composite\Lexer
     arguments: [['@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number', '@lexer.module.unknown']]
@@ -35,17 +42,20 @@ services:
     arguments: [500]
   parser.terminal.module:
     class: Vain\Expression\Terminal\Module\TerminalParserModule
-    arguments: ['@parser.terminal.module.init', '@parser.terminal.module.process']
-  parser.terminal.module.init:
-    class: Vain\Expression\Terminal\Module\TerminalInitModule
-  parser.terminal.module.process:
-    class: Vain\Expression\Terminal\Module\TerminalProcessModule
+    arguments: ['@parser.terminal.module.translate']
+  parser.terminal.module.translate.:
+    class: Vain\Expression\Terminal\Module\TerminalTranslateModule
+  #parser.terminal.module.init:
+  #  class: Vain\Expression\Terminal\Module\TerminalInitModule
+  #parser.terminal.module.process:
+  #  class: Vain\Expression\Terminal\Module\TerminalProcessModule
   parser.math.module:
     class: Vain\Expression\Math\Module\MathParserModule
-    arguments: ['@parser.math.module.init', '@parser.math.module.process']
-  parser.math.module.init:
-    class: Vain\Expression\Math\Module\MathInitModule
-  parser.math.module.process:
-    class: Vain\Expression\Math\Module\MathProcessModule
-
-
+    arguments: ['@parser.math.module.translate', '@parser.math.module.process']
+  parser.math.module.translate:
+    class: Vain\Expression\Math\Module\MathTranslateModule
+    arguments: [{'+': [100, false], '-': [100, false], '*': [200, false], '/': [200, false], '**': [300, false], '%': [400, false]}]
+  #parser.math.module.init:
+  #  class: Vain\Expression\Math\Module\MathInitModule
+  #parser.math.module.process:
+  #  class: Vain\Expression\Math\Module\MathProcessModule

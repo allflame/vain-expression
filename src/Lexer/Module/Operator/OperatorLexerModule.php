@@ -24,52 +24,37 @@ class OperatorLexerModule extends AbstractLexerModule
         '+' => true,
         '-' => true,
         '*' => true,
-        '**' => true,
         '/' => true,
         '|' => true,
-        '||' => true,
+        '=' => true,
         '&' => true,
-        '&&' => true,
-        '==' => true,
         '!' => true,
-        '!=' => true,
         '>' => true,
-        '>=' => true,
         '<' => true,
-        '<=' => true,
-        '%%' => true,
+        '%' => true,
     ];
-
-    /**
-     * @inheritDoc
-     */
-    public function test($string, $currentPosition)
-    {
-        return array_key_exists($string[$currentPosition], self::OPERATORS);
-    }
 
     /**
      * @inheritDoc
      */
     public function process($expression, $currentPosition)
     {
-        if (strlen($expression) < $currentPosition + 1) {
-            $twoSymbolOperator = substr($expression, $currentPosition, 2);
-            if (false === array_key_exists($twoSymbolOperator, self::OPERATORS)) {
-                return new OperatorToken($expression[$currentPosition], $currentPosition + 1, 1);
-            }
-
-            return new OperatorToken($expression[$currentPosition], $currentPosition + 2, 2);
+        if (false === array_key_exists($expression[$currentPosition], self::OPERATORS)) {
+            return null;
         }
 
-        return new OperatorToken($expression[$currentPosition], $currentPosition + 1, 1);
-    }
+        $operator = '';
+        while (strlen($expression) > $currentPosition && array_key_exists($expression[$currentPosition], self::OPERATORS)) {
+            $operator += $expression[$currentPosition];
+            $currentPosition++;
+        }
 
-    /**
-     * @inheritDoc
-     */
-    public function consistent()
-    {
-        return true;
+        if ('' === $operator) {
+            return null;
+        }
+
+        $operatorLength = strlen($operator);
+
+        return new OperatorToken($operator, $currentPosition + $operatorLength, $operatorLength);
     }
 }

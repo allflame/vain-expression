@@ -33,7 +33,7 @@ class DivideExpression extends AbstractBinaryExpression implements MathExpressio
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->getFirstExpression()->interpret($context) + $this->getSecondExpression()->interpret($context);
+        return $this->getFirstExpression()->interpret($context) / $this->getSecondExpression()->interpret($context);
     }
 
     /**

@@ -20,27 +20,11 @@ use Vain\Expression\Lexer\Module\AbstractLexerModule;
  */
 class UnknownLexerModule extends AbstractLexerModule
 {
-    /**
-     * @inheritDoc
-     */
-    public function test($string, $currentPosition)
-    {
-        return true;
-    }
-
-    /**
+       /**
      * @inheritDoc
      */
     public function process($expression, $currentPosition)
     {
         throw new UnknownCharacterException($this, $expression, $currentPosition);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function consistent()
-    {
-        return true;
     }
 }

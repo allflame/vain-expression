@@ -8,16 +8,16 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-namespace Vain\Expression\Parser\Module\Init;
+namespace Vain\Expression\Parser\Record\Operator;
 
-use Vain\Expression\Lexer\Token\Visitor\VisitorInterface;
+use Vain\Expression\Parser\Record\AbstractParserRecord;
 
 /**
- * Interface ParserInitModuleInterface
+ * Class AbstractOperatorParserRecord
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ParserInitModuleInterface extends VisitorInterface
+abstract class AbstractOperatorParserRecord extends AbstractParserRecord implements OperatorParserRecordInterface
 {
 
 }

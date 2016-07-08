@@ -20,7 +20,7 @@ use Vain\Expression\Lexer\Token\Visitor\VisitorInterface;
  */
 class BracketToken extends AbstractToken
 {
-    private $open;
+    private $left;
 
     /**
      * BracketToken constructor.
@@ -28,20 +28,28 @@ class BracketToken extends AbstractToken
      * @param mixed $value
      * @param int   $cursor
      * @param int   $length
-     * @param bool  $open
+     * @param bool  $left
      */
-    public function __construct($value, $cursor, $length, $open)
+    public function __construct($value, $cursor, $length, $left)
     {
-        $this->open = $open;
+        $this->left = $left;
         parent::__construct($value, $cursor, $length);
     }
 
     /**
      * @return boolean
      */
-    public function isOpen()
+    public function isLeft()
     {
-        return $this->open;
+        return $this->left;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isRight()
+    {
+        return (false === $this->left);
     }
 
     /**

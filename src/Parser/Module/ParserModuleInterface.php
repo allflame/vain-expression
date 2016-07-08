@@ -10,10 +10,8 @@
  */
 namespace Vain\Expression\Parser\Module;
 
-use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 use Vain\Expression\Lexer\Token\TokenInterface;
+use Vain\Expression\Parser\Record\ParserRecordInterface;
 
 /**
  * Interface ParserModuleInterface
@@ -22,18 +20,28 @@ use Vain\Expression\Lexer\Token\TokenInterface;
  */
 interface ParserModuleInterface
 {
+//    /**
+//     * @param TokenInterface $token
+//     * @param \SplStack      $rpl
+//     * @param \SplStack      $operators
+//     * @param int            $precedence
+//     *
+//     * @return int
+//     */
+//    public function rpl(TokenInterface $token, \SplStack $rpl, \SplStack $operators, $precedence);
+//
+//    /**
+//     * @param ParserInterface        $parser
+//     * @param TokenIteratorInterface $iterator
+//     *
+//     * @return ExpressionInterface
+//     */
+//    public function process(ParserInterface $parser, TokenIteratorInterface $iterator);
+
     /**
      * @param TokenInterface $token
      *
-     * @return bool
+     * @return ParserRecordInterface
      */
-    public function start(TokenInterface $token);
-
-    /**
-     * @param ParserInterface        $parser
-     * @param TokenIteratorInterface $iterator
-     *
-     * @return ExpressionInterface
-     */
-    public function process(ParserInterface $parser, TokenIteratorInterface $iterator);
+    public function translate(TokenInterface $token);
 }

@@ -23,24 +23,12 @@ class PunctuationLexerModule extends AbstractLexerModule
     /**
      * @inheritDoc
      */
-    public function test($string, $currentPosition)
-    {
-        return (false !== strpos('.,?:', $string[$currentPosition]));
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function process($expression, $currentPosition)
     {
-        return new PunctuationToken($expression[$currentPosition], $currentPosition + 1, 1);
-    }
+        if (false === strpos('.,?:', $expression[$currentPosition])) {
+            return null;
+        }
 
-    /**
-     * @inheritDoc
-     */
-    public function consistent()
-    {
-        return true;
+        return new PunctuationToken($expression[$currentPosition], $currentPosition + 1, 1);
     }
 }

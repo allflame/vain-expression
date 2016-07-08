@@ -20,7 +20,6 @@ use Vain\Expression\Math\Plus\PlusExpression;
 use Vain\Expression\Math\Pow\PowExpression;
 use Vain\Expression\Parser\Module\Process\AbstractProcessModule;
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
-use Vain\Expression\Lexer\Token\Eof\EofToken;
 use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 use Vain\Expression\Lexer\Token\String\StringToken;
@@ -36,14 +35,6 @@ class MathProcessModule extends AbstractProcessModule
      * @inheritDoc
      */
     public function bracket(BracketToken $token)
-    {
-        throw new UnsupportedTokenException($this, $token);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function eof(EofToken $token)
     {
         throw new UnsupportedTokenException($this, $token);
     }

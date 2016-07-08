@@ -20,10 +20,6 @@ use Vain\Expression\Lexer\Token\TokenInterface;
  */
 class SyntaxException extends ProcessModuleException
 {
-    private $iterator;
-
-    private $token;
-
     /**
      * SyntaxException constructor.
      *

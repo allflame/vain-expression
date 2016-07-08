@@ -33,7 +33,7 @@ class MinusExpression extends AbstractBinaryExpression implements MathExpression
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        trigger_error('Method interpret is not implemented', E_USER_ERROR);
+        return $this->getFirstExpression()->interpret($context) - $this->getSecondExpression()->interpret($context);
     }
 
     /**

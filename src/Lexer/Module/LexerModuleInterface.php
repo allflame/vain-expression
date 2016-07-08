@@ -25,23 +25,10 @@ interface LexerModuleInterface
     public function getPriority();
 
     /**
-     * @param string $string
-     * @param int $currentPosition
-     *
-     * @return boolean
-     */
-    public function test($string, $currentPosition);
-
-    /**
      * @param string $expression
      * @param int    $currentPosition
      *
      * @return TokenInterface
      */
     public function process($expression, $currentPosition);
-
-    /**
-     * @return boolean
-     */
-    public function consistent();
 }

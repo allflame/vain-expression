@@ -23,33 +23,19 @@ class NumberLexerModule extends AbstractLexerModule
     /**
      * @inheritDoc
      */
-    public function test($string, $currentPosition)
-    {
-        return (false !== strpos('0123456789.', $string[$currentPosition]));
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function process($expression, $currentPosition)
     {
         $numberString = '';
-        while (strlen($expression) > $currentPosition && $this->test($expression, $currentPosition)) {
+        while (strlen($expression) > $currentPosition && false !== strpos('0123456789.', $expression[$currentPosition])) {
             $numberString += $expression[$currentPosition];
             $currentPosition++;
         }
-        if (PHP_INT_MAX > $number = (float) $numberString)  {
 
+        if ('' === $numberString || PHP_INT_MAX > $number = (float) $numberString) {
+            return null;
         }
+        $numberLength = strlen($numberString);
 
-        return new NumberToken($number, $currentPosition + 1, strlen($numberString));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function consistent()
-    {
-        return true;
+        return new NumberToken($number, $currentPosition + $numberString, $numberLength);
     }
 }

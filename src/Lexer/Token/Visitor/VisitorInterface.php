@@ -11,7 +11,6 @@
 namespace Vain\Expression\Lexer\Token\Visitor;
 
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
-use Vain\Expression\Lexer\Token\Eof\EofToken;
 use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
@@ -30,13 +29,6 @@ interface VisitorInterface
      * @return mixed
      */
     public function bracket(BracketToken $token);
-
-    /**
-     * @param EofToken $token
-     *
-     * @return mixed
-     */
-    public function eof(EofToken $token);
 
     /**
      * @param NumberToken $token
