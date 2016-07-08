@@ -144,22 +144,19 @@ class Parser implements ParserCompositeInterface
      */
     public function parse(TokenIteratorInterface $iterator)
     {
-        $token = $iterator->current();
         while ($iterator->valid()) {
+            $token = $iterator->next();
             foreach ($this->modules as $module) {
                 if (null === ($record = $module->translate($token))) {
                     continue;
                 }
                 $this->recordQueue->push($record->withModule($module));
-                $iterator->next();
                 break;
             }
         }
-
         while ($this->recordQueue->valid()) {
             $this->recordQueue->pop()->accept($this);
         }
-
         while ($this->operatorStack->valid()) {
             $record = $this->operatorStack->pop();
             if (false === $record->finish()) {
