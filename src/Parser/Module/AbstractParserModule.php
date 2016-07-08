@@ -11,7 +11,10 @@
 namespace Vain\Expression\Parser\Module;
 
 use Vain\Expression\Lexer\Token\TokenInterface;
+use Vain\Expression\Parser\Module\Process\ParserProcessModuleInterface;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Parser\Translate\ParserTranslateModuleInterface;
+use Vain\Expression\Queue\ExpressionQueue;
 
 /**
  * Class AbstractParserModule
@@ -22,42 +25,35 @@ abstract class AbstractParserModule implements ParserModuleInterface
 {
     private $translate;
 
-    private $init;
-
     private $process;
 
     /**
      * AbstractParserModule constructor.
      *
      * @param ParserTranslateModuleInterface $translate
+     * @param ParserProcessModuleInterface $process
      */
-    public function __construct(ParserTranslateModuleInterface $translate)
+    public function __construct(ParserTranslateModuleInterface $translate, ParserProcessModuleInterface $process)
     {
         $this->translate = $translate;
-//        $this->init = $init;
-//        $this->process = $process;
+        $this->process = $process;
     }
 
-//    /**
-//     * @inheritDoc
-//     */
-//    public function rpl(TokenInterface $token, \SplStack $rpl, \SplStack $operators, $precedence)
-//    {
-//        return $token->accept($this->init->withRpl($rpl)->withOperators($operators)->withPrecedence($precedence)->withProcessModule($this->process));
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function process(ParserInterface $parser, TokenIteratorInterface $iterator)
-//    {
-//        return $this->process->withParser($parser)->withIterator($iterator)->process();
-//    }
     /**
      * @inheritDoc
      */
     public function translate(TokenInterface $token)
     {
         return $token->accept($this->translate);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function process(ParserInterface $parser, TokenInterface $token, ExpressionQueue $queue)
+    {
+        $queue->enqueue($token->accept($this->process->withQueue($queue)));
+
+        return $this;
     }
 }

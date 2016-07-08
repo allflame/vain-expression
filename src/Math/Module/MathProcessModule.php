@@ -12,12 +12,7 @@ namespace Vain\Expression\Math\Module;
 
 use Vain\Expression\Exception\UnsupportedTokenException;
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
-use Vain\Expression\Math\Divide\DivideExpression;
-use Vain\Expression\Math\Fraction\FractionExpression;
-use Vain\Expression\Math\Minus\MinusExpression;
-use Vain\Expression\Math\Multiply\MultiplyExpression;
 use Vain\Expression\Math\Plus\PlusExpression;
-use Vain\Expression\Math\Pow\PowExpression;
 use Vain\Expression\Parser\Module\Process\AbstractProcessModule;
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
 use Vain\Expression\Lexer\Token\Number\NumberToken;
@@ -52,32 +47,24 @@ class MathProcessModule extends AbstractProcessModule
      */
     public function operator(OperatorToken $token)
     {
-        $left = $this->getParser()->getExpression();
-        
         switch ($token->getValue()) {
             case '+':
-                $this->getIterator()->next();
-                return new PlusExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
+                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
                 break;
             case '-':
-                $this->getIterator()->next();
-                return new MinusExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
+                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
                 break;
             case '*':
-                $this->getIterator()->next();
-                return new MultiplyExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
+                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
                 break;
             case '/':
-                $this->getIterator()->next();
-                return new DivideExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
+                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
                 break;
             case '**':
-                $this->getIterator()->next();
-                return new PowExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
+                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
                 break;
             case '%':
-                $this->getIterator()->next();
-                return new FractionExpression($left, $this->getParser()->parse($this->getIterator())->getExpression());
+                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
                 break;
             default:
                 throw new UnsupportedTokenException($this, $token);

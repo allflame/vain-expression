@@ -10,10 +10,9 @@
  */
 namespace Vain\Expression\Parser\Module\Process;
 
-use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Lexer\Token\Visitor\VisitorInterface;
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
+use Vain\Expression\Queue\ExpressionQueue;
 
 /**
  * Interface ParserProcessModuleInterface
@@ -30,14 +29,9 @@ interface ParserProcessModuleInterface extends VisitorInterface
     public function withParser(ParserInterface $parser);
 
     /**
-     * @param TokenIteratorInterface $iterator
+     * @param ExpressionQueue $expressionQueue
      *
      * @return ParserProcessModuleInterface
      */
-    public function withIterator(TokenIteratorInterface $iterator);
-
-    /**
-     * @return ExpressionInterface
-     */
-    public function process();
+    public function withQueue(ExpressionQueue $expressionQueue);
 }

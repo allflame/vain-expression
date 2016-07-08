@@ -11,7 +11,6 @@
 namespace Vain\Expression\Parser\Composite;
 
 use Vain\Expression\Exception\UnclosedBracketException;
-use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Parser\Module\ParserModuleInterface;
 use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
@@ -20,6 +19,7 @@ use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack;
 use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
 use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
+use Vain\Expression\Queue\ExpressionQueue;
 
 /**
  * Class Parser
@@ -33,10 +33,7 @@ class Parser implements ParserCompositeInterface
      */
     private $modules;
 
-    /**
-     * @var ExpressionInterface
-     */
-    private $expression;
+    private $expressionQueue;
 
     private $recordQueue;
 
@@ -47,20 +44,23 @@ class Parser implements ParserCompositeInterface
     /**
      * Parser constructor.
      *
-     * @param ParserRecordQueue         $recordQueue
-     * @param ParserRecordQueue         $rplQueue
+     * @param ParserRecordQueue $recordQueue
+     * @param ParserRecordQueue $rplQueue
      * @param ParserOperatorRecordStack $operatorStack
-     * @param ParserModuleInterface[]   $modules
+     * @param ExpressionQueue $expressionQueue
+     * @param ParserModuleInterface[] $modules
      */
     public function __construct(
         ParserRecordQueue $recordQueue,
         ParserRecordQueue $rplQueue,
         ParserOperatorRecordStack $operatorStack,
+        ExpressionQueue $expressionQueue,
         array $modules = []
     ) {
         $this->rplQueue = $rplQueue;
         $this->operatorStack = $operatorStack;
         $this->recordQueue = $recordQueue;
+        $this->expressionQueue = $expressionQueue;
         foreach ($modules as $module) {
             $this->addModule($module);
         }
@@ -79,14 +79,6 @@ class Parser implements ParserCompositeInterface
     /**
      * @inheritDoc
      */
-    public function getExpression()
-    {
-        return $this->expression;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function bracketX(BracketOperatorParserRecord $bracketRecord)
     {
         if ($bracketRecord->isLeft()) {
@@ -96,7 +88,7 @@ class Parser implements ParserCompositeInterface
         }
         $record = $this->operatorStack->top();
         while (null !== $record && $record->bracket($bracketRecord)) {
-            $this->rplQueue->push($record);
+            $this->rplQueue->enqueue($record);
             $this->operatorStack->pop();
         }
         if (null === $record) {
@@ -104,7 +96,7 @@ class Parser implements ParserCompositeInterface
         }
         $this->operatorStack->pop();
         if (null !== ($record = $this->operatorStack->pop() && $record->bracket($bracketRecord))) {
-            $this->rplQueue->push($record);
+            $this->rplQueue->enqueue($record);
         }
 
         return $this;
@@ -123,10 +115,9 @@ class Parser implements ParserCompositeInterface
      */
     public function operator(RegularOperatorParserRecord $operatorRecord)
     {
-        $record = $this->operatorStack->current();
-        while (null !== $record && $record->operator($operatorRecord)) {
-            $this->rplQueue->push($operatorRecord);
+        while (null !== ($record = $this->operatorStack->current()) && $record->operator($operatorRecord)) {
             $this->operatorStack->pop();
+            $this->rplQueue->enqueue($record);
         }
         $this->operatorStack->push($operatorRecord);
     }
@@ -136,7 +127,7 @@ class Parser implements ParserCompositeInterface
      */
     public function terminal(TerminalParserRecord $terminalRecord)
     {
-        $this->rplQueue->push($terminalRecord);
+        $this->rplQueue->enqueue($terminalRecord);
     }
 
     /**
@@ -150,35 +141,29 @@ class Parser implements ParserCompositeInterface
                 if (null === ($record = $module->translate($token))) {
                     continue;
                 }
-                $this->recordQueue->push($record->withModule($module));
+                $this->recordQueue->enqueue($record->withModule($module));
                 break;
             }
             $iterator->next();
         }
 
-        while (null !== ($record = $this->recordQueue->dequeue())) {
-            $record->accept($this);
+        while (false === $this->recordQueue->isEmpty()) {
+            $this->recordQueue->dequeue()->accept($this);
         }
 
-        while (null !== ($record = $this->operatorStack->pop())) {
+        while (false === $this->operatorStack->isEmpty()) {
+            $record = $this->operatorStack->pop();
             if (false === $record->finish()) {
                 throw new UnclosedBracketException($this, $record);
             }
-            $this->rplQueue->push($record);
+            $this->rplQueue->enqueue($record);
         }
 
-        return $this->rplQueue->count();
-//        while ($this->rpl->valid()) {
-//            $record = $this->rpl->pop();
-//            foreach ($this->modules as $module) {
-//                if (false === $module->process($this, $record)) {
-//                    continue;
-//                }
-//                $this->expression = $module->process($this, $iterator);
-//                break;
-//            }
-//        }
-//
-//        return $this;
+        while (false === $this->rplQueue->isEmpty()) {
+            $record = $this->rplQueue->dequeue();
+            $record->getModule()->process($this, $record->getToken(), $this->expressionQueue);
+        }
+
+        return $this->expressionQueue;
     }
 }

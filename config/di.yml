@@ -42,20 +42,16 @@ services:
     arguments: [500]
   parser.terminal.module:
     class: Vain\Expression\Terminal\Module\TerminalParserModule
-    arguments: ['@parser.terminal.module.translate']
+    arguments: ['@parser.terminal.module.translate', '@parser.terminal.module.process']
   parser.terminal.module.translate:
     class: Vain\Expression\Terminal\Module\TerminalTranslateModule
-  #parser.terminal.module.init:
-  #  class: Vain\Expression\Terminal\Module\TerminalInitModule
-  #parser.terminal.module.process:
-  #  class: Vain\Expression\Terminal\Module\TerminalProcessModule
+  parser.terminal.module.process:
+    class: Vain\Expression\Terminal\Module\TerminalProcessModule
   parser.math.module:
     class: Vain\Expression\Math\Module\MathParserModule
-    arguments: ['@parser.math.module.translate']
+    arguments: ['@parser.math.module.translate', '@parser.math.module.process']
   parser.math.module.translate:
     class: Vain\Expression\Math\Module\MathTranslateModule
     arguments: [{'+': [100, false], '-': [100, false], '*': [200, false], '/': [200, false], '**': [300, false], '%': [400, false]}]
-  #parser.math.module.init:
-  #  class: Vain\Expression\Math\Module\MathInitModule
-  #parser.math.module.process:
-  #  class: Vain\Expression\Math\Module\MathProcessModule
+  parser.math.module.process:
+    class: Vain\Expression\Math\Module\MathProcessModule

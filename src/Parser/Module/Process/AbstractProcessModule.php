@@ -11,7 +11,7 @@
 namespace Vain\Expression\Parser\Module\Process;
 
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
+use Vain\Expression\Queue\ExpressionQueue;
 
 /**
  * Class AbstractProcessModule
@@ -26,9 +26,9 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     private $parser;
 
     /**
-     * @var TokenIteratorInterface
+     * @var ExpressionQueue
      */
-    private $iterator;
+    private $expressionQueue;
 
 
     /**
@@ -42,16 +42,6 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     }
 
     /**
-     * @inheritDoc
-     */
-    public function withIterator(TokenIteratorInterface $iterator)
-    {
-        $this->iterator = $iterator;
-
-        return $this;
-    }
-
-    /**
      * @return ParserInterface
      */
     public function getParser()
@@ -60,20 +50,20 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     }
 
     /**
-     * @return TokenIteratorInterface
+     * @inheritDoc
      */
-    public function getIterator()
+    public function withQueue(ExpressionQueue $expressionQueue)
     {
-        return $this->iterator;
+        $this->expressionQueue = $expressionQueue;
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return ExpressionQueue
      */
-    public function process()
+    public function getExpressionQueue()
     {
-        $currentToken = $this->getIterator()->current();
-
-        return $currentToken->accept($this);
+        return $this->expressionQueue;
     }
 }

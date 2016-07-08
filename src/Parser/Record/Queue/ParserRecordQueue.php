@@ -17,10 +17,10 @@ use Vain\Expression\Parser\Record\ParserRecordInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  *
- * @method ParserRecordInterface next
  * @method ParserRecordInterface current
  * @method ParserRecordInterface top
  * @method ParserRecordInterface bottom
+ * @method ParserRecordInterface dequeue
  */
 class ParserRecordQueue extends \SplQueue
 {
