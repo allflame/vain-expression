@@ -123,7 +123,7 @@ class Parser implements ParserCompositeInterface
      */
     public function operator(RegularOperatorParserRecord $operatorRecord)
     {
-        $record = $this->operatorStack->top();
+        $record = $this->operatorStack->current();
         while (null !== $record && $record->operator($operatorRecord)) {
             $this->rplQueue->push($operatorRecord);
             $this->operatorStack->pop();
@@ -145,7 +145,7 @@ class Parser implements ParserCompositeInterface
     public function parse(TokenIteratorInterface $iterator)
     {
         while ($iterator->valid()) {
-            $token = $iterator->next();
+            $token = $iterator->current();
             foreach ($this->modules as $module) {
                 if (null === ($record = $module->translate($token))) {
                     continue;
@@ -153,19 +153,21 @@ class Parser implements ParserCompositeInterface
                 $this->recordQueue->push($record->withModule($module));
                 break;
             }
+            $iterator->next();
         }
-        while ($this->recordQueue->valid()) {
-            $this->recordQueue->pop()->accept($this);
+
+        while (null !== ($record = $this->recordQueue->dequeue())) {
+            $record->accept($this);
         }
-        while ($this->operatorStack->valid()) {
-            $record = $this->operatorStack->pop();
+
+        while (null !== ($record = $this->operatorStack->pop())) {
             if (false === $record->finish()) {
                 throw new UnclosedBracketException($this, $record);
             }
             $this->rplQueue->push($record);
         }
 
-        return $this->rplQueue;
+        return $this->rplQueue->count();
 //        while ($this->rpl->valid()) {
 //            $record = $this->rpl->pop();
 //            foreach ($this->modules as $module) {
