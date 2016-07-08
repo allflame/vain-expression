@@ -43,7 +43,7 @@ services:
   parser.terminal.module:
     class: Vain\Expression\Terminal\Module\TerminalParserModule
     arguments: ['@parser.terminal.module.translate']
-  parser.terminal.module.translate.:
+  parser.terminal.module.translate:
     class: Vain\Expression\Terminal\Module\TerminalTranslateModule
   #parser.terminal.module.init:
   #  class: Vain\Expression\Terminal\Module\TerminalInitModule
