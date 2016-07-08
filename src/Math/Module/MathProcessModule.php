@@ -52,24 +52,26 @@ class MathProcessModule extends AbstractProcessModule
      */
     public function operator(OperatorToken $token)
     {
+        $second = $this->getExpressionStack()->pop();
+        $first = $this->getExpressionStack()->pop();
         switch ($token->getValue()) {
             case '+':
-                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new PlusExpression($first, $second);
                 break;
             case '-':
-                return new MinusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new MinusExpression($first, $second);
                 break;
             case '*':
-                return new MultiplyExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new MultiplyExpression($first, $second);
                 break;
             case '/':
-                return new DivideExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new DivideExpression($first, $second);
                 break;
             case '**':
-                return new PowExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new PowExpression($first, $second);
                 break;
             case '%':
-                return new FractionExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new DivideExpression($first, $second);
                 break;
             default:
                 throw new UnsupportedTokenException($this, $token);
