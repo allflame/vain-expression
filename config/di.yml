@@ -9,7 +9,7 @@ services:
     class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
   expression.parser:
     class: Vain\Expression\Parser\Composite\Parser
-    arguments: ['@expression.parser.record.queue', '@expression.parser.rpl.queue', '@expression.parser.operator.stack', '@expression.queue']
+    arguments: ['@expression.parser.record.queue', '@expression.parser.rpl.queue', '@expression.parser.operator.stack', '@expression.stack']
     calls:
       - [addModule, ['@parser.terminal.module']]
       - [addModule, ['@parser.math.module']]
@@ -22,8 +22,8 @@ services:
   expression.lexer:
     class: Vain\Expression\Lexer\Composite\Lexer
     arguments: [['@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number', '@lexer.module.unknown']]
-  expression.queue:
-    class: Vain\Expression\Queue\ExpressionQueue
+  expression.stack:
+    class: Vain\Expression\Stack\ExpressionStack
   lexer.module.unknown:
     class: Vain\Expression\Lexer\Module\Unknown\UnknownLexerModule
     arguments: [0]

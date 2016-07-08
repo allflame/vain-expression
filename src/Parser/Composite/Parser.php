@@ -19,7 +19,7 @@ use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack;
 use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
 use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
-use Vain\Expression\Queue\ExpressionQueue;
+use Vain\Expression\Stack\ExpressionStack;
 
 /**
  * Class Parser
@@ -33,7 +33,7 @@ class Parser implements ParserCompositeInterface
      */
     private $modules;
 
-    private $expressionQueue;
+    private $expressionStack;
 
     private $recordQueue;
 
@@ -44,23 +44,23 @@ class Parser implements ParserCompositeInterface
     /**
      * Parser constructor.
      *
-     * @param ParserRecordQueue $recordQueue
-     * @param ParserRecordQueue $rplQueue
+     * @param ParserRecordQueue         $recordQueue
+     * @param ParserRecordQueue         $rplQueue
      * @param ParserOperatorRecordStack $operatorStack
-     * @param ExpressionQueue $expressionQueue
-     * @param ParserModuleInterface[] $modules
+     * @param ExpressionStack           $expressionStack
+     * @param ParserModuleInterface[]   $modules
      */
     public function __construct(
         ParserRecordQueue $recordQueue,
         ParserRecordQueue $rplQueue,
         ParserOperatorRecordStack $operatorStack,
-        ExpressionQueue $expressionQueue,
+        ExpressionStack $expressionStack,
         array $modules = []
     ) {
         $this->rplQueue = $rplQueue;
         $this->operatorStack = $operatorStack;
         $this->recordQueue = $recordQueue;
-        $this->expressionQueue = $expressionQueue;
+        $this->expressionStack = $expressionStack;
         foreach ($modules as $module) {
             $this->addModule($module);
         }
@@ -158,12 +158,12 @@ class Parser implements ParserCompositeInterface
             }
             $this->rplQueue->enqueue($record);
         }
-
+        
         while (false === $this->rplQueue->isEmpty()) {
             $record = $this->rplQueue->dequeue();
-            $record->getModule()->process($this, $record->getToken(), $this->expressionQueue);
+            $record->getModule()->process($this, $record->getToken(), $this->expressionStack);
         }
 
-        return $this->expressionQueue;
+        return $this->expressionStack;
     }
 }

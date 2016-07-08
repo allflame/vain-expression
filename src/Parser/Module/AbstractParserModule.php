@@ -14,7 +14,7 @@ use Vain\Expression\Lexer\Token\TokenInterface;
 use Vain\Expression\Parser\Module\Process\ParserProcessModuleInterface;
 use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Parser\Translate\ParserTranslateModuleInterface;
-use Vain\Expression\Queue\ExpressionQueue;
+use Vain\Expression\Stack\ExpressionStack;
 
 /**
  * Class AbstractParserModule
@@ -50,9 +50,9 @@ abstract class AbstractParserModule implements ParserModuleInterface
     /**
      * @inheritDoc
      */
-    public function process(ParserInterface $parser, TokenInterface $token, ExpressionQueue $queue)
+    public function process(ParserInterface $parser, TokenInterface $token, ExpressionStack $stack)
     {
-        $queue->enqueue($token->accept($this->process->withQueue($queue)));
+        $stack->push($token->accept($this->process->withStack($stack)));
 
         return $this;
     }

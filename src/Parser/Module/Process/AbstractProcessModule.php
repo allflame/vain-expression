@@ -11,7 +11,7 @@
 namespace Vain\Expression\Parser\Module\Process;
 
 use Vain\Expression\Parser\ParserInterface;
-use Vain\Expression\Queue\ExpressionQueue;
+use Vain\Expression\Stack\ExpressionStack;
 
 /**
  * Class AbstractProcessModule
@@ -26,9 +26,9 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     private $parser;
 
     /**
-     * @var ExpressionQueue
+     * @var ExpressionStack
      */
-    private $expressionQueue;
+    private $expressionStack;
 
 
     /**
@@ -52,18 +52,18 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     /**
      * @inheritDoc
      */
-    public function withQueue(ExpressionQueue $expressionQueue)
+    public function withStack(ExpressionStack $expressionStack)
     {
-        $this->expressionQueue = $expressionQueue;
+        $this->expressionStack = $expressionStack;
 
         return $this;
     }
 
     /**
-     * @return ExpressionQueue
+     * @return ExpressionStack
      */
-    public function getExpressionQueue()
+    public function getExpressionStack()
     {
-        return $this->expressionQueue;
+        return $this->expressionStack;
     }
 }

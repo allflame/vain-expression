@@ -49,22 +49,22 @@ class MathProcessModule extends AbstractProcessModule
     {
         switch ($token->getValue()) {
             case '+':
-                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
+                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '-':
-                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
+                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '*':
-                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
+                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '/':
-                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
+                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '**':
-                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
+                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '%':
-                return new PlusExpression($this->getExpressionQueue()->dequeue(), $this->getExpressionQueue()->dequeue());
+                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             default:
                 throw new UnsupportedTokenException($this, $token);
