@@ -51,7 +51,7 @@ services:
   #  class: Vain\Expression\Terminal\Module\TerminalProcessModule
   parser.math.module:
     class: Vain\Expression\Math\Module\MathParserModule
-    arguments: ['@parser.math.module.translate', '@parser.math.module.process']
+    arguments: ['@parser.math.module.translate']
   parser.math.module.translate:
     class: Vain\Expression\Math\Module\MathTranslateModule
     arguments: [{'+': [100, false], '-': [100, false], '*': [200, false], '/': [200, false], '**': [300, false], '%': [400, false]}]
