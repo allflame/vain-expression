@@ -12,7 +12,12 @@ namespace Vain\Expression\Math\Module;
 
 use Vain\Expression\Exception\UnsupportedTokenException;
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
+use Vain\Expression\Math\Divide\DivideExpression;
+use Vain\Expression\Math\Fraction\FractionExpression;
+use Vain\Expression\Math\Minus\MinusExpression;
+use Vain\Expression\Math\Multiply\MultiplyExpression;
 use Vain\Expression\Math\Plus\PlusExpression;
+use Vain\Expression\Math\Pow\PowExpression;
 use Vain\Expression\Parser\Module\Process\AbstractProcessModule;
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
 use Vain\Expression\Lexer\Token\Number\NumberToken;
@@ -52,19 +57,19 @@ class MathProcessModule extends AbstractProcessModule
                 return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '-':
-                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new MinusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '*':
-                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new MultiplyExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '/':
-                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new DivideExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '**':
-                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new PowExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             case '%':
-                return new PlusExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
+                return new FractionExpression($this->getExpressionStack()->pop(), $this->getExpressionStack()->pop());
                 break;
             default:
                 throw new UnsupportedTokenException($this, $token);

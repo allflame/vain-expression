@@ -164,6 +164,6 @@ class Parser implements ParserCompositeInterface
             $record->getModule()->process($this, $record->getToken(), $this->expressionStack);
         }
 
-        return $this->expressionStack;
+        return $this->expressionStack->pop();
     }
 }
