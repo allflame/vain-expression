@@ -54,6 +54,6 @@ class BracketLexerModule extends AbstractLexerModule
             $open = false;
         }
 
-        return new BracketToken($symbol, $currentPosition + 1, 1, $open);
+        return new BracketToken($symbol, $currentPosition, 1, $open);
     }
 }

@@ -55,6 +55,6 @@ class OperatorLexerModule extends AbstractLexerModule
 
         $operatorLength = strlen($operator);
 
-        return new OperatorToken($operator, $currentPosition + $operatorLength, $operatorLength);
+        return new OperatorToken($operator, $currentPosition - $operatorLength, $operatorLength);
     }
 }

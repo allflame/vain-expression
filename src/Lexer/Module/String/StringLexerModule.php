@@ -28,9 +28,13 @@ class StringLexerModule extends AbstractLexerModule
         $string = '';
         while (strlen($expression) > $currentPosition && ctype_alnum($string[$currentPosition])) {
             $string .= $expression[$currentPosition];
+            $currentPosition++;
+        }
+        if ('' === $string) {
+            return null;
         }
         $stringLength = strlen($string);
 
-        return new StringToken($string, $currentPosition + $stringLength, $stringLength);
+        return new StringToken($string, $currentPosition - $stringLength, $stringLength);
     }
 }

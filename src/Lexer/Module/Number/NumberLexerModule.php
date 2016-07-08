@@ -36,6 +36,6 @@ class NumberLexerModule extends AbstractLexerModule
         }
         $numberLength = strlen($numberString);
 
-        return new NumberToken($number, $currentPosition + $numberString, $numberLength);
+        return new NumberToken($number, $currentPosition - $numberLength, $numberLength);
     }
 }

@@ -29,6 +29,6 @@ class PunctuationLexerModule extends AbstractLexerModule
             return null;
         }
 
-        return new PunctuationToken($expression[$currentPosition], $currentPosition + 1, 1);
+        return new PunctuationToken($expression[$currentPosition], $currentPosition, 1);
     }
 }
