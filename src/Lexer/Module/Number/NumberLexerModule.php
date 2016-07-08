@@ -31,7 +31,7 @@ class NumberLexerModule extends AbstractLexerModule
             $currentPosition++;
         }
 
-        if ('' === $numberString || PHP_INT_MAX > $number = (float) $numberString) {
+        if ('' === $numberString || PHP_INT_MAX < $number = (float) $numberString) {
             return null;
         }
         $numberLength = strlen($numberString);

@@ -36,7 +36,7 @@ class BracketLexerModule extends AbstractLexerModule
     public function process($expression, $currentPosition)
     {
         $symbol = $expression[$currentPosition];
-        if (false !== strpos('()[]{}', $symbol)) {
+        if (false === strpos('()[]{}', $symbol)) {
             return null;
         }
 
