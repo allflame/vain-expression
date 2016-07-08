@@ -58,6 +58,6 @@ abstract class AbstractParserRecord implements ParserRecordInterface
         $copy = clone $this;
         $copy->module = $module;
 
-        return $this;
+        return $copy;
     }
 }

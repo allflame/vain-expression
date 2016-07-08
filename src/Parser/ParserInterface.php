@@ -10,6 +10,7 @@
  */
 namespace Vain\Expression\Parser;
 
+use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 use Vain\Expression\Parser\Record\Visitor\VisitorInterface;
 
@@ -23,7 +24,7 @@ interface ParserInterface extends VisitorInterface
     /**
      * @param TokenIteratorInterface $iterator
      *
-     * @return ParserInterface
+     * @return ExpressionInterface
      */
     public function parse(TokenIteratorInterface $iterator);
 }
