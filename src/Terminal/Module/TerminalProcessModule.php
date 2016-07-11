@@ -19,6 +19,7 @@ use Vain\Expression\Lexer\Token\Bracket\BracketToken;
 use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 use Vain\Expression\Lexer\Token\String\StringToken;
+use Vain\Expression\Wrap\WrapExpression;
 
 /**
  * Class PrimaryProcessModule
@@ -32,7 +33,7 @@ class TerminalProcessModule extends AbstractProcessModule
      */
     public function bracket(BracketToken $token)
     {
-        throw new UnsupportedTokenException($this, $token);
+        return new WrapExpression($this->getExpressionStack()->pop());
     }
 
     /**

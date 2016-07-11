@@ -109,6 +109,8 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
         if (false === $this->operatorStack->isEmpty() && ($record = $this->operatorStack->top()) && $record instanceof FunctionOperatorParserRecord) {
             $this->operatorStack->pop();
             $this->rplQueue->enqueue($record);
+        } else {
+            $this->rplQueue->enqueue($bracketRecord);
         }
 
         //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);

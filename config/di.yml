@@ -61,6 +61,15 @@ services:
     arguments: ['@parser.math.module.translate', '@parser.math.module.process']
   parser.math.module.translate:
     class: Vain\Expression\Math\Module\MathTranslateModule
-    arguments: [{'+': [100, false], '-': [100, false], '*': [200, false], '/': [200, false], '**': [300, true], '%': [400, false]}]
+    arguments: [{'+': [110, false], '-': [110, false], '*': [120, false], '/': [120, false], '**': [130, true], '%': [140, false]}]
   parser.math.module.process:
     class: Vain\Expression\Math\Module\MathProcessModule
+  parser.boolean.module:
+    class: Vain\Expression\Boolean\Module\BooleanParserModule
+    arguments: ['@parser.boolean.module.translate:', '@parser.boolean.module.process']
+  parser.boolean.module.translate:
+    class: Vain\Expression\Boolean\Module\BooleanTranslateModule
+    arguments: [{'||': [210, false], '&&': [220, false], '~': [230, true], '!': [230, false]}]
+  parser.boolean.module.process:
+    class: Vain\Expression\Boolean\Module\BooleanProcessModule
+    arguments: ['@expression.boolean.result.factory']
