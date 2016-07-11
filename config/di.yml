@@ -23,6 +23,9 @@ services:
     class: Vain\Expression\Parser\Record\Queue\ParserRecordQueue
   expression.parser.operator.stack:
     class: Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack
+  expression.parser.logger.decorator:
+    class: Vain\Expression\Parser\Algorithm\Decorator\Logger\ParserAlgorithmLoggerDecorator
+    arguments: ['@expression.parser', '@app.logger']
   expression.lexer:
     class: Vain\Expression\Lexer\Composite\Lexer
     arguments: [['@lexer.module.operator', '@lexer.module.string', '@lexer.module.bracket', '@lexer.module.punctuation', '@lexer.module.number', '@lexer.module.unknown']]

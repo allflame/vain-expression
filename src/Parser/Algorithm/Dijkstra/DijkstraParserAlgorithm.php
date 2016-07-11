@@ -18,14 +18,13 @@ use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack;
 use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
 use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
-use Vain\Expression\Parser\Record\Visitor\VisitorInterface;
 
 /**
  * Class DijkstraParserAlgorithm
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterface
+class DijkstraParserAlgorithm implements ParserAlgorithmInterface
 {
 
     private $rplQueue;
@@ -47,6 +46,22 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
     /**
      * @inheritDoc
      */
+    public function getRplQueue()
+    {
+        return $this->rplQueue;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getOperatorStack()
+    {
+        return $this->operatorStack;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function parse(ParserRecordQueue $recordQueue)
     {
         while (false === $recordQueue->isEmpty()) {
@@ -61,7 +76,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
             $this->rplQueue->enqueue($record);
         }
 
-        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
+        
 
         return $this->rplQueue;
     }
