@@ -11,8 +11,10 @@
 
 namespace Vain\Expression\Boolean\Module;
 
+use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 use Vain\Expression\Lexer\Token\String\StringToken;
+use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
 use Vain\Expression\Parser\Translate\AbstractParserTranslateModule;
 
 /**
@@ -35,6 +37,11 @@ class BooleanTranslateModule extends AbstractParserTranslateModule
      */
     public function string(StringToken $token)
     {
+        $string = strtolower($token->getValue());
+        if ('true' === $string || 'false' === $string) {
+            return new TerminalParserRecord($token);
+        }
+
         return null;
     }
 }

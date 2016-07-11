@@ -17,6 +17,8 @@ use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
 use Vain\Expression\Boolean\Unary\Identity\IdentityExpression;
 use Vain\Expression\Boolean\Unary\Not\NotExpression;
+use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
+use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 use Vain\Expression\Exception\UnsupportedTokenException;
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
 use Vain\Expression\Lexer\Token\Number\NumberToken;
@@ -100,7 +102,17 @@ class BooleanProcessModule extends AbstractProcessModule
      */
     public function string(StringToken $token)
     {
-
+        $string = strtolower($token->getValue());
+        switch ($string) {
+            case 'true':
+                return new TrueExpression($this->resultFactory);
+                break;
+            case 'false':
+                return new FalseExpression($this->resultFactory);
+                break;
+            default:
+                throw new UnsupportedTokenException($this, $token);
+        }
     }
 
 }
