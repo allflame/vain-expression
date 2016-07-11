@@ -60,4 +60,12 @@ abstract class AbstractToken implements TokenInterface
     {
         return $this->length;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        return $this->getValue();
+    }
 }

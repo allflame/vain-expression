@@ -68,4 +68,12 @@ class TokenIterator implements TokenIteratorInterface
     {
         return reset($this->tokens);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        return implode('', $this->tokens);
+    }
 }

@@ -10,6 +10,7 @@
  */
 namespace Vain\Expression\Lexer\Token\Iterator;
 
+use Vain\Core\String\StringInterface;
 use Vain\Expression\Lexer\Token\TokenInterface;
 
 /**
@@ -20,7 +21,7 @@ use Vain\Expression\Lexer\Token\TokenInterface;
  * @method TokenInterface current
  * @method TokenInterface next
  */
-interface TokenIteratorInterface extends \Iterator
+interface TokenIteratorInterface extends \Iterator, StringInterface
 {
  
 }

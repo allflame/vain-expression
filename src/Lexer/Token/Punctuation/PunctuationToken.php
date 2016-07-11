@@ -27,12 +27,4 @@ class PunctuationToken extends AbstractToken
     {
         return $visitor->punctuation($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        trigger_error('Method __toString is not implemented', E_USER_ERROR);
-    }
 }

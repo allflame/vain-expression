@@ -59,12 +59,4 @@ class BracketToken extends AbstractToken
     {
         return $visitor->bracket($this);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
-    {
-        trigger_error('Method __toString is not implemented', E_USER_ERROR);
-    }
 }
