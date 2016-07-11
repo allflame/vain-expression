@@ -16,7 +16,17 @@ services:
       - [addModule, ['@parser.terminal.module']]
   expression.parser.algorithm.dijkstra:
     class: Vain\Expression\Parser\Algorithm\Dijkstra\DijkstraParserAlgorithm
-    arguments: ['@expression.parser.rpl.queue', '@expression.parser.operator.stack']
+    arguments: ['@expression.parser.algorithm.dijkstra.bracket', '@expression.parser.algorithm.dijkstra.function', '@expression.parser.algorithm.dijkstra.operator', '@expression.parser.algorithm.dijkstra.post', '@expression.parser.algorithm.dijkstra.finish', '@expression.parser.rpl.queue', '@expression.parser.operator.stack']
+  expression.parser.algorithm.dijkstra.bracket:
+    class: Vain\Expression\Parser\Algorithm\Dijkstra\Engine\Bracket\DijkstraBracketEngine
+  expression.parser.algorithm.dijkstra.finish:
+    class: Vain\Expression\Parser\Algorithm\Dijkstra\Engine\Finish\DijkstraFinishEngine
+  expression.parser.algorithm.dijkstra.function:
+    class: Vain\Expression\Parser\Algorithm\Dijkstra\Engine\FunctionX\DijkstraFunctionEngine
+  expression.parser.algorithm.dijkstra.operator:
+    class: Vain\Expression\Parser\Algorithm\Dijkstra\Engine\Operator\DijkstraOperatorEngine
+  expression.parser.algorithm.dijkstra.post:
+    class: Vain\Expression\Parser\Algorithm\Dijkstra\Engine\Post\DijkstraPostBracketEngine
   expression.parser.algorithm: '@expression.parser.algorithm.dijkstra'
   expression.parser.record.queue:
     class: Vain\Expression\Parser\Record\Queue\ParserRecordQueue

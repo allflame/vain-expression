@@ -12,8 +12,6 @@ namespace Vain\Expression\Parser\Record\Operator\Bracket;
 
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
 use Vain\Expression\Parser\Record\Operator\AbstractOperatorParserRecord;
-use Vain\Expression\Parser\Record\Operator\FunctionX\FunctionOperatorParserRecord;
-use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
 use Vain\Expression\Parser\Record\Visitor\VisitorInterface;
 
 /**
@@ -57,37 +55,5 @@ class BracketOperatorParserRecord extends AbstractOperatorParserRecord
     public function accept(VisitorInterface $visitor)
     {
         return $visitor->bracketX($this);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function functionX(FunctionOperatorParserRecord $record)
-    {
-        return false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function operator(RegularOperatorParserRecord $record)
-    {
-        return false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function bracket(BracketOperatorParserRecord $record)
-    {
-        return (false === $this->isLeft());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function finish()
-    {
-        return false;
     }
 }
