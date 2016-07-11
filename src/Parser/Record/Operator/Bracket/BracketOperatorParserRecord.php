@@ -64,7 +64,7 @@ class BracketOperatorParserRecord extends AbstractOperatorParserRecord
      */
     public function functionX(FunctionOperatorParserRecord $record)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -72,7 +72,7 @@ class BracketOperatorParserRecord extends AbstractOperatorParserRecord
      */
     public function operator(RegularOperatorParserRecord $record)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -80,7 +80,7 @@ class BracketOperatorParserRecord extends AbstractOperatorParserRecord
      */
     public function bracket(BracketOperatorParserRecord $record)
     {
-        return $this->isLeft();
+        return (false === $this->isLeft());
     }
 
     /**

@@ -13,13 +13,14 @@ namespace Vain\Expression\Parser\Record\Operator;
 use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\FunctionX\FunctionOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
+use Vain\Expression\Parser\Record\ParserRecordInterface;
 
 /**
  * Interface OperatorParserRecordInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface OperatorParserRecordInterface
+interface OperatorParserRecordInterface extends ParserRecordInterface
 {
     /**
      * @param FunctionOperatorParserRecord $record

@@ -51,7 +51,7 @@ class FunctionOperatorParserRecord extends AbstractOperatorParserRecord
      */
     public function bracket(BracketOperatorParserRecord $record)
     {
-        return false;
+        return true;
     }
 
     /**

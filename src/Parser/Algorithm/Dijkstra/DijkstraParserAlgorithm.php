@@ -61,6 +61,8 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
             $this->rplQueue->enqueue($record);
         }
 
+        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
+
         return $this->rplQueue;
     }
 
@@ -71,21 +73,30 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
     {
         if ($bracketRecord->isLeft()) {
             $this->operatorStack->push($bracketRecord);
-
             return $this;
         }
-        $record = $this->operatorStack->top();
-        while (null !== $record && $record->bracket($bracketRecord)) {
+
+        $matchingBracketFound = false;
+
+        while (false === $this->operatorStack->isEmpty()) {
+            $record = $this->operatorStack->pop();
+            if (false === $record->bracket($bracketRecord)) {
+                $matchingBracketFound = true;
+                break;
+            }
             $this->rplQueue->enqueue($record);
-            $this->operatorStack->pop();
         }
-        if (null === $record) {
+
+        if (false === $matchingBracketFound) {
             throw new UnclosedBracketException($this, $bracketRecord);
         }
-        $this->operatorStack->pop();
-        if (null !== ($record = $this->operatorStack->pop() && $record->bracket($bracketRecord))) {
+
+        if (false === $this->operatorStack->isEmpty() && ($record = $this->operatorStack->top()) && $record instanceof FunctionOperatorParserRecord) {
+            $this->operatorStack->pop();
             $this->rplQueue->enqueue($record);
         }
+
+        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
 
         return $this;
     }
@@ -96,6 +107,8 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
     public function functionX(FunctionOperatorParserRecord $functionRecord)
     {
         $this->operatorStack->push($functionRecord);
+
+        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
 
         return $this;
     }
@@ -111,6 +124,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
         }
 
         $this->operatorStack->push($operatorRecord);
+        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
 
         return $this;
     }
@@ -121,6 +135,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
     public function terminal(TerminalParserRecord $terminalRecord)
     {
         $this->rplQueue->enqueue($terminalRecord);
+        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
 
         return $this;
     }

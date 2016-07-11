@@ -58,6 +58,6 @@ services:
     arguments: ['@parser.math.module.translate', '@parser.math.module.process']
   parser.math.module.translate:
     class: Vain\Expression\Math\Module\MathTranslateModule
-    arguments: [{'+': [100, false], '-': [100, false], '*': [200, false], '/': [200, false], '**': [300, false], '%': [400, false]}]
+    arguments: [{'+': [100, false], '-': [100, false], '*': [200, false], '/': [200, false], '**': [300, true], '%': [400, false]}]
   parser.math.module.process:
     class: Vain\Expression\Math\Module\MathProcessModule
