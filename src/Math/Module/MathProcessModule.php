@@ -68,6 +68,7 @@ class MathProcessModule extends AbstractProcessModule
                 return new DivideExpression($first, $second);
                 break;
             case '**':
+            case '^':
                 return new PowExpression($first, $second);
                 break;
             case '%':

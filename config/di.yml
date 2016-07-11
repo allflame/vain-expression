@@ -62,7 +62,7 @@ services:
     arguments: ['@parser.math.module.translate', '@parser.math.module.process']
   parser.math.module.translate:
     class: Vain\Expression\Math\Module\MathTranslateModule
-    arguments: [{'+': [110, false], '-': [110, false], '*': [120, false], '/': [120, false], '**': [130, true], '%': [140, false]}]
+    arguments: [{'+': [110, false], '-': [110, false], '*': [120, false], '/': [120, false], '**': [130, true], '^': [130, true], '%': [140, false]}]
   parser.math.module.process:
     class: Vain\Expression\Math\Module\MathProcessModule
   parser.boolean.module:
