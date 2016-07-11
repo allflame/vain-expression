@@ -32,6 +32,7 @@ class OperatorLexerModule extends AbstractLexerModule
         '>' => true,
         '<' => true,
         '%' => true,
+        '^' => true,
     ];
 
     /**
