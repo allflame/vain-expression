@@ -76,8 +76,6 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
             $this->rplQueue->enqueue($record);
         }
 
-        
-
         return $this->rplQueue;
     }
 
@@ -92,7 +90,6 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
         }
 
         $matchingBracketFound = false;
-
         while (false === $this->operatorStack->isEmpty()) {
             $record = $this->operatorStack->pop();
             if (false === $record->bracket($bracketRecord)) {
@@ -113,8 +110,6 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
             $this->rplQueue->enqueue($bracketRecord);
         }
 
-        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
-
         return $this;
     }
 
@@ -124,8 +119,6 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     public function functionX(FunctionOperatorParserRecord $functionRecord)
     {
         $this->operatorStack->push($functionRecord);
-
-        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
 
         return $this;
     }
@@ -139,9 +132,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
             $this->operatorStack->pop();
             $this->rplQueue->enqueue($record);
         }
-
         $this->operatorStack->push($operatorRecord);
-        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
 
         return $this;
     }
@@ -152,7 +143,6 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     public function terminal(TerminalParserRecord $terminalRecord)
     {
         $this->rplQueue->enqueue($terminalRecord);
-        //printf('Rpl: %s, Stack: %s%s', $this->rplQueue, $this->operatorStack, PHP_EOL);
 
         return $this;
     }
