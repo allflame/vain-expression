@@ -10,6 +10,8 @@
  */
 namespace Vain\Expression\Math\Module;
 
+use Vain\Expression\Lexer\Token\Bracket\BracketToken;
+use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 use Vain\Expression\Lexer\Token\String\StringToken;
 use Vain\Expression\Parser\Translate\AbstractParserTranslateModule;
@@ -28,6 +30,23 @@ class MathTranslateModule extends AbstractParserTranslateModule
     {
         return null;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function bracket(BracketToken $token)
+    {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function number(NumberToken $token)
+    {
+        return null;
+    }
+
 
     /**
      * @inheritDoc

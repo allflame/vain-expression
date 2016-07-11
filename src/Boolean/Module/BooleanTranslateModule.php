@@ -11,7 +11,8 @@
 
 namespace Vain\Expression\Boolean\Module;
 
-use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
+use Vain\Expression\Lexer\Token\Bracket\BracketToken;
+use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 use Vain\Expression\Lexer\Token\String\StringToken;
 use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
@@ -28,6 +29,22 @@ class BooleanTranslateModule extends AbstractParserTranslateModule
      * @inheritDoc
      */
     public function punctuation(PunctuationToken $token)
+    {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function bracket(BracketToken $token)
+    {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function number(NumberToken $token)
     {
         return null;
     }
