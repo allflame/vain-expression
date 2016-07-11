@@ -10,12 +10,8 @@
  */
 namespace Vain\Expression\Parser\Translate;
 
-use Vain\Expression\Lexer\Token\Bracket\BracketToken;
-use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
-use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
-use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
 
 /**
  * Class AbstractParserTranslateModule
@@ -39,22 +35,6 @@ abstract class AbstractParserTranslateModule implements ParserTranslateModuleInt
     {
         $this->operators = $operators;
         $this->functions = $functions;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function bracket(BracketToken $token)
-    {
-        return new BracketOperatorParserRecord($token);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function number(NumberToken $token)
-    {
-        return new TerminalParserRecord($token);
     }
 
     /**

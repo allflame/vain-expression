@@ -72,7 +72,7 @@ class MathProcessModule extends AbstractProcessModule
                 return new PowExpression($first, $second);
                 break;
             case '%':
-                return new DivideExpression($first, $second);
+                return new FractionExpression($first, $second);
                 break;
             default:
                 throw new UnsupportedTokenException($this, $token);

@@ -10,9 +10,12 @@
  */
 namespace Vain\Expression\Terminal\Module;
 
+use Vain\Expression\Lexer\Token\Bracket\BracketToken;
+use Vain\Expression\Lexer\Token\Number\NumberToken;
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
 use Vain\Expression\Lexer\Token\Punctuation\PunctuationToken;
 use Vain\Expression\Lexer\Token\String\StringToken;
+use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
 use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
 use Vain\Expression\Parser\Translate\AbstractParserTranslateModule;
 
@@ -29,6 +32,22 @@ class TerminalTranslateModule extends AbstractParserTranslateModule
     public function operator(OperatorToken $token)
     {
         return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function bracket(BracketToken $token)
+    {
+        return new BracketOperatorParserRecord($token);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function number(NumberToken $token)
+    {
+        return new TerminalParserRecord($token);
     }
 
     /**
