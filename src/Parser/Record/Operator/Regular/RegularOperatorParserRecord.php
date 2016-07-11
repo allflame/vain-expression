@@ -89,8 +89,8 @@ class RegularOperatorParserRecord extends AbstractOperatorParserRecord
      */
     public function operator(RegularOperatorParserRecord $record)
     {
-        return ($this->isLeftAssociative() && $record->getPrecedence() > $this->getPrecedence()
-                || $record->isRightAssociative() && $record->getPrecedence() >= $this->getPrecedence()
+        return ($record->isLeftAssociative() && ($record->getPrecedence() <= $this->getPrecedence())
+                || $record->isRightAssociative() && ($record->getPrecedence() < $this->getPrecedence())
         );
     }
 

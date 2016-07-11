@@ -10,6 +10,7 @@
  */
 namespace Vain\Expression\Parser\Record\Queue;
 
+use Vain\Core\String\StringInterface;
 use Vain\Expression\Parser\Record\ParserRecordInterface;
 
 /**
@@ -22,6 +23,22 @@ use Vain\Expression\Parser\Record\ParserRecordInterface;
  * @method ParserRecordInterface bottom
  * @method ParserRecordInterface dequeue
  */
-class ParserRecordQueue extends \SplQueue
+class ParserRecordQueue extends \SplQueue implements StringInterface
 {
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        $this->rewind();
+        $string = '';
+        while ($this->valid()) {
+            $current = $this->current();
+            $string .= $current->getToken()->getValue();
+            $this->next();
+        }
+        $this->rewind();
+
+        return $string;
+    }
 }

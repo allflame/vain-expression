@@ -60,6 +60,8 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
             }
             $this->rplQueue->enqueue($record);
         }
+
+        return $this->rplQueue;
     }
 
     /**
@@ -103,10 +105,11 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface, VisitorInterf
      */
     public function operator(RegularOperatorParserRecord $operatorRecord)
     {
-        while (null !== ($record = $this->operatorStack->current()) && $record->operator($operatorRecord)) {
+        while (false === $this->operatorStack->isEmpty() && ($record = $this->operatorStack->top()) && $record->operator($operatorRecord)) {
             $this->operatorStack->pop();
             $this->rplQueue->enqueue($record);
         }
+
         $this->operatorStack->push($operatorRecord);
 
         return $this;
