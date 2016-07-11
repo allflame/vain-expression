@@ -11,9 +11,9 @@ services:
     class: Vain\Expression\Parser\Composite\Parser
     arguments: ['@expression.parser.record.queue', '@expression.stack', '@expression.parser.algorithm']
     calls:
-      - [addModule, ['@parser.terminal.module']]
       - [addModule, ['@parser.math.module']]
       - [addModule, ['@parser.boolean.module']]
+      - [addModule, ['@parser.terminal.module']]
   expression.parser.algorithm.dijkstra:
     class: Vain\Expression\Parser\Algorithm\Dijkstra\DijkstraParserAlgorithm
     arguments: ['@expression.parser.rpl.queue', '@expression.parser.operator.stack']
