@@ -13,6 +13,7 @@ services:
     calls:
       - [addModule, ['@parser.terminal.module']]
       - [addModule, ['@parser.math.module']]
+      - [addModule, ['@parser.boolean.module']]
   expression.parser.algorithm.dijkstra:
     class: Vain\Expression\Parser\Algorithm\Dijkstra\DijkstraParserAlgorithm
     arguments: ['@expression.parser.rpl.queue', '@expression.parser.operator.stack']
@@ -66,7 +67,7 @@ services:
     class: Vain\Expression\Math\Module\MathProcessModule
   parser.boolean.module:
     class: Vain\Expression\Boolean\Module\BooleanParserModule
-    arguments: ['@parser.boolean.module.translate:', '@parser.boolean.module.process']
+    arguments: ['@parser.boolean.module.translate', '@parser.boolean.module.process']
   parser.boolean.module.translate:
     class: Vain\Expression\Boolean\Module\BooleanTranslateModule
     arguments: [{'||': [210, false], '&&': [220, false], '~': [230, true], '!': [230, false]}]
