@@ -26,7 +26,7 @@ class StringLexerModule extends AbstractLexerModule
     public function process($expression, $currentPosition)
     {
         $string = '';
-        while (strlen($expression) > $currentPosition && ctype_alnum($string[$currentPosition])) {
+        while (strlen($expression) > $currentPosition && ctype_alnum($expression[$currentPosition])) {
             $string .= $expression[$currentPosition];
             $currentPosition++;
         }
