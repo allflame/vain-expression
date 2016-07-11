@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Expression\Parser\ParserInterface;
+use Vain\Expression\Parser\Algorithm\ParserAlgorithmInterface;
 use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
 
 /**
@@ -18,19 +18,23 @@ use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class UnclosedBracketException extends ParserException
+class UnclosedBracketException extends ParserAlgorithmException
 {
     /**
      * InconsistentBracketException constructor.
      *
-     * @param ParserInterface             $parser
+     * @param ParserAlgorithmInterface $algorithm
      * @param BracketOperatorParserRecord $record
      */
-    public function __construct(ParserInterface $parser, BracketOperatorParserRecord $record)
+    public function __construct(ParserAlgorithmInterface $algorithm, BracketOperatorParserRecord $record)
     {
         parent::__construct(
-            $parser,
-            sprintf('Encountered unclosed bracket %s at %d', $record->getToken()->getValue(), $record->getToken()->getCursor()),
+            $algorithm,
+            sprintf(
+                'Encountered unclosed bracket %s at %d',
+                $record->getToken()->getValue(),
+                $record->getToken()->getCursor()
+            ),
             0,
             null
         );

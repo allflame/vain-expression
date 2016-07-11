@@ -9,10 +9,14 @@ services:
     class: Vain\Expression\Boolean\Result\Factory\BooleanResultFactory
   expression.parser:
     class: Vain\Expression\Parser\Composite\Parser
-    arguments: ['@expression.parser.record.queue', '@expression.parser.rpl.queue', '@expression.parser.operator.stack', '@expression.stack']
+    arguments: ['@expression.parser.record.queue', '@expression.stack', '@expression.parser.algorithm']
     calls:
       - [addModule, ['@parser.terminal.module']]
       - [addModule, ['@parser.math.module']]
+  expression.parser.algorithm.dijkstra:
+    class: Vain\Expression\Parser\Algorithm\Dijkstra\DijkstraParserAlgorithm
+    arguments: ['@expression.parser.rpl.queue', '@expression.parser.operator.stack']
+  expression.parser.algorithm: '@expression.parser.algorithm.dijkstra'
   expression.parser.record.queue:
     class: Vain\Expression\Parser\Record\Queue\ParserRecordQueue
   expression.parser.rpl.queue:
