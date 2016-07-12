@@ -12,8 +12,6 @@
 namespace Vain\Expression\Parser\Algorithm\Dijkstra\Engine;
 
 use Vain\Expression\Parser\Record\Operator\OperatorParserRecordInterface;
-use Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack;
-use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
 
 /**
  * Class AbstractDijkstraEngine
@@ -22,10 +20,6 @@ use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
  */
 abstract class AbstractDijkstraEngine implements DijkstraEngineInterface
 {
-    private $operatorStack;
-    
-    private $rplQueue;
-    
     private $record;
 
     /**
@@ -36,42 +30,6 @@ abstract class AbstractDijkstraEngine implements DijkstraEngineInterface
         $this->record = $record;
 
         return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function withOperatorStack(ParserOperatorRecordStack $operatorStack)
-    {
-        $this->operatorStack = $operatorStack;
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function withRplQueue(ParserRecordQueue $recordQueue)
-    {
-        $this->rplQueue = $recordQueue;
-
-        return $this;
-    }
-
-    /**
-     * @return ParserOperatorRecordStack
-     */
-    public function getOperatorStack()
-    {
-        return $this->operatorStack;
-    }
-
-    /**
-     * @return ParserRecordQueue
-     */
-    public function getRplQueue()
-    {
-        return $this->rplQueue;
     }
 
     /**

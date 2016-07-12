@@ -12,8 +12,6 @@
 namespace Vain\Expression\Parser\Algorithm\Dijkstra\Engine;
 
 use Vain\Expression\Parser\Record\Operator\OperatorParserRecordInterface;
-use Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack;
-use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
 use Vain\Expression\Parser\Record\Visitor\VisitorInterface;
 
 /**
@@ -29,18 +27,4 @@ interface DijkstraEngineInterface extends VisitorInterface
      * @return DijkstraEngineInterface
      */
     public function withRecord(OperatorParserRecordInterface $record);
-
-    /**
-     * @param ParserOperatorRecordStack $operatorStack
-     *
-     * @return DijkstraEngineInterface
-     */
-    public function withOperatorStack(ParserOperatorRecordStack $operatorStack);
-
-    /**
-     * @param ParserRecordQueue $recordQueue
-     *
-     * @return DijkstraEngineInterface
-     */
-    public function withRplQueue(ParserRecordQueue $recordQueue);
 }
