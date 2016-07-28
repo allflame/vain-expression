@@ -10,7 +10,6 @@
  */
 namespace Vain\Expression\Lexer\Composite;
 
-use Vain\Expression\Lexer\LexerInterface;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 
 /**
@@ -18,7 +17,7 @@ use Vain\Expression\Lexer\Module\LexerModuleInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface LexerCompositeInterface extends LexerInterface
+interface LexerCompositeInterface
 {
     /**
      * @param LexerModuleInterface $module
