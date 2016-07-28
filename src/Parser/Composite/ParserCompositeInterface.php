@@ -11,14 +11,13 @@
 namespace Vain\Expression\Parser\Composite;
 
 use Vain\Expression\Parser\Module\ParserModuleInterface;
-use Vain\Expression\Parser\ParserInterface;
 
 /**
  * Interface ParserCompositeInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ParserCompositeInterface extends ParserInterface
+interface ParserCompositeInterface
 {
     /**
      * @param ParserModuleInterface $module
