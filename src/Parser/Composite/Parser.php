@@ -13,6 +13,7 @@ namespace Vain\Expression\Parser\Composite;
 use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 use Vain\Expression\Parser\Algorithm\ParserAlgorithmInterface;
 use Vain\Expression\Parser\Module\ParserModuleInterface;
+use Vain\Expression\Parser\ParserInterface;
 use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
 use Vain\Expression\Stack\ExpressionStack;
 
@@ -21,7 +22,7 @@ use Vain\Expression\Stack\ExpressionStack;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class Parser implements ParserCompositeInterface
+class Parser implements ParserCompositeInterface, ParserInterface
 {
     /**
      * @var ParserModuleInterface[]

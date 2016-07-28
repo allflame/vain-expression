@@ -11,6 +11,7 @@
 namespace Vain\Expression\Lexer\Composite;
 
 use Vain\Expression\Exception\DuplicatePriorityException;
+use Vain\Expression\Lexer\LexerInterface;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 use Vain\Expression\Lexer\Token\Iterator\TokenIterator;
 
@@ -20,7 +21,7 @@ use Vain\Expression\Lexer\Token\Iterator\TokenIterator;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class Lexer implements LexerCompositeInterface
+class Lexer implements LexerCompositeInterface, LexerInterface
 {
 
     /**
