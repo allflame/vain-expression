@@ -1,3 +1,6 @@
+imports:
+  - { resource: 'vendor/vain/core/config/di.yml' }
+
 services:
   expression.builder:
     class: Vain\Expression\Builder\ExpressionBuilder
