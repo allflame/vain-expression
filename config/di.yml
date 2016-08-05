@@ -1,5 +1,5 @@
 imports:
-  - { resource: 'vendor/vain/core/config/di.yml' }
+#  - { resource: 'vendor/vain/core/config/di.yml' }
 
 services:
   expression.builder:
