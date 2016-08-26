@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Core\Exception\CoreException;
+use Vain\Core\Exception\AbstractCoreException;
 use Vain\Expression\Parser\ParserInterface;
 
 /**
@@ -18,7 +18,7 @@ use Vain\Expression\Parser\ParserInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ParserException extends CoreException
+class ParserException extends AbstractCoreException
 {
     private $parser;
 

@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Core\Exception\CoreException;
+use Vain\Core\Exception\AbstractCoreException;
 use Vain\Expression\ExpressionInterface;
 
 /**
@@ -18,7 +18,7 @@ use Vain\Expression\ExpressionInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class InterpretationException extends CoreException
+class InterpretationException extends AbstractCoreException
 {
     private $expression;
 
