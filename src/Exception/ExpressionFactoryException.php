@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Core\Exception\CoreException;
+use Vain\Core\Exception\AbstractCoreException;
 use Vain\Expression\Factory\ExpressionFactoryInterface;
 
 /**
@@ -18,7 +18,7 @@ use Vain\Expression\Factory\ExpressionFactoryInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ExpressionFactoryException extends CoreException
+class ExpressionFactoryException extends AbstractCoreException
 {
     private $expressionFactory;
 
