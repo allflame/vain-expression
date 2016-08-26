@@ -10,7 +10,7 @@
  */
 namespace Vain\Expression\Exception;
 
-use Vain\Core\Exception\CoreException;
+use Vain\Core\Exception\AbstractCoreException;
 use Vain\Expression\Lexer\LexerInterface;
 
 /**
@@ -18,7 +18,7 @@ use Vain\Expression\Lexer\LexerInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class LexerException extends CoreException
+class LexerException extends AbstractCoreException
 {
     private $lexer;
 
