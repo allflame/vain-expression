@@ -21,8 +21,8 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "https://github.com/allflame/vain-core"
+            "type": "composer",
+            "url": "http://78.47.118.217"
         }
     ],
     "config": {
