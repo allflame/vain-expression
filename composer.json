@@ -17,7 +17,7 @@
     "require": {
         "php": ">=7.0",
         "vain/core": "^0.3",
-        "psr/log": "dev-master"
+        "psr/log": "~1.0"
     },
     "repositories": [
         {
