@@ -53,7 +53,11 @@ abstract class AbstractParserModule implements ParserModuleInterface
     /**
      * @inheritDoc
      */
-    public function process(ParserInterface $parser, TokenInterface $token, ExpressionStack $stack) : ParserModuleInterface
+    public function process(
+        ParserInterface $parser,
+        TokenInterface $token,
+        ExpressionStack $stack
+    ) : ParserModuleInterface
     {
         $stack->push($token->accept($this->process->withStack($stack)));
 

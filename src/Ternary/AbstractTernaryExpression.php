@@ -38,8 +38,7 @@ abstract class AbstractTernaryExpression implements TernaryExpressionInterface
         ExpressionInterface $firstExpression,
         ExpressionInterface $secondExpression,
         ExpressionInterface $thirdExpression
-    )
-    {
+    ) {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
         $this->thirdExpression = $thirdExpression;

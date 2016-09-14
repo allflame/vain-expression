@@ -37,8 +37,7 @@ class LexerModuleException extends AbstractCoreException
         string $message,
         int $code,
         \Exception $previous = null
-    )
-    {
+    ) {
         $this->module = $module;
         parent::__construct($message, $code, $previous);
     }

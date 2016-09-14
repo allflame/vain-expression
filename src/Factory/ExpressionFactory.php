@@ -84,7 +84,10 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function andX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface
+    public function andX(
+        BooleanExpressionInterface $firstExpression,
+        BooleanExpressionInterface $secondExpression
+    ) : BooleanExpressionInterface
     {
         return new AndExpression($firstExpression, $secondExpression, $this->resultFactory);
     }
@@ -92,7 +95,10 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function orX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface
+    public function orX(
+        BooleanExpressionInterface $firstExpression,
+        BooleanExpressionInterface $secondExpression
+    ) : BooleanExpressionInterface
     {
         return new OrExpression($firstExpression, $secondExpression, $this->resultFactory);
     }

@@ -30,8 +30,7 @@ class UnknownExpressionException extends ExpressionFactoryException
     public function __construct(
         ExpressionFactoryInterface $expressionFactory,
         string $shortcut
-    )
-    {
+    ) {
         parent::__construct(
             $expressionFactory,
             sprintf('Cannot create expression by unknown shortcut %s', $shortcut),

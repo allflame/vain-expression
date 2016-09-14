@@ -37,8 +37,7 @@ class ExpressionFactoryException extends AbstractCoreException
         string $message,
         int $code,
         \Exception $previous = null
-    )
-    {
+    ) {
         $this->expressionFactory = $expressionFactory;
         parent::__construct($message, $code, $previous);
     }

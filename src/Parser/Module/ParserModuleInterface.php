@@ -31,7 +31,11 @@ interface ParserModuleInterface
      *
      * @return ParserModuleInterface
      */
-    public function process(ParserInterface $parser, TokenInterface $token, ExpressionStack $stack) : ParserModuleInterface;
+    public function process(
+        ParserInterface $parser,
+        TokenInterface $token,
+        ExpressionStack $stack
+    ) : ParserModuleInterface;
 
     /**
      * @param TokenInterface $token

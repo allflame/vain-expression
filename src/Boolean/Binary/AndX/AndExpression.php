@@ -36,8 +36,7 @@ class AndExpression extends AbstractBinaryExpression implements BooleanExpressio
         BooleanExpressionInterface $firstExpression,
         BooleanExpressionInterface $secondExpression,
         BooleanResultFactoryInterface $resultFactory
-    )
-    {
+    ) {
         $this->resultFactory = $resultFactory;
         parent::__construct($firstExpression, $secondExpression);
     }

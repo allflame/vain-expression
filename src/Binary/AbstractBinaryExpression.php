@@ -34,8 +34,7 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     public function __construct(
         ExpressionInterface $firstExpression,
         ExpressionInterface $secondExpression
-    )
-    {
+    ) {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
     }

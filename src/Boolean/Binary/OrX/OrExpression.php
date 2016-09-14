@@ -36,8 +36,7 @@ class OrExpression extends AbstractBinaryExpression implements BooleanExpression
         BooleanExpressionInterface $firstExpression,
         BooleanExpressionInterface $secondExpression,
         BooleanResultFactoryInterface $resultFactory
-    )
-    {
+    ) {
         $this->resultFactory = $resultFactory;
         parent::__construct($firstExpression, $secondExpression);
     }

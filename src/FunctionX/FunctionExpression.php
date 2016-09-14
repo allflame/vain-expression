@@ -34,8 +34,7 @@ class FunctionExpression extends AbstractTernaryExpression
         ExpressionInterface $data,
         ExpressionInterface $functionName,
         ExpressionInterface $arguments
-    )
-    {
+    ) {
         parent::__construct($data, $functionName, $arguments);
     }
 

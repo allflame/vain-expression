@@ -30,6 +30,9 @@ class UnsupportedTokenException extends ProcessModuleException
      */
     public function __construct(ParserProcessModuleInterface $process, TokenInterface $token)
     {
-        parent::__construct($process, sprintf('Unsupported token %s (%s)', $token->getValue(), get_class($token)), 0, null);
+        parent::__construct($process,
+                            sprintf('Unsupported token %s (%s)', $token->getValue(), get_class($token)),
+                            0,
+                            null);
     }
 }
