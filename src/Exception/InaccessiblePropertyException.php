@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Property\PropertyExpression;
@@ -24,7 +26,7 @@ class InaccessiblePropertyException extends InterpretationException
      *
      * @param PropertyExpression $expression
      * @param \ArrayAccess       $context
-     * @param string             $data
+     * @param mixed              $data
      */
     public function __construct(PropertyExpression $expression, \ArrayAccess $context, $data)
     {

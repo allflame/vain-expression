@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser;
 
 use Vain\Expression\ExpressionInterface;
@@ -25,5 +27,5 @@ interface ParserInterface
      *
      * @return ExpressionInterface
      */
-    public function parse(TokenIteratorInterface $iterator);
+    public function parse(TokenIteratorInterface $iterator) : ExpressionInterface;
 }

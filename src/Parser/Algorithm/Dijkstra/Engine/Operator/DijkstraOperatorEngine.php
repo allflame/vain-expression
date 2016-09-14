@@ -8,9 +8,9 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
 
 namespace Vain\Expression\Parser\Algorithm\Dijkstra\Engine\Operator;
-
 
 use Vain\Expression\Parser\Algorithm\Dijkstra\Engine\AbstractDijkstraEngine;
 use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
@@ -22,8 +22,6 @@ use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
  * Class DijkstraOperatorEngine
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method RegularOperatorParserRecord getRecord
  */
 class DijkstraOperatorEngine extends AbstractDijkstraEngine
 {

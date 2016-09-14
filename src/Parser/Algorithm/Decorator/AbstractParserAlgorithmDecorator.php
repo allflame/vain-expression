@@ -8,12 +8,15 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Algorithm\Decorator;
 
 use Vain\Expression\Parser\Algorithm\ParserAlgorithmInterface;
 use Vain\Expression\Parser\Record\Operator\Bracket\BracketOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\FunctionX\FunctionOperatorParserRecord;
 use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
+use Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack;
 use Vain\Expression\Parser\Record\Queue\ParserRecordQueue;
 use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
 
@@ -39,7 +42,7 @@ abstract class AbstractParserAlgorithmDecorator implements ParserAlgorithmInterf
     /**
      * @return ParserAlgorithmInterface
      */
-    public function getAlgorithm()
+    public function getAlgorithm() : ParserAlgorithmInterface
     {
         return $this->algorithm;
     }
@@ -47,7 +50,7 @@ abstract class AbstractParserAlgorithmDecorator implements ParserAlgorithmInterf
     /**
      * @inheritDoc
      */
-    public function getRplQueue()
+    public function getRplQueue() : ParserRecordQueue
     {
         return $this->algorithm->getRplQueue();
     }
@@ -55,7 +58,7 @@ abstract class AbstractParserAlgorithmDecorator implements ParserAlgorithmInterf
     /**
      * @inheritDoc
      */
-    public function getOperatorStack()
+    public function getOperatorStack() : ParserOperatorRecordStack
     {
         return $this->algorithm->getOperatorStack();
     }
@@ -63,7 +66,7 @@ abstract class AbstractParserAlgorithmDecorator implements ParserAlgorithmInterf
     /**
      * @inheritDoc
      */
-    public function parse(ParserRecordQueue $recordQueue)
+    public function parse(ParserRecordQueue $recordQueue) : ParserRecordQueue
     {
         return $this->algorithm->parse($recordQueue);
     }

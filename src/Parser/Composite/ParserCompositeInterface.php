@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Composite;
 
 use Vain\Expression\Parser\Module\ParserModuleInterface;
@@ -24,5 +26,5 @@ interface ParserCompositeInterface
      *
      * @return ParserCompositeInterface
      */
-    public function addModule(ParserModuleInterface $module);
+    public function addModule(ParserModuleInterface $module) : ParserCompositeInterface;
 }

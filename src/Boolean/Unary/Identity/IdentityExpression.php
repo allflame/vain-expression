@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Boolean\Unary\Identity;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -18,8 +20,6 @@ use Vain\Expression\Unary\AbstractUnaryExpression;
  * Class IdentityExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method BooleanExpressionInterface getExpression
  */
 class IdentityExpression extends AbstractUnaryExpression implements BooleanExpressionInterface
 {
@@ -40,7 +40,7 @@ class IdentityExpression extends AbstractUnaryExpression implements BooleanExpre
     /**
      * @return BooleanResultFactoryInterface
      */
-    public function getResultFactory()
+    public function getResultFactory() : BooleanResultFactoryInterface
     {
         return $this->resultFactory;
     }
@@ -60,20 +60,20 @@ class IdentityExpression extends AbstractUnaryExpression implements BooleanExpre
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
-        return $this->getExpression();
+        return $this->getExpression()->__toString();
     }
 
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return [
             'id' => [
-                'expression' => $this->getExpression()->toArray()
-            ]
+                'expression' => $this->getExpression()->toArray(),
+            ],
         ];
     }
 }

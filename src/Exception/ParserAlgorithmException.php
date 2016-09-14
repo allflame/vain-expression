@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\AbstractCoreException;
@@ -28,9 +30,9 @@ class ParserAlgorithmException extends AbstractCoreException
      * @param ParserAlgorithmInterface $algorithm
      * @param string                   $message
      * @param int                      $code
-     * @param  \Exception              $previous
+     * @param \Exception               $previous
      */
-    public function __construct(ParserAlgorithmInterface $algorithm, $message, $code, \Exception $previous = null)
+    public function __construct(ParserAlgorithmInterface $algorithm, string $message, int $code, \Exception $previous = null)
     {
         $this->algorithm = $algorithm;
         parent::__construct($message, $code, $previous);
@@ -39,7 +41,7 @@ class ParserAlgorithmException extends AbstractCoreException
     /**
      * @return ParserAlgorithmInterface
      */
-    public function getAlgorithm()
+    public function getAlgorithm() : ParserAlgorithmInterface
     {
         return $this->algorithm;
     }

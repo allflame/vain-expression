@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Property;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
@@ -71,7 +73,7 @@ class PropertyExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('%s.%s', $this->getFirstExpression(), $this->getSecondExpression());
     }
@@ -79,7 +81,7 @@ class PropertyExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['property' => parent::toArray()];
     }

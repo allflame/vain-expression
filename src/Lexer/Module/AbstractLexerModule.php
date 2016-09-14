@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Lexer\Module;
 
 /**
@@ -24,7 +26,7 @@ abstract class AbstractLexerModule implements LexerModuleInterface
      *
      * @param int $priority
      */
-    public function __construct($priority)
+    public function __construct(int $priority)
     {
         $this->priority = $priority;
     }
@@ -32,7 +34,7 @@ abstract class AbstractLexerModule implements LexerModuleInterface
     /**
      * @inheritDoc
      */
-    public function getPriority()
+    public function getPriority() : int
     {
         return $this->priority;
     }

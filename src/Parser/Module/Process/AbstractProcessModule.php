@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Module\Process;
 
 use Vain\Expression\Parser\ParserInterface;
@@ -30,11 +32,10 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
      */
     private $expressionStack;
 
-
     /**
      * @inheritDoc
      */
-    public function withParser(ParserInterface $parser)
+    public function withParser(ParserInterface $parser) : ParserProcessModuleInterface
     {
         $this->parser = $parser;
 
@@ -44,7 +45,7 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     /**
      * @return ParserInterface
      */
-    public function getParser()
+    public function getParser() : ParserInterface
     {
         return $this->parser;
     }
@@ -52,7 +53,7 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     /**
      * @inheritDoc
      */
-    public function withStack(ExpressionStack $expressionStack)
+    public function withStack(ExpressionStack $expressionStack) : ParserProcessModuleInterface
     {
         $this->expressionStack = $expressionStack;
 
@@ -62,7 +63,7 @@ abstract class AbstractProcessModule implements ParserProcessModuleInterface
     /**
      * @return ExpressionStack
      */
-    public function getExpressionStack()
+    public function getExpressionStack() : ExpressionStack
     {
         return $this->expressionStack;
     }

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Factory;
 
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
@@ -50,7 +52,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function id(BooleanExpressionInterface $expression)
+    public function id(BooleanExpressionInterface $expression) : BooleanExpressionInterface
     {
         return new IdentityExpression($expression, $this->resultFactory);
     }
@@ -58,7 +60,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function not(BooleanExpressionInterface $expression)
+    public function not(BooleanExpressionInterface $expression) : BooleanExpressionInterface
     {
         return new NotExpression($expression, $this->resultFactory);
     }
@@ -66,7 +68,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function false()
+    public function false() : BooleanExpressionInterface
     {
         return new FalseExpression($this->resultFactory);
     }
@@ -74,7 +76,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function true()
+    public function true() : BooleanExpressionInterface
     {
         return new TrueExpression($this->resultFactory);
     }
@@ -82,7 +84,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function andX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression)
+    public function andX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface
     {
         return new AndExpression($firstExpression, $secondExpression, $this->resultFactory);
     }
@@ -90,7 +92,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function orX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression)
+    public function orX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface
     {
         return new OrExpression($firstExpression, $secondExpression, $this->resultFactory);
     }
@@ -98,7 +100,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function terminal($value)
+    public function terminal($value) : ExpressionInterface
     {
         return new TerminalExpression($value);
     }
@@ -110,14 +112,15 @@ class ExpressionFactory implements ExpressionFactoryInterface
         ExpressionInterface $data,
         ExpressionInterface $method,
         ExpressionInterface $arguments = null
-    ) {
+    ) : ExpressionInterface
+    {
         return new MethodExpression($data, $method, $arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function property(ExpressionInterface $data, ExpressionInterface $property)
+    public function property(ExpressionInterface $data, ExpressionInterface $property) : ExpressionInterface
     {
         return new PropertyExpression($data, $property);
     }
@@ -129,14 +132,15 @@ class ExpressionFactory implements ExpressionFactoryInterface
         ExpressionInterface $data,
         ExpressionInterface $function,
         ExpressionInterface $arguments = null
-    ) {
+    ) : ExpressionInterface
+    {
         return new FunctionExpression($data, $function, $arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function mode(ExpressionInterface $data, ExpressionInterface $mode)
+    public function mode(ExpressionInterface $data, ExpressionInterface $mode) : ExpressionInterface
     {
         return new ModeExpression($data, $mode);
     }
@@ -144,7 +148,7 @@ class ExpressionFactory implements ExpressionFactoryInterface
     /**
      * @inheritDoc
      */
-    public function filter(ExpressionInterface $data, BooleanExpressionInterface $filter)
+    public function filter(ExpressionInterface $data, BooleanExpressionInterface $filter) : ExpressionInterface
     {
         return new FilterExpression($data, $filter);
     }
@@ -157,14 +161,15 @@ class ExpressionFactory implements ExpressionFactoryInterface
         ExpressionInterface $class,
         ExpressionInterface $method,
         ExpressionInterface $arguments = null
-    ) {
+    ) : ExpressionInterface
+    {
         return new HelperExpression($data, $class, $method, $arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function context()
+    public function context() : ExpressionInterface
     {
         return new ContextExpression();
     }

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Lexer\Module;
 
 use Vain\Expression\Lexer\Token\TokenInterface;
@@ -22,7 +24,7 @@ interface LexerModuleInterface
     /**
      * @return int
      */
-    public function getPriority();
+    public function getPriority() : int;
 
     /**
      * @param string $expression
@@ -30,5 +32,5 @@ interface LexerModuleInterface
      *
      * @return TokenInterface
      */
-    public function process($expression, $currentPosition);
+    public function process(string $expression, int $currentPosition) : TokenInterface;
 }

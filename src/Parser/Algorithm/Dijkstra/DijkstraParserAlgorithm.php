@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Algorithm\Dijkstra;
 
 use Vain\Expression\Exception\UnclosedBracketException;
@@ -27,7 +29,6 @@ use Vain\Expression\Parser\Record\Terminal\TerminalParserRecord;
  */
 class DijkstraParserAlgorithm implements ParserAlgorithmInterface
 {
-
     private $bracketEngine;
 
     private $functionEngine;
@@ -45,12 +46,12 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     /**
      * DjkstraParserAlgorithm constructor.
      *
-     * @param DijkstraEngineInterface $bracketEngine
-     * @param DijkstraEngineInterface $functionEngine
-     * @param DijkstraEngineInterface $operatorEngine
-     * @param DijkstraEngineInterface $postBracketEngine
-     * @param DijkstraEngineInterface $finishEngine
-     * @param ParserRecordQueue $rplQueue
+     * @param DijkstraEngineInterface   $bracketEngine
+     * @param DijkstraEngineInterface   $functionEngine
+     * @param DijkstraEngineInterface   $operatorEngine
+     * @param DijkstraEngineInterface   $postBracketEngine
+     * @param DijkstraEngineInterface   $finishEngine
+     * @param ParserRecordQueue         $rplQueue
      * @param ParserOperatorRecordStack $operatorStack
      */
     public function __construct(DijkstraEngineInterface $bracketEngine, DijkstraEngineInterface $functionEngine, DijkstraEngineInterface $operatorEngine, DijkstraEngineInterface $postBracketEngine, DijkstraEngineInterface $finishEngine, ParserRecordQueue $rplQueue, ParserOperatorRecordStack $operatorStack)
@@ -67,7 +68,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     /**
      * @inheritDoc
      */
-    public function getRplQueue()
+    public function getRplQueue() : ParserRecordQueue
     {
         return $this->rplQueue;
     }
@@ -75,7 +76,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     /**
      * @inheritDoc
      */
-    public function getOperatorStack()
+    public function getOperatorStack() : ParserOperatorRecordStack
     {
         return $this->operatorStack;
     }
@@ -83,7 +84,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     /**
      * @inheritDoc
      */
-    public function parse(ParserRecordQueue $recordQueue)
+    public function parse(ParserRecordQueue $recordQueue) : ParserRecordQueue
     {
         while (false === $recordQueue->isEmpty()) {
             $recordQueue->dequeue()->accept($this);

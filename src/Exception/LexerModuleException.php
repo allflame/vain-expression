@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\AbstractCoreException;
@@ -32,10 +34,11 @@ class LexerModuleException extends AbstractCoreException
      */
     public function __construct(
         LexerModuleInterface $module,
-        $message,
-        $code,
+        string $message,
+        int $code,
         \Exception $previous = null
-    ) {
+    )
+    {
         $this->module = $module;
         parent::__construct($message, $code, $previous);
     }
@@ -43,7 +46,7 @@ class LexerModuleException extends AbstractCoreException
     /**
      * @return LexerModuleInterface
      */
-    public function getModule()
+    public function getModule() : LexerModuleInterface
     {
         return $this->module;
     }

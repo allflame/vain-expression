@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Filter;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
@@ -19,8 +21,6 @@ use Vain\Expression\ExpressionInterface;
  * Class FilterExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method BooleanExpressionInterface getSecondExpression
  */
 class FilterExpression extends AbstractBinaryExpression
 {
@@ -58,7 +58,7 @@ class FilterExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('%s where %s', $this->getFirstExpression(), $this->getSecondExpression());
     }
@@ -66,7 +66,7 @@ class FilterExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['filter' => parent::toArray()];
     }

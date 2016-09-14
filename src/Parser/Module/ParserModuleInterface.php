@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Module;
 
 use Vain\Expression\Lexer\Token\TokenInterface;
@@ -29,12 +31,12 @@ interface ParserModuleInterface
      *
      * @return ParserModuleInterface
      */
-    public function process(ParserInterface $parser, TokenInterface $token, ExpressionStack $stack);
+    public function process(ParserInterface $parser, TokenInterface $token, ExpressionStack $stack) : ParserModuleInterface;
 
     /**
      * @param TokenInterface $token
      *
      * @return ParserRecordInterface
      */
-    public function translate(TokenInterface $token);
+    public function translate(TokenInterface $token) : ParserRecordInterface;
 }

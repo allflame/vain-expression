@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Lexer\Token;
 
 /**
@@ -48,7 +50,7 @@ abstract class AbstractToken implements TokenInterface
     /**
      * @return int
      */
-    public function getCursor()
+    public function getCursor() : int
     {
         return $this->cursor;
     }
@@ -56,7 +58,7 @@ abstract class AbstractToken implements TokenInterface
     /**
      * @return int
      */
-    public function getLength()
+    public function getLength() : int
     {
         return $this->length;
     }
@@ -64,7 +66,7 @@ abstract class AbstractToken implements TokenInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->getValue();
     }

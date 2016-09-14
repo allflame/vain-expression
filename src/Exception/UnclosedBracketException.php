@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Parser\Algorithm\ParserAlgorithmInterface;
@@ -23,7 +25,7 @@ class UnclosedBracketException extends ParserAlgorithmException
     /**
      * InconsistentBracketException constructor.
      *
-     * @param ParserAlgorithmInterface $algorithm
+     * @param ParserAlgorithmInterface    $algorithm
      * @param BracketOperatorParserRecord $record
      */
     public function __construct(ParserAlgorithmInterface $algorithm, BracketOperatorParserRecord $record)

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Decorator;
 
 use Vain\Expression\ExpressionInterface;
@@ -34,7 +36,7 @@ abstract class AbstractExpressionDecorator implements ExpressionInterface
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getExpression() : ExpressionInterface
     {
         return $this->expression;
     }

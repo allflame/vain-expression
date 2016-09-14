@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Unary;
 
 use Vain\Expression\ExpressionInterface;
@@ -23,5 +25,5 @@ interface UnaryExpressionInterface extends NonTerminalExpressionInterface
     /**
      * @return ExpressionInterface
      */
-    public function getExpression();
+    public function getExpression() : ExpressionInterface;
 }

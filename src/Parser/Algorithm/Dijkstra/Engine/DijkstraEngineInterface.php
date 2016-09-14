@@ -8,6 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
 
 namespace Vain\Expression\Parser\Algorithm\Dijkstra\Engine;
 
@@ -26,5 +27,5 @@ interface DijkstraEngineInterface extends VisitorInterface
      *
      * @return DijkstraEngineInterface
      */
-    public function withRecord(OperatorParserRecordInterface $record);
+    public function withRecord(OperatorParserRecordInterface $record) : DijkstraEngineInterface;
 }

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Translate;
 
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
@@ -20,7 +22,6 @@ use Vain\Expression\Parser\Record\Operator\Regular\RegularOperatorParserRecord;
  */
 abstract class AbstractParserTranslateModule implements ParserTranslateModuleInterface
 {
-
     private $operators;
 
     private $functions;

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Record\Operator\Regular;
 
 use Vain\Expression\Lexer\Token\Operator\OperatorToken;
@@ -35,7 +37,7 @@ class RegularOperatorParserRecord extends AbstractOperatorParserRecord
      * @param int            $precedence
      * @param bool           $associativity
      */
-    public function __construct(TokenInterface $token, $precedence, $associativity = false)
+    public function __construct(TokenInterface $token, int $precedence, bool $associativity = false)
     {
         $this->precedence = $precedence;
         $this->associativity = $associativity;
@@ -45,23 +47,23 @@ class RegularOperatorParserRecord extends AbstractOperatorParserRecord
     /**
      * @return int
      */
-    public function getPrecedence()
+    public function getPrecedence() : int
     {
         return $this->precedence;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isLeftAssociative()
+    public function isLeftAssociative() : bool
     {
         return (false === $this->associativity);
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isRightAssociative()
+    public function isRightAssociative() : bool
     {
         return $this->associativity;
     }
