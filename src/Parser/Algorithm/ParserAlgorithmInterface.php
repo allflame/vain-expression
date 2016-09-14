@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Algorithm;
 
 use Vain\Expression\Parser\Record\Operator\Stack\ParserOperatorRecordStack;
@@ -24,17 +26,17 @@ interface ParserAlgorithmInterface extends VisitorInterface
     /**
      * @return ParserRecordQueue
      */
-    public function getRplQueue();
+    public function getRplQueue() : ParserRecordQueue;
 
     /**
      * @return ParserOperatorRecordStack
      */
-    public function getOperatorStack();
+    public function getOperatorStack() : ParserOperatorRecordStack;
 
     /**
      * @param ParserRecordQueue $recordQueue
      *
      * @return ParserRecordQueue
      */
-    public function parse(ParserRecordQueue $recordQueue);
+    public function parse(ParserRecordQueue $recordQueue) : ParserRecordQueue;
 }

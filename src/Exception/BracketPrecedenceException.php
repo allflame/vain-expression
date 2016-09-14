@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
@@ -27,7 +29,7 @@ class BracketPrecedenceException extends SyntaxErrorException
      * @param int                  $position
      * @param string               $expectedPrecedence
      */
-    public function __construct(LexerModuleInterface $module, $string, $position, $expectedPrecedence)
+    public function __construct(LexerModuleInterface $module, string $string, int $position, string $expectedPrecedence)
     {
         parent::__construct(
             $module,

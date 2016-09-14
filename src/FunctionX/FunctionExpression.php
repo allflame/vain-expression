@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\FunctionX;
 
 use Vain\Expression\Exception\UnknownFunctionException;
@@ -32,7 +34,8 @@ class FunctionExpression extends AbstractTernaryExpression
         ExpressionInterface $data,
         ExpressionInterface $functionName,
         ExpressionInterface $arguments
-    ) {
+    )
+    {
         parent::__construct($data, $functionName, $arguments);
     }
 
@@ -56,7 +59,7 @@ class FunctionExpression extends AbstractTernaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         if ('' === $this->getThirdExpression()->__toString()) {
             return sprintf('%s(%s)', $this->getSecondExpression(), $this->getFirstExpression());
@@ -73,7 +76,7 @@ class FunctionExpression extends AbstractTernaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['function' => parent::toArray()];
     }

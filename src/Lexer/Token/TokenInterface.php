@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Lexer\Token;
 
 use Vain\Core\String\StringInterface;
@@ -28,7 +30,7 @@ interface TokenInterface extends StringInterface
     public function accept(VisitorInterface $visitor);
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getValue();
 
@@ -36,5 +38,5 @@ interface TokenInterface extends StringInterface
      *
      * @return int
      */
-    public function getLength();
+    public function getLength() : int;
 }

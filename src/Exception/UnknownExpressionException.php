@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Factory\ExpressionFactoryInterface;
@@ -27,8 +29,9 @@ class UnknownExpressionException extends ExpressionFactoryException
      */
     public function __construct(
         ExpressionFactoryInterface $expressionFactory,
-        $shortcut
-    ) {
+        string $shortcut
+    )
+    {
         parent::__construct(
             $expressionFactory,
             sprintf('Cannot create expression by unknown shortcut %s', $shortcut),

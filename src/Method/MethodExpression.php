@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Method;
 
 use Vain\Expression\Exception\UnknownMethodException;
@@ -50,7 +52,7 @@ class MethodExpression extends AbstractTernaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         if ('' === $this->getThirdExpression()->__toString()) {
             return sprintf('%s->%s()', $this->getFirstExpression(), $this->getSecondExpression());
@@ -67,7 +69,7 @@ class MethodExpression extends AbstractTernaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['method' => parent::toArray()];
     }

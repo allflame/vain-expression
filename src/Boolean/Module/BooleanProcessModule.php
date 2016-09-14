@@ -8,9 +8,9 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
 
 namespace Vain\Expression\Boolean\Module;
-
 
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
 use Vain\Expression\Boolean\Binary\OrX\OrExpression;
@@ -34,7 +34,6 @@ use Vain\Expression\Parser\Module\Process\AbstractProcessModule;
  */
 class BooleanProcessModule extends AbstractProcessModule
 {
-
     private $resultFactory;
 
     /**
@@ -114,5 +113,4 @@ class BooleanProcessModule extends AbstractProcessModule
                 throw new UnsupportedTokenException($this, $token);
         }
     }
-
 }

@@ -8,6 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
 
 namespace Vain\Expression\Wrap;
 
@@ -24,7 +25,7 @@ class WrapExpression extends AbstractUnaryExpression
     /**
      * IdentityExpression constructor.
      *
-     * @param ExpressionInterface    $expression
+     * @param ExpressionInterface $expression
      */
     public function __construct(ExpressionInterface $expression)
     {
@@ -42,7 +43,7 @@ class WrapExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('(%s)', $this->getExpression());
     }
@@ -50,12 +51,12 @@ class WrapExpression extends AbstractUnaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return [
             'wrap' => [
-                'expression' => $this->getExpression()->toArray()
-            ]
+                'expression' => $this->getExpression()->toArray(),
+            ],
         ];
     }
 }

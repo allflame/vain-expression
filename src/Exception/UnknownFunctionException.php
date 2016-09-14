@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\FunctionX\FunctionExpression;
@@ -16,8 +18,6 @@ use Vain\Expression\FunctionX\FunctionExpression;
  * Class UnknownFunctionException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method FunctionExpression getExpression
  */
 class UnknownFunctionException extends InterpretationException
 {
@@ -26,9 +26,9 @@ class UnknownFunctionException extends InterpretationException
      *
      * @param FunctionExpression $expression
      * @param \ArrayAccess       $context
-     * @param int                $functionName
+     * @param string             $functionName
      */
-    public function __construct(FunctionExpression $expression, \ArrayAccess $context, $functionName)
+    public function __construct(FunctionExpression $expression, \ArrayAccess $context, string $functionName)
     {
         parent::__construct($expression, $context, sprintf('Function %s is not registered', $functionName), 0, null);
     }

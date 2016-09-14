@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
@@ -26,7 +28,7 @@ class UnknownCharacterException extends SyntaxErrorException
      * @param string               $string
      * @param int                  $position
      */
-    public function __construct(LexerModuleInterface $module, $string, $position)
+    public function __construct(LexerModuleInterface $module, string $string, int $position)
     {
         parent::__construct(
             $module,

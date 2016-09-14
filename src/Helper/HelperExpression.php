@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Helper;
 
 use Vain\Expression\Exception\UnknownHelperException;
@@ -34,7 +36,8 @@ class HelperExpression extends AbstractQuaternaryExpression
         ExpressionInterface $class,
         ExpressionInterface $method,
         ExpressionInterface $arguments = null
-    ) {
+    )
+    {
         parent::__construct($data, $class, $method, $arguments);
     }
 
@@ -59,7 +62,7 @@ class HelperExpression extends AbstractQuaternaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         if ('' === $this->getFourthExpression()->__toString()) {
             return sprintf(
@@ -82,7 +85,7 @@ class HelperExpression extends AbstractQuaternaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['helper' => parent::toArray()];
     }

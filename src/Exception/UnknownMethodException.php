@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Method\MethodExpression;
@@ -16,8 +18,6 @@ use Vain\Expression\Method\MethodExpression;
  * Class UnknownMethodException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method MethodExpression getExpression
  */
 class UnknownMethodException extends InterpretationException
 {
@@ -29,7 +29,7 @@ class UnknownMethodException extends InterpretationException
      * @param object           $data
      * @param string           $method
      */
-    public function __construct(MethodExpression $expression, \ArrayAccess $context, $data, $method)
+    public function __construct(MethodExpression $expression, \ArrayAccess $context, $data, string $method)
     {
         parent::__construct(
             $expression,

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Lexer\LexerInterface;
@@ -20,7 +22,6 @@ use Vain\Expression\Lexer\Module\LexerModuleInterface;
  */
 class DuplicatePriorityException extends LexerException
 {
-
     /**
      * DuplicateTokenException constructor.
      *
@@ -32,7 +33,8 @@ class DuplicatePriorityException extends LexerException
         LexerInterface $compiler,
         LexerModuleInterface $new,
         LexerModuleInterface $old
-    ) {
+    )
+    {
         parent::__construct(
             $compiler,
             sprintf(

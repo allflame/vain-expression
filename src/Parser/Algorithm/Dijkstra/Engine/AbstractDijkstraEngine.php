@@ -8,6 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
 
 namespace Vain\Expression\Parser\Algorithm\Dijkstra\Engine;
 
@@ -25,7 +26,7 @@ abstract class AbstractDijkstraEngine implements DijkstraEngineInterface
     /**
      * @inheritDoc
      */
-    public function withRecord(OperatorParserRecordInterface $record)
+    public function withRecord(OperatorParserRecordInterface $record) : DijkstraEngineInterface
     {
         $this->record = $record;
 
@@ -35,7 +36,7 @@ abstract class AbstractDijkstraEngine implements DijkstraEngineInterface
     /**
      * @return OperatorParserRecordInterface
      */
-    public function getRecord()
+    public function getRecord() : OperatorParserRecordInterface
     {
         return $this->record;
     }

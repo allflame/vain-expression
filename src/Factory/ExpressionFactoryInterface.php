@@ -8,24 +8,12 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Factory;
 
-use Vain\Expression\Boolean\Binary\AndX\AndExpression;
-use Vain\Expression\Boolean\Binary\OrX\OrExpression;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
-use Vain\Expression\Boolean\Unary\Identity\IdentityExpression;
-use Vain\Expression\Boolean\Unary\Not\NotExpression;
-use Vain\Expression\Boolean\ZeroAry\False\FalseExpression;
-use Vain\Expression\Boolean\ZeroAry\True\TrueExpression;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Context\ContextExpression;
-use Vain\Expression\Filter\FilterExpression;
-use Vain\Expression\FunctionX\FunctionExpression;
-use Vain\Expression\Helper\HelperExpression;
-use Vain\Expression\Method\MethodExpression;
-use Vain\Expression\Mode\ModeExpression;
-use Vain\Expression\Property\PropertyExpression;
-use Vain\Expression\Terminal\TerminalExpression;
 
 /**
  * Interface ExpressionFactoryInterface
@@ -37,99 +25,99 @@ interface ExpressionFactoryInterface
     /**
      * @param BooleanExpressionInterface $expression
      *
-     * @return IdentityExpression
+     * @return BooleanExpressionInterface
      */
-    public function id(BooleanExpressionInterface $expression);
+    public function id(BooleanExpressionInterface $expression) : BooleanExpressionInterface;
 
     /**
      * @param BooleanExpressionInterface $expression
      *
-     * @return NotExpression
+     * @return BooleanExpressionInterface
      */
-    public function not(BooleanExpressionInterface $expression);
+    public function not(BooleanExpressionInterface $expression) : BooleanExpressionInterface;
 
     /**
-     * @return FalseExpression
+     * @return BooleanExpressionInterface
      */
-    public function false();
+    public function false() : BooleanExpressionInterface;
 
     /**
-     * @return TrueExpression
+     * @return BooleanExpressionInterface
      */
-    public function true();
-
-    /**
-     * @param BooleanExpressionInterface $firstExpression
-     * @param BooleanExpressionInterface $secondExpression
-     *
-     * @return AndExpression
-     */
-    public function andX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression);
+    public function true() : BooleanExpressionInterface;
 
     /**
      * @param BooleanExpressionInterface $firstExpression
      * @param BooleanExpressionInterface $secondExpression
      *
-     * @return OrExpression
+     * @return BooleanExpressionInterface
      */
-    public function orX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression);
+    public function andX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface;
+
+    /**
+     * @param BooleanExpressionInterface $firstExpression
+     * @param BooleanExpressionInterface $secondExpression
+     *
+     * @return BooleanExpressionInterface
+     */
+    public function orX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface;
 
     /**
      * @param mixed $value
      *
-     * @return TerminalExpression
+     * @return ExpressionInterface
      */
-    public function terminal($value);
+    public function terminal($value) : ExpressionInterface;
 
     /**
      * @param ExpressionInterface $expression
      * @param ExpressionInterface $method
      * @param ExpressionInterface $arguments
      *
-     * @return MethodExpression
+     * @return ExpressionInterface
      */
     public function method(
         ExpressionInterface $expression,
         ExpressionInterface $method,
         ExpressionInterface $arguments = null
-    );
+    ) : ExpressionInterface;
 
     /**
      * @param ExpressionInterface $expression
      * @param ExpressionInterface $property
      *
-     * @return PropertyExpression
+     * @return ExpressionInterface
      */
-    public function property(ExpressionInterface $expression, ExpressionInterface $property);
+    public function property(ExpressionInterface $expression, ExpressionInterface $property) : ExpressionInterface;
 
     /**
      * @param ExpressionInterface $expression
      * @param ExpressionInterface $functionName
      * @param ExpressionInterface $arguments
      *
-     * @return FunctionExpression
+     * @return ExpressionInterface
      */
     public function func(
         ExpressionInterface $expression,
         ExpressionInterface $functionName,
         ExpressionInterface $arguments = null
-    );
+    ) : ExpressionInterface;
 
     /**
      * @param ExpressionInterface $expression
      * @param ExpressionInterface $mode
      *
-     * @return ModeExpression
+     * @return ExpressionInterface
      */
-    public function mode(ExpressionInterface $expression, ExpressionInterface $mode);
+    public function mode(ExpressionInterface $expression, ExpressionInterface $mode) : ExpressionInterface;
 
     /**
      * @param ExpressionInterface        $expression ,
      * @param BooleanExpressionInterface $filterExpression
      *
-     * @return FilterExpression
+     * @return ExpressionInterface
      */
-    public function filter(ExpressionInterface $expression, BooleanExpressionInterface $filterExpression);
+    public function filter(ExpressionInterface $expression, BooleanExpressionInterface $filterExpression) : ExpressionInterface;
 
     /**
      * @param ExpressionInterface $expression
@@ -137,17 +125,17 @@ interface ExpressionFactoryInterface
      * @param ExpressionInterface $method
      * @param ExpressionInterface $arguments
      *
-     * @return HelperExpression
+     * @return ExpressionInterface
      */
     public function helper(
         ExpressionInterface $expression,
         ExpressionInterface $class,
         ExpressionInterface $method,
         ExpressionInterface $arguments = null
-    );
+    ) : ExpressionInterface;
 
     /**
-     * @return ContextExpression
+     * @return ExpressionInterface
      */
-    public function context();
+    public function context() : ExpressionInterface;
 }

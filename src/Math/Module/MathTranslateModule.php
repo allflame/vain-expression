@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Math\Module;
 
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
@@ -46,7 +48,6 @@ class MathTranslateModule extends AbstractParserTranslateModule
     {
         return null;
     }
-
 
     /**
      * @inheritDoc

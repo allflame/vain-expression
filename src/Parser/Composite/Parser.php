@@ -8,8 +8,11 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Composite;
 
+use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 use Vain\Expression\Parser\Algorithm\ParserAlgorithmInterface;
 use Vain\Expression\Parser\Module\ParserModuleInterface;
@@ -38,17 +41,18 @@ class Parser implements ParserCompositeInterface, ParserInterface
     /**
      * Parser constructor.
      *
-     * @param ParserRecordQueue         $recordQueue
-     * @param ExpressionStack           $expressionStack
+     * @param ParserRecordQueue        $recordQueue
+     * @param ExpressionStack          $expressionStack
      * @param ParserAlgorithmInterface $algorithm
-     * @param ParserModuleInterface[]   $modules
+     * @param ParserModuleInterface[]  $modules
      */
     public function __construct(
         ParserRecordQueue $recordQueue,
         ExpressionStack $expressionStack,
         ParserAlgorithmInterface $algorithm,
         array $modules = []
-    ) {
+    )
+    {
         $this->recordQueue = $recordQueue;
         $this->expressionStack = $expressionStack;
         foreach ($modules as $module) {
@@ -60,7 +64,7 @@ class Parser implements ParserCompositeInterface, ParserInterface
     /**
      * @inheritDoc
      */
-    public function addModule(ParserModuleInterface $module)
+    public function addModule(ParserModuleInterface $module) : ParserCompositeInterface
     {
         $this->modules[] = $module;
 
@@ -70,7 +74,7 @@ class Parser implements ParserCompositeInterface, ParserInterface
     /**
      * @inheritDoc
      */
-    public function parse(TokenIteratorInterface $iterator)
+    public function parse(TokenIteratorInterface $iterator) : ExpressionInterface
     {
         while ($iterator->valid()) {
             $token = $iterator->current();

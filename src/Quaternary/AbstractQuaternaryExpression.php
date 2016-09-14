@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Quaternary;
 
 use Vain\Expression\ExpressionInterface;
@@ -40,7 +42,8 @@ abstract class AbstractQuaternaryExpression implements QuaternaryExpressionInter
         ExpressionInterface $secondExpression,
         ExpressionInterface $thirdExpression,
         ExpressionInterface $fourthExpression
-    ) {
+    )
+    {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
         $this->thirdExpression = $thirdExpression;
@@ -50,7 +53,7 @@ abstract class AbstractQuaternaryExpression implements QuaternaryExpressionInter
     /**
      * @inheritDoc
      */
-    public function getFirstExpression()
+    public function getFirstExpression() : ExpressionInterface
     {
         return $this->firstExpression;
     }
@@ -58,7 +61,7 @@ abstract class AbstractQuaternaryExpression implements QuaternaryExpressionInter
     /**
      * @inheritDoc
      */
-    public function getSecondExpression()
+    public function getSecondExpression() : ExpressionInterface
     {
         return $this->secondExpression;
     }
@@ -66,7 +69,7 @@ abstract class AbstractQuaternaryExpression implements QuaternaryExpressionInter
     /**
      * @inheritDoc
      */
-    public function getThirdExpression()
+    public function getThirdExpression() : ExpressionInterface
     {
         return $this->thirdExpression;
     }
@@ -74,7 +77,7 @@ abstract class AbstractQuaternaryExpression implements QuaternaryExpressionInter
     /**
      * @inheritDoc
      */
-    public function getFourthExpression()
+    public function getFourthExpression() : ExpressionInterface
     {
         return $this->fourthExpression;
     }
@@ -82,13 +85,13 @@ abstract class AbstractQuaternaryExpression implements QuaternaryExpressionInter
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return [
-            'firstExpression' => $this->firstExpression->toArray(),
+            'firstExpression'  => $this->firstExpression->toArray(),
             'secondExpression' => $this->secondExpression->toArray(),
-            'thirdExpression' => $this->thirdExpression->toArray(),
-            'fourthExpression' => $this->fourthExpression->toArray()
+            'thirdExpression'  => $this->thirdExpression->toArray(),
+            'fourthExpression' => $this->fourthExpression->toArray(),
         ];
     }
 }

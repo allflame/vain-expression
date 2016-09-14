@@ -8,12 +8,15 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Lexer\Module\Bracket;
 
 use Vain\Expression\Exception\BracketPrecedenceException;
 use Vain\Expression\Exception\WrongBracketException;
 use Vain\Expression\Lexer\Module\AbstractLexerModule;
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
+use Vain\Expression\Lexer\Token\TokenInterface;
 
 /**
  * Class BracketLexerModule
@@ -33,7 +36,7 @@ class BracketLexerModule extends AbstractLexerModule
     /**
      * @inheritDoc
      */
-    public function process($expression, $currentPosition)
+    public function process(string $expression, int $currentPosition) : TokenInterface
     {
         $symbol = $expression[$currentPosition];
         if (false === strpos('()[]{}', $symbol)) {

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Helper\HelperExpression;
@@ -16,8 +18,6 @@ use Vain\Expression\Helper\HelperExpression;
  * Class UnknownHelperException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method HelperExpression getExpression
  */
 class UnknownHelperException extends InterpretationException
 {
@@ -29,7 +29,7 @@ class UnknownHelperException extends InterpretationException
      * @param string           $class
      * @param string           $method
      */
-    public function __construct(HelperExpression $helperExpression, \ArrayAccess $context, $class, $method)
+    public function __construct(HelperExpression $helperExpression, \ArrayAccess $context, string $class, string $method)
     {
         parent::__construct(
             $helperExpression,

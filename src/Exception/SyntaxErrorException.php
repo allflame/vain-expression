@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
@@ -35,12 +37,13 @@ class SyntaxErrorException extends LexerModuleException
      */
     public function __construct(
         LexerModuleInterface $module,
-        $string,
-        $position,
-        $message,
-        $code,
+        string $string,
+        int $position,
+        string $message,
+        int $code,
         \Exception $previous = null
-    ) {
+    )
+    {
         $this->string = $string;
         $this->position = $position;
         parent::__construct($module, sprintf('Syntax error on position %d of string %s: %s', $position, $string, $message), $code, $previous);
@@ -49,7 +52,7 @@ class SyntaxErrorException extends LexerModuleException
     /**
      * @return string
      */
-    public function getString()
+    public function getString() : string
     {
         return $this->string;
     }
@@ -57,7 +60,7 @@ class SyntaxErrorException extends LexerModuleException
     /**
      * @return int
      */
-    public function getPosition()
+    public function getPosition() : int
     {
         return $this->position;
     }

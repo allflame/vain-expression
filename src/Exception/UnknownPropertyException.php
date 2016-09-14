@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Property\PropertyExpression;
@@ -16,8 +18,6 @@ use Vain\Expression\Property\PropertyExpression;
  * Class UnknownPropertyException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method PropertyExpression getExpression
  */
 class UnknownPropertyException extends InterpretationException
 {
@@ -26,10 +26,10 @@ class UnknownPropertyException extends InterpretationException
      *
      * @param PropertyExpression $expression
      * @param \ArrayAccess       $context
-     * @param string             $data
-     * @param int                $property
+     * @param mixed              $data
+     * @param string             $property
      */
-    public function __construct(PropertyExpression $expression, \ArrayAccess $context, $data, $property)
+    public function __construct(PropertyExpression $expression, \ArrayAccess $context, $data, string $property)
     {
         parent::__construct(
             $expression,

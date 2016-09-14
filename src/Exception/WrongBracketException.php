@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
@@ -25,9 +27,9 @@ class WrongBracketException extends SyntaxErrorException
      * @param LexerModuleInterface $module
      * @param string               $string
      * @param int                  $position
-     * @param \Exception|null      $previousBracket
+     * @param string               $previousBracket
      */
-    public function __construct(LexerModuleInterface $module, $string, $position, $previousBracket)
+    public function __construct(LexerModuleInterface $module, string $string, int $position, string $previousBracket)
     {
         parent::__construct(
             $module,

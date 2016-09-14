@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Builder;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -60,7 +62,7 @@ class ExpressionBuilder
     /**
      * @return ExpressionBuilder
      */
-    public function int()
+    public function int() : ExpressionBuilder
     {
         $this->mode = 'int';
 
@@ -70,7 +72,7 @@ class ExpressionBuilder
     /**
      * @return ExpressionBuilder
      */
-    public function string()
+    public function string() : ExpressionBuilder
     {
         $this->mode = 'string';
 
@@ -80,7 +82,7 @@ class ExpressionBuilder
     /**
      * @return ExpressionBuilder
      */
-    public function float()
+    public function float() : ExpressionBuilder
     {
         $this->mode = 'float';
 
@@ -90,7 +92,7 @@ class ExpressionBuilder
     /**
      * @return ExpressionBuilder
      */
-    public function bool()
+    public function bool() : ExpressionBuilder
     {
         $this->mode = 'bool';
 
@@ -102,7 +104,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function inPlace($value)
+    public function inPlace($value) : ExpressionBuilder
     {
         $this->type = 'in_place';
         $this->value = $value;
@@ -116,7 +118,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function method($method, array $arguments = [])
+    public function method(string $method, array $arguments = []) : ExpressionBuilder
     {
         $this->chain[] = ['method', [$method, $arguments]];
 
@@ -128,7 +130,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function module($module)
+    public function module(string $module) : ExpressionBuilder
     {
         $this->type = 'module';
         $this->module = $module;
@@ -141,7 +143,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function property($property)
+    public function property(string $property) : ExpressionBuilder
     {
         $this->chain[] = ['property', $property];
 
@@ -154,7 +156,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function func($name, array $arguments = [])
+    public function func(string $name, array $arguments = []) : ExpressionBuilder
     {
         $this->chain[] = ['function', [$name, $arguments]];
 
@@ -166,7 +168,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function filter(ExpressionInterface $expression)
+    public function filter(ExpressionInterface $expression) : ExpressionBuilder
     {
         $this->chain[] = ['filter', $expression];
 
@@ -178,7 +180,7 @@ class ExpressionBuilder
      *
      * @return BooleanExpressionInterface
      */
-    public function not(BooleanExpressionInterface $expression)
+    public function not(BooleanExpressionInterface $expression) : BooleanExpressionInterface
     {
         return $this->expressionFactory->not($expression);
     }
@@ -188,7 +190,7 @@ class ExpressionBuilder
      *
      * @return BooleanExpressionInterface
      */
-    public function id(BooleanExpressionInterface $expression)
+    public function id(BooleanExpressionInterface $expression) : BooleanExpressionInterface
     {
         return $this->expressionFactory->id($expression);
     }
@@ -199,7 +201,7 @@ class ExpressionBuilder
      *
      * @return BooleanExpressionInterface
      */
-    public function orX(BooleanExpressionInterface $first, BooleanExpressionInterface $second)
+    public function orX(BooleanExpressionInterface $first, BooleanExpressionInterface $second) : BooleanExpressionInterface
     {
         return $this->expressionFactory->orX($first, $second);
     }
@@ -210,7 +212,7 @@ class ExpressionBuilder
      *
      * @return BooleanExpressionInterface
      */
-    public function andX(BooleanExpressionInterface $first, BooleanExpressionInterface $second)
+    public function andX(BooleanExpressionInterface $first, BooleanExpressionInterface $second) : BooleanExpressionInterface
     {
         return $this->expressionFactory->andX($first, $second);
     }
@@ -222,7 +224,7 @@ class ExpressionBuilder
      *
      * @return ExpressionBuilder
      */
-    public function helper($class, $method, array $arguments = [])
+    public function helper(string $class, string $method, array $arguments = []) : ExpressionBuilder
     {
         $this->chain[] = ['helper', [$class, $method, $arguments]];
 
@@ -232,7 +234,7 @@ class ExpressionBuilder
     /**
      * @return ExpressionBuilder
      */
-    public function context()
+    public function context() : ExpressionBuilder
     {
         $this->type = 'context';
 
@@ -242,7 +244,7 @@ class ExpressionBuilder
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getExpression() : ExpressionInterface
     {
         switch ($this->type) {
             case 'in_place':

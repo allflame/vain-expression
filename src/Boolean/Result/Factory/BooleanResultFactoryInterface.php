@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Boolean\Result\Factory;
 
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
@@ -30,14 +32,14 @@ interface BooleanResultFactoryInterface
      *
      * @return BooleanResultInterface
      */
-    public function false(FalseExpression $expression);
+    public function false(FalseExpression $expression) : BooleanResultInterface;
 
     /**
      * @param TrueExpression $expression
      *
      * @return BooleanResultInterface
      */
-    public function true(TrueExpression $expression);
+    public function true(TrueExpression $expression) : BooleanResultInterface;
 
     /**
      * @param IdentityExpression     $expression
@@ -45,7 +47,7 @@ interface BooleanResultFactoryInterface
      *
      * @return BooleanResultInterface
      */
-    public function id(IdentityExpression $expression, BooleanResultInterface $result);
+    public function id(IdentityExpression $expression, BooleanResultInterface $result) : BooleanResultInterface;
 
     /**
      * @param NotExpression          $expression
@@ -53,7 +55,7 @@ interface BooleanResultFactoryInterface
      *
      * @return BooleanResultInterface
      */
-    public function not(NotExpression $expression, BooleanResultInterface $result);
+    public function not(NotExpression $expression, BooleanResultInterface $result) : BooleanResultInterface;
 
     /**
      * @param AndExpression          $binaryExpression
@@ -66,7 +68,7 @@ interface BooleanResultFactoryInterface
         AndExpression $binaryExpression,
         BooleanResultInterface $firstResult,
         BooleanResultInterface $secondResult
-    );
+    ) : BooleanResultInterface;
 
     /**
      * @param OrExpression           $binaryExpression
@@ -79,5 +81,5 @@ interface BooleanResultFactoryInterface
         OrExpression $binaryExpression,
         BooleanResultInterface $firstResult,
         BooleanResultInterface $secondResult
-    );
+    ) : BooleanResultInterface;
 }

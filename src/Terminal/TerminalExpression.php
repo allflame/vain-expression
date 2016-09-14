@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Terminal;
 
 use Vain\Expression\ZeroAry\AbstractZeroAryExpression;
@@ -50,7 +52,7 @@ class TerminalExpression extends AbstractZeroAryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->value;
     }
@@ -58,7 +60,7 @@ class TerminalExpression extends AbstractZeroAryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['terminal' => ['value' => json_encode($this->value)]];
     }

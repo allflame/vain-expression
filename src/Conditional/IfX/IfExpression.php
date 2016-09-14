@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Conditional\IfX;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -18,8 +20,6 @@ use Vain\Expression\Ternary\AbstractTernaryExpression;
  * Class IfExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method BooleanExpressionInterface getFirstExpression
  */
 class IfExpression extends AbstractTernaryExpression
 {
@@ -34,7 +34,8 @@ class IfExpression extends AbstractTernaryExpression
         BooleanExpressionInterface $condition,
         ExpressionInterface $then,
         ExpressionInterface $else
-    ) {
+    )
+    {
         parent::__construct($condition, $then, $else);
     }
 
@@ -53,7 +54,7 @@ class IfExpression extends AbstractTernaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf(
             'if (%s) then (%s) else (%s)',
@@ -66,7 +67,7 @@ class IfExpression extends AbstractTernaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['if' => parent::toArray()];
     }

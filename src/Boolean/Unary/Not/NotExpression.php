@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Boolean\Unary\Not;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -38,7 +40,7 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
     /**
      * @return BooleanResultFactoryInterface
      */
-    public function getResultFactory()
+    public function getResultFactory() : BooleanResultFactoryInterface
     {
         return $this->resultFactory;
     }
@@ -58,7 +60,7 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('!%s', $this->getExpression());
     }
@@ -66,12 +68,12 @@ class NotExpression extends AbstractUnaryExpression implements BooleanExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return [
             'not' => [
-                'expression' => $this->getExpression()->toArray()
-            ]
+                'expression' => $this->getExpression()->toArray(),
+            ],
         ];
     }
 }

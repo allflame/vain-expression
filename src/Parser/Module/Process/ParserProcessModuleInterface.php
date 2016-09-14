@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Module\Process;
 
 use Vain\Expression\Lexer\Token\Visitor\VisitorInterface;
@@ -26,12 +28,12 @@ interface ParserProcessModuleInterface extends VisitorInterface
      *
      * @return ParserProcessModuleInterface
      */
-    public function withParser(ParserInterface $parser);
+    public function withParser(ParserInterface $parser) : ParserProcessModuleInterface;
 
     /**
      * @param ExpressionStack $expressionStack
      *
      * @return ParserProcessModuleInterface
      */
-    public function withStack(ExpressionStack $expressionStack);
+    public function withStack(ExpressionStack $expressionStack) : ParserProcessModuleInterface;
 }

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Core\Exception\AbstractCoreException;
@@ -30,7 +32,7 @@ class ProcessModuleException extends AbstractCoreException
      * @param int                          $code
      * @param \Exception|null              $previous
      */
-    public function __construct(ParserProcessModuleInterface $process, $message, $code, \Exception $previous = null)
+    public function __construct(ParserProcessModuleInterface $process, string $message, int $code, \Exception $previous = null)
     {
         $this->processModule = $process;
         parent::__construct($message, $code, $previous);
@@ -39,7 +41,7 @@ class ProcessModuleException extends AbstractCoreException
     /**
      * @return ParserProcessModuleInterface
      */
-    public function getProcessModule()
+    public function getProcessModule() : ParserProcessModuleInterface
     {
         return $this->processModule;
     }
