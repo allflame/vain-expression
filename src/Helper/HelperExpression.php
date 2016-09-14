@@ -36,8 +36,7 @@ class HelperExpression extends AbstractQuaternaryExpression
         ExpressionInterface $class,
         ExpressionInterface $method,
         ExpressionInterface $arguments = null
-    )
-    {
+    ) {
         parent::__construct($data, $class, $method, $arguments);
     }
 

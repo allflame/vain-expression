@@ -201,7 +201,10 @@ class ExpressionBuilder
      *
      * @return BooleanExpressionInterface
      */
-    public function orX(BooleanExpressionInterface $first, BooleanExpressionInterface $second) : BooleanExpressionInterface
+    public function orX(
+        BooleanExpressionInterface $first,
+        BooleanExpressionInterface $second
+    ) : BooleanExpressionInterface
     {
         return $this->expressionFactory->orX($first, $second);
     }
@@ -212,7 +215,10 @@ class ExpressionBuilder
      *
      * @return BooleanExpressionInterface
      */
-    public function andX(BooleanExpressionInterface $first, BooleanExpressionInterface $second) : BooleanExpressionInterface
+    public function andX(
+        BooleanExpressionInterface $first,
+        BooleanExpressionInterface $second
+    ) : BooleanExpressionInterface
     {
         return $this->expressionFactory->andX($first, $second);
     }

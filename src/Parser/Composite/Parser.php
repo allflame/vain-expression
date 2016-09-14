@@ -51,8 +51,7 @@ class Parser implements ParserCompositeInterface, ParserInterface
         ExpressionStack $expressionStack,
         ParserAlgorithmInterface $algorithm,
         array $modules = []
-    )
-    {
+    ) {
         $this->recordQueue = $recordQueue;
         $this->expressionStack = $expressionStack;
         foreach ($modules as $module) {

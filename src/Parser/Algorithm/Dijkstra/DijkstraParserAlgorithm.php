@@ -54,8 +54,15 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
      * @param ParserRecordQueue         $rplQueue
      * @param ParserOperatorRecordStack $operatorStack
      */
-    public function __construct(DijkstraEngineInterface $bracketEngine, DijkstraEngineInterface $functionEngine, DijkstraEngineInterface $operatorEngine, DijkstraEngineInterface $postBracketEngine, DijkstraEngineInterface $finishEngine, ParserRecordQueue $rplQueue, ParserOperatorRecordStack $operatorStack)
-    {
+    public function __construct(
+        DijkstraEngineInterface $bracketEngine,
+        DijkstraEngineInterface $functionEngine,
+        DijkstraEngineInterface $operatorEngine,
+        DijkstraEngineInterface $postBracketEngine,
+        DijkstraEngineInterface $finishEngine,
+        ParserRecordQueue $rplQueue,
+        ParserOperatorRecordStack $operatorStack
+    ) {
         $this->bracketEngine = $bracketEngine;
         $this->functionEngine = $functionEngine;
         $this->operatorEngine = $operatorEngine;

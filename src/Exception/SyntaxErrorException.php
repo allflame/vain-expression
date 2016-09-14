@@ -42,11 +42,13 @@ class SyntaxErrorException extends LexerModuleException
         string $message,
         int $code,
         \Exception $previous = null
-    )
-    {
+    ) {
         $this->string = $string;
         $this->position = $position;
-        parent::__construct($module, sprintf('Syntax error on position %d of string %s: %s', $position, $string, $message), $code, $previous);
+        parent::__construct($module,
+                            sprintf('Syntax error on position %d of string %s: %s', $position, $string, $message),
+                            $code,
+                            $previous);
     }
 
     /**

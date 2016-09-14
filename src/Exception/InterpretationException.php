@@ -41,8 +41,7 @@ class InterpretationException extends AbstractCoreException
         string $message,
         int $code,
         \Exception $previous = null
-    )
-    {
+    ) {
         $this->expression = $expression;
         $this->context = $context;
         parent::__construct($message, $code, $previous);

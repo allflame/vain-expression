@@ -33,8 +33,7 @@ class DuplicatePriorityException extends LexerException
         LexerInterface $compiler,
         LexerModuleInterface $new,
         LexerModuleInterface $old
-    )
-    {
+    ) {
         parent::__construct(
             $compiler,
             sprintf(

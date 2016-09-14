@@ -33,8 +33,7 @@ class SyntaxException extends ProcessModuleException
         ParserProcessModuleInterface $process,
         TokenInterface $token,
         string $message
-    )
-    {
+    ) {
         parent::__construct($process, sprintf('Syntax error near %s: %s', $token->getValue(), $message), 0, null);
     }
 }

@@ -52,7 +52,10 @@ interface ExpressionFactoryInterface
      *
      * @return BooleanExpressionInterface
      */
-    public function andX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface;
+    public function andX(
+        BooleanExpressionInterface $firstExpression,
+        BooleanExpressionInterface $secondExpression
+    ) : BooleanExpressionInterface;
 
     /**
      * @param BooleanExpressionInterface $firstExpression
@@ -60,7 +63,10 @@ interface ExpressionFactoryInterface
      *
      * @return BooleanExpressionInterface
      */
-    public function orX(BooleanExpressionInterface $firstExpression, BooleanExpressionInterface $secondExpression) : BooleanExpressionInterface;
+    public function orX(
+        BooleanExpressionInterface $firstExpression,
+        BooleanExpressionInterface $secondExpression
+    ) : BooleanExpressionInterface;
 
     /**
      * @param mixed $value
@@ -112,12 +118,15 @@ interface ExpressionFactoryInterface
     public function mode(ExpressionInterface $expression, ExpressionInterface $mode) : ExpressionInterface;
 
     /**
-     * @param ExpressionInterface        $expression ,
+     * @param ExpressionInterface $expression ,
      * @param BooleanExpressionInterface $filterExpression
      *
      * @return ExpressionInterface
      */
-    public function filter(ExpressionInterface $expression, BooleanExpressionInterface $filterExpression) : ExpressionInterface;
+    public function filter(
+        ExpressionInterface $expression,
+        BooleanExpressionInterface $filterExpression
+    ) : ExpressionInterface;
 
     /**
      * @param ExpressionInterface $expression

@@ -34,8 +34,7 @@ class IfExpression extends AbstractTernaryExpression
         BooleanExpressionInterface $condition,
         ExpressionInterface $then,
         ExpressionInterface $else
-    )
-    {
+    ) {
         parent::__construct($condition, $then, $else);
     }
 

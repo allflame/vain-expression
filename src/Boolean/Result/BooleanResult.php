@@ -29,12 +29,15 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
     /**
      * BooleanResult constructor.
      *
-     * @param bool                       $status
+     * @param bool $status
      * @param BooleanExpressionInterface $expression
      * @param BooleanExpressionInterface $result
      */
-    public function __construct(bool $status, BooleanExpressionInterface $expression, BooleanExpressionInterface $result)
-    {
+    public function __construct(
+        bool $status,
+        BooleanExpressionInterface $expression,
+        BooleanExpressionInterface $result
+    ) {
         $this->expression = $expression;
         $this->result = $result;
         parent::__construct($status);

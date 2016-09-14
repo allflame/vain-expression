@@ -29,8 +29,12 @@ class UnknownHelperException extends InterpretationException
      * @param string           $class
      * @param string           $method
      */
-    public function __construct(HelperExpression $helperExpression, \ArrayAccess $context, string $class, string $method)
-    {
+    public function __construct(
+        HelperExpression $helperExpression,
+        \ArrayAccess $context,
+        string $class,
+        string $method
+    ) {
         parent::__construct(
             $helperExpression,
             $context,

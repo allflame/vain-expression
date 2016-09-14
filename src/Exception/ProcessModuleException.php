@@ -32,8 +32,12 @@ class ProcessModuleException extends AbstractCoreException
      * @param int                          $code
      * @param \Exception|null              $previous
      */
-    public function __construct(ParserProcessModuleInterface $process, string $message, int $code, \Exception $previous = null)
-    {
+    public function __construct(
+        ParserProcessModuleInterface $process,
+        string $message,
+        int $code,
+        \Exception $previous = null
+    ) {
         $this->processModule = $process;
         parent::__construct($message, $code, $previous);
     }

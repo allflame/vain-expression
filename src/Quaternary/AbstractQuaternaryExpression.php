@@ -42,8 +42,7 @@ abstract class AbstractQuaternaryExpression implements QuaternaryExpressionInter
         ExpressionInterface $secondExpression,
         ExpressionInterface $thirdExpression,
         ExpressionInterface $fourthExpression
-    )
-    {
+    ) {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
         $this->thirdExpression = $thirdExpression;

@@ -29,7 +29,8 @@ class NumberLexerModule extends AbstractLexerModule
     public function process(string $expression, int $currentPosition) : TokenInterface
     {
         $numberString = '';
-        while (strlen($expression) > $currentPosition && false !== strpos('0123456789.', $expression[$currentPosition])) {
+        while (strlen($expression) > $currentPosition && false !== strpos('0123456789.',
+                                                                          $expression[$currentPosition])) {
             $numberString .= $expression[$currentPosition];
             $currentPosition++;
         }
