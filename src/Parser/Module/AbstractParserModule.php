@@ -8,11 +8,14 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Module;
 
 use Vain\Expression\Lexer\Token\TokenInterface;
 use Vain\Expression\Parser\Module\Process\ParserProcessModuleInterface;
 use Vain\Expression\Parser\ParserInterface;
+use Vain\Expression\Parser\Record\ParserRecordInterface;
 use Vain\Expression\Parser\Translate\ParserTranslateModuleInterface;
 use Vain\Expression\Stack\ExpressionStack;
 
@@ -31,7 +34,7 @@ abstract class AbstractParserModule implements ParserModuleInterface
      * AbstractParserModule constructor.
      *
      * @param ParserTranslateModuleInterface $translate
-     * @param ParserProcessModuleInterface $process
+     * @param ParserProcessModuleInterface   $process
      */
     public function __construct(ParserTranslateModuleInterface $translate, ParserProcessModuleInterface $process)
     {
@@ -42,7 +45,7 @@ abstract class AbstractParserModule implements ParserModuleInterface
     /**
      * @inheritDoc
      */
-    public function translate(TokenInterface $token)
+    public function translate(TokenInterface $token) : ParserRecordInterface
     {
         return $token->accept($this->translate);
     }
@@ -50,7 +53,7 @@ abstract class AbstractParserModule implements ParserModuleInterface
     /**
      * @inheritDoc
      */
-    public function process(ParserInterface $parser, TokenInterface $token, ExpressionStack $stack)
+    public function process(ParserInterface $parser, TokenInterface $token, ExpressionStack $stack) : ParserModuleInterface
     {
         $stack->push($token->accept($this->process->withStack($stack)));
 

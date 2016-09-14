@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Math\Multiply;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
@@ -23,7 +25,7 @@ class MultiplyExpression extends AbstractBinaryExpression implements MathExpress
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['multiply' => parent::toArray()];
     }
@@ -39,7 +41,7 @@ class MultiplyExpression extends AbstractBinaryExpression implements MathExpress
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('%s * %s', $this->getFirstExpression(), $this->getSecondExpression());
     }

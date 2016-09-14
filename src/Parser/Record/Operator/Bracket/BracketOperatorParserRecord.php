@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Record\Operator\Bracket;
 
 use Vain\Expression\Lexer\Token\Bracket\BracketToken;
@@ -18,8 +20,6 @@ use Vain\Expression\Parser\Record\Visitor\VisitorInterface;
  * Class BracketOperatorParserRecord
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method BracketToken getToken
  */
 class BracketOperatorParserRecord extends AbstractOperatorParserRecord
 {
@@ -36,7 +36,7 @@ class BracketOperatorParserRecord extends AbstractOperatorParserRecord
     /**
      * @return bool
      */
-    public function isLeft()
+    public function isLeft() : bool
     {
         return $this->getToken()->isLeft();
     }
@@ -44,7 +44,7 @@ class BracketOperatorParserRecord extends AbstractOperatorParserRecord
     /**
      * @return bool
      */
-    public function isRight()
+    public function isRight() : bool
     {
         return $this->getToken()->isRight();
     }

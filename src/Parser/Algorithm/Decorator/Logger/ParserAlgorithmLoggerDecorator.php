@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Algorithm\Decorator\Logger;
 
 use Vain\Expression\Parser\Algorithm\Decorator\AbstractParserAlgorithmDecorator;
@@ -43,10 +45,10 @@ class ParserAlgorithmLoggerDecorator extends AbstractParserAlgorithmDecorator
     /**
      * @inheritDoc
      */
-    public function parse(ParserRecordQueue $recordQueue)
+    public function parse(ParserRecordQueue $recordQueue) : ParserRecordQueue
     {
         $result = parent::parse($recordQueue);
-        
+
         $this->logger->debug(sprintf('Rpl: %s, Stack: %s%s', $this->getRplQueue(), $this->getOperatorStack(), PHP_EOL));
 
         return $result;
@@ -57,7 +59,7 @@ class ParserAlgorithmLoggerDecorator extends AbstractParserAlgorithmDecorator
      */
     public function bracketX(BracketOperatorParserRecord $bracketRecord)
     {
-        $result =  parent::bracketX($bracketRecord);
+        $result = parent::bracketX($bracketRecord);
 
         $this->logger->debug(sprintf('Rpl: %s, Stack: %s%s', $this->getRplQueue(), $this->getOperatorStack(), PHP_EOL));
 
@@ -69,7 +71,7 @@ class ParserAlgorithmLoggerDecorator extends AbstractParserAlgorithmDecorator
      */
     public function functionX(FunctionOperatorParserRecord $functionRecord)
     {
-        $result =  parent::functionX($functionRecord);
+        $result = parent::functionX($functionRecord);
 
         $this->logger->debug(sprintf('Rpl: %s, Stack: %s%s', $this->getRplQueue(), $this->getOperatorStack(), PHP_EOL));
 
@@ -93,7 +95,7 @@ class ParserAlgorithmLoggerDecorator extends AbstractParserAlgorithmDecorator
      */
     public function terminal(TerminalParserRecord $terminalRecord)
     {
-        $result =  parent::terminal($terminalRecord);
+        $result = parent::terminal($terminalRecord);
 
         $this->logger->debug(sprintf('Rpl: %s, Stack: %s%s', $this->getRplQueue(), $this->getOperatorStack(), PHP_EOL));
 

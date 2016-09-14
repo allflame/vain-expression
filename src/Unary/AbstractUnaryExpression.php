@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Unary;
 
 use Vain\Expression\ExpressionInterface;
@@ -34,7 +36,7 @@ abstract class AbstractUnaryExpression implements UnaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function getExpression()
+    public function getExpression() : ExpressionInterface
     {
         return $this->expression;
     }

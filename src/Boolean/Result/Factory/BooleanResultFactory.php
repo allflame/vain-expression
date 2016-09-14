@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Boolean\Result\Factory;
 
 use Vain\Expression\Boolean\Binary\AndX\AndExpression;
@@ -29,7 +31,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function false(FalseExpression $expression)
+    public function false(FalseExpression $expression) : BooleanResultInterface
     {
         return new BooleanResult(false, $expression, new FalseExpression($this));
     }
@@ -37,7 +39,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function true(TrueExpression $expression)
+    public function true(TrueExpression $expression) : BooleanResultInterface
     {
         return new BooleanResult(true, $expression, new TrueExpression($this));
     }
@@ -45,7 +47,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function id(IdentityExpression $expression, BooleanResultInterface $result)
+    public function id(IdentityExpression $expression, BooleanResultInterface $result) : BooleanResultInterface
     {
         return new BooleanResult($result->getStatus(), $expression, $result);
     }
@@ -53,7 +55,7 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
     /**
      * @inheritDoc
      */
-    public function not(NotExpression $expression, BooleanResultInterface $result)
+    public function not(NotExpression $expression, BooleanResultInterface $result) : BooleanResultInterface
     {
         return new BooleanResult($result->getStatus(), $expression, $result);
     }
@@ -65,7 +67,8 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
         AndExpression $expression,
         BooleanResultInterface $firstResult,
         BooleanResultInterface $secondResult
-    ) {
+    ) : BooleanResultInterface
+    {
         return new BooleanResult(
             $firstResult->getStatus() && $secondResult->getStatus(),
             $expression,
@@ -80,7 +83,8 @@ class BooleanResultFactory implements BooleanResultFactoryInterface
         OrExpression $expression,
         BooleanResultInterface $firstResult,
         BooleanResultInterface $secondResult
-    ) {
+    ) : BooleanResultInterface
+    {
         return new BooleanResult(
             $firstResult->getStatus() || $secondResult->getStatus(),
             $expression,

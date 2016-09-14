@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Boolean\Result;
 
 use Vain\Core\Result\AbstractResult;
@@ -31,7 +33,7 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
      * @param BooleanExpressionInterface $expression
      * @param BooleanExpressionInterface $result
      */
-    public function __construct($status, BooleanExpressionInterface $expression, BooleanExpressionInterface $result)
+    public function __construct(bool $status, BooleanExpressionInterface $expression, BooleanExpressionInterface $result)
     {
         $this->expression = $expression;
         $this->result = $result;
@@ -49,7 +51,7 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->result->__toString();
     }
@@ -57,14 +59,14 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return [
             'boolean_result',
             array_merge(
                 parent::toArray(),
                 ['expression' => $this->expression->toArray(), 'result' => $this->result->toArray()]
-            )
+            ),
         ];
     }
 }

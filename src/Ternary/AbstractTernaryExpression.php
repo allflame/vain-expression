@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Ternary;
 
 use Vain\Expression\ExpressionInterface;
@@ -36,7 +38,8 @@ abstract class AbstractTernaryExpression implements TernaryExpressionInterface
         ExpressionInterface $firstExpression,
         ExpressionInterface $secondExpression,
         ExpressionInterface $thirdExpression
-    ) {
+    )
+    {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
         $this->thirdExpression = $thirdExpression;
@@ -45,7 +48,7 @@ abstract class AbstractTernaryExpression implements TernaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function getFirstExpression()
+    public function getFirstExpression() : ExpressionInterface
     {
         return $this->firstExpression;
     }
@@ -53,7 +56,7 @@ abstract class AbstractTernaryExpression implements TernaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function getSecondExpression()
+    public function getSecondExpression() : ExpressionInterface
     {
         return $this->secondExpression;
     }
@@ -61,7 +64,7 @@ abstract class AbstractTernaryExpression implements TernaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function getThirdExpression()
+    public function getThirdExpression() : ExpressionInterface
     {
         return $this->thirdExpression;
     }
@@ -69,12 +72,12 @@ abstract class AbstractTernaryExpression implements TernaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return [
-            'firstExpression' => $this->firstExpression->toArray(),
+            'firstExpression'  => $this->firstExpression->toArray(),
             'secondExpression' => $this->secondExpression->toArray(),
-            'thirdExpression' => $this->thirdExpression->toArray()
+            'thirdExpression'  => $this->thirdExpression->toArray(),
         ];
     }
 }

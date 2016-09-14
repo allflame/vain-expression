@@ -8,22 +8,23 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Lexer\Composite;
 
 use Vain\Expression\Exception\DuplicatePriorityException;
 use Vain\Expression\Lexer\LexerInterface;
 use Vain\Expression\Lexer\Module\LexerModuleInterface;
 use Vain\Expression\Lexer\Token\Iterator\TokenIterator;
+use Vain\Expression\Lexer\Token\Iterator\TokenIteratorInterface;
 
 /**
  * Class Lexer
-
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
 class Lexer implements LexerCompositeInterface, LexerInterface
 {
-
     /**
      * @var LexerModuleInterface[]
      */
@@ -44,7 +45,7 @@ class Lexer implements LexerCompositeInterface, LexerInterface
     /**
      * @inheritDoc
      */
-    public function addModule(LexerModuleInterface $module)
+    public function addModule(LexerModuleInterface $module) : LexerCompositeInterface
     {
         $priority = $module->getPriority();
         if (array_key_exists($module->getPriority(), $this->modules)) {
@@ -58,10 +59,11 @@ class Lexer implements LexerCompositeInterface, LexerInterface
     /**
      * @inheritDoc
      */
-    public function process($string)
+    public function process(string $string) : TokenIteratorInterface
     {
         $expression = str_replace(["\r", "\n", "\t", "\v", "\f"], ' ', $string);
-        $position = 0; $eof = strlen($expression);
+        $position = 0;
+        $eof = strlen($expression);
         $tokens = $brackets = [];
         krsort($this->modules);
         while ($position < $eof) {

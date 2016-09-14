@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Binary;
 
 use Vain\Expression\ExpressionInterface;
@@ -32,7 +34,8 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     public function __construct(
         ExpressionInterface $firstExpression,
         ExpressionInterface $secondExpression
-    ) {
+    )
+    {
         $this->firstExpression = $firstExpression;
         $this->secondExpression = $secondExpression;
     }
@@ -40,7 +43,7 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function getFirstExpression()
+    public function getFirstExpression() : ExpressionInterface
     {
         return $this->firstExpression;
     }
@@ -48,7 +51,7 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function getSecondExpression()
+    public function getSecondExpression() : ExpressionInterface
     {
         return $this->secondExpression;
     }
@@ -56,11 +59,11 @@ abstract class AbstractBinaryExpression implements BinaryExpressionInterface
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return [
-            'firstExpression' => $this->getFirstExpression()->toArray(),
-            'secondExpression' => $this->getSecondExpression()->toArray()
+            'firstExpression'  => $this->getFirstExpression()->toArray(),
+            'secondExpression' => $this->getSecondExpression()->toArray(),
         ];
     }
 }

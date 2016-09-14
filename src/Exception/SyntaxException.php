@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Exception;
 
 use Vain\Expression\Parser\Module\Process\ParserProcessModuleInterface;
@@ -25,13 +27,14 @@ class SyntaxException extends ProcessModuleException
      *
      * @param ParserProcessModuleInterface $process
      * @param TokenInterface               $token
-     * @param int                          $message
+     * @param string                       $message
      */
     public function __construct(
         ParserProcessModuleInterface $process,
         TokenInterface $token,
-        $message
-    ) {
+        string $message
+    )
+    {
         parent::__construct($process, sprintf('Syntax error near %s: %s', $token->getValue(), $message), 0, null);
     }
 }

@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Conditional\SwitchX;
 
 use Vain\Expression\ExpressionInterface;
@@ -56,7 +58,7 @@ class SwitchExpression implements NonTerminalExpressionInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf(
             'switch (%s) {%s default: %s}',
@@ -76,7 +78,7 @@ class SwitchExpression implements NonTerminalExpressionInterface
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         $mapped = [];
         foreach ($this->map as $key => $expression) {
@@ -85,10 +87,10 @@ class SwitchExpression implements NonTerminalExpressionInterface
 
         return [
             'switch' => [
-                'check' => $this->check->toArray(),
-                'map' => $mapped,
-                'default' => $this->default->toArray()
-            ]
+                'check'   => $this->check->toArray(),
+                'map'     => $mapped,
+                'default' => $this->default->toArray(),
+            ],
         ];
     }
 }

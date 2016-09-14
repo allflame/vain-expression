@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Lexer\Token\Bracket;
 
 use Vain\Expression\Lexer\Token\AbstractToken;
@@ -30,7 +32,7 @@ class BracketToken extends AbstractToken
      * @param int   $length
      * @param bool  $left
      */
-    public function __construct($value, $cursor, $length, $left)
+    public function __construct($value, int $cursor, int $length, bool $left)
     {
         $this->left = $left;
         parent::__construct($value, $cursor, $length);
@@ -47,9 +49,9 @@ class BracketToken extends AbstractToken
     /**
      * @return boolean
      */
-    public function isRight()
+    public function isRight() : bool
     {
-        return (false === $this->left);
+        return (false === $this->isLeft());
     }
 
     /**

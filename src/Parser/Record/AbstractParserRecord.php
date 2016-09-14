@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Parser\Record;
 
 use Vain\Expression\Lexer\Token\TokenInterface;
@@ -37,7 +39,7 @@ abstract class AbstractParserRecord implements ParserRecordInterface
     /**
      * @inheritDoc
      */
-    public function getToken()
+    public function getToken() : TokenInterface
     {
         return $this->token;
     }
@@ -45,7 +47,7 @@ abstract class AbstractParserRecord implements ParserRecordInterface
     /**
      * @inheritDoc
      */
-    public function getModule()
+    public function getModule() : ParserModuleInterface
     {
         return $this->module;
     }
@@ -53,7 +55,7 @@ abstract class AbstractParserRecord implements ParserRecordInterface
     /**
      * @inheritDoc
      */
-    public function withModule(ParserModuleInterface $module)
+    public function withModule(ParserModuleInterface $module) : ParserRecordInterface
     {
         $copy = clone $this;
         $copy->module = $module;

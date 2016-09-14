@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Mode;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
@@ -68,16 +70,12 @@ class ModeExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         $value = $this->getFirstExpression()->__toString();
         switch ($this->getSecondExpression()->__toString()) {
             case 'string':
                 return sprintf("'%s'", $value);
-                break;
-            case 'float':
-            case 'double':
-                return (float)$value;
                 break;
             case 'bool':
             case 'boolean':
@@ -98,7 +96,7 @@ class ModeExpression extends AbstractBinaryExpression
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['mode' => parent::toArray()];
     }

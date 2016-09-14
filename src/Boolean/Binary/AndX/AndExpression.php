@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Boolean\Binary\AndX;
 
 use Vain\Expression\Binary\AbstractBinaryExpression;
@@ -18,9 +20,6 @@ use Vain\Expression\Boolean\Result\Factory\BooleanResultFactoryInterface;
  * Class AndExpression
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
- *
- * @method BooleanExpressionInterface getFirstExpression
- * @method BooleanExpressionInterface getSecondExpression
  */
 class AndExpression extends AbstractBinaryExpression implements BooleanExpressionInterface
 {
@@ -37,7 +36,8 @@ class AndExpression extends AbstractBinaryExpression implements BooleanExpressio
         BooleanExpressionInterface $firstExpression,
         BooleanExpressionInterface $secondExpression,
         BooleanResultFactoryInterface $resultFactory
-    ) {
+    )
+    {
         $this->resultFactory = $resultFactory;
         parent::__construct($firstExpression, $secondExpression);
     }
@@ -45,7 +45,7 @@ class AndExpression extends AbstractBinaryExpression implements BooleanExpressio
     /**
      * @return BooleanResultFactoryInterface
      */
-    public function getResultFactory()
+    public function getResultFactory() : BooleanResultFactoryInterface
     {
         return $this->resultFactory;
     }
@@ -66,7 +66,7 @@ class AndExpression extends AbstractBinaryExpression implements BooleanExpressio
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('%s and %s', $this->getFirstExpression(), $this->getSecondExpression());
     }
@@ -74,7 +74,7 @@ class AndExpression extends AbstractBinaryExpression implements BooleanExpressio
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['and' => parent::toArray()];
     }

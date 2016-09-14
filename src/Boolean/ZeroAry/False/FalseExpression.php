@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types = 1);
+
 namespace Vain\Expression\Boolean\ZeroAry\False;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
@@ -44,7 +46,7 @@ class FalseExpression extends AbstractZeroAryExpression implements BooleanExpres
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return 'false';
     }
@@ -52,7 +54,7 @@ class FalseExpression extends AbstractZeroAryExpression implements BooleanExpres
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['false' => []];
     }
