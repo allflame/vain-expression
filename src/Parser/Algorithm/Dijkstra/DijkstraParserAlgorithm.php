@@ -46,12 +46,12 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     /**
      * DjkstraParserAlgorithm constructor.
      *
-     * @param DijkstraEngineInterface   $bracketEngine
-     * @param DijkstraEngineInterface   $functionEngine
-     * @param DijkstraEngineInterface   $operatorEngine
-     * @param DijkstraEngineInterface   $postBracketEngine
-     * @param DijkstraEngineInterface   $finishEngine
-     * @param ParserRecordQueue         $rplQueue
+     * @param DijkstraEngineInterface $bracketEngine
+     * @param DijkstraEngineInterface $functionEngine
+     * @param DijkstraEngineInterface $operatorEngine
+     * @param DijkstraEngineInterface $postBracketEngine
+     * @param DijkstraEngineInterface $finishEngine
+     * @param ParserRecordQueue $rplQueue
      * @param ParserOperatorRecordStack $operatorStack
      */
     public function __construct(
@@ -115,6 +115,7 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     {
         if ($bracketRecord->isLeft()) {
             $this->operatorStack->push($bracketRecord);
+
             return $this;
         }
 
@@ -132,7 +133,11 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
             throw new UnclosedBracketException($this, $bracketRecord);
         }
 
-        if (false === $this->operatorStack->isEmpty() && ($record = $this->operatorStack->top()) && $record->accept($this->postBracketEngine->withRecord($bracketRecord))) {
+        if (false === $this->operatorStack->isEmpty() && ($record = $this->operatorStack->top())
+            && $record->accept(
+                $this->postBracketEngine->withRecord($bracketRecord)
+            )
+        ) {
             $this->operatorStack->pop();
             $this->rplQueue->enqueue($record);
         } else {
@@ -158,8 +163,8 @@ class DijkstraParserAlgorithm implements ParserAlgorithmInterface
     public function operator(RegularOperatorParserRecord $operatorRecord)
     {
         while (false === $this->operatorStack->isEmpty()
-            && ($record = $this->operatorStack->top())
-            && $record->accept($this->operatorEngine->withRecord($operatorRecord))) {
+               && ($record = $this->operatorStack->top())
+               && $record->accept($this->operatorEngine->withRecord($operatorRecord))) {
             $this->operatorStack->pop();
             $this->rplQueue->enqueue($record);
         }

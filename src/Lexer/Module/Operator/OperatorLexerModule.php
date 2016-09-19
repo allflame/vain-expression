@@ -48,8 +48,11 @@ class OperatorLexerModule extends AbstractLexerModule
         }
 
         $operator = '';
-        while (strlen($expression) > $currentPosition && array_key_exists($expression[$currentPosition],
-                                                                          self::OPERATORS)) {
+        while (strlen($expression) > $currentPosition
+               && array_key_exists(
+                   $expression[$currentPosition],
+                   self::OPERATORS
+               )) {
             $operator .= $expression[$currentPosition];
             $currentPosition++;
         }

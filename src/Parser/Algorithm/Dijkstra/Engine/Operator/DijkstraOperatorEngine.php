@@ -46,10 +46,12 @@ class DijkstraOperatorEngine extends AbstractDijkstraEngine
      */
     public function operator(RegularOperatorParserRecord $operatorRecord)
     {
-        return ($this->getRecord()->isLeftAssociative() && ($this->getRecord()
-                                                                 ->getPrecedence() <= $operatorRecord->getPrecedence())
-            || $this->getRecord()->isRightAssociative() && ($this->getRecord()
-                                                                 ->getPrecedence() < $operatorRecord->getPrecedence())
+        return ($this->getRecord()->isLeftAssociative()
+                && ($this->getRecord()
+                         ->getPrecedence() <= $operatorRecord->getPrecedence())
+                || $this->getRecord()->isRightAssociative()
+                   && ($this->getRecord()
+                            ->getPrecedence() < $operatorRecord->getPrecedence())
         );
     }
 

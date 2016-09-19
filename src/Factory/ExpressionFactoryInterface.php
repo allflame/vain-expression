@@ -118,7 +118,7 @@ interface ExpressionFactoryInterface
     public function mode(ExpressionInterface $expression, ExpressionInterface $mode) : ExpressionInterface;
 
     /**
-     * @param ExpressionInterface $expression ,
+     * @param ExpressionInterface        $expression ,
      * @param BooleanExpressionInterface $filterExpression
      *
      * @return ExpressionInterface

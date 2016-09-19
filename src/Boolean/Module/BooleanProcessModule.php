@@ -71,10 +71,12 @@ class BooleanProcessModule extends AbstractProcessModule
         switch ($token->getValue()) {
             case '&&':
                 $first = $this->getExpressionStack()->pop();
+
                 return new AndExpression($first, $second, $this->resultFactory);
                 break;
             case '||':
                 $first = $this->getExpressionStack()->pop();
+
                 return new OrExpression($first, $second, $this->resultFactory);
                 break;
             case '!':

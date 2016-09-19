@@ -29,7 +29,7 @@ class BooleanResult extends AbstractResult implements BooleanResultInterface
     /**
      * BooleanResult constructor.
      *
-     * @param bool $status
+     * @param bool                       $status
      * @param BooleanExpressionInterface $expression
      * @param BooleanExpressionInterface $result
      */
