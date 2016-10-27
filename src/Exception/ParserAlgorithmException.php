@@ -35,7 +35,7 @@ class ParserAlgorithmException extends AbstractCoreException
     public function __construct(
         ParserAlgorithmInterface $algorithm,
         string $message,
-        int $code,
+        int $code = 500,
         \Exception $previous = null
     ) {
         $this->algorithm = $algorithm;

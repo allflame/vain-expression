@@ -36,9 +36,7 @@ class UnclosedBracketException extends ParserAlgorithmException
                 'Encountered unclosed bracket %s at %d',
                 $record->getToken()->getValue(),
                 $record->getToken()->getCursor()
-            ),
-            0,
-            null
+            )
         );
     }
 }

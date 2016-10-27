@@ -39,9 +39,7 @@ class WrongBracketException extends SyntaxErrorException
                 'Bracket %s does not correspond last opened bracket %s',
                 $string[$position],
                 $previousBracket
-            ),
-            0,
-            null
+            )
         );
     }
 }

@@ -40,7 +40,7 @@ class SyntaxErrorException extends LexerModuleException
         string $string,
         int $position,
         string $message,
-        int $code,
+        int $code = 500,
         \Exception $previous = null
     ) {
         $this->string = $string;

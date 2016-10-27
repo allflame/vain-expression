@@ -39,9 +39,7 @@ class BracketPrecedenceException extends SyntaxErrorException
                 'Open bracket %s is expected before closing one %s',
                 $expectedPrecedence,
                 $string[$position]
-            ),
-            0,
-            null
+            )
         );
     }
 }

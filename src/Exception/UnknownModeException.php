@@ -30,6 +30,6 @@ class UnknownModeException extends InterpretationException
      */
     public function __construct(ModeExpression $expression, \ArrayAccess $context, string $mode)
     {
-        parent::__construct($expression, $context, sprintf('Mode %s is not supported', $mode), 0, null);
+        parent::__construct($expression, $context, sprintf('Mode %s is not supported', $mode));
     }
 }

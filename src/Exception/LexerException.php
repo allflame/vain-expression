@@ -32,7 +32,7 @@ class LexerException extends AbstractCoreException
      * @param int            $code
      * @param \Exception     $previous
      */
-    public function __construct(LexerInterface $lexer, string $message, int $code, \Exception $previous = null)
+    public function __construct(LexerInterface $lexer, string $message, int $code = 500, \Exception $previous = null)
     {
         $this->lexer = $lexer;
         parent::__construct($message, $code, $previous);

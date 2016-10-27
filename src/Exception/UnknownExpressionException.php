@@ -31,11 +31,6 @@ class UnknownExpressionException extends ExpressionFactoryException
         ExpressionFactoryInterface $expressionFactory,
         string $shortcut
     ) {
-        parent::__construct(
-            $expressionFactory,
-            sprintf('Cannot create expression by unknown shortcut %s', $shortcut),
-            0,
-            null
-        );
+        parent::__construct($expressionFactory, sprintf('Cannot create expression by unknown shortcut %s', $shortcut));
     }
 }

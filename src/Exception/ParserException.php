@@ -32,7 +32,7 @@ class ParserException extends AbstractCoreException
      * @param int             $code
      * @param \Exception|null $previous
      */
-    public function __construct(ParserInterface $parser, string $message, int $code, \Exception $previous = null)
+    public function __construct(ParserInterface $parser, string $message, int $code = 500, \Exception $previous = null)
     {
         $this->parser = $parser;
         parent::__construct($message, $code, $previous);

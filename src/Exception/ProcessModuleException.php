@@ -35,7 +35,7 @@ class ProcessModuleException extends AbstractCoreException
     public function __construct(
         ParserProcessModuleInterface $process,
         string $message,
-        int $code,
+        int $code = 500,
         \Exception $previous = null
     ) {
         $this->processModule = $process;

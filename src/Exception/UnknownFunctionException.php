@@ -30,6 +30,6 @@ class UnknownFunctionException extends InterpretationException
      */
     public function __construct(FunctionExpression $expression, \ArrayAccess $context, string $functionName)
     {
-        parent::__construct($expression, $context, sprintf('Function %s is not registered', $functionName), 0, null);
+        parent::__construct($expression, $context, sprintf('Function %s is not registered', $functionName));
     }
 }

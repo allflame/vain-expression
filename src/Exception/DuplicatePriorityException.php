@@ -41,9 +41,7 @@ class DuplicatePriorityException extends LexerException
                 get_class($new),
                 $new->getPriority(),
                 get_class($old)
-            ),
-            0,
-            null
+            )
         );
     }
 }

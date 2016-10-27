@@ -39,7 +39,7 @@ class InterpretationException extends AbstractCoreException
         ExpressionInterface $expression,
         \ArrayAccess $context = null,
         string $message,
-        int $code,
+        int $code = 500,
         \Exception $previous = null
     ) {
         $this->expression = $expression;

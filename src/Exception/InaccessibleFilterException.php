@@ -33,9 +33,7 @@ class InaccessibleFilterException extends InterpretationException
         parent::__construct(
             $expression,
             $context,
-            sprintf('Cannot apply filter for non-traversable object of type %s', gettype($data)),
-            0,
-            null
+            sprintf('Cannot apply filter for non-traversable object of type %s', gettype($data))
         );
     }
 }

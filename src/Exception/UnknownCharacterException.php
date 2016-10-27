@@ -34,9 +34,7 @@ class UnknownCharacterException extends SyntaxErrorException
             $module,
             $string,
             $position,
-            sprintf('Unexpected character "%s"', $string[$position]),
-            0,
-            null
+            sprintf('Unexpected character "%s"', $string[$position])
         );
     }
 }

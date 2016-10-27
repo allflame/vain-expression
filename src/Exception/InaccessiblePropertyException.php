@@ -33,9 +33,7 @@ class InaccessiblePropertyException extends InterpretationException
         parent::__construct(
             $expression,
             $context,
-            sprintf('Cannot extract property for data of type %s', gettype($data)),
-            0,
-            null
+            sprintf('Cannot extract property for data of type %s', gettype($data))
         );
     }
 }

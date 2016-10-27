@@ -38,9 +38,7 @@ class UnknownHelperException extends InterpretationException
         parent::__construct(
             $helperExpression,
             $context,
-            sprintf('Helper method %s::%s is not registered', $class, $method),
-            0,
-            null
+            sprintf('Helper method %s::%s is not registered', $class, $method)
         );
     }
 }

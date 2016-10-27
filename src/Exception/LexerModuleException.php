@@ -35,7 +35,7 @@ class LexerModuleException extends AbstractCoreException
     public function __construct(
         LexerModuleInterface $module,
         string $message,
-        int $code,
+        int $code = 500,
         \Exception $previous = null
     ) {
         $this->module = $module;

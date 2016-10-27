@@ -34,9 +34,7 @@ class UnknownPropertyException extends InterpretationException
         parent::__construct(
             $expression,
             $context,
-            sprintf('Property %s not found in data %s', $property, var_export($data, true)),
-            0,
-            null
+            sprintf('Property %s not found in data %s', $property, var_export($data, true))
         );
     }
 }

@@ -35,7 +35,7 @@ class ExpressionFactoryException extends AbstractCoreException
     public function __construct(
         ExpressionFactoryInterface $expressionFactory,
         string $message,
-        int $code,
+        int $code = 500,
         \Exception $previous = null
     ) {
         $this->expressionFactory = $expressionFactory;

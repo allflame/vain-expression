@@ -34,9 +34,7 @@ class UnknownMethodException extends InterpretationException
         parent::__construct(
             $expression,
             $context,
-            sprintf('Method %s does not exists in data', get_class($data), $method),
-            0,
-            null
+            sprintf('Method %s does not exists in data', get_class($data), $method)
         );
     }
 }
