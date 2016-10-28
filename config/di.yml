@@ -10,10 +10,6 @@ services:
   expression.parser:
     class: Vain\Expression\Parser\Composite\Parser
     arguments: ['@expression.parser.record.queue', '@expression.stack', '@expression.parser.algorithm']
-    calls:
-      - [addModule, ['@parser.math.module']]
-      - [addModule, ['@parser.boolean.module']]
-      - [addModule, ['@parser.terminal.module']]
   expression.parser.algorithm.dijkstra:
     class: Vain\Expression\Parser\Algorithm\Dijkstra\DijkstraParserAlgorithm
     arguments: ['@expression.parser.algorithm.dijkstra.bracket', '@expression.parser.algorithm.dijkstra.function', '@expression.parser.algorithm.dijkstra.operator', '@expression.parser.algorithm.dijkstra.post', '@expression.parser.algorithm.dijkstra.finish', '@expression.parser.rpl.queue', '@expression.parser.operator.stack']
@@ -63,6 +59,8 @@ services:
   parser.terminal.module:
     class: Vain\Expression\Terminal\Module\TerminalParserModule
     arguments: ['@parser.terminal.module.translate', '@parser.terminal.module.process']
+    tags:
+      - {name: expression.parser.module}
   parser.terminal.module.translate:
     class: Vain\Expression\Terminal\Module\TerminalTranslateModule
   parser.terminal.module.process:
@@ -70,6 +68,8 @@ services:
   parser.math.module:
     class: Vain\Expression\Math\Module\MathParserModule
     arguments: ['@parser.math.module.translate', '@parser.math.module.process']
+    tags:
+      - {name: expression.parser.module}
   parser.math.module.translate:
     class: Vain\Expression\Math\Module\MathTranslateModule
     arguments: [{'+': [110, false], '-': [110, false], '*': [120, false], '/': [120, false], '**': [130, true], '^': [130, true], '%': [140, false]}]
@@ -78,6 +78,8 @@ services:
   parser.boolean.module:
     class: Vain\Expression\Boolean\Module\BooleanParserModule
     arguments: ['@parser.boolean.module.translate', '@parser.boolean.module.process']
+    tags:
+      - {name: expression.parser.module}
   parser.boolean.module.translate:
     class: Vain\Expression\Boolean\Module\BooleanTranslateModule
     arguments: [{'||': [210, false], '&&': [220, false], '~': [230, true], '!': [230, false]}]
