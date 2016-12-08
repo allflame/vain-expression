@@ -30,10 +30,7 @@ class NumberLexerModule extends AbstractLexerModule
     {
         $numberString = '';
         while (strlen($expression) > $currentPosition
-               && false !== strpos(
-                '0123456789.',
-                $expression[$currentPosition]
-            )) {
+               && false !== strpos('0123456789.', $expression[$currentPosition])) {
             $numberString .= $expression[$currentPosition];
             $currentPosition++;
         }
